@@ -1,0 +1,16 @@
+## Ignore
+
+# MOD
+MOD/
+
+# tools
+# tools/
+
+# builds
+*.zip
+
+# hashes
+# *.sha256
+
+# git
+*.yml
