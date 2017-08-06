@@ -1,6 +1,18 @@
 ## No-Bling DOTA mod  
 #### We all know where we are headed looking at the Immortals spam in the last two years...  
-  
+
+### Glance  
+<table>  
+	<tr>  
+		<td><img src="http://i.imgur.com/QhB7BkT.jpg"></td>  
+		<td><img src="http://i.imgur.com/hr0lFC4.jpg"></td>  
+	</tr>  
+	<tr>  
+		<td><img src="http://i.imgur.com/kUIQ7Jh.png"></td>  
+		<td><img src="http://i.imgur.com/JShyXKs.png"></td>  
+	</tr>  
+</table>  
+ 
 ## About  
 Simply a competent alternative to *Settings -- Video -- Effects Quality* with the main focus on GlanceValue.  
 No-Bling<sup>tm</sup> mod is economy-friendly, gracefully disabling particle spam while leaving hats model untouched.  
@@ -18,14 +30,14 @@ Might say it even helps differentiate great artistic work, shadowed by the parti
 `-LV`  
 6. Profit!  
 
-### How to quickly restore normal DOTA?
+### How to quickly restore default particle spam DOTA?
 Simply remove / rename the `-LV` launch option!
   
 ### Before you ask about VAC:  
 Don't worry, this is a perfectly safe, well intended, hats friendly, good behaviour particles-only mod,  
 ingeniously and optimally using the built-in LowViolence interface, and whitelist-able at a glance...  
   
-## No-Bling DOTA mod builder.bat will be released soon!  
+## No-Bling DOTA mod builder.bat released!  
 1. Download `No-Bling DOTA mod builder.zip`, unpack all files, run the included batch script, select build choices  
 2. Profit!  
 *Requires Windows x64. Does not need Workshop Tools DLC installed, but runs better / faster / more reliable if you have it.*  
@@ -57,18 +69,6 @@ Without Workshop Tools DLC:
 ### Notes:  
 Due to -lv (lowviolence) being used, you might want to add to your autoexec.cfg:  
 `violence_ablood 1; violence_agibs 1; violence_hblood 1; violence_hgibs 1;`  
-  
-### Glance  
-<table>  
-	<tr>  
-		<td><img src="http://i.imgur.com/QhB7BkT.jpg"></td>  
-		<td><img src="http://i.imgur.com/hr0lFC4.jpg"></td>  
-	</tr>  
-	<tr>  
-		<td><img src="http://i.imgur.com/kUIQ7Jh.png"></td>  
-		<td><img src="http://i.imgur.com/JShyXKs.png"></td>  
-	</tr>  
-</table>  
-  
+ 
 Published under [MIT](LICENSE) license.  
   
