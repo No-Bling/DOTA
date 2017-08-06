@@ -1,4 +1,4 @@
-//                    No-Bling dota_lv mod builder by AveYo - version 1.0
+//                    No-Bling dota_lv mod builder by AveYo - version 1.0rc1
 //  This JS script is used internally by the main "No-Bling dota_lv mod builder.bat" launcher 
 
 // AveYo: manual filters to supplement the auto generated ones by the No_Bling JS function - moved here on top, for convenience
@@ -18,6 +18,7 @@ ADD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_ambient_main_red
 ADD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_ambient_reduced_flash.vpcf']=MOD;        // dota_hud_reduced_flash
 ADD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_whip_reduced_flash.vpcf']=MOD;            // razor whip jiggle !!!
 
+REM_HAT['particles/units/heroes/hero_shadow_demon/shadow_demon_ambient.vpcf']=''; //prevent sd new effects?!
 REM_HAT['particles/econ/items/lina/lina_head_headflame/lina_flame_hand_dual_headflame.vpcf']='';   // keep lina arcana hands flame
 REM_HAT['particles/econ/items/pudge/pudge_immortal_arm/pudge_immortal_arm_chain.vpcf']='';       // prevent pudge cloth jiggle !!!
 REM_HAT['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail.vpcf']='';                  // keep sf arcana trail
@@ -59,9 +60,15 @@ REM_SPELL['particles/econ/items/techies/techies_arcana/techies_stasis_trap_arcan
 // Advanced_lookup_filter - KEEP prevents asset being removed from whatrules list by the No-Bling choices generic filter
 //KEEP['particles/units/heroes/hero_razor_reduced_flash/razor_whip_reduced_flash.vpcf']=MOD;          // razor whip cloth jiggle !!!
 EXCLUDE['particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf']='';       // pa lvl6 weapon glitch !!!
-EXCLUDE['particles/units/heroes/hero_templar_assassin/templar_assassin_ambient.vpcf']='';               // ta iconic hands effect
-EXCLUDE['particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf']='';
-EXCLUDE['particles/units/heroes/hero_drow/drow_bowstring.vpcf']=''; 
+//ADD_HAT['particles/econ/items/drow/drow_bow_coldcase/drow_bowstring_coldcase.vpcf']='particles/units/heroes/hero_drow/drow_bowstring.vpcf'; 
+//ADD_HAT['particles/econ/items/drow/drow_bow_iceburst/drow_bowstring_iceburst.vpcf']='particles/units/heroes/hero_drow/drow_bowstring.vpcf';
+//ADD_HAT['particles/econ/items/drow/drow_bow_pincher/drow_bowstring_pincher.vpcf']='particles/units/heroes/hero_drow/drow_bowstring.vpcf';
+//ADD_HAT['particles/econ/items/drow/drow_bow_howling_wind/drow_bowstring_howling_wind.vpcf']='particles/units/heroes/hero_drow/drow_bowstring.vpcf';
+//ADD_HAT['particles/econ/items/windrunner/windrunner_battleranger/windrunner_battleranger_bowstring_ambient.vpcf']='particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf';
+//ADD_HAT['particles/econ/items/windrunner/windrunner_ti6/windrunner_falcon_bowstring.vpcf']='particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf';
+//ADD_HAT['particles/econ/items/templar_assassin/templar_assassin_weapon_scholar/templar_assassin_ambient_scholar.vpcf']='particles/units/heroes/hero_templar_assassin/templar_assassin_ambient.vpcf';
+//ADD_HAT['particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_base_ambient.vpcf']='particles/units/heroes/hero_templar_assassin/templar_assassin_ambient.vpcf';
+
 // Advanced tip: while testing a hero, list loaded particles using console command: dumpparticlelist | grep partial_hero_name
 
 //----------------------------------------------------------------------------------------------------------------------------------
@@ -84,7 +91,7 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
   var MOD_COURIERS    = (mod_choices.indexOf('Couriers') > -1);     // Couriers particles are fine.. until a dumber abuses gems   
   var MOD_TOWERS      = (mod_choices.indexOf('Towers') > -1);       // Just the particle effects, models remain unchanged
   var ACTIVE_EVENT_ID = 'EVENT_ID_INTERNATIONAL_2017' //current_event
-  var LOG             = (verbose == '1'), LOGX = false;             // Exports detailed per-hero lists, useful for debugging mod
+  var LOG             = (verbose == '1');                          // Exports detailed per-hero lists, useful for debugging mod
   var MEASURE         = (timers == '1'); if (!MEASURE) timer = function(f){return{end:function(){}}}; var t;
 
   // AveYo: initiate filter variables
@@ -127,12 +134,17 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
           mods['Spells'][generic.modifier]=MOD;
           if (typeof generic.asset == 'string' && generic.modifier.lastIndexOf('.vpcf') > -1)
             mods['Spells'][generic.modifier]=generic.asset;
-          if (LOGX) console.log ('   spell', path.basename(generic.modifier));
+          if (LOG) console.log ('   spell', path.basename(generic.modifier));
         }
       }
     } // next m
   } // next a
   if (LOG) t.end();
+
+  // Import basic manual filter defined at the top of this script: ADD_HAT,REM_HAT, ADD_HERO,REM_HERO, ADD_SPELL,REM_SPELL
+  for (var hat in ADD_HAT) { mods['Hats'][hat]=ADD_HAT[hat]; if (LOG) console.log('     + add', path.basename(hat)); }
+  for (var hat in ADD_HERO) { mods['Heroes!'][hat]=ADD_HERO[hat]; if (LOG) console.log('     + add', path.basename(hat)); }
+  for (var hat in ADD_SPELL) { mods['Spells'][hat]=ADD_SPELL[hat]; if (LOG) console.log('     + add', path.basename(hat)); }
 
   // AveYo: Loop trough all items, skipping over not selected / irrelevant categories and optionally generate accurate slice logs
   if (LOG) t=timer(' Check items');
@@ -146,24 +158,26 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
       for (var h in items[i].used_by_heroes) if (h.indexOf('_dota_') > -1) hero=h.split('_dota_')[1];
       if (hero.indexOf('hero_') > -1) { hero=h.split('hero_')[1]; } else { hero='npc_dota'; }    used_by_heroes[hero]='';
     }
+    var logitem=''; // optional item category tracking for debugging
+    if (LOG) logitem ='  '+ vdf.redup(i) +' '+ iname +' '+ prefab +' '+ rarity +' '+ hero;
     // AveYo: still in the item i loop above, check visuals section for asset_modifier*
-    var cat='Others',has_particles=false, silhouette={}, probably_hat={}, probably_spell={}, probably_def={}, lookup_hat={};
+    var cat='Others', has_particles=false, silhouette={}, probably_hat={}, probably_spell={}, probably_def={}, lookup_hat={};
     if (typeof items[i].visuals != 'object') continue; // skip if no .visuals object
     for (var f in items[i].visuals) {
       var visuals=items[i].visuals[f]; // .visuals object - don't use exact naming since vdf.parser auto-renamed duplicates
       var type=(typeof visuals.type == 'string' && visuals.type.indexOf('particle') == 0 ) ? visuals.type : '';
       if (!type || type == 'particle_control_point' || type == 'particle_combined') continue; // skip non particle / particle_create
-      has_particles = true; // item i has particle definitions, so enable logging 
       var modifier=(typeof visuals.modifier == 'string' && visuals.modifier.lastIndexOf('.vpcf') > -1) ? visuals.modifier : '';
-      //if (modifier.lastIndexOf('obsidian_destroyer_smoke.vpcf') > -1 ) continue; // the only modifier that can cause crashes!!!
+      if (modifier.lastIndexOf('obsidian_destroyer_smoke.vpcf') > -1 ) continue; // the only modifier that can cause crashes!!!
       var asset=(typeof visuals.asset == 'string' && visuals.asset.lastIndexOf('.vpcf') > -1) ? visuals.asset : '';
       if (asset && asset.indexOf('particles/ability_modifier') > -1) continue; // skip dynamic references
       if (asset && asset.indexOf('particles/reftononexistent') > -1) continue; // skip dynamic references
-      if (asset && asset in EXCLUDE) { if (LOGX) console.log('   Exclude', path.basename(asset)); continue; } // apply EXCLUDE list
+      if (asset && asset in EXCLUDE) { if (LOG) logitem += '\n     - exclude '+ path.basename(asset); continue; }// apply EXCLUDE list
       if (modifier == asset) continue; // skip if modifier and asset are the same
       if (!modifier && !asset) continue; // skip if both modifier and asset are not defined / not .vpcf particle files
       // AveYo: sort particles
       if (prefab == 'tool' || prefab == 'relic' || prefab == 'treasure_chest') {  // EVENT AND TOWERS
+//        continue;
         if (items[i].event_id != ACTIVE_EVENT_ID) continue; // active event id is EVENT_ID_INTERNATIONAL_2017
         if (expired) continue; // skip expired events - sadly most don't have expiration_date set so this filter can't be used alone
         if (modifier && modifier.indexOf('particles/world_tower') > -1) {
@@ -171,6 +185,7 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
         } else {
           cat='Events'; mods[cat][modifier]=(asset) ? asset : MOD;
         }
+        has_particles = true; // item i has particle definitions, so enable logging 
       } else if (prefab == 'wearable' || prefab == 'bundle') {  // SPELLS AND HATS
         cat='Hats';
         switch(type) {
@@ -180,12 +195,16 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
               // Spells mostly but in this case we can have Hats, too. Separating them is not simple, but Magic shall not prevail!
               cat='Hats'; probably_spell[modifier]=MOD; // probably_spell
               if (asset && asset.indexOf('particles/econ/items') == -1) { probably_spell[modifier]=asset; odd=false; }
-              if (LOGX) console.log((odd) ? '!!! ' : '', '  ? spell', path.basename(modifier) );
+              if (LOG) logitem += '\n    probably_spell'+( (odd) ? '!!! ' : ' ' )+ modifier +' = '+ asset;
             } else {
               cat='Others'; //mods[cat][modifier]=MOD;
-              //if (asset) {mods[cat][modifier]=asset; odd=false; }
-              if (LOGX) console.log((odd) ? '!!! ' : '', '    bling', path.basename(modifier));
+              if (asset) {
+                odd=false;
+                //mods[cat][modifier]=asset;
+              }
+              if (LOG) logitem += '\n    ignore'+( (odd) ? '!!! ' : ' ' )+ modifier +' = '+ asset;
             }
+            has_particles = true; // item i has particle definitions, so enable logging 
             break;
           case 'particle_create':
             var odd=false; // not expecting .asset
@@ -193,43 +212,65 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
               // Hats mostly
               cat='Hats'; mods[cat][modifier]=MOD; // probably_hat
               if (asset && asset.indexOf('particles/econ/items') == -1) { mods[cat][modifier]=asset; odd=true; }
-              if (LOGX) console.log((odd) ? '!!! ' : '', '    hat  ', path.basename(modifier) );
+              if (LOG) logitem += '\n    hat'+( (odd) ? '!!! ' : ' ' )+ modifier +' = '+ asset;
             } else if (modifier.indexOf('particles/units/heroes') > -1) {
               cat='Hats'; probably_hat[modifier]=MOD;
-              if (LOGX) console.log(' ? probably_hat', prefab, modifier);
+              if (LOG) logitem += '\n    probably_hat '+ modifier +' = '+ asset;
             } else {
               cat='Others'; //mods[cat][modifier]=MOD;
-              //if (asset) { mods[cat][modifier]=asset; odd=true; }
-              if (LOGX) console.log((odd) ? '!!! ' : '', '    model', path.basename(modifier) );
+              if (asset) {
+                odd=true;
+                //mods[cat][modifier]=asset;
+              }
+              if (LOG) logitem += '\n    model'+( (odd) ? '!!! ' : ' ' )+ modifier +' = '+ asset;
             }
+            has_particles = true; // item i has particle definitions, so enable logging 
             break;
           default:
         }
       } else if (prefab == 'default_item') {  // DEFAULT HEROES
         cat='Heroes!';
-        if (modifier.indexOf('particles/units/heroes') == -1) continue;
+        if (modifier.indexOf('particles/units/heroes') == -1) {
+          if (LOG) logitem += '\n    not units/heroes '+ modifier +' = '+ asset;
+          //continue;
+        }
         mods[cat][modifier]=(asset) ? asset : MOD;
+        has_particles = true; // item i has particle definitions, so enable logging 
       } else if (prefab == 'ward') {  // WARDS
+//        continue;
         cat='Wards'; mods[cat][modifier]=(asset) ? asset : MOD;
+        has_particles = true; // item i has particle definitions, so enable logging 
       } else if (prefab.indexOf('courier') == 0) {  // COURIERS
+//        continue;
         cat='Couriers'; mods[cat][modifier]=(asset) ? asset : MOD;
       } else {  // OTHERS
+//        continue;
         if (expired) continue;
         cat='Others'; mods[cat][modifier]=(asset) ? asset : MOD;
+        has_particles = true; // item i has particle definitions, so enable logging 
       }
     } // next f
+
 
     // AveYo: Separate Hats from Spells out of the ambiguous visuals.asset_modifier.type='particle'
     for (var hat in probably_spell) {
       if (probably_spell[hat] in probably_hat) {
-        mods['Hats'][hat]=MOD; if (LOGX) console.log('certainly hat', hat);
-      } else if (probably_spell[hat] in mods['Heroes!']) {
-        mods['Hats'][hat]=probably_spell[hat]; // if it's a default hero modifier, treat it as Hats when Heroes! not selected 
-        mods['Heroes!'][hat]=MOD; if (LOGX) console.log('recursive hero', hat); // and only disable it if Heroes! selected
+        mods['Hats'][hat]=probably_spell[hat];
+        if (LOG) logitem += '\n      definitely_hat '+ path.basename(hat) +' = '+ probably_spell[hat];
+//        if (probably_spell[hat] != MOD && probably_spell[hat] in mods['Heroes!']) {
+        if (probably_spell[hat] in mods['Heroes!']) {
+          mods['Hats'][hat]=probably_spell[hat]; // if it's a default hero modifier, treat it as Hats when Heroes! not selected 
+//          mods['Heroes!'][hat]=MOD; if (LOG) console.log('recursive hero', hat); // and only disable it if Heroes! selected
+          mods['Heroes!'][hat]=probably_spell[hat]; if (LOG) console.log('recursive hero', hat); // and only disable it if Heroes! selected
+        }
       } else {
-        mods['Spells'][hat]=probably_spell[hat]; //if (LOG) console.log('certainly spell', hat, path.basename(probably_spell[hat]));
+        mods['Spells'][hat]=probably_spell[hat];
+        if (LOG) logitem += '\n      definitely_spell '+ path.basename(hat) +' = '+ probably_spell[hat];
       }
     }
+
+    // AveYo: Print optional item category tracking for debugging in one go
+    if (LOG && has_particles) console.log(logitem);    //&& hero!='npc_dota'
 
     // AveYo: Optionally log events / per-hero / ward / courier/ other items having particle definitions
     if (LOG && has_particles) {
@@ -247,17 +288,13 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
         if (!logs[cat][i]['items_game']['items'][i+'']) logs[cat][i]['items_game']['items'][i+'']=items[i];
       }
     } // done LOG
-    if (LOG && has_particles) console.log('  ',cat,hero,prefab,rarity,vdf.redup(i),iname);
   }  // next item i
   if (LOG) t.end(); // Done checking items loop
 
   // Import basic manual filter defined at the top of this script: ADD_HAT,REM_HAT, ADD_HERO,REM_HERO, ADD_SPELL,REM_SPELL
-  for (var hat in ADD_HAT) { mods['Hats'][hat]=ADD_HAT[hat]; if (LOGX) console.log('  Add', path.basename(hat)); }
-  for (var hat in REM_HAT) { mods['Hats'][hat]=undefined; delete mods['Hats'][hat]; if (LOGX) console.log('  Rem', hat); }
-  for (var hat in ADD_HERO) { mods['Heroes!'][hat]=ADD_HERO[hat]; if (LOGX) console.log('  Add', path.basename(hat)); }
-  for (var hat in REM_HERO) { mods['Heroes!'][hat]=undefined; delete mods['Heroes!'][hat]; if (LOGX) console.log('  Rem', hat); }
-  for (var hat in ADD_SPELL) { mods['Spells'][hat]=ADD_SPELL[hat]; if (LOGX) console.log('  Add', path.basename(hat)); }
-  for (var hat in REM_SPELL) { mods['Spells'][hat]=undefined; delete mods['Spells'][hat]; if (LOGX) console.log('  Rem', hat); }
+  for (var hat in REM_HAT) { mods['Hats'][hat]=undefined; delete mods['Hats'][hat]; if (LOG) console.log('     - rem', hat); }
+  for (var hat in REM_HERO) { mods['Heroes!'][hat]=undefined; delete mods['Heroes!'][hat]; if (LOG) console.log('     - rem', hat); }
+  for (var hat in REM_SPELL) { mods['Spells'][hat]=undefined; delete mods['Spells'][hat]; if (LOG) console.log('     - rem', hat); }
 
   // AveYo: Optionally log to file per-hero / ward / events items lists, and the no_bling source = replacement troubleshooting list
   if (LOG) {
@@ -305,10 +342,6 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
   // AveYo: Mod particle files using built-in m_hLowViolenceDef interface - this is what makes this mod so neat, clean, and safe!
   t=timer(' Mod particles');
   var lv_regx=new RegExp('^[ \t]*m_hLowViolenceDef = .*$[\n\r]+','m'), lv_insert=new RegExp('^[ \t]*_class = .*$[\n\r]+','m');
-//  var mods={'Event':events,'Abilities':spells,'Hats':hats,'Heroes!':defaults,'Wards':wards,'Towers':towers,'Couriers':couriers,'Others':others};
-//  var logs={ 'others':{},'couriers':{},'wards':{},'events':{},'wearables':{},'defaults':{} };
-//  var mods={ 'others':{},'couriers':{},'wards':{},'events':{},'towers':{},'spells':{},'hats':{},'heroes':{} };
-
 
   for (var cat in mods) {
     var particles=mods[cat];
@@ -340,68 +373,6 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
   }
 
 } // End of No_Bling
-
-
-
-
-  // whatrules[modifier]=asset - we override the asset part (usually wearable type / workshop) with default_item definition or null
-/*  if (LOG) t=timer(' Filter particles');
-  // Import basic manual filter defined at the top of this hybrid script: ADD_HAT, REM_HAT, ADD_HERO, REM_HERO
-//  if (MOD_HATS) {
-//    for (var hat in ADD_HAT) { whatrules[hat]=ADD_HAT[hat]; if (LOG) console.log('  add', path.basename(hat)); }
-//    for (var hat in REM_HAT) { whatrules[hat]=undefined; delete whatrules[hat]; if (LOG) console.log('  rem', path.basename(hat)) }
-//    for (var hat in KEEP) { whatrules[hat]=KEEP[hat]; if (LOG) console.log('  keep', path.basename(hat)); }
-//  }
-//  if (MOD_HEROES) {
-//    for (var hat in ADD_HERO) { whatrules[hat]=ADD_HERO[hat]; if (LOG) console.log('  add', path.basename(hat)); }
-//    for (var hat in REM_HERO) { whatrules[hat]=undefined; delete whatrules[hat]; if (LOG) console.log('  rem', path.basename(hat)) }
-//  }
-  // Process whatrules[modifier]=asset list that was auto-generated from items_game.txt (and altered by the manual filters above)
-  for (var hat in whatrules) {
-
-//     console.log('~~', path.basename(hat), path.basename(whatrules[hat]));
-    // Import advanced lookup filter defined at the top of this hybrid script: KEEP, EXCLUDE
-    var IMPORTED = false;
-//    if (MOD_HATS) {
-//      IMPORTED = (hat in KEEP) ? true : false; if (LOG && IMPORTED) console.log('  keep', path.basename(hat));
-//      if (whatrules[hat] in EXCLUDE) { whatrules[hat]=undefined; delete whatrules[hat]; continue; if (LOG) console.log('  exclude', path.basename(hat));}
-//      if (whatrules[hat] in EXCLUDE) { whatrules[hat]='BAUD MOD'; if (LOG) console.log('  exclude', path.basename(hat));}
-//    }
-    // Apply No-Bling choices
-    if (whatrules[hat] === undefined) { delete whatrules[hat]; continue; }                // delete empty (removed by filters above)
-    if (hat.indexOf('particles/econ/items') > -1) { if (!MOD_SPELLS && !MOD_HATS) whatrules[hat]=undefined; }
-    else if (hat.indexOf('particles/units/heroes') > -1) { if (!MOD_HEROES && !IMPORTED) whatrules[hat]=undefined; }
-    else if (hat.indexOf('particles/econ/wards') > -1) { if (!MOD_WARDS) whatrules[hat]=undefined; }
-    else if (hat.indexOf('particles/world_tower') > -1) { if (!MOD_TOWERS) whatrules[hat]=undefined; }
-    else if (hat.indexOf('particles/econ/events') > -1) { if (!MOD_COMPENDIUM) whatrules[hat]=undefined; }
-    else whatrules[hat]=undefined;
-    // Modifier Safeguard
-    if (whatrules[hat] === undefined) { delete whatrules[hat]; continue; }                // delete empty (removed by filters above)
-    if (hat == MOD || hat == whatrules[hat]) whatrules[hat]=undefined;          // skip modifier == null and modifier == asset
-    else if (hat.lastIndexOf('.vpcf') == -1) whatrules[hat]=undefined;                         // skip non particle definition files
-    else if (hat.lastIndexOf('_null.vpcf') > -1 || hat.lastIndexOf('_local.vpcf') > -1) whatrules[hat]=undefined;   // skip built-in
-    else if (hat.lastIndexOf('obsidian_destroyer_smoke.vpcf') > -1 ) whatrules[hat]=undefined;   // the only file causing crashes!!!
-    // Asset Safeguard
-    if (whatrules[hat] === undefined) { delete whatrules[hat]; continue; }                // delete empty (removed by filters above)
-    if (whatrules[hat].lastIndexOf('.vpcf') == -1) whatrules[hat]=undefined;                   // skip non particle definition files
-    else if (whatrules[hat].indexOf('particles/ability_modifier') > -1) whatrules[hat]=undefined;         // skip dynamic references
-    else if (whatrules[hat].indexOf('particles/reftononexistent') > -1) whatrules[hat]=undefined;         // skip dynamic references
-//    else if (whatrules[hat].indexOf('particles/econ/items') > -1)
-//      whatrules[hat]=(MOD_SPELLS) ? undefined : MOD;               // skip econ to econ modifier for Spells, disable otherwise
-//    if (whatrules[hat] !== undefined && whatrules[whatrules[hat]] !== undefined)
-//      whatrules[hat]=(MOD_SPELLS) ? undefined : MOD;                  // skip recursive modifier for Spells, disable otherwise
-
-//    else if (whatrules[hat].indexOf('particles/econ/items') > -1) whatrules[hat]=MOD;     // don't allow econ to econ modifier
-//    if (whatrules[hat] !== undefined && whatrules[whatrules[hat]] !== undefined) whatrules[hat]=MOD;  // no recursive modifier
-    if (whatrules[hat] === undefined) delete whatrules[hat];                              // delete empty (removed by filters above)
-  }
-  if (LOG) t.end();  */
-
-  // AveYo: Remove default -lv definitions that cause green alien blood   - slower than the batch method due to recursive / caching
-
-
-
-
 
 //----------------------------------------------------------------------------------------------------------------------------------
 // Utility JS functions - callable independently
