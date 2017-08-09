@@ -1,4 +1,4 @@
- No-Bling DOTA mod choices: -LowViolence,Events,Spells,Hats,Wards,Couriers,Towers   
+ No-Bling DOTA mod v1.0 choices: -LowViolence,Events,Spells,Hats,Wards,Couriers,Towers   
 ------------------- 
 We all know where we are headed looking at the Immortals spam in the last two years...   
    
@@ -40,6 +40,7 @@ particles\econ\courier\courier_dc\dccourier_devil_flame.vpcf_c
 particles\econ\courier\courier_devourling\courier_devourling_ambient.vpcf_c 
 particles\econ\courier\courier_devourling_gold\courier_devourling_gold_ambient.vpcf_c 
 particles\econ\courier\courier_dolfrat_and_roshinante\courier_dolfrat_and_roshinante_a.vpcf_c 
+particles\econ\courier\courier_donkey_ti7\courier_donkey_ti7_ambient.vpcf_c 
 particles\econ\courier\courier_donkey_unicorn\courier_donkey_unicorn_ambient.vpcf_c 
 particles\econ\courier\courier_doomling\courier_doomling_ambient.vpcf_c 
 particles\econ\courier\courier_drodo\courier_drodo_ambient.vpcf_c 
@@ -764,7 +765,6 @@ particles\econ\items\lina\enthaleen_dragon\lina_enthaleen_dragon_helm_ambient.vp
 particles\econ\items\lina\enthaleen_dragon\lina_enthaleen_dragon_helm_ambient_dark.vpcf_c 
 particles\econ\items\lina\lina_bewitching_flame\lina_bewitching_flame_ambient.vpcf_c 
 particles\econ\items\lina\lina_fire_lotus\lina_fire_lotus_ambient.vpcf_c 
-particles\econ\items\lina\lina_head_headflame\lina_flame_hand_dual_headflame.vpcf_c 
 particles\econ\items\lina\lina_head_headflame\lina_headflame.vpcf_c 
 particles\econ\items\lina\lina_head_headflame\lina_spell_dragon_slave_headflame.vpcf_c 
 particles\econ\items\lina\lina_head_headflame\lina_spell_dragon_slave_impact_headflame.vpcf_c 
@@ -1024,19 +1024,15 @@ particles\econ\items\pudge\pudge_bloodlust_fork\pudge_bloodlust_fork.vpcf_c
 particles\econ\items\pudge\pudge_deep_sea_abomination_back\pudge_deep_sea_back_ambient.vpcf_c 
 particles\econ\items\pudge\pudge_demon_queller\pudge_demon_queller_ambient.vpcf_c 
 particles\econ\items\pudge\pudge_demon_queller\pudge_demon_queller_head_ambient.vpcf_c 
-particles\econ\items\pudge\pudge_dragonclaw\pudge_ambient_chain_dragonclaw.vpcf_c 
 particles\econ\items\pudge\pudge_dragonclaw\pudge_ambient_chain_dragonclaw_right.vpcf_c 
 particles\econ\items\pudge\pudge_dragonclaw\pudge_meathook_dragonclaw.vpcf_c 
 particles\econ\items\pudge\pudge_ftp_crow\pudge_ftp_back_crow.vpcf_c 
-particles\econ\items\pudge\pudge_harvester\pudge_ambient_chain_harvester.vpcf_c 
 particles\econ\items\pudge\pudge_harvester\pudge_ambient_chain_harvester_right.vpcf_c 
 particles\econ\items\pudge\pudge_harvester\pudge_meathook_harvester.vpcf_c 
-particles\econ\items\pudge\pudge_hook_whale\pudge_ambient_chain_whale.vpcf_c 
 particles\econ\items\pudge\pudge_hook_whale\pudge_ambient_chain_whale_right.vpcf_c 
 particles\econ\items\pudge\pudge_hook_whale\pudge_meathook_whale.vpcf_c 
 particles\econ\items\pudge\pudge_immortal_arm\pudge_immortal_arm_ambient.vpcf_c 
 particles\econ\items\pudge\pudge_immortal_arm\pudge_immortal_arm_ambient_gold.vpcf_c 
-particles\econ\items\pudge\pudge_immortal_arm\pudge_immortal_arm_chain.vpcf_c 
 particles\econ\items\pudge\pudge_immortal_arm\pudge_immortal_arm_rot.vpcf_c 
 particles\econ\items\pudge\pudge_immortal_arm\pudge_immortal_arm_rot_gold.vpcf_c 
 particles\econ\items\pudge\pudge_immortal_arm\pudge_immortal_arm_rot_recipient.vpcf_c 
@@ -1054,7 +1050,6 @@ particles\econ\items\pudge\pudge_ti6_immortal\pudge_ti6_witness_ambient.vpcf_c
 particles\econ\items\pudge\pudge_ti6_immortal\pudge_ti6_witness_meathook.vpcf_c 
 particles\econ\items\pudge\pudge_ti6_immortal_gold\pudge_ti6_ambient_gold.vpcf_c 
 particles\econ\items\pudge\pudge_ti6_immortal_gold\pudge_ti6_meathook_gold.vpcf_c 
-particles\econ\items\pudge\pudge_trapper_beam_chain\pudge_nx_ambient_chain.vpcf_c 
 particles\econ\items\pudge\pudge_trapper_beam_chain\pudge_nx_ambient_chain_right.vpcf_c 
 particles\econ\items\pudge\pudge_trapper_beam_chain\pudge_nx_cleaver_drip.vpcf_c 
 particles\econ\items\pudge\pudge_trapper_beam_chain\pudge_nx_meathook.vpcf_c 
