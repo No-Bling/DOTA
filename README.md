@@ -1,4 +1,4 @@
-## No-Bling - "GlanceValue" restoration mod  
+## No-Bling DOTA "GlanceValue" restoration mod  
 #### We all know where we are headed looking at the Immortals spam in the last two years...  
 
 ### Glance  
