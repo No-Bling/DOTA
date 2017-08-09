@@ -210,7 +210,7 @@ if defined @verbose ( set ".= " ) else set ".=>nul 2>nul"
 %LABEL% " Processing items_game.txt using JS engine "
 pushd "%MOD_DIR%"
 %TIMER%
-%js_engine% No_Bling "%SRC_CONTENT%" "%MOD_DIR%" "%VPK_ROOT%" "%MOD_CHOICES%" "%@verbose%" "%@timers%" >DEBUG.TXT
+%js_engine% No_Bling "%SRC_CONTENT%" "%MOD_DIR%" "%VPK_ROOT%" "%MOD_CHOICES%" "%@verbose%" "%@timers%" &rem ^>DEBUG.TXT
 %TIMER%
 :: Verify items_game.txt VDF parser
 if defined @verbose pushd "%MOD_DIR%\scripts\items" &echo. &echo n|COMP items_game.txt items_game_out.txt 2>NUL
