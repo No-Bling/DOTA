@@ -1,6 +1,6 @@
 ::             No-Bling dota_lv mod builder by AveYo
 :: Tools used by this script require Windows x64! version 10 recommended, 7 tested fine 
-@echo off &setlocal enableextensions disabledelayedexpansion &set version=1.0
+@echo off &setlocal enableextensions disabledelayedexpansion &set version=1.0 final
 ::----------------------------------------------------------------------------------------------------------------------------------
 :"BAT_Options"
 ::----------------------------------------------------------------------------------------------------------------------------------

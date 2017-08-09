@@ -1,38 +1,35 @@
-//                    No-Bling dota_lv mod builder by AveYo - version 1.0
+//                    No-Bling dota_lv mod builder by AveYo - version 1.0 final
 //  This JS script is used internally by the main "No-Bling dota_lv mod builder.bat" launcher 
 
 // AveYo: manual filters to supplement the auto generated ones by the No_Bling JS function - moved here on top, for convenience
 // WARNING! Don`t touch before understanding the No_Bling function; comments with !!! means critical - expect glitches if removed
 var MOD='particles/error/null.vpcf'; // by default mod particle with placeholder efectively disabling it
 var MOD_HAT={},KEEP_HAT={}, MOD_HERO={},KEEP_HERO={}, MOD_SPELL={},KEEP_SPELL={}, MOD_MOD={},KEEP_KEEP={},REM_REM={};
-// MOD_... and REM_... adds / drops a single [modifier]=asset pair from auto generated lists - direct lookup
+// MOD_... and KEEP_... adds / drops a single [modifier]=asset pair from auto generated lists - direct lookup
 
 //----------------------------------------------------------------------------------------------------------------------------------
 // Manual fixes for default Heroes particles
 //----------------------------------------------------------------------------------------------------------------------------------
-//MOD_HERO['particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf']=MOD;         //  pa weapon glitch !!!
-//MOD_HERO['particles/units/heroes/hero_razor/razor_whip.vpcf']=MOD;                                                   // razor whip
-//MOD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_ambient_main_reduced_flash.vpcf']=MOD;   // dota_hud_reduced_flash
-//MOD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_ambient_reduced_flash.vpcf']=MOD;        // dota_hud_reduced_flash
+MOD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_ambient_main_reduced_flash.vpcf']=MOD;   // dota_hud_reduced_flash
+MOD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_ambient_reduced_flash.vpcf']=MOD;        // dota_hud_reduced_flash
 MOD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_whip_reduced_flash.vpcf']=MOD;         // razor rf whip jiggle !!!
 MOD_HERO['particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_left.vpcf']=MOD;// Curse of Eternal Purgatory
 MOD_HERO['particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_right.vpcf']=MOD;        // Marauder's Blades
-KEEP_HERO['particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands.vpcf']='';  //ds hands - without some think it's ricky !!!
-KEEP_HERO['particles/units/heroes/hero_death_prophet/death_prophet_spirit_glow.vpcf']='';     // invisible ultimate spirits healing
-KEEP_HERO['particles/units/heroes/hero_enigma/enigma_ambient_body.vpcf']='';         // enigma body wormhole - recognizable without
-KEEP_HERO['particles/units/heroes/hero_enigma/enigma_ambient_eyes.vpcf']='';                           // enigma iconic eyes effect
-//KEEP_HERO['particles/units/heroes/hero_enigma/enigma_eidolon_ambient.vpcf']='';         // don't uncomment this one if you need fps
-KEEP_HERO['particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf']='';           // invisible healing ward effect !!!
-//KEEP_HERO['particles/units/heroes/hero_lich/lich_ambient_frost.vpcf']='';           // lich ball - iconic, but recognizable without
-KEEP_HERO['particles/units/heroes/hero_medusa/medusa_bow.vpcf']='';                                         // invisible bow string
-//KEEP_HERO['particles/units/heroes/hero_morphling/morphling_ambient_new.vpcf']='';     // morph iconic vortex - recognizable without
-KEEP_HERO['particles/units/heroes/hero_pugna/pugna_ward_ambient.vpcf']='';                                    // invisible ward !!!
-KEEP_HERO['particles/units/heroes/hero_techies/techies_sign_ambient_base.vpcf']='';                            // keep techies sign
-KEEP_HERO['particles/units/heroes/hero_techies/techies_stasis_trap.vpcf']='';                                      // trap glitch ?
-KEEP_HERO['particles/units/heroes/hero_tusk/tusk_frozen_sigil.vpcf']='';                                     // invisible sigil !!!
-//KEEP_HERO['particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf']='';                           // invisible bow string
-KEEP_HERO['particles/units/heroes/hero_wisp/wisp_ambient.vpcf']='';                                           // invisible wisp !!!
-KEEP_HERO['particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull.vpcf']='';                         // invisible ward head
+KEEP_HERO['particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands.vpcf']=''; //ds hands - without some think it's ricky !!!
+KEEP_HERO['particles/units/heroes/hero_death_prophet/death_prophet_spirit_glow.vpcf']='';    // invisible ultimate spirits healing
+KEEP_HERO['particles/units/heroes/hero_enigma/enigma_ambient_body.vpcf']='';        // enigma body wormhole - recognizable without
+KEEP_HERO['particles/units/heroes/hero_enigma/enigma_ambient_eyes.vpcf']='';                          // enigma iconic eyes effect
+//KEEP_HERO['particles/units/heroes/hero_enigma/enigma_eidolon_ambient.vpcf']='';        // don't uncomment this one if you need fps
+KEEP_HERO['particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf']='';          // invisible healing ward effect !!!
+//KEEP_HERO['particles/units/heroes/hero_lich/lich_ambient_frost.vpcf']='';        // lich ball - iconic, but recognizable without
+KEEP_HERO['particles/units/heroes/hero_medusa/medusa_bow.vpcf']='';                                        // invisible bow string
+//KEEP_HERO['particles/units/heroes/hero_morphling/morphling_ambient_new.vpcf']='';    // morph iconic vortex - recognizable without
+KEEP_HERO['particles/units/heroes/hero_pugna/pugna_ward_ambient.vpcf']='';                                   // invisible ward !!!
+KEEP_HERO['particles/units/heroes/hero_techies/techies_sign_ambient_base.vpcf']='';                           // keep techies sign
+KEEP_HERO['particles/units/heroes/hero_techies/techies_stasis_trap.vpcf']='';                                     // trap glitch ?
+KEEP_HERO['particles/units/heroes/hero_tusk/tusk_frozen_sigil.vpcf']='';                                    // invisible sigil !!!
+KEEP_HERO['particles/units/heroes/hero_wisp/wisp_ambient.vpcf']='';                                          // invisible wisp !!!
+KEEP_HERO['particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull.vpcf']='';                        // invisible ward head
 
 //----------------------------------------------------------------------------------------------------------------------------------
 // Manual fixes for Hats cosmetic particles
@@ -46,31 +43,29 @@ MOD_HAT['particles/econ/items/necrolyte/necro_sullen_harvest/necro_sullen_harves
 MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl1.vpcf']=MOD;//1 pa 
 MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl2.vpcf']=MOD;//2 grave
 MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl3.vpcf']=MOD;//3 marks
-//MOD_HAT['particles/econ/items/razor/razor_ti6/razor_whip_ti6.vpcf']=MOD;                                          // Severing Lash 
-KEEP_HAT['particles/econ/items/lina/lina_head_headflame/lina_flame_hand_dual_headflame.vpcf']='';   // keep lina arcana hands flame
-//KEEP_HAT['particles/econ/items/pudge/pudge_immortal_arm/pudge_immortal_arm_chain.vpcf']='';       // prevent pudge cloth jiggle !!!
-//KEEP_HAT['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail.vpcf']='';                  // keep sf arcana trail
-//KEEP_HAT['particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_ambient.vpcf']='';
-//KEEP_HAT['particles/econ/items/templar_assassin/templar_assassin_violet/templar_assassin_violet_shoulder_ambient.vpcf']='';
-KEEP_HAT['particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_body_arcana_horns.vpcf']=''; // no holes in
-KEEP_HAT['particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_eyes_arcana_horns.vpcf']='';   // tb arcana
-//KEEP_HAT['particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot.vpcf']='';                         // keep zeus arcana cloud
+KEEP_HAT['particles/econ/items/lina/lina_head_headflame/lina_flame_hand_dual_headflame.vpcf']='';  // keep lina arcana hands flame
+//KEEP_HAT['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail.vpcf']='';                 // keep sf arcana trail
+//KEEP_HAT['particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_ambient.vpcf']='';                  // keep ta imm
+//KEEP_HAT['particles/econ/items/templar_assassin/templar_assassin_violet/templar_assassin_violet_shoulder_ambient.vpcf']='';  // ta
+KEEP_HAT['particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_body_arcana_horns.vpcf']='';// no holes in
+KEEP_HAT['particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_eyes_arcana_horns.vpcf']='';  // tb arcana  
+//KEEP_HAT['particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot.vpcf']='';                        // keep zeus arcana cloud
 
 //----------------------------------------------------------------------------------------------------------------------------------
 // Manual fixes for custom Spells particles
 //----------------------------------------------------------------------------------------------------------------------------------
-KEEP_SPELL['particles/econ/items/legion/legion_weapon_voth_domosh/legion_duel_ring_arcana.vpcf']='';     // keep legion arcana duel
-KEEP_SPELL['particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe.vpcf']='';       // keep necro ti7 scythe   
-KEEP_SPELL['particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe_start.vpcf']=''; // keep necro ti7 scythe  
-KEEP_SPELL['particles/econ/items/techies/techies_arcana/techies_sign_ambient.vpcf']='';                 // keep techies arcana sign
-KEEP_SPELL['particles/econ/items/techies/techies_arcana/techies_stasis_trap_arcana.vpcf']='';            // keearcana trap glitch ?
+KEEP_SPELL['particles/econ/items/legion/legion_weapon_voth_domosh/legion_duel_ring_arcana.vpcf']='';    // keep legion arcana duel
+KEEP_SPELL['particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe.vpcf']='';      // keep necro ti7 scythe   
+KEEP_SPELL['particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe_start.vpcf']='';// keep necro ti7 scythe  
+KEEP_SPELL['particles/econ/items/techies/techies_arcana/techies_sign_ambient.vpcf']='';                // keep techies arcana sign
+KEEP_SPELL['particles/econ/items/techies/techies_arcana/techies_stasis_trap_arcana.vpcf']='';          // keep techies arcana trap
 
 //----------------------------------------------------------------------------------------------------------------------------------
 // Advanced reverse lookup filter 
 //----------------------------------------------------------------------------------------------------------------------------------
 MOD_MOD['particles/units/heroes/hero_warlock/golem_ambient.vpcf']=MOD;                                  // hide warlock golem fire 
-KEEP_KEEP['particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf']='';    // prevent pa weapon glitch !!!
-KEEP_KEEP['particles/units/heroes/hero_pudge/pudge_ambient_chain.vpcf']='';    // prevent pudge chains glitch towards map center !!! 
+KEEP_KEEP['particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf']='';  // prevent pa weapon glitch !!!
+KEEP_KEEP['particles/units/heroes/hero_pudge/pudge_ambient_chain.vpcf']='';  // prevent pudge chains glitch towards map center !!! 
 REM_REM['particles/units/heroes/hero_drow/drow_bowstring.vpcf']='';                                  // protect drow bowstring !!!
 REM_REM['particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf']='';                         // protect wr bowsting !!! 
 REM_REM['particles/units/heroes/hero_templar_assassin/templar_assassin_ambient.vpcf']='';    // protect ta iconic hands effect !!!   
