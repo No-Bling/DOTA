@@ -1,4 +1,4 @@
- No-Bling DOTA mod choices: -LowViolence,Events,Spells,Hats,Heroes!,Wards,Couriers,Towers,Soundboard   
+ No-Bling DOTA mod v1.0 choices: -LowViolence,Events,Spells,Hats,Heroes!,Wards,Couriers,Towers,Soundboard   
 ------------------- 
 We all know where we are headed looking at the Immortals spam in the last two years...   
    
@@ -40,6 +40,7 @@ particles\econ\courier\courier_dc\dccourier_devil_flame.vpcf_c
 particles\econ\courier\courier_devourling\courier_devourling_ambient.vpcf_c 
 particles\econ\courier\courier_devourling_gold\courier_devourling_gold_ambient.vpcf_c 
 particles\econ\courier\courier_dolfrat_and_roshinante\courier_dolfrat_and_roshinante_a.vpcf_c 
+particles\econ\courier\courier_donkey_ti7\courier_donkey_ti7_ambient.vpcf_c 
 particles\econ\courier\courier_donkey_unicorn\courier_donkey_unicorn_ambient.vpcf_c 
 particles\econ\courier\courier_doomling\courier_doomling_ambient.vpcf_c 
 particles\econ\courier\courier_drodo\courier_drodo_ambient.vpcf_c 
@@ -764,7 +765,6 @@ particles\econ\items\lina\enthaleen_dragon\lina_enthaleen_dragon_helm_ambient.vp
 particles\econ\items\lina\enthaleen_dragon\lina_enthaleen_dragon_helm_ambient_dark.vpcf_c 
 particles\econ\items\lina\lina_bewitching_flame\lina_bewitching_flame_ambient.vpcf_c 
 particles\econ\items\lina\lina_fire_lotus\lina_fire_lotus_ambient.vpcf_c 
-particles\econ\items\lina\lina_head_headflame\lina_flame_hand_dual_headflame.vpcf_c 
 particles\econ\items\lina\lina_head_headflame\lina_headflame.vpcf_c 
 particles\econ\items\lina\lina_head_headflame\lina_spell_dragon_slave_headflame.vpcf_c 
 particles\econ\items\lina\lina_head_headflame\lina_spell_dragon_slave_impact_headflame.vpcf_c 
@@ -1024,19 +1024,15 @@ particles\econ\items\pudge\pudge_bloodlust_fork\pudge_bloodlust_fork.vpcf_c
 particles\econ\items\pudge\pudge_deep_sea_abomination_back\pudge_deep_sea_back_ambient.vpcf_c 
 particles\econ\items\pudge\pudge_demon_queller\pudge_demon_queller_ambient.vpcf_c 
 particles\econ\items\pudge\pudge_demon_queller\pudge_demon_queller_head_ambient.vpcf_c 
-particles\econ\items\pudge\pudge_dragonclaw\pudge_ambient_chain_dragonclaw.vpcf_c 
 particles\econ\items\pudge\pudge_dragonclaw\pudge_ambient_chain_dragonclaw_right.vpcf_c 
 particles\econ\items\pudge\pudge_dragonclaw\pudge_meathook_dragonclaw.vpcf_c 
 particles\econ\items\pudge\pudge_ftp_crow\pudge_ftp_back_crow.vpcf_c 
-particles\econ\items\pudge\pudge_harvester\pudge_ambient_chain_harvester.vpcf_c 
 particles\econ\items\pudge\pudge_harvester\pudge_ambient_chain_harvester_right.vpcf_c 
 particles\econ\items\pudge\pudge_harvester\pudge_meathook_harvester.vpcf_c 
-particles\econ\items\pudge\pudge_hook_whale\pudge_ambient_chain_whale.vpcf_c 
 particles\econ\items\pudge\pudge_hook_whale\pudge_ambient_chain_whale_right.vpcf_c 
 particles\econ\items\pudge\pudge_hook_whale\pudge_meathook_whale.vpcf_c 
 particles\econ\items\pudge\pudge_immortal_arm\pudge_immortal_arm_ambient.vpcf_c 
 particles\econ\items\pudge\pudge_immortal_arm\pudge_immortal_arm_ambient_gold.vpcf_c 
-particles\econ\items\pudge\pudge_immortal_arm\pudge_immortal_arm_chain.vpcf_c 
 particles\econ\items\pudge\pudge_immortal_arm\pudge_immortal_arm_rot.vpcf_c 
 particles\econ\items\pudge\pudge_immortal_arm\pudge_immortal_arm_rot_gold.vpcf_c 
 particles\econ\items\pudge\pudge_immortal_arm\pudge_immortal_arm_rot_recipient.vpcf_c 
@@ -1054,7 +1050,6 @@ particles\econ\items\pudge\pudge_ti6_immortal\pudge_ti6_witness_ambient.vpcf_c
 particles\econ\items\pudge\pudge_ti6_immortal\pudge_ti6_witness_meathook.vpcf_c 
 particles\econ\items\pudge\pudge_ti6_immortal_gold\pudge_ti6_ambient_gold.vpcf_c 
 particles\econ\items\pudge\pudge_ti6_immortal_gold\pudge_ti6_meathook_gold.vpcf_c 
-particles\econ\items\pudge\pudge_trapper_beam_chain\pudge_nx_ambient_chain.vpcf_c 
 particles\econ\items\pudge\pudge_trapper_beam_chain\pudge_nx_ambient_chain_right.vpcf_c 
 particles\econ\items\pudge\pudge_trapper_beam_chain\pudge_nx_cleaver_drip.vpcf_c 
 particles\econ\items\pudge\pudge_trapper_beam_chain\pudge_nx_meathook.vpcf_c 
@@ -1317,7 +1312,6 @@ particles\econ\items\terrorblade\terrorblade_corrupted_blades\terrorblade_ambien
 particles\econ\items\terrorblade\terrorblade_corrupted_blades\terrorblade_ambient_sword_blade_corrupted_2.vpcf_c 
 particles\econ\items\terrorblade\terrorblade_corrupted_blades\terrorblade_ambient_sword_corrupted_l.vpcf_c 
 particles\econ\items\terrorblade\terrorblade_corrupted_blades\terrorblade_ambient_sword_corrupted_r.vpcf_c 
-particles\econ\items\terrorblade\terrorblade_horns_arcana\terrorblade_ambient_eyes_arcana_horns.vpcf_c 
 particles\econ\items\tidehunter\tidehunter_ancient_leviathan\tide_ancient_leviathan_ambient.vpcf_c 
 particles\econ\items\tidehunter\tidehunter_blink_dagger\tidehunter_blink_ambient.vpcf_c 
 particles\econ\items\tidehunter\tidehunter_claddish\tidehunter_claddish_ambient.vpcf_c 
@@ -1512,8 +1506,6 @@ particles\econ\wards\warlock\ward_warlock\warlock_ambient_ward.vpcf_c
 particles\generic_gameplay\generic_hit_blood.vpcf_c 
 particles\generic_gameplay\generic_hit_blood_droplets.vpcf_c 
 particles\generic_hero_status\hero_bloodpool.vpcf_c 
-particles\items2_fx\ward.vpcf_c 
-particles\items2_fx\ward_true_sight.vpcf_c 
 particles\status_fx\status_effect_rupture.vpcf_c 
 particles\units\heroes\heroes_underlord\underlord_ambient.vpcf_c 
 particles\units\heroes\heroes_underlord\underlord_ambient_eyes.vpcf_c 
@@ -1576,6 +1568,7 @@ particles\units\heroes\hero_chaos_knight\chaos_knight_ambient_mace.vpcf_c
 particles\units\heroes\hero_chaos_knight\chaos_knight_ambient_tail.vpcf_c 
 particles\units\heroes\hero_chaos_knight\chaos_knight_feet_effects.vpcf_c 
 particles\units\heroes\hero_chaos_knight\chaos_knight_horse_ambient.vpcf_c 
+particles\units\heroes\hero_chaos_knight\chaos_knight_horse_ambient_parent.vpcf_c 
 particles\units\heroes\hero_chen\chen_ambient.vpcf_c 
 particles\units\heroes\hero_clinkz\clinkz_body_fire.vpcf_c 
 particles\units\heroes\hero_clinkz\clinkz_death_model.vpcf_c 
@@ -1606,10 +1599,12 @@ particles\units\heroes\hero_huskar\huskar_lifebreak_bloodyend.vpcf_c
 particles\units\heroes\hero_invoker\invoker_forge_spirit_ambient.vpcf_c 
 particles\units\heroes\hero_jakiro\jakiro_ambient.vpcf_c 
 particles\units\heroes\hero_juggernaut\juggernaut_blade_generic.vpcf_c 
+particles\units\heroes\hero_juggernaut\juggernaut_blade_generic_econ.vpcf_c 
 particles\units\heroes\hero_juggernaut\juggernaut_omni_slash_blood.vpcf_c 
 particles\units\heroes\hero_keeper_of_the_light\keeper_of_the_light_ambient.vpcf_c 
 particles\units\heroes\hero_kunkka\kunkka_weapon_glow_ambient.vpcf_c 
 particles\units\heroes\hero_leshrac\leshrac_ambient_glow.vpcf_c 
+particles\units\heroes\hero_lich\lich_ambient_frost.vpcf_c 
 particles\units\heroes\hero_lich\lich_ambient_frost_legs.vpcf_c 
 particles\units\heroes\hero_life_stealer\life_stealer_ambient.vpcf_c 
 particles\units\heroes\hero_life_stealer\life_stealer_infest_cast_blood01.vpcf_c 
@@ -1632,6 +1627,7 @@ particles\units\heroes\hero_life_stealer\life_stealer_open_wounds_impact_slash_s
 particles\units\heroes\hero_life_stealer\life_stealer_rage_cast_ground_left.vpcf_c 
 particles\units\heroes\hero_life_stealer\life_stealer_rage_cast_ground_right.vpcf_c 
 particles\units\heroes\hero_lina\lina_flame_hand_dual.vpcf_c 
+particles\units\heroes\hero_morphling\morphling_ambient_new.vpcf_c 
 particles\units\heroes\hero_necrolyte\necrolyte_ambient_glow.vpcf_c 
 particles\units\heroes\hero_necrolyte\necrolyte_pulse_enemy_skull.vpcf_c 
 particles\units\heroes\hero_nevermore\nevermore_ambient_glow.vpcf_c 
@@ -1643,7 +1639,6 @@ particles\units\heroes\hero_nyx_assassin\nyx_assassin_vendetta_blood.vpcf_c
 particles\units\heroes\hero_obsidian_destroyer\obsidian_destroyer_staff.vpcf_c 
 particles\units\heroes\hero_ogre_magi\ogre_magi_weapon.vpcf_c 
 particles\units\heroes\hero_oracle\oracle_ambient.vpcf_c 
-particles\units\heroes\hero_phantom_assassin\phantom_assassin_ambient_blade.vpcf_c 
 particles\units\heroes\hero_phantom_assassin\phantom_assassin_crit_impact.vpcf_c 
 particles\units\heroes\hero_phantom_assassin\phantom_assassin_crit_impact_arterial.vpcf_c 
 particles\units\heroes\hero_phantom_assassin\phantom_assassin_crit_impact_arterial_2.vpcf_c 
@@ -1668,8 +1663,6 @@ particles\units\heroes\hero_rattletrap\rattletrap_cog_ambient.vpcf_c
 particles\units\heroes\hero_razor\razor_ambient.vpcf_c 
 particles\units\heroes\hero_razor\razor_ambient_main.vpcf_c 
 particles\units\heroes\hero_razor\razor_whip.vpcf_c 
-particles\units\heroes\hero_razor_reduced_flash\razor_ambient_main_reduced_flash.vpcf_c 
-particles\units\heroes\hero_razor_reduced_flash\razor_ambient_reduced_flash.vpcf_c 
 particles\units\heroes\hero_razor_reduced_flash\razor_whip_reduced_flash.vpcf_c 
 particles\units\heroes\hero_rubick\rubick_staff_ambient.vpcf_c 
 particles\units\heroes\hero_sandking\sandking_caustic_finale_explode_a.vpcf_c 
@@ -1687,6 +1680,8 @@ particles\units\heroes\hero_siren\siren_ambient_lamp.vpcf_c
 particles\units\heroes\hero_skeletonking\skeletonking_hellfireblast_skull.vpcf_c 
 particles\units\heroes\hero_skeletonking\wraith_king_ambient.vpcf_c 
 particles\units\heroes\hero_skywrath_mage\skywrath_mage_staff_ambient.vpcf_c 
+particles\units\heroes\hero_skywrath_mage\skywrath_mage_staff_ambient_generic.vpcf_c 
+particles\units\heroes\hero_slardar\slardar_head_light.vpcf_c 
 particles\units\heroes\hero_slark\slark_ambient.vpcf_c 
 particles\units\heroes\hero_sniper\sniper_assassinate_impact_blood.vpcf_c 
 particles\units\heroes\hero_spectre\spectre_ambient.vpcf_c 
@@ -1702,6 +1697,8 @@ particles\units\heroes\hero_terrorblade\terrorblade_ambient_sword_blade.vpcf_c
 particles\units\heroes\hero_terrorblade\terrorblade_ambient_sword_blade_2.vpcf_c 
 particles\units\heroes\hero_terrorblade\terrorblade_ambient_sword_l.vpcf_c 
 particles\units\heroes\hero_terrorblade\terrorblade_ambient_sword_r.vpcf_c 
+particles\units\heroes\hero_terrorblade\terrorblade_ambient_sword_workshop_left.vpcf_c 
+particles\units\heroes\hero_terrorblade\terrorblade_ambient_sword_workshop_right.vpcf_c 
 particles\units\heroes\hero_terrorblade\terrorblade_feet_effects.vpcf_c 
 particles\units\heroes\hero_terrorblade\terrorblade_metamorphosis.vpcf_c 
 particles\units\heroes\hero_terrorblade\terrorblade_metamorphosis_head.vpcf_c 
@@ -1737,6 +1734,8 @@ particles\units\heroes\hero_witchdoctor\witchdoctor_cask_model.vpcf_c
 particles\units\heroes\hero_witchdoctor\witchdoctor_ward_skull.vpcf_c 
 particles\units\heroes\hero_zeus\zeus_ambient_eyes.vpcf_c 
 particles\units\heroes\hero_zeus\zeus_ambient_hands.vpcf_c 
+particles\units\heroes\hero_zeus\zeus_return_king_of_gods_head_ambient.vpcf_c 
+particles\units\heroes\hero_zeus\zeus_return_king_of_gods_head_style1_ambient.vpcf_c 
 particles\world_tower\tower_upgrade\ti7_dire_tower_lvl10_dest.vpcf_c 
 particles\world_tower\tower_upgrade\ti7_dire_tower_lvl11_dest.vpcf_c 
 particles\world_tower\tower_upgrade\ti7_dire_tower_lvl1_dest.vpcf_c 
@@ -1765,6 +1764,7 @@ particles\world_tower\tower_upgrade\ti7_radiant_tower_lvl8_dest.vpcf_c
 particles\world_tower\tower_upgrade\ti7_radiant_tower_lvl9_dest.vpcf_c 
 particles\world_tower\tower_upgrade\ti7_radiant_tower_orb.vpcf_c 
 particles\world_tower\tower_upgrade\ti7_radiant_tower_proj.vpcf_c 
+sounds\misc\crowd_lv_01.vsnd_c 
 sounds\misc\crowd_lv_02.vsnd_c 
 sounds\misc\soundboard\all_dead.vsnd_c 
 sounds\misc\soundboard\ay_ay_ay.vsnd_c 
