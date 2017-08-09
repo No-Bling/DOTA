@@ -1,73 +1,79 @@
-//                    No-Bling dota_lv mod builder by AveYo - version 1.0rc1
+//                    No-Bling dota_lv mod builder by AveYo - version 1.0
 //  This JS script is used internally by the main "No-Bling dota_lv mod builder.bat" launcher 
 
 // AveYo: manual filters to supplement the auto generated ones by the No_Bling JS function - moved here on top, for convenience
-var MOD='particles/error/null.vpcf', ADD_HAT={},REM_HAT={}, ADD_HERO={},REM_HERO={}, ADD_SPELL={},REM_SPELL={}, EXCLUDE={}
-// WARNING! Don't touch before understanding the No_Bling function; comments with !!! means critical - expect glitches if removed
-// ADD_... and REM_... adds / drops a single [modifier]=asset pair from auto generated lists - direct lookup
-// EXCLUDE drops all modifiers using specified asset from auto generated lists - reverse lookup
+// WARNING! Don`t touch before understanding the No_Bling function; comments with !!! means critical - expect glitches if removed
+var MOD='particles/error/null.vpcf'; // by default mod particle with placeholder efectively disabling it
+var MOD_HAT={},KEEP_HAT={}, MOD_HERO={},KEEP_HERO={}, MOD_SPELL={},KEEP_SPELL={}, MOD_MOD={},KEEP_KEEP={},REM_REM={};
+// MOD_... and REM_... adds / drops a single [modifier]=asset pair from auto generated lists - direct lookup
 
-ADD_HAT['particles/econ/items/juggernaut/jugg_arcana/jugg_arcana_haste.vpcf']=MOD;              // remove jugg arcana haste effect  
-ADD_HAT['particles/econ/items/necrolyte/necro_sullen_harvest/necro_sullen_harvest_ambient_staff_event.vpcf']=MOD;   // necro trail
-ADD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl1.vpcf']=MOD;    // pa
-ADD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl2.vpcf']=MOD; // grave
-ADD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl3.vpcf']=MOD; // marks
-//ADD_HAT['particles/econ/items/rubick/rubick_staff_wandering/rubick_staff_ambient_whset.vpcf']=MOD;       // harlequin jiggle !!!  
-ADD_HERO['particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf']=MOD;         //  pa weapon glitch !!!
-ADD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_ambient_main_reduced_flash.vpcf']=MOD;   // dota_hud_reduced_flash
-ADD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_ambient_reduced_flash.vpcf']=MOD;        // dota_hud_reduced_flash
-ADD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_whip_reduced_flash.vpcf']=MOD;            // razor whip jiggle !!!
+//----------------------------------------------------------------------------------------------------------------------------------
+// Manual fixes for default Heroes particles
+//----------------------------------------------------------------------------------------------------------------------------------
+//MOD_HERO['particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf']=MOD;         //  pa weapon glitch !!!
+//MOD_HERO['particles/units/heroes/hero_razor/razor_whip.vpcf']=MOD;                                                   // razor whip
+//MOD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_ambient_main_reduced_flash.vpcf']=MOD;   // dota_hud_reduced_flash
+//MOD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_ambient_reduced_flash.vpcf']=MOD;        // dota_hud_reduced_flash
+MOD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_whip_reduced_flash.vpcf']=MOD;         // razor rf whip jiggle !!!
+MOD_HERO['particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_left.vpcf']=MOD;// Curse of Eternal Purgatory
+MOD_HERO['particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_right.vpcf']=MOD;        // Marauder's Blades
+KEEP_HERO['particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands.vpcf']='';  //ds hands - without some think it's ricky !!!
+KEEP_HERO['particles/units/heroes/hero_death_prophet/death_prophet_spirit_glow.vpcf']='';     // invisible ultimate spirits healing
+KEEP_HERO['particles/units/heroes/hero_enigma/enigma_ambient_body.vpcf']='';         // enigma body wormhole - recognizable without
+KEEP_HERO['particles/units/heroes/hero_enigma/enigma_ambient_eyes.vpcf']='';                           // enigma iconic eyes effect
+//KEEP_HERO['particles/units/heroes/hero_enigma/enigma_eidolon_ambient.vpcf']='';         // don't uncomment this one if you need fps
+KEEP_HERO['particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf']='';           // invisible healing ward effect !!!
+//KEEP_HERO['particles/units/heroes/hero_lich/lich_ambient_frost.vpcf']='';           // lich ball - iconic, but recognizable without
+KEEP_HERO['particles/units/heroes/hero_medusa/medusa_bow.vpcf']='';                                         // invisible bow string
+//KEEP_HERO['particles/units/heroes/hero_morphling/morphling_ambient_new.vpcf']='';     // morph iconic vortex - recognizable without
+KEEP_HERO['particles/units/heroes/hero_pugna/pugna_ward_ambient.vpcf']='';                                    // invisible ward !!!
+KEEP_HERO['particles/units/heroes/hero_techies/techies_sign_ambient_base.vpcf']='';                            // keep techies sign
+KEEP_HERO['particles/units/heroes/hero_techies/techies_stasis_trap.vpcf']='';                                      // trap glitch ?
+KEEP_HERO['particles/units/heroes/hero_tusk/tusk_frozen_sigil.vpcf']='';                                     // invisible sigil !!!
+//KEEP_HERO['particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf']='';                           // invisible bow string
+KEEP_HERO['particles/units/heroes/hero_wisp/wisp_ambient.vpcf']='';                                           // invisible wisp !!!
+KEEP_HERO['particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull.vpcf']='';                         // invisible ward head
 
-REM_HAT['particles/units/heroes/hero_shadow_demon/shadow_demon_ambient.vpcf']=''; //prevent sd new effects?!
-REM_HAT['particles/econ/items/lina/lina_head_headflame/lina_flame_hand_dual_headflame.vpcf']='';   // keep lina arcana hands flame
-REM_HAT['particles/econ/items/pudge/pudge_immortal_arm/pudge_immortal_arm_chain.vpcf']='';       // prevent pudge cloth jiggle !!!
-REM_HAT['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail.vpcf']='';                  // keep sf arcana trail
-//REM_HAT['particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_ambient.vpcf']='';
-//REM_HAT['particles/econ/items/templar_assassin/templar_assassin_violet/templar_assassin_violet_shoulder_ambient.vpcf']='';
-REM_HAT['particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_body_arcana_horns.vpcf']='';   // tb arcana
-REM_HAT['particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_eyes_arcana_horns.vpcf']=''; // no holes in
-//REM_HAT['particles/econ/items/techies/techies_arcana/techies_sign_ambient.vpcf']='';                   // keep techies arcana sign
-//REM_HAT['particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot.vpcf']='';                         // keep zeus arcana cloud
+//----------------------------------------------------------------------------------------------------------------------------------
+// Manual fixes for Hats cosmetic particles
+//----------------------------------------------------------------------------------------------------------------------------------
+var drow_bowstring='particles/units/heroes/hero_drow/drow_bowstring.vpcf';                                // Bow of the Frostfangs
+MOD_HAT['particles/econ/items/drow/drow_bow_dpits3/drow_bowstring_dpits3.vpcf']=drow_bowstring;             
+var windrunner_bowstring='particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf';                      // Rainmaker bow
+MOD_HAT['particles/econ/items/windrunner/windrunner_weapon_rainmaker/windranger_weapon_rainmaker.vpcf']=windrunner_bowstring;
+MOD_HAT['particles/econ/items/juggernaut/jugg_arcana/jugg_arcana_haste.vpcf']=MOD;                            // jugg arcana haste  
+MOD_HAT['particles/econ/items/necrolyte/necro_sullen_harvest/necro_sullen_harvest_ambient_staff_event.vpcf']=MOD;   // necro trail
+MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl1.vpcf']=MOD;//1 pa 
+MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl2.vpcf']=MOD;//2 grave
+MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl3.vpcf']=MOD;//3 marks
+//MOD_HAT['particles/econ/items/razor/razor_ti6/razor_whip_ti6.vpcf']=MOD;                                          // Severing Lash 
+KEEP_HAT['particles/econ/items/lina/lina_head_headflame/lina_flame_hand_dual_headflame.vpcf']='';   // keep lina arcana hands flame
+//KEEP_HAT['particles/econ/items/pudge/pudge_immortal_arm/pudge_immortal_arm_chain.vpcf']='';       // prevent pudge cloth jiggle !!!
+//KEEP_HAT['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail.vpcf']='';                  // keep sf arcana trail
+//KEEP_HAT['particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_ambient.vpcf']='';
+//KEEP_HAT['particles/econ/items/templar_assassin/templar_assassin_violet/templar_assassin_violet_shoulder_ambient.vpcf']='';
+KEEP_HAT['particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_body_arcana_horns.vpcf']=''; // no holes in
+KEEP_HAT['particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_eyes_arcana_horns.vpcf']='';   // tb arcana
+//KEEP_HAT['particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot.vpcf']='';                         // keep zeus arcana cloud
 
-REM_HERO['particles/econ/items/lina/lina_head_headflame/lina_flame_hand_dual_headflame.vpcf']='';   // keep lina arcana hands flame
-REM_HERO['particles/econ/items/pudge/pudge_immortal_arm/pudge_immortal_arm_chain.vpcf']='';       // prevent pudge cloth jiggle !!!
-REM_HERO['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail.vpcf']='';                  // keep sf arcana trail
-REM_HERO['particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands.vpcf']='';  //ds hands - without some think it's ricky !!!
-REM_HERO['particles/units/heroes/hero_death_prophet/death_prophet_spirit_glow.vpcf']='';     // invisible ultimate spirits healing
-REM_HERO['particles/units/heroes/hero_drow/drow_bowstring.vpcf']='';                                       // invisible bow string
-REM_HERO['particles/units/heroes/hero_enigma/enigma_ambient_body.vpcf']='';         // enigma body wormhole - recognizable without
-REM_HERO['particles/units/heroes/hero_enigma/enigma_ambient_eyes.vpcf']='';                           // enigma iconic eyes effect
-//REM_HERO['particles/units/heroes/hero_enigma/enigma_eidolon_ambient.vpcf']='';         // don't uncomment this one if you need fps
-REM_HERO['particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf']='';           // invisible healing ward effect !!!
-REM_HERO['particles/units/heroes/hero_lich/lich_ambient_frost.vpcf']='';           // lich ball - iconic, but recognizable without
-REM_HERO['particles/units/heroes/hero_medusa/medusa_bow.vpcf']='';                                         // invisible bow string
-REM_HERO['particles/units/heroes/hero_morphling/morphling_ambient_new.vpcf']='';     // morph iconic vortex - recognizable without
-REM_HERO['particles/units/heroes/hero_pugna/pugna_ward_ambient.vpcf']='';                                    // invisible ward !!!
-REM_HERO['particles/units/heroes/hero_techies/techies_sign_ambient_base.vpcf']='';                              // keep techies sign
-REM_HERO['particles/units/heroes/hero_techies/techies_stasis_trap.vpcf']='';                                      // trap glitch ?
-REM_HERO['particles/units/heroes/hero_templar_assassin/templar_assassin_ambient.vpcf']='';               // ta iconic hands effect
-REM_HERO['particles/units/heroes/hero_tusk/tusk_frozen_sigil.vpcf']='';                                     // invisible sigil !!!
-REM_HERO['particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf']='';                           // invisible bow string
-REM_HERO['particles/units/heroes/hero_wisp/wisp_ambient.vpcf']='';                                           // invisible wisp !!!
-REM_HERO['particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull.vpcf']='';                         // invisible ward head
+//----------------------------------------------------------------------------------------------------------------------------------
+// Manual fixes for custom Spells particles
+//----------------------------------------------------------------------------------------------------------------------------------
+KEEP_SPELL['particles/econ/items/legion/legion_weapon_voth_domosh/legion_duel_ring_arcana.vpcf']='';     // keep legion arcana duel
+KEEP_SPELL['particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe.vpcf']='';       // keep necro ti7 scythe   
+KEEP_SPELL['particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe_start.vpcf']=''; // keep necro ti7 scythe  
+KEEP_SPELL['particles/econ/items/techies/techies_arcana/techies_sign_ambient.vpcf']='';                 // keep techies arcana sign
+KEEP_SPELL['particles/econ/items/techies/techies_arcana/techies_stasis_trap_arcana.vpcf']='';            // keearcana trap glitch ?
 
-REM_SPELL['particles/econ/items/legion/legion_weapon_voth_domosh/legion_duel_ring_arcana.vpcf']='';       // keep legion arcana duel
-REM_SPELL['particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe.vpcf']='';         //  without trail effect
-REM_SPELL['particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe_start.vpcf']='';   // keep necro ti7 scythe
-REM_SPELL['particles/econ/items/techies/techies_arcana/techies_sign_ambient.vpcf']='';                   // keep techies arcana sign
-REM_SPELL['particles/econ/items/techies/techies_arcana/techies_stasis_trap_arcana.vpcf']='';               // arcana trap glitch ?
-
-// Advanced_lookup_filter - KEEP prevents asset being removed from whatrules list by the No-Bling choices generic filter
-//KEEP['particles/units/heroes/hero_razor_reduced_flash/razor_whip_reduced_flash.vpcf']=MOD;          // razor whip cloth jiggle !!!
-EXCLUDE['particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf']='';       // pa lvl6 weapon glitch !!!
-//ADD_HAT['particles/econ/items/drow/drow_bow_coldcase/drow_bowstring_coldcase.vpcf']='particles/units/heroes/hero_drow/drow_bowstring.vpcf'; 
-//ADD_HAT['particles/econ/items/drow/drow_bow_iceburst/drow_bowstring_iceburst.vpcf']='particles/units/heroes/hero_drow/drow_bowstring.vpcf';
-//ADD_HAT['particles/econ/items/drow/drow_bow_pincher/drow_bowstring_pincher.vpcf']='particles/units/heroes/hero_drow/drow_bowstring.vpcf';
-//ADD_HAT['particles/econ/items/drow/drow_bow_howling_wind/drow_bowstring_howling_wind.vpcf']='particles/units/heroes/hero_drow/drow_bowstring.vpcf';
-//ADD_HAT['particles/econ/items/windrunner/windrunner_battleranger/windrunner_battleranger_bowstring_ambient.vpcf']='particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf';
-//ADD_HAT['particles/econ/items/windrunner/windrunner_ti6/windrunner_falcon_bowstring.vpcf']='particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf';
-//ADD_HAT['particles/econ/items/templar_assassin/templar_assassin_weapon_scholar/templar_assassin_ambient_scholar.vpcf']='particles/units/heroes/hero_templar_assassin/templar_assassin_ambient.vpcf';
-//ADD_HAT['particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_base_ambient.vpcf']='particles/units/heroes/hero_templar_assassin/templar_assassin_ambient.vpcf';
+//----------------------------------------------------------------------------------------------------------------------------------
+// Advanced reverse lookup filter 
+//----------------------------------------------------------------------------------------------------------------------------------
+MOD_MOD['particles/units/heroes/hero_warlock/golem_ambient.vpcf']=MOD;                                  // hide warlock golem fire 
+KEEP_KEEP['particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf']='';    // prevent pa weapon glitch !!!
+KEEP_KEEP['particles/units/heroes/hero_pudge/pudge_ambient_chain.vpcf']='';    // prevent pudge chains glitch towards map center !!! 
+REM_REM['particles/units/heroes/hero_drow/drow_bowstring.vpcf']='';                                  // protect drow bowstring !!!
+REM_REM['particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf']='';                         // protect wr bowsting !!! 
+REM_REM['particles/units/heroes/hero_templar_assassin/templar_assassin_ambient.vpcf']='';    // protect ta iconic hands effect !!!   
 
 // Advanced tip: while testing a hero, list loaded particles using console command: dumpparticlelist | grep partial_hero_name
 
@@ -95,7 +101,7 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
   var MEASURE         = (timers == '1'); if (!MEASURE) timer = function(f){return{end:function(){}}}; var t;
 
   // AveYo: initiate filter variables
-  var MOD='particles/error/null.vpcf', q='"', used_by_heroes={}, whatrules={}, log_lv=[]; //, probably_hat={}, probably_spell={}, lookup_hat={}, silhouette ={};
+  var MOD='particles/error/null.vpcf', q='"', used_by_heroes={}, whatrules={}, log_lv=[];
   var logs={ 'Others':{},'Couriers':{},'Wards':{},'Events':{},'Heroes!':{},'Hats':{} }; 
   var mods={ 'Others':{},'Couriers':{},'Wards':{},'Events':{},'Heroes!':{},'Hats':{},'Spells':{},'Towers':{} };
 
@@ -141,12 +147,7 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
   } // next a
   if (LOG) t.end();
 
-  // Import basic manual filter defined at the top of this script: ADD_HAT,REM_HAT, ADD_HERO,REM_HERO, ADD_SPELL,REM_SPELL
-  for (var hat in ADD_HAT) { mods['Hats'][hat]=ADD_HAT[hat]; if (LOG) console.log('     + add', path.basename(hat)); }
-  for (var hat in ADD_HERO) { mods['Heroes!'][hat]=ADD_HERO[hat]; if (LOG) console.log('     + add', path.basename(hat)); }
-  for (var hat in ADD_SPELL) { mods['Spells'][hat]=ADD_SPELL[hat]; if (LOG) console.log('     + add', path.basename(hat)); }
-
-  // AveYo: Loop trough all items, skipping over not selected / irrelevant categories and optionally generate accurate slice logs
+  // AveYo: Loop trough all items, skipping over irrelevant categories and optionally generate accurate slice logs
   if (LOG) t=timer(' Check items');
   var items=file_parse.items_game.items;
   for (var i in items) {
@@ -159,25 +160,77 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
       if (hero.indexOf('hero_') > -1) { hero=h.split('hero_')[1]; } else { hero='npc_dota'; }    used_by_heroes[hero]='';
     }
     var logitem=''; // optional item category tracking for debugging
-    if (LOG) logitem ='  '+ vdf.redup(i) +' '+ iname +' '+ prefab +' '+ rarity +' '+ hero;
+    if (LOG) logitem ='   '+ vdf.redup(i) +' '+ iname +' '+ prefab +' '+ rarity +' '+ hero;
     // AveYo: still in the item i loop above, check visuals section for asset_modifier*
-    var cat='Others', has_particles=false, silhouette={}, probably_hat={}, probably_spell={}, probably_def={}, lookup_hat={};
-    if (typeof items[i].visuals != 'object') continue; // skip if no .visuals object
-    for (var f in items[i].visuals) {
+    var cat='Others', has_particles=false, probably_spell={}, probably_hat={};
+    if (typeof items[i].visuals == 'object') for (var f in items[i].visuals) {
       var visuals=items[i].visuals[f]; // .visuals object - don't use exact naming since vdf.parser auto-renamed duplicates
       var type=(typeof visuals.type == 'string' && visuals.type.indexOf('particle') == 0 ) ? visuals.type : '';
       if (!type || type == 'particle_control_point' || type == 'particle_combined') continue; // skip non particle / particle_create
       var modifier=(typeof visuals.modifier == 'string' && visuals.modifier.lastIndexOf('.vpcf') > -1) ? visuals.modifier : '';
-      if (modifier.lastIndexOf('obsidian_destroyer_smoke.vpcf') > -1 ) continue; // the only modifier that can cause crashes!!!
+      //if (modifier.lastIndexOf('obsidian_destroyer_smoke.vpcf') > -1 ) continue; // the only modifier that can cause crashes!!!
       var asset=(typeof visuals.asset == 'string' && visuals.asset.lastIndexOf('.vpcf') > -1) ? visuals.asset : '';
       if (asset && asset.indexOf('particles/ability_modifier') > -1) continue; // skip dynamic references
       if (asset && asset.indexOf('particles/reftononexistent') > -1) continue; // skip dynamic references
-      if (asset && asset in EXCLUDE) { if (LOG) logitem += '\n     - exclude '+ path.basename(asset); continue; }// apply EXCLUDE list
+      if (asset && asset in KEEP_KEEP) { if (LOG) logitem += '\n     keep_keep '+ modifier; continue; }// skip reverse lookup list  
       if (modifier == asset) continue; // skip if modifier and asset are the same
       if (!modifier && !asset) continue; // skip if both modifier and asset are not defined / not .vpcf particle files
-      // AveYo: sort particles
-      if (prefab == 'tool' || prefab == 'relic' || prefab == 'treasure_chest') {  // EVENT AND TOWERS
-//        continue;
+      // AveYo: sort particles by prefab
+      if (prefab == 'wearable' || prefab == 'bundle') {
+        // SPELLS AND HATS
+        if (type == 'particle') {
+          var odd=true; // expecting .asset
+          if (modifier.indexOf('particles/econ/items') > -1) {
+            cat='Spells'; // Spells mostly but we can have Hats, too. Separating them is not simple, but Magic shall not prevail!
+            probably_spell[modifier]=MOD; // mod (disable) modifier by default 
+            if (asset && asset.indexOf('particles/econ/items') == -1) { 
+              probably_spell[modifier]=asset; // use found asset if valid
+              odd=false; // switch log warning flag
+            }
+            if (LOG) logitem += '\n     probably_spell'+( (odd) ? '?' : ':' )+ ' '+ modifier +' = '+ asset; // log (@verbose)
+          } else {
+            cat='Others'; //mods[cat][modifier]=MOD;
+            if (asset) { odd=false; /*mods[cat][modifier]=asset;*/ }
+            if (LOG) logitem += '\n     ignore'+( (odd) ? '?' : ':' )+ ' '+ modifier +' = '+ asset; // just log Others category
+          }
+          has_particles = true; // item i has particle definitions, so enable logging 
+        } else if (type == 'particle_create') { 
+          var odd=false; // not expecting .asset
+          if (modifier.indexOf('particles/econ/items') > -1) {
+            cat='Hats'; // Hats mostly
+            mods[cat][modifier]=MOD; // mod (disable) modifier by default
+            if (asset && asset.indexOf('particles/econ/items') == -1) { 
+              mods[cat][modifier]=(asset in REM_REM) ? asset : MOD; // use found asset if present in reverse lookup list
+              odd=true;
+            }
+            if (LOG) logitem += '\n     hat'+( (odd) ? '?' : ':' )+ ' '+ modifier; // log (@verbose)
+          } else if (modifier.indexOf('particles/units/heroes') > -1) {
+            cat='Heroes!'; // Default item overrides
+            mods[cat][modifier]=(asset in REM_REM) ? asset : MOD; probably_hat[modifier]=(asset in REM_REM) ? asset : MOD;
+            if (LOG) logitem += '\n     probably_hat: '+ modifier +' = '+ asset;
+          } else {
+            cat='Others'; //mods[cat][modifier]=MOD;
+            if (asset) { odd=true; /*mods[cat][modifier]=asset;*/ }
+            if (LOG) logitem += '\n     model'+( (odd) ? '?' : ':' )+ ' '+ modifier +' = '+ asset;  // just log Others category
+          }
+          has_particles = true; // item i has particle definitions, so enable logging 
+        }
+      } else if (prefab == 'default_item') {
+        // DEFAULT HEROES
+        cat='Heroes!'; // Default item main
+        if (modifier.indexOf('particles/units/heroes') > -1) { 
+          mods[cat][modifier]=MOD; has_particles = true; // item i has particle definitions 
+        } else {
+          if (LOG) logitem += '\n     unexpected: '+ modifier +' = '+ asset;
+        }
+      } else if (prefab == 'ward') {
+        // WARDS
+        cat='Wards'; mods[cat][modifier]=(asset) ? asset : MOD; has_particles = true; // item i has particle definitions 
+      } else if (prefab.indexOf('courier') == 0) {
+        // COURIERS
+        cat='Couriers'; mods[cat][modifier]=(asset) ? asset : MOD; has_particles = true; // item i has particle definitions 
+      } else if (prefab == 'tool' || prefab == 'relic' || prefab == 'treasure_chest') {
+        // EVENT AND TOWERS
         if (items[i].event_id != ACTIVE_EVENT_ID) continue; // active event id is EVENT_ID_INTERNATIONAL_2017
         if (expired) continue; // skip expired events - sadly most don't have expiration_date set so this filter can't be used alone
         if (modifier && modifier.indexOf('particles/world_tower') > -1) {
@@ -186,101 +239,51 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
           cat='Events'; mods[cat][modifier]=(asset) ? asset : MOD;
         }
         has_particles = true; // item i has particle definitions, so enable logging 
-      } else if (prefab == 'wearable' || prefab == 'bundle') {  // SPELLS AND HATS
-        cat='Hats';
-        switch(type) {
-          case 'particle':
-            var odd=true; // expecting .asset
-            if (modifier.indexOf('particles/econ/items') > -1) {
-              // Spells mostly but in this case we can have Hats, too. Separating them is not simple, but Magic shall not prevail!
-              cat='Hats'; probably_spell[modifier]=MOD; // probably_spell
-              if (asset && asset.indexOf('particles/econ/items') == -1) { probably_spell[modifier]=asset; odd=false; }
-              if (LOG) logitem += '\n    probably_spell'+( (odd) ? '!!! ' : ' ' )+ modifier +' = '+ asset;
-            } else {
-              cat='Others'; //mods[cat][modifier]=MOD;
-              if (asset) {
-                odd=false;
-                //mods[cat][modifier]=asset;
-              }
-              if (LOG) logitem += '\n    ignore'+( (odd) ? '!!! ' : ' ' )+ modifier +' = '+ asset;
-            }
-            has_particles = true; // item i has particle definitions, so enable logging 
-            break;
-          case 'particle_create':
-            var odd=false; // not expecting .asset
-            if (modifier.indexOf('particles/econ/items') > -1) {
-              // Hats mostly
-              cat='Hats'; mods[cat][modifier]=MOD; // probably_hat
-              if (asset && asset.indexOf('particles/econ/items') == -1) { mods[cat][modifier]=asset; odd=true; }
-              if (LOG) logitem += '\n    hat'+( (odd) ? '!!! ' : ' ' )+ modifier +' = '+ asset;
-            } else if (modifier.indexOf('particles/units/heroes') > -1) {
-              cat='Hats'; probably_hat[modifier]=MOD;
-              if (LOG) logitem += '\n    probably_hat '+ modifier +' = '+ asset;
-            } else {
-              cat='Others'; //mods[cat][modifier]=MOD;
-              if (asset) {
-                odd=true;
-                //mods[cat][modifier]=asset;
-              }
-              if (LOG) logitem += '\n    model'+( (odd) ? '!!! ' : ' ' )+ modifier +' = '+ asset;
-            }
-            has_particles = true; // item i has particle definitions, so enable logging 
-            break;
-          default:
-        }
-      } else if (prefab == 'default_item') {  // DEFAULT HEROES
-        cat='Heroes!';
-        if (modifier.indexOf('particles/units/heroes') == -1) {
-          if (LOG) logitem += '\n    not units/heroes '+ modifier +' = '+ asset;
-          //continue;
-        }
-        mods[cat][modifier]=(asset) ? asset : MOD;
-        has_particles = true; // item i has particle definitions, so enable logging 
-      } else if (prefab == 'ward') {  // WARDS
-//        continue;
-        cat='Wards'; mods[cat][modifier]=(asset) ? asset : MOD;
-        has_particles = true; // item i has particle definitions, so enable logging 
-      } else if (prefab.indexOf('courier') == 0) {  // COURIERS
-//        continue;
-        cat='Couriers'; mods[cat][modifier]=(asset) ? asset : MOD;
-      } else {  // OTHERS
-//        continue;
+      } else {
+        // OTHERS
         if (expired) continue;
-        cat='Others'; mods[cat][modifier]=(asset) ? asset : MOD;
-        has_particles = true; // item i has particle definitions, so enable logging 
+        cat='Others'; //mods[cat][modifier]=(asset) ? asset : MOD; has_particles = true; // item i has particle definitions 
       }
-    } // next f
-
+    } // next f visual
 
     // AveYo: Separate Hats from Spells out of the ambiguous visuals.asset_modifier.type='particle'
     for (var hat in probably_spell) {
       if (probably_spell[hat] in probably_hat) {
-        mods['Hats'][hat]=probably_spell[hat];
-        if (LOG) logitem += '\n      definitely_hat '+ path.basename(hat) +' = '+ probably_spell[hat];
-//        if (probably_spell[hat] != MOD && probably_spell[hat] in mods['Heroes!']) {
         if (probably_spell[hat] in mods['Heroes!']) {
-          mods['Hats'][hat]=probably_spell[hat]; // if it's a default hero modifier, treat it as Hats when Heroes! not selected 
-//          mods['Heroes!'][hat]=MOD; if (LOG) console.log('recursive hero', hat); // and only disable it if Heroes! selected
-          mods['Heroes!'][hat]=probably_spell[hat]; if (LOG) console.log('recursive hero', hat); // and only disable it if Heroes! selected
+          mods['Hats'][hat]=(probably_spell[hat] in REM_REM) ? probably_spell[hat] : MOD;
+          if (LOG) logitem += '\n       definitely_hat: '+ path.basename(hat);
+        } else {
+          mods['Spells'][hat]=probably_spell[hat]; 
+          if (LOG) logitem += '\n       keep_spell_filter: '+ path.basename(hat);
         }
       } else {
-        mods['Spells'][hat]=probably_spell[hat];
-        if (LOG) logitem += '\n      definitely_spell '+ path.basename(hat) +' = '+ probably_spell[hat];
+        if (probably_spell[hat] in mods['Heroes!']) {
+          mods['Hats'][hat]=(probably_spell[hat] in REM_REM) ? probably_spell[hat] : MOD;
+          if (LOG) logitem += '\n       keep_hat_filter: '+ path.basename(hat);
+        } else {
+          mods['Spells'][hat]=(probably_spell[hat] in MOD_MOD) ? MOD : probably_spell[hat];
+          if (LOG) logitem += '\n       definitely_spell: '+ path.basename(hat);
+        }
       }
     }
 
     // AveYo: Print optional item category tracking for debugging in one go
-    if (LOG && has_particles) console.log(logitem);    //&& hero!='npc_dota'
+    if (LOG && hero!='npc_dota' && has_particles) console.log(logitem);    //&& has_particles
+
+    // AveYo: Fix wearables under default category logs
+    //if (cat == 'Heroes!' && prefab != 'default_item') cat='Hats';
 
     // AveYo: Optionally log events / per-hero / ward / courier/ other items having particle definitions
-    if (LOG && has_particles) {
-      if (cat == 'Heroes!' || cat == 'Hats') { // per-hero items
-        if (!logs[cat][hero]) logs[cat][hero]={};
-        if (!logs[cat][hero][i]) logs[cat][hero][i]={}; // for convenience, log slices will keep original indenting.. wOw!
-        if (!logs[cat][hero][i]['items_game']) logs[cat][hero][i]['items_game']={};
-        if (!logs[cat][hero][i]['items_game']['items']) logs[cat][hero][i]['items_game']['items']={};
-        if (!logs[cat][hero][i]['items_game']['items'][i+'']) logs[cat][hero][i]['items_game']['items'][i+'']=items[i];
+    if (LOG) {
+      if (hero != 'npc_dota') { //  cat == 'Heroes!' || cat == 'Hats') { // per-hero items
+        var herocat=(prefab == 'default_item') ? 'Heroes!' : 'Hats';
+        if (!logs[herocat][hero]) logs[herocat][hero]={};
+        if (!logs[herocat][hero][i]) logs[herocat][hero][i]={}; // for convenience, log slices will keep original indenting.. wOw!
+        if (!logs[herocat][hero][i]['items_game']) logs[herocat][hero][i]['items_game']={};
+        if (!logs[herocat][hero][i]['items_game']['items']) logs[herocat][hero][i]['items_game']['items']={};
+        if (!logs[herocat][hero][i]['items_game']['items'][i+'']) logs[herocat][hero][i]['items_game']['items'][i+'']=items[i];
       } else {  // non-hero items
+        if (cat == 'Others' && !has_particles) continue; // ignore non-hero, non-particles other items
         if (!logs[cat]) logs[cat]={};
         if (!logs[cat][i]) logs[cat][i]={};
         if (!logs[cat][i]['items_game']) logs[cat][i]['items_game']={};
@@ -288,13 +291,21 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
         if (!logs[cat][i]['items_game']['items'][i+'']) logs[cat][i]['items_game']['items'][i+'']=items[i];
       }
     } // done LOG
-  }  // next item i
-  if (LOG) t.end(); // Done checking items loop
+  }  // next item i loop
 
-  // Import basic manual filter defined at the top of this script: ADD_HAT,REM_HAT, ADD_HERO,REM_HERO, ADD_SPELL,REM_SPELL
-  for (var hat in REM_HAT) { mods['Hats'][hat]=undefined; delete mods['Hats'][hat]; if (LOG) console.log('     - rem', hat); }
-  for (var hat in REM_HERO) { mods['Heroes!'][hat]=undefined; delete mods['Heroes!'][hat]; if (LOG) console.log('     - rem', hat); }
-  for (var hat in REM_SPELL) { mods['Spells'][hat]=undefined; delete mods['Spells'][hat]; if (LOG) console.log('     - rem', hat); }
+  // Import manual filter defined at the top of this script: MOD_HAT,KEEP_HAT, MOD_HERO,KEEP_HERO, MOD_SPELL,KEEP_SPELL...
+  for (var hat in MOD_HAT) { mods['Hats'][hat]=MOD_HAT[hat]; if (LOG) console.log('   mod', hat); }
+  for (var hat in MOD_HERO) { mods['Heroes!'][hat]=MOD_HERO[hat]; if (LOG) console.log('   mod', hat); }
+  for (var hat in MOD_SPELL) { mods['Spells'][hat]=MOD_SPELL[hat]; if (LOG) console.log('   mod', hat); }
+  for (var hat in KEEP_HAT) { mods['Hats'][hat]=undefined; delete mods['Hats'][hat]; if (LOG) console.log('   keep', hat); }
+  for (var hat in KEEP_HERO) { mods['Heroes!'][hat]=undefined; delete mods['Heroes!'][hat]; if (LOG) console.log('   keep', hat); }
+  for (var hat in KEEP_SPELL) { mods['Spells'][hat]=undefined; delete mods['Spells'][hat]; if (LOG) console.log('   keep', hat); }
+
+  // AveYo: Sanitize categories
+  for (var hat in REM_REM) { mods['Heroes!'][hat]=undefined; delete mods['Heroes!'][hat]; }
+  for (var hat in mods['Hats']) { if (hat in mods['Spells']) { mods['Spells'][hat]=undefined; delete mods['Spells'][hat]; } }
+
+  if (LOG) t.end(); // Done checking items loop
 
   // AveYo: Optionally log to file per-hero / ward / events items lists, and the no_bling source = replacement troubleshooting list
   if (LOG) {

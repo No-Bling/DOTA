@@ -1,6 +1,6 @@
-::             No-Bling dota_lv mod builder by AveYo - version 1.0rc1
+::             No-Bling dota_lv mod builder by AveYo
 :: Tools used by this script require Windows x64! version 10 recommended, 7 tested fine 
-@echo off &setlocal enableextensions disabledelayedexpansion
+@echo off &setlocal enableextensions disabledelayedexpansion &set version=1.0
 ::----------------------------------------------------------------------------------------------------------------------------------
 :"BAT_Options"
 ::----------------------------------------------------------------------------------------------------------------------------------
@@ -24,7 +24,7 @@ set "@refresh=0"          || :recompile_mod    1 = recompile mod instead of reus
 ::----------------------------------------------------------------------------------------------------------------------------------
 :"BAT_Main"
 ::----------------------------------------------------------------------------------------------------------------------------------
-title No-Bling DOTA mod builder by AveYo - version 1.0 &call :set_window 0 7 120 40 ||:i Bg Fg Cols Lines
+title No-Bling DOTA mod builder by AveYo - version %version% &call :set_window 0 7 120 40 ||:i Bg Fg Cols Lines
 :: no-bling dota logo powershell snippet cached temporarily to %ps_dota%
 setlocal &rem free script so no bitching!
 set "322=  ,,,,,, ,,,,,,,,,     , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,     :"
@@ -210,7 +210,7 @@ if defined @verbose ( set ".= " ) else set ".=>nul 2>nul"
 %LABEL% " Processing items_game.txt using JS engine "
 pushd "%MOD_DIR%"
 %TIMER%
-%js_engine% No_Bling "%SRC_CONTENT%" "%MOD_DIR%" "%VPK_ROOT%" "%MOD_CHOICES%" "%@verbose%" "%@timers%" &rem ^>DEBUG.TXT
+%js_engine% No_Bling "%SRC_CONTENT%" "%MOD_DIR%" "%VPK_ROOT%" "%MOD_CHOICES%" "%@verbose%" "%@timers%" >DEBUG.TXT
 %TIMER%
 :: Verify items_game.txt VDF parser
 if defined @verbose pushd "%MOD_DIR%\scripts\items" &echo. &echo n|COMP items_game.txt items_game_out.txt 2>NUL
@@ -266,6 +266,7 @@ set "mes=frog headshake jia_you patience po_liang_lu rimshot sad_bone sproing ti
 set "memes=%me% %mes% zou_hao_bu_song"
 mkdir "%MOD_DIR%\dota_lv\pak01_dir\sounds\misc\soundboard" >nul 2>nul &set .="%MOD_DIR%\scripts\sounds\test\null.vsnd_c" 
 pushd "%MOD_DIR%\dota_lv\pak01_dir\sounds\misc\soundboard" &for %%b in (%memes%) do copy /y %.% %%b.vsnd_c >nul 2>nul
+copy /y %.% "%MOD_DIR%\dota_lv\pak01_dir\sounds\misc\crowd_lv_01.vsnd_c" >nul 2>nul
 copy /y %.% "%MOD_DIR%\dota_lv\pak01_dir\sounds\misc\crowd_lv_02.vsnd_c" >nul 2>nul
 :skip_soundboard
 pushd "%MOD_DIR%\dota_lv" &set .="%MOD_DIR%\dota_lv\pak01_dir"
@@ -277,7 +278,7 @@ set "BUILDS_FOLDER=%MOD_DIR%\BUILDS\%CHOICES:,=-%"
 pushd "%MOD_DIR%" &mkdir "%BUILDS_FOLDER%" >nul 2>nul
 :: Generate readme
 set .="%MOD_DIR%\dota_lv\No-Bling DOTA mod readme.txt"
-echo  No-Bling DOTA mod choices: %CHOICES% >%.%  
+echo  No-Bling DOTA mod v%version% choices: %CHOICES% >%.%  
 echo ------------------- >>%.%
 echo We all know where we are headed looking at the Immortals spam in the last two years... >>%.%  
 echo. >>%.%  
