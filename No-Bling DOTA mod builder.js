@@ -1,9 +1,9 @@
-//                    No-Bling dota_lv mod builder by AveYo - version 1.0 final
+//                    No-Bling dota_lv mod builder by AveYo - version 1.1
 //  This JS script is used internally by the main "No-Bling dota_lv mod builder.bat" launcher 
 
 // AveYo: manual filters to supplement the auto generated ones by the No_Bling JS function - moved here on top, for convenience
 // WARNING! Don`t touch before understanding the No_Bling function; comments with !!! means critical - expect glitches if removed
-var MOD='particles/error/null.vpcf'; // by default mod particle with placeholder efectively disabling it
+var MOD='particles/dev/empty_particle.vpcf'; // by default mod particle with empty one
 var MOD_HAT={},KEEP_HAT={}, MOD_HERO={},KEEP_HERO={}, MOD_SPELL={},KEEP_SPELL={}, MOD_MOD={},KEEP_KEEP={},REM_REM={};
 // MOD_... and KEEP_... adds / drops a single [modifier]=asset pair from auto generated lists - direct lookup
 
@@ -24,6 +24,7 @@ KEEP_HERO['particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf']
 //KEEP_HERO['particles/units/heroes/hero_lich/lich_ambient_frost.vpcf']='';        // lich ball - iconic, but recognizable without
 KEEP_HERO['particles/units/heroes/hero_medusa/medusa_bow.vpcf']='';                                        // invisible bow string
 //KEEP_HERO['particles/units/heroes/hero_morphling/morphling_ambient_new.vpcf']='';    // morph iconic vortex - recognizable without
+KEEP_HERO['particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf']='';      // pa weapon effect at lvl6
 KEEP_HERO['particles/units/heroes/hero_pugna/pugna_ward_ambient.vpcf']='';                                   // invisible ward !!!
 KEEP_HERO['particles/units/heroes/hero_techies/techies_sign_ambient_base.vpcf']='';                           // keep techies sign
 KEEP_HERO['particles/units/heroes/hero_techies/techies_stasis_trap.vpcf']='';                                     // trap glitch ?
@@ -43,8 +44,12 @@ MOD_HAT['particles/econ/items/necrolyte/necro_sullen_harvest/necro_sullen_harves
 MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl1.vpcf']=MOD;//1 pa 
 MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl2.vpcf']=MOD;//2 grave
 MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl3.vpcf']=MOD;//3 marks
+KEEP_HAT['particles/econ/items/enigma/enigma_geodesic/enigma_eidelon_geodesic_ambient_null.vpcf']='';  // keep eidelon placeholder    
+KEEP_HAT['particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf']='';    
 KEEP_HAT['particles/econ/items/lina/lina_head_headflame/lina_flame_hand_dual_headflame.vpcf']='';  // keep lina arcana hands flame
 //KEEP_HAT['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail.vpcf']='';                 // keep sf arcana trail
+KEEP_HAT['particles/econ/items/techies/techies_arcana/techies_sign_ambient.vpcf']='';                // keep techies arcana sign
+KEEP_HAT['particles/econ/items/techies/techies_arcana/techies_stasis_trap_arcana.vpcf']='';          // keep techies arcana trap
 //KEEP_HAT['particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_ambient.vpcf']='';                  // keep ta imm
 //KEEP_HAT['particles/econ/items/templar_assassin/templar_assassin_violet/templar_assassin_violet_shoulder_ambient.vpcf']='';  // ta
 KEEP_HAT['particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_body_arcana_horns.vpcf']='';// no holes in
@@ -57,8 +62,6 @@ KEEP_HAT['particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_
 KEEP_SPELL['particles/econ/items/legion/legion_weapon_voth_domosh/legion_duel_ring_arcana.vpcf']='';    // keep legion arcana duel
 KEEP_SPELL['particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe.vpcf']='';      // keep necro ti7 scythe   
 KEEP_SPELL['particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe_start.vpcf']='';// keep necro ti7 scythe  
-KEEP_SPELL['particles/econ/items/techies/techies_arcana/techies_sign_ambient.vpcf']='';                // keep techies arcana sign
-KEEP_SPELL['particles/econ/items/techies/techies_arcana/techies_stasis_trap_arcana.vpcf']='';          // keep techies arcana trap
 
 //----------------------------------------------------------------------------------------------------------------------------------
 // Advanced reverse lookup filter 
@@ -96,7 +99,7 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
   var MEASURE         = (timers == '1'); if (!MEASURE) timer = function(f){return{end:function(){}}}; var t;
 
   // AveYo: initiate filter variables
-  var MOD='particles/error/null.vpcf', q='"', used_by_heroes={}, whatrules={}, log_lv=[];
+  var MOD='particles/dev/empty_particle.vpcf', q='"', used_by_heroes={}, whatrules={}, log_lv=[];
   var logs={ 'Others':{},'Couriers':{},'Wards':{},'Events':{},'Heroes!':{},'Hats':{} }; 
   var mods={ 'Others':{},'Couriers':{},'Wards':{},'Events':{},'Heroes!':{},'Hats':{},'Spells':{},'Towers':{} };
 
@@ -135,12 +138,32 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
           mods['Spells'][generic.modifier]=MOD;
           if (typeof generic.asset == 'string' && generic.modifier.lastIndexOf('.vpcf') > -1)
             mods['Spells'][generic.modifier]=generic.asset;
-          if (LOG) console.log ('   spell', path.basename(generic.modifier));
+          if (LOG) console.log ('   spell:', path.basename(generic.modifier));
         }
       }
     } // next m
   } // next a
   if (LOG) t.end();
+
+  // AveYo: Loop trough generic attached_particles definitions in items_game.txt - these are mostly for Hats & Courier trails
+  if (LOG) t=timer(' Check generic attached_particles');
+  var attached_particles=file_parse.items_game.attribute_controlled_attached_particles;
+  for (var a in attached_particles) {
+    if (typeof attached_particles[a] != 'object') continue; // skip if not object
+    var generic=attached_particles[a];
+    if (typeof generic.system != 'string') continue;
+    if (generic.system.indexOf('particles/units/heroes') > -1) {
+      mods['Heroes!'][generic.system]=MOD; if (LOG) console.log ('   hero:', path.basename(generic.system));
+    } else if (generic.system.indexOf('particles/econ/items') > -1) { 
+      mods['Hats'][generic.system]=MOD; if (LOG) console.log ('   hat:', path.basename(generic.system));
+    } else if (generic.system.indexOf('particles/econ/courier') > -1) { 
+      mods['Couriers'][generic.system]=MOD; if (LOG) console.log ('   courier:', path.basename(generic.system));
+    } else if (generic.system.indexOf('particles/econ/wards') > -1) { 
+      mods['Wards'][generic.system]=MOD; if (LOG) console.log ('   ward:', path.basename(generic.system));
+    }
+  } // next a
+  if (LOG) t.end();
+
 
   // AveYo: Loop trough all items, skipping over irrelevant categories and optionally generate accurate slice logs
   if (LOG) t=timer(' Check items');
@@ -182,11 +205,11 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
               probably_spell[modifier]=asset; // use found asset if valid
               odd=false; // switch log warning flag
             }
-            if (LOG) logitem += '\n     probably_spell'+( (odd) ? '?' : ':' )+ ' '+ modifier +' = '+ asset; // log (@verbose)
+            if (LOG) logitem += '\n     probably_spell:'+( (odd) ? '?' : ':' )+ ' '+ modifier +' = '+ asset; // log (@verbose)
           } else {
             cat='Others'; //mods[cat][modifier]=MOD;
             if (asset) { odd=false; /*mods[cat][modifier]=asset;*/ }
-            if (LOG) logitem += '\n     ignore'+( (odd) ? '?' : ':' )+ ' '+ modifier +' = '+ asset; // just log Others category
+            if (LOG) logitem += '\n     ignore:'+( (odd) ? '?' : ':' )+ ' '+ modifier +' = '+ asset; // just log Others category
           }
           has_particles = true; // item i has particle definitions, so enable logging 
         } else if (type == 'particle_create') { 
@@ -198,7 +221,7 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
               mods[cat][modifier]=(asset in REM_REM) ? asset : MOD; // use found asset if present in reverse lookup list
               odd=true;
             }
-            if (LOG) logitem += '\n     hat'+( (odd) ? '?' : ':' )+ ' '+ modifier; // log (@verbose)
+            if (LOG) logitem += '\n     hat:'+( (odd) ? '?' : ':' )+ ' '+ modifier; // log (@verbose)
           } else if (modifier.indexOf('particles/units/heroes') > -1) {
             cat='Heroes!'; // Default item overrides
             mods[cat][modifier]=(asset in REM_REM) ? asset : MOD; probably_hat[modifier]=(asset in REM_REM) ? asset : MOD;
@@ -206,7 +229,7 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
           } else {
             cat='Others'; //mods[cat][modifier]=MOD;
             if (asset) { odd=true; /*mods[cat][modifier]=asset;*/ }
-            if (LOG) logitem += '\n     model'+( (odd) ? '?' : ':' )+ ' '+ modifier +' = '+ asset;  // just log Others category
+            if (LOG) logitem += '\n     model:'+( (odd) ? '?' : ':' )+ ' '+ modifier +' = '+ asset;  // just log Others category
           }
           has_particles = true; // item i has particle definitions, so enable logging 
         }
@@ -264,9 +287,6 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
 
     // AveYo: Print optional item category tracking for debugging in one go
     if (LOG && hero!='npc_dota' && has_particles) console.log(logitem);    //&& has_particles
-
-    // AveYo: Fix wearables under default category logs
-    //if (cat == 'Heroes!' && prefab != 'default_item') cat='Hats';
 
     // AveYo: Optionally log events / per-hero / ward / courier/ other items having particle definitions
     if (LOG) {
