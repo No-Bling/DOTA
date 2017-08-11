@@ -51,7 +51,7 @@ Spells         | **+++++**   | Custom Spells: penguin Frostbite and stuff like t
 Hats           | **+++**     | Workshop Hats: cosmetic particles spam - slowly turning into TF2..       |  
 Heroes!        | **-**       | Default Heroes: model particles, helps potato pc, glancevalue can drop   | **care!**  
 Wards          | **++**      | Custom Wards: only a few make the ward and the sentry item similar       |  
-Couriers       | **++**      | Custom Couriers: these are fine.. until a dumber abuses gems on hats     | 
+Couriers       | **+++**     | Custom Couriers: these are fine.. until a dumber abuses gems on hats     | 
 Towers         | **+**       | Penis Contest: just the tower particle effects, models remain unchanged  |  
 Soundboard     | **bonus**   | Chatwheel Sounds: silence the annoying chatwheel sounds                  | **temporarily**
 *@verbose*     |             | *print file names and export detailed per-hero item lists*               |  
