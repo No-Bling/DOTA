@@ -1,4 +1,4 @@
- No-Bling DOTA mod v1.0 choices: -LowViolence,Events,Spells,Hats,Heroes!,Wards,Couriers,Towers,Soundboard   
+ No-Bling DOTA mod v1.1 choices: -LowViolence,Events,Spells,Hats,Heroes!,Wards,Couriers,Towers,Soundboard   
 ------------------- 
 We all know where we are headed looking at the Immortals spam in the last two years...   
    
@@ -11,22 +11,24 @@ Might say it even helps differentiate great artistic work, shadowed by the parti
  How to manually install the zip / vpk releases?   
 ------------------------------------------------- 
 1. Browse with a filemanager to:   
-  C:\STEAM\steamapps\common\dota 2 beta\game\   
-2. Delete directory (or just it's content):   
+  \steamapps\common\dota 2 beta\game\   
+2. Delete content of directory:   
   dota_lv   
 3. Unpack release zip file / copy pak01_dir.vpk there   
 4. Verify that this file exists:   
-  C:\STEAM\steamapps\common\dota 2 beta\game\dota_lv\pak01_dir.vpk   
+  \steamapps\common\dota 2 beta\game\dota_lv\pak01_dir.vpk   
 5. Add Dota 2 LAUNCH OPTIONS:   
   -LV   
 6. Profit!   
    
  pak01_dir.vpk file list 
 ------------------------- 
+particles\econ\courier\courier_axolotl_ambient\courier_axolotl_ambient.vpcf_c 
 particles\econ\courier\courier_axolotl_ambient\courier_axolotl_ambient_lvl1.vpcf_c 
 particles\econ\courier\courier_axolotl_ambient\courier_axolotl_ambient_lvl2.vpcf_c 
 particles\econ\courier\courier_axolotl_ambient\courier_axolotl_ambient_lvl3.vpcf_c 
 particles\econ\courier\courier_axolotl_ambient\courier_axolotl_ambient_lvl4.vpcf_c 
+particles\econ\courier\courier_baekho\courier_baekho_ambient.vpcf_c 
 particles\econ\courier\courier_bajie\courier_bajie.vpcf_c 
 particles\econ\courier\courier_beetlejaw\courier_beetlejaw_ambient.vpcf_c 
 particles\econ\courier\courier_beetlejaw_gold\courier_beetlejaw_gold_ambient.vpcf_c 
@@ -35,6 +37,7 @@ particles\econ\courier\courier_boris_baumhauer\courier_boris_baumhauer_ambient.v
 particles\econ\courier\courier_butch\courier_butch_ambient.vpcf_c 
 particles\econ\courier\courier_cluckles\courier_cluckles_ambient.vpcf_c 
 particles\econ\courier\courier_cluckles\courier_cluckles_ambient_flying.vpcf_c 
+particles\econ\courier\courier_crystal_rift\courier_ambient_crystal_rift.vpcf_c 
 particles\econ\courier\courier_dc\dccourier_angel_flame.vpcf_c 
 particles\econ\courier\courier_dc\dccourier_devil_flame.vpcf_c 
 particles\econ\courier\courier_devourling\courier_devourling_ambient.vpcf_c 
@@ -44,6 +47,11 @@ particles\econ\courier\courier_donkey_ti7\courier_donkey_ti7_ambient.vpcf_c
 particles\econ\courier\courier_donkey_unicorn\courier_donkey_unicorn_ambient.vpcf_c 
 particles\econ\courier\courier_doomling\courier_doomling_ambient.vpcf_c 
 particles\econ\courier\courier_drodo\courier_drodo_ambient.vpcf_c 
+particles\econ\courier\courier_eye_glow_01\courier_eye_glow_01.vpcf_c 
+particles\econ\courier\courier_eye_glow_02\courier_eye_glow_02.vpcf_c 
+particles\econ\courier\courier_eye_glow_03\courier_eye_glow_03.vpcf_c 
+particles\econ\courier\courier_eye_glow_04\courier_eye_glow_04.vpcf_c 
+particles\econ\courier\courier_eye_glow_defense_01\courier_eye_glow_defense_01.vpcf_c 
 particles\econ\courier\courier_f2p\courier_f2p_ambient.vpcf_c 
 particles\econ\courier\courier_faceless_rex\cour_rex_flying.vpcf_c 
 particles\econ\courier\courier_faceless_rex\cour_rex_weapon_glow.vpcf_c 
@@ -53,6 +61,7 @@ particles\econ\courier\courier_frull_ambient\courier_frull_ambient.vpcf_c
 particles\econ\courier\courier_frull_ambient\courier_frull_ambient_flying.vpcf_c 
 particles\econ\courier\courier_g1_octopus\courier_g1_octopus\courier_inky_ambient.vpcf_c 
 particles\econ\courier\courier_golden_doomling\courier_golden_doomling_ambient.vpcf_c 
+particles\econ\courier\courier_golden_roshan\golden_roshan_ambient.vpcf_c 
 particles\econ\courier\courier_golden_skipper\golden_skipper_bubbles.vpcf_c 
 particles\econ\courier\courier_golden_skipper\golden_skipper_head_light.vpcf_c 
 particles\econ\courier\courier_gold_horn\courier_gold_horn_ambient.vpcf_c 
@@ -96,6 +105,7 @@ particles\econ\courier\courier_huntling\courier_huntling_ambient_flying.vpcf_c
 particles\econ\courier\courier_huntling_gold\courier_huntling_gold_ambient.vpcf_c 
 particles\econ\courier\courier_huntling_gold\courier_huntling_gold_ambient_flying.vpcf_c 
 particles\econ\courier\courier_hwytty\courier_hwytty_ambient.vpcf_c 
+particles\econ\courier\courier_hyeonmu_ambient\courier_hyeonmu_ambient.vpcf_c 
 particles\econ\courier\courier_hyeonmu_ambient\courier_hyeonmu_ambient_blue.vpcf_c 
 particles\econ\courier\courier_hyeonmu_ambient\courier_hyeonmu_ambient_blue_plus.vpcf_c 
 particles\econ\courier\courier_hyeonmu_ambient\courier_hyeonmu_ambient_gold.vpcf_c 
@@ -150,6 +160,8 @@ particles\econ\courier\courier_onibi\courier_onibi_yellow_lvl18_ambient.vpcf_c
 particles\econ\courier\courier_onibi\courier_onibi_yellow_lvl19_ambient.vpcf_c 
 particles\econ\courier\courier_onibi\courier_onibi_yellow_lvl20_ambient.vpcf_c 
 particles\econ\courier\courier_otter_dragon\courier_otter_dragon_ambient.vpcf_c 
+particles\econ\courier\courier_platinum_roshan\platinum_roshan_ambient.vpcf_c 
+particles\econ\courier\courier_polycount_01\courier_trail_polycount_01.vpcf_c 
 particles\econ\courier\courier_redhoof_ambient\redhoof_ambient.vpcf_c 
 particles\econ\courier\courier_red_horn\courier_red_horn_ambient.vpcf_c 
 particles\econ\courier\courier_red_horn\courier_red_horn_ambient_flying.vpcf_c 
@@ -159,6 +171,8 @@ particles\econ\courier\courier_roshan_desert_sands\baby_roshan_desert_sands_ambi
 particles\econ\courier\courier_roshan_desert_sands\baby_roshan_desert_sands_ambient_flying.vpcf_c 
 particles\econ\courier\courier_roshan_desert_sands\baby_roshan_desert_sands_ambient_flying_loadout.vpcf_c 
 particles\econ\courier\courier_roshan_desert_sands\baby_roshan_desert_sands_ambient_loadout.vpcf_c 
+particles\econ\courier\courier_roshan_frost\courier_roshan_frost_ambient.vpcf_c 
+particles\econ\courier\courier_roshan_lava\courier_roshan_lava.vpcf_c 
 particles\econ\courier\courier_sappling\courier_sappling_ambient_fly_lvl1.vpcf_c 
 particles\econ\courier\courier_sappling\courier_sappling_ambient_fly_lvl2.vpcf_c 
 particles\econ\courier\courier_sappling\courier_sappling_ambient_fly_lvl3.vpcf_c 
@@ -166,6 +180,8 @@ particles\econ\courier\courier_sappling\courier_sappling_ambient_lvl1.vpcf_c
 particles\econ\courier\courier_sappling\courier_sappling_ambient_lvl2.vpcf_c 
 particles\econ\courier\courier_sappling\courier_sappling_ambient_lvl3.vpcf_c 
 particles\econ\courier\courier_seekling_gold\courier_seekling_gold_ambient.vpcf_c 
+particles\econ\courier\courier_shagbark\courier_shagbark_ambient.vpcf_c 
+particles\econ\courier\courier_shagbark\courier_shagbark_ambient_flying.vpcf_c 
 particles\econ\courier\courier_shibe\courier_shibe_ambient.vpcf_c 
 particles\econ\courier\courier_shibe\courier_shibe_ambient_flying.vpcf_c 
 particles\econ\courier\courier_smeevil\courier_smeevil_ambient.vpcf_c 
@@ -181,7 +197,30 @@ particles\econ\courier\courier_snail\courier_snail_trail.vpcf_c
 particles\econ\courier\courier_snapjaw\courier_snapjaw_ambient_flying.vpcf_c 
 particles\econ\courier\courier_staglift\courier_staglift_ambient.vpcf_c 
 particles\econ\courier\courier_staglift\courier_staglift_ambient_flying.vpcf_c 
+particles\econ\courier\courier_struthio\courier_struthio_ambient.vpcf_c 
 particles\econ\courier\courier_tinkbot\courier_tinkbot_flying_ambient.vpcf_c 
+particles\econ\courier\courier_trail_01\courier_trail_01.vpcf_c 
+particles\econ\courier\courier_trail_02\courier_trail_02.vpcf_c 
+particles\econ\courier\courier_trail_03\courier_trail_03.vpcf_c 
+particles\econ\courier\courier_trail_04\courier_trail_04.vpcf_c 
+particles\econ\courier\courier_trail_05\courier_trail_05.vpcf_c 
+particles\econ\courier\courier_trail_blossoms\courier_trail_blossoms.vpcf_c 
+particles\econ\courier\courier_trail_cursed\courier_cursed_ambient.vpcf_c 
+particles\econ\courier\courier_trail_divine\courier_divine_ambient.vpcf_c 
+particles\econ\courier\courier_trail_earth\courier_trail_earth.vpcf_c 
+particles\econ\courier\courier_trail_ember\courier_trail_ember.vpcf_c 
+particles\econ\courier\courier_trail_fireworks\courier_trail_fireworks.vpcf_c 
+particles\econ\courier\courier_trail_fungal\courier_trail_fungal.vpcf_c 
+particles\econ\courier\courier_trail_hw_2012\courier_trail_hw_2012.vpcf_c 
+particles\econ\courier\courier_trail_hw_2013\courier_trail_hw_2013.vpcf_c 
+particles\econ\courier\courier_trail_international_2013\courier_international_2013.vpcf_c 
+particles\econ\courier\courier_trail_international_2014\courier_international_2014.vpcf_c 
+particles\econ\courier\courier_trail_int_2012\courier_trail_international_2012.vpcf_c 
+particles\econ\courier\courier_trail_lava\courier_trail_lava.vpcf_c 
+particles\econ\courier\courier_trail_orbit\courier_trail_orbit.vpcf_c 
+particles\econ\courier\courier_trail_ruby\courier_trail_ruby.vpcf_c 
+particles\econ\courier\courier_trail_spirit\courier_trail_spirit.vpcf_c 
+particles\econ\courier\courier_trail_winter_2012\courier_trail_winter_2012.vpcf_c 
 particles\econ\courier\courier_trapjaw\courier_trapjaw_ambient.vpcf_c 
 particles\econ\courier\courier_trapjaw\courier_trapjaw_mouth.vpcf_c 
 particles\econ\courier\courier_venoling\courier_venoling_ambient.vpcf_c 
@@ -404,6 +443,7 @@ particles\econ\items\chaos_knight\chaos_knight_diabolic_aspect\chaos_knight_diab
 particles\econ\items\chaos_knight\chaos_knight_entropic\chaos_knight_entropic_helmet.vpcf_c 
 particles\econ\items\chaos_knight\chaos_knight_entropic\chaos_knight_entropic_shield.vpcf_c 
 particles\econ\items\chaos_knight\chaos_knight_entropic\chaos_knight_entropic_shoulderpads.vpcf_c 
+particles\econ\items\chaos_knight\chaos_knight_helm_end_of_order\chaos_knight_ambient_helmet_end_of_order.vpcf_c 
 particles\econ\items\chaos_knight\chaos_knight_shadow_brand\chaos_knight_shadow_brand_weapon.vpcf_c 
 particles\econ\items\chaos_knight\chaos_knight_ti7_shield\chaos_knight_ti7_golden_reality_rift.vpcf_c 
 particles\econ\items\chaos_knight\chaos_knight_ti7_shield\chaos_knight_ti7_golden_reality_rift_illusions.vpcf_c 
@@ -554,7 +594,7 @@ particles\econ\items\enchantress\enchantress_lodestar\ench_lodestar_death.vpcf_c
 particles\econ\items\enchantress\enchantress_virgas\ench_impetus_virgas.vpcf_c 
 particles\econ\items\enchantress\enchantress_virgas\ench_virgas_ambient.vpcf_c 
 particles\econ\items\enigma\enigma_geodesic\enigma_base_attack_eidolon_geodesic.vpcf_c 
-particles\econ\items\enigma\enigma_geodesic\enigma_eidelon_geodesic_ambient_null.vpcf_c 
+particles\econ\items\enigma\enigma_geodesic\enigma_eidelon_geodesic_eye.vpcf_c 
 particles\econ\items\enigma\enigma_world_chasm\enigma_blackhole_target_ti5.vpcf_c 
 particles\econ\items\enigma\enigma_world_chasm\enigma_blackhole_ti5.vpcf_c 
 particles\econ\items\enigma\enigma_world_chasm\enigma_world_chasm_ambient.vpcf_c 
@@ -625,6 +665,7 @@ particles\econ\items\juggernaut\armor_of_the_favorite\juggernaut_favorite_body_a
 particles\econ\items\juggernaut\armor_of_the_favorite\juggernaut_favorite_eyes.vpcf_c 
 particles\econ\items\juggernaut\armor_of_the_favorite\juggernaut_favorite_shoulder_ambient.vpcf_c 
 particles\econ\items\juggernaut\armor_of_the_favorite\juggernaut_favorite_weapon.vpcf_c 
+particles\econ\items\juggernaut\armor_of_the_favorite\jugg_weapon_base_ribbon.vpcf_c 
 particles\econ\items\juggernaut\bladekeeper_bladefury\_dc_juggernaut_blade_fury.vpcf_c 
 particles\econ\items\juggernaut\bladekeeper_critical_strike\_dc_juggernaut_crit_blur.vpcf_c 
 particles\econ\items\juggernaut\bladekeeper_headglow\dc_juggernaut_bladekeeper_head.vpcf_c 
@@ -695,6 +736,7 @@ particles\econ\items\kunkka\divine_anchor\hero_kunkka_dafx_skills\kunkka_spell_t
 particles\econ\items\kunkka\divine_anchor\hero_kunkka_dafx_skills\kunkka_spell_x_spot_fxset.vpcf_c 
 particles\econ\items\kunkka\divine_anchor\hero_kunkka_dafx_weapon\kunkka_spell_tidebringer_fxset.vpcf_c 
 particles\econ\items\kunkka\divine_anchor\hero_kunkka_dafx_weapon\kunkka_weapon_tidebringer_fxset.vpcf_c 
+particles\econ\items\kunkka\kunkka_divineanchor_weapon_particle\kunkka_divineanchor_weapon_particle.vpcf_c 
 particles\econ\items\kunkka\kunkka_immortal\kunkka_immortal_ambient.vpcf_c 
 particles\econ\items\kunkka\kunkka_immortal\kunkka_immortal_ambient_alt.vpcf_c 
 particles\econ\items\kunkka\kunkka_immortal\kunkka_immortal_ghost_ship.vpcf_c 
@@ -825,6 +867,7 @@ particles\econ\items\luna\luna_ti7_set\luna_ti7_set_style_mount_ambient.vpcf_c
 particles\econ\items\luna\nightsilver_woods_weapon\luna_attack_nightsilver.vpcf_c 
 particles\econ\items\luna\nightsilver_woods_weapon\luna_glaive_bounce_nightsilver.vpcf_c 
 particles\econ\items\luna\nightsilver_woods_weapon\luna_glaive_nightsilver.vpcf_c 
+particles\econ\items\lycan\blood_moon\lycan_blood_moon_armor_ambient.vpcf_c 
 particles\econ\items\lycan\blood_moon\lycan_blood_moon_belt_ambient.vpcf_c 
 particles\econ\items\lycan\blood_moon\lycan_blood_moon_shapeshift_ambient.vpcf_c 
 particles\econ\items\lycan\blood_moon\lycan_blood_moon_shapeshift_ambient_buff.vpcf_c 
@@ -1250,13 +1293,25 @@ particles\econ\items\spectre\spectre_transversant_soul\spectre_transversant_spec
 particles\econ\items\spectre\spectre_transversant_soul\spectre_transversant_spectral_dagger_tracking.vpcf_c 
 particles\econ\items\spectre\spectre_weapon_diffusal\spectre_desolate_diffusal.vpcf_c 
 particles\econ\items\spectre\spectre_weapon_diffusal\spectre_diffusal_ambient.vpcf_c 
+particles\econ\items\spirit_breaker\spirit_breaker_bracers_dc_ioc\dc_spirit_breaker_ioc_ambient_fur_bracers_l.vpcf_c 
+particles\econ\items\spirit_breaker\spirit_breaker_bracers_dc_ioc\dc_spirit_breaker_ioc_ambient_fur_bracers_r.vpcf_c 
+particles\econ\items\spirit_breaker\spirit_breaker_bracers_dc_ioc\dc_spirit_breaker_ioc_ambient_gem_bracers_l.vpcf_c 
+particles\econ\items\spirit_breaker\spirit_breaker_bracers_dc_ioc\dc_spirit_breaker_ioc_ambient_gem_bracers_r.vpcf_c 
+particles\econ\items\spirit_breaker\spirit_breaker_horns_ioc\dc_spirit_breaker_ioc_ambient_gem_horns.vpcf_c 
+particles\econ\items\spirit_breaker\spirit_breaker_horns_ioc\dc_spirit_breaker_ioc_ambient_tusks.vpcf_c 
 particles\econ\items\spirit_breaker\spirit_breaker_iron_surge\spirit_breaker_charge_iron.vpcf_c 
 particles\econ\items\spirit_breaker\spirit_breaker_iron_surge\spirit_breaker_charge_start_iron.vpcf_c 
 particles\econ\items\spirit_breaker\spirit_breaker_iron_surge\spirit_breaker_charge_target_iron.vpcf_c 
 particles\econ\items\spirit_breaker\spirit_breaker_iron_surge\spirit_breaker_iron_surge_ambient.vpcf_c 
 particles\econ\items\spirit_breaker\spirit_breaker_iron_surge\spirit_breaker_iron_surge_eyes.vpcf_c 
 particles\econ\items\spirit_breaker\spirit_breaker_iron_surge\status_effect_iron_surge.vpcf_c 
+particles\econ\items\spirit_breaker\spirit_breaker_shoulders_dc_ioc_orange\dc_spirit_breaker_ioc_ambient_gem_shoulders_l.vpcf_c 
+particles\econ\items\spirit_breaker\spirit_breaker_shoulders_dc_ioc_orange\dc_spirit_breaker_ioc_ambient_gem_shoulders_r.vpcf_c 
+particles\econ\items\spirit_breaker\spirit_breaker_shoulders_dc_ioc_orange\dc_spirit_breaker_ioc_mane_shoulders_left.vpcf_c 
+particles\econ\items\spirit_breaker\spirit_breaker_shoulders_dc_ioc_orange\dc_spirit_breaker_ioc_mane_shoulders_right.vpcf_c 
 particles\econ\items\spirit_breaker\spirit_breaker_thundering_flail\spirit_breaker_thundering_flail.vpcf_c 
+particles\econ\items\spirit_breaker\spirit_breaker_weapon_dc_ioc\dc_spirit_breaker_ioc_ambient_gem_l.vpcf_c 
+particles\econ\items\spirit_breaker\spirit_breaker_weapon_dc_ioc\dc_spirit_breaker_ioc_ambient_gem_r.vpcf_c 
 particles\econ\items\spirit_breaker\spirit_breaker_weapon_empowering_elements\spirit_breaker_ambient_flame_empowering_elements.vpcf_c 
 particles\econ\items\spirit_breaker\spirit_breaker_weapon_fearlessimpactor\spirit_breaker_fearlessimpactor_weaponfx.vpcf_c 
 particles\econ\items\spirit_breaker\spirit_breaker_weapon_fearlessimpactor\spirit_breaker_head_fearlessimpactor.vpcf_c 
@@ -1488,6 +1543,7 @@ particles\econ\items\zeus\lightning_weapon_fx\zuus_lightning_bolt_immortal_light
 particles\econ\wards\abaddon\abaddon_ward\abaddon_ward_ambient.vpcf_c 
 particles\econ\wards\bane\bane_ward\bane_ward_ambient.vpcf_c 
 particles\econ\wards\crystal_maiden\crystal_maiden_ward\crystalmaiden_ward_ambient.vpcf_c 
+particles\econ\wards\disruptor\disruptor_ward\disruptor_ward_ambient.vpcf_c 
 particles\econ\wards\f2p\f2p_ward\f2p_ward_ambient.vpcf_c 
 particles\econ\wards\f2p\f2p_ward\f2p_ward_true_sight_ambient.vpcf_c 
 particles\econ\wards\lina\lina_ward\lina_ward_ambient.vpcf_c 
@@ -1512,10 +1568,12 @@ particles\units\heroes\heroes_underlord\underlord_ambient_eyes.vpcf_c
 particles\units\heroes\hero_abaddon\abaddon_ambient.vpcf_c 
 particles\units\heroes\hero_abaddon\abaddon_blade.vpcf_c 
 particles\units\heroes\hero_ancient_apparition\ancient_apparition_ambient.vpcf_c 
+particles\units\heroes\hero_antimage\antimage_blade.vpcf_c 
 particles\units\heroes\hero_antimage\antimage_blade_offhand.vpcf_c 
 particles\units\heroes\hero_antimage\antimage_blade_primary.vpcf_c 
 particles\units\heroes\hero_arc_warden\arc_warden_ambient.vpcf_c 
 particles\units\heroes\hero_arc_warden\arc_warden_bracer_ambient.vpcf_c 
+particles\units\heroes\hero_axe\axe_commando.vpcf_c 
 particles\units\heroes\hero_axe\axe_culling_blade_kill.vpcf_c 
 particles\units\heroes\hero_bane\bane_hand_drip.vpcf_c 
 particles\units\heroes\hero_bane\bane_hand_drip_right.vpcf_c 
@@ -1548,6 +1606,8 @@ particles\units\heroes\hero_bloodseeker\blood_gore_arterial_drip.vpcf_c
 particles\units\heroes\hero_bloodseeker\blood_gore_arterial_drip_2.vpcf_c 
 particles\units\heroes\hero_bloodseeker\gore_wound_arterial_spray_3.vpcf_c 
 particles\units\heroes\hero_bloodseeker\gore_wound_drips_generic.vpcf_c 
+particles\units\heroes\hero_bounty_hunter\bounty_hunter_hand_l.vpcf_c 
+particles\units\heroes\hero_bounty_hunter\bounty_hunter_hand_r.vpcf_c 
 particles\units\heroes\hero_bounty_hunter\bounty_hunter_jinda_slow_tgt_rope.vpcf_c 
 particles\units\heroes\hero_bounty_hunter\bounty_hunter_track_scroll_blood.vpcf_c 
 particles\units\heroes\hero_bounty_hunter\bounty_hunter_track_scroll_blood_drip.vpcf_c 
@@ -1601,6 +1661,9 @@ particles\units\heroes\hero_jakiro\jakiro_ambient.vpcf_c
 particles\units\heroes\hero_juggernaut\juggernaut_blade_generic.vpcf_c 
 particles\units\heroes\hero_juggernaut\juggernaut_blade_generic_econ.vpcf_c 
 particles\units\heroes\hero_juggernaut\juggernaut_omni_slash_blood.vpcf_c 
+particles\units\heroes\hero_juggernaut\jugg_weapon_glow_variation_green.vpcf_c 
+particles\units\heroes\hero_juggernaut\jugg_weapon_glow_variation_red.vpcf_c 
+particles\units\heroes\hero_juggernaut\jugg_weapon_glow_variation_white.vpcf_c 
 particles\units\heroes\hero_keeper_of_the_light\keeper_of_the_light_ambient.vpcf_c 
 particles\units\heroes\hero_kunkka\kunkka_weapon_glow_ambient.vpcf_c 
 particles\units\heroes\hero_leshrac\leshrac_ambient_glow.vpcf_c 
@@ -1663,6 +1726,8 @@ particles\units\heroes\hero_rattletrap\rattletrap_cog_ambient.vpcf_c
 particles\units\heroes\hero_razor\razor_ambient.vpcf_c 
 particles\units\heroes\hero_razor\razor_ambient_main.vpcf_c 
 particles\units\heroes\hero_razor\razor_whip.vpcf_c 
+particles\units\heroes\hero_razor_reduced_flash\razor_ambient_main_reduced_flash.vpcf_c 
+particles\units\heroes\hero_razor_reduced_flash\razor_ambient_reduced_flash.vpcf_c 
 particles\units\heroes\hero_razor_reduced_flash\razor_whip_reduced_flash.vpcf_c 
 particles\units\heroes\hero_rubick\rubick_staff_ambient.vpcf_c 
 particles\units\heroes\hero_sandking\sandking_caustic_finale_explode_a.vpcf_c 
@@ -1676,6 +1741,7 @@ particles\units\heroes\hero_shadow_demon\shadow_demon_ambient.vpcf_c
 particles\units\heroes\hero_shredder\shredder_ambient.vpcf_c 
 particles\units\heroes\hero_shredder\shredder_ambient_saw.vpcf_c 
 particles\units\heroes\hero_siren\siren_ambient.vpcf_c 
+particles\units\heroes\hero_siren\siren_ambient_default.vpcf_c 
 particles\units\heroes\hero_siren\siren_ambient_lamp.vpcf_c 
 particles\units\heroes\hero_skeletonking\skeletonking_hellfireblast_skull.vpcf_c 
 particles\units\heroes\hero_skeletonking\wraith_king_ambient.vpcf_c 
