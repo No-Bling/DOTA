@@ -21,7 +21,7 @@ Might say it even helps differentiate great artistic work, shadowed by the parti
 ### How to manually install the zip / vpk releases?  
 1. Browse with a filemanager to:  
 `\steamapps\common\dota 2 beta\game\`  
-2. Delete directory (or just it's content):  
+2. Delete content of directory:  
 `dota_lv`  
 3. Unpack release zip file / copy pak01_dir.vpk there  
 4. Verify that this file exists:  
@@ -49,7 +49,7 @@ Category       | GlanceValue | Description                                      
 Events         | **++++**    | Event Rewards: the International 7 custom tp, blink etc.                 |  
 Spells         | **+++++**   | Custom Spells: penguin Frostbite and stuff like that..                   |  
 Hats           | **+++**     | Workshop Hats: cosmetic particles spam - slowly turning into TF2..       |  
-Heroes!        | **-**       | Default Heroes: model particles, helps potato pc's but glancevalue drops | **Careful!**  
+Heroes!        | **-**       | Default Heroes: model particles, helps potato pc, glancevalue could drop | **care!**  
 Wards          | **++**      | Custom Wards: only a few make the ward and the sentry item similar       |  
 Couriers       | **++**      | Custom Couriers: these are fine.. until a dumber abuses gems on hats     | 
 Towers         | **+**       | Penis Contest: just the tower particle effects, models remain unchanged  |  
