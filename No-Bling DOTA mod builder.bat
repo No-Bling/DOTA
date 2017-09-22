@@ -1,30 +1,35 @@
 ::             No-Bling dota_lv mod builder by AveYo
 :: Tools used by this script require Windows x64! version 10 recommended, 7 tested fine 
-@echo off &setlocal enableextensions disabledelayedexpansion &set version=1.1
+@echo off &setlocal enableextensions disabledelayedexpansion &set version=1.2 &if not "_%1_"=="__SELF__" goto :set_console
 ::----------------------------------------------------------------------------------------------------------------------------------
 :"BAT_Options"
 ::----------------------------------------------------------------------------------------------------------------------------------
-:: Script options - not available in gui so set them here if needed
-set "@dialog=1"           || :gui_choices_wait 1 = show choices dialog and wait on end, 0 = no dialog, auto-close window
-set "@timers=1"           || :measure_run      1 = total and per tasks accurate timer,  0 = no timers
-set "MOD_DIR=MOD"         || :work_folder      ~ = defaults to batch file subdirectory MOD
-set "VPK_ROOT=particles"  || :vpk_root         ~ = this is a particles-only mod, no other file types modified
 :: No-Bling DOTA mod builder gui choices - no need to edit defaults here, script shows a graphical dialog later for easier selection
 set "-LowViolence=1"      || :Restore_Blood    1 = undo -lv launch option turning all blood into alien green              Essential!
-set "Events=1"            || :Event_Rewards    1 = the International 7 custom tp, blink etc.
+rem set "Events=1"            || :Event_Rewards    1 = the International 7 custom tp, blink etc.
 set "Spells=1"            || :Custom_Spells    1 = penguin Frostbite and stuff like that..
 set "Hats=1"              || :Workshop_Hats    1 = cosmetic particles spam - slowly turning into TF2..
 set "Heroes!=1"           || :Default_Heroes   1 = model particles, helps potato pc's but glancevalue can suffer            Careful!
 set "Wards=1"             || :Custom_Wards     1 = only a few of them make the ward and the sentry item too similar
 set "Couriers=1"          || :Custom_Couriers  1 = couriers particles are fine.. until a dumber abuses gems on hats 
-set "Towers=1"            || :Penis_Contest    1 = just the tower particle effects, models remain unchanged
-set "Soundboard=1"        || :Chatwheel_sounds 1 = silence the annoying chatwheel sounds - temporarily featured
+rem set "Towers=1"            || :Penis_Contest    1 = just the tower particle effects, models remain unchanged
+rem set "Soundboard=1"        || :Chatwheel_sounds 1 = silence the annoying chatwheel sounds - temporarily featured
 set "@verbose=1"          || :verbose_output   1 = print file names and export detailed per-hero item lists
 set "@refresh=0"          || :recompile_mod    1 = recompile mod instead of reusing cached files - usually not needed
+:: Battle-pass 2017 expired so remove seasonal options
+rem set "all_choices=-LowViolence Events Spells Hats Heroes! Wards Couriers Towers Soundboard @verbose"
+set "all_choices=-LowViolence Spells Hats Heroes! Wards Couriers @verbose"
+:: Script options - not available in gui so set them here if needed
+set "MOD_DIR=MOD"         || :work_folder      ~ = defaults to batch file subdirectory MOD
+set "VPK_ROOT=particles"  || :vpk_root         ~ = this is a particles-only mod, no other file types modified
+set "@dialog=1"           || :gui_choices_wait 1 = show choices dialog and wait on end, 0 = no dialog, auto-close window
+set "@timers=1"           || :measure_run      1 = total and per tasks accurate timer,  0 = no timers
 ::----------------------------------------------------------------------------------------------------------------------------------
 :"BAT_Main"
 ::----------------------------------------------------------------------------------------------------------------------------------
 title No-Bling DOTA mod builder by AveYo - version %version% &call :set_window 0 7 120 40 ||:i Bg Fg Cols Lines
+reg copy HKCU\Environment\Console-Backup HKCU\Console /s /f >nul 2>nul &rem restore console settings 
+
 :: no-bling dota logo powershell snippet cached temporarily to %ps_dota%
 setlocal &rem free script so no bitching!
 set "322=  ,,,,,, ,,,,,,,,,     , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,     :"
@@ -67,7 +72,7 @@ set "o=$bling=$logo.split(":"); foreach ($i in $bling) { $fc="Cyan"; $bc="Black"
 set "t=if($i.Contains(".")){$fc="Red"}; if($i.Contains(",")){$fc="DarkRed"}; if($i.Contains("Bling")){$fc="Black";$bc="Cyan"};"
 set "a=$i=$i.replace(".","#").replace(",","``"); write-host $i -BackgroundColor $bc -ForegroundColor $fc -NoNewLine };"
 set "ps_dota=%d:"=\"%%o:"=\"%%t:"=\"%%a:"=\"%"
-powershell -c "$first=322; $last=356; %ps_dota%" &rem comment this line to skip the awesome ascii art logo.. but why would you?
+powershell -c "$first=322; $last=356; %ps_dota%" &rem comment this line to skip the awesome ascii art logo..
 endlocal
 
 :: Parse Script options
@@ -115,8 +120,7 @@ if defined STEAMDATA pushd "%STEAMDATA%\config" &if exist localconfig.vdf (
 )
 
 :: Parse gui dialog choices - rather complicated back & forth define - undefine, but it gets the job done!
-set "all_choices=-LowViolence Events Spells Hats Heroes! Wards Couriers Towers Soundboard @verbose" &set "@choices="
-if not defined @refresh set "all_choices=%all_choices% @refresh" &rem insert @refresh option 
+set "@choices=" &if not defined @refresh set "all_choices=%all_choices% @refresh" &rem insert @refresh option 
 for %%o in (%all_choices%) do call set "%%o=%%%%o:0=%%" &rem if any option is equal to 0, undefine it for easier script usage
 for %%o in (%all_choices%) do if defined %%o (if defined @choices ( call set "@choices=%%@choices%%,%%o" ) else set "@choices=%%o")
 if defined @dialog call :choices 322 444 "No-Bling" "%all_choices: =,%" "%@choices%" ||:i width height title all_choices def_choices
@@ -127,12 +131,11 @@ for %%o in (%MOD_CHOICES%) do set "%%o=1" &rem then redefine selected ones to 1
 call :unselect @verbose MOD_CHOICES &call :unselect @refresh MOD_CHOICES
 set "CHOICES=%MOD_CHOICES%" &reg add "HKCU\Environment" /v "No-Bling choices" /t REG_SZ /d "%MOD_CHOICES%" /f >nul 2>nul
 
-:: Increase window buffer powershell snippet                    this restores scrollbar after mode command in :set_window removed it
-powershell -c "$H=$host.UI.RawUI; $B=$H.BufferSize; $W=$B.Width; $B.Height=9999; $H.BufferSize=$B;" >nul 2>nul
+:: increase window buffer powershell snippet               this restores scrollbar after mode command removes it, max $B.Height=9999
+powershell -c "$H=$host.UI.RawUI; $B=$H.BufferSize; $W=$B.Width; $B.Height=9999; $H.BufferSize=$B;" >nul 2>nul 
 
 :: Print configuration
 %LABEL% " No-Bling DOTA mod configuration "
-echo  Script options = @dialog:%@dialog%  @timers:%@timers%  @verbose:%@verbose%  @refresh:%@refresh%
 echo  Mod choices    = %MOD_CHOICES%
 echo  Mod directory  = %MOD_DIR%
 echo  Mod output     = %DOTA%\game\dota_lv
@@ -141,6 +144,7 @@ echo  User profile   = %STEAMDATA%
 echo  Launch options = %LOPTIONS%
 echo  Workshop Tools = %WORKSHOP%
 echo  Needs refresh? = %NEWPATCH%
+echo  Script options = @dialog:%@dialog%  @timers:%@timers%  @verbose:%@verbose%  @refresh:%@refresh%
 
 :: Prepare
 %LABEL% " Preparing MOD directory "
@@ -187,19 +191,17 @@ if not exist %.%.vpcf copy /y %.% %.%.vpcf >nul 2>nul &popd
 :: Pure batch method for -LowViolence removal - much faster than integrated JS engine method but arguably less reliable
 if not defined CHOICES goto :skip_lowviolence
 %LABEL% " Disabling default -lv 'green alien blood' particles "
-echo Task can take a minute... &rem on sequential runs it's usually cashed and only takes 5-10 seconds
+echo Task can take a minute... &rem on sequential runs it's usually cashed and only takes 7-14 seconds
 %TIMER%
-set "lv_root=particles" &set "LV_FILTER=m_hLowViolenceDef = resource:"
-mkdir "%MOD_DIR%\src\-LowViolence" >nul 2>nul &pushd "%MOD_DIR%\src\-LowViolence"
-for /f delims^=^ eol^= %%a in ('pushd "%SRC_CONTENT%" ^&findstr /l /s /m /off /c:"%LV_FILTER%" "%VPK_ROOT%\*"') do (
-  mkdir "%%~dpa" >nul 2>nul &findstr /l /v /off /c:"%LV_FILTER%" "%SRC_CONTENT%\%%a" > "%%~dpnxa"
-)
-call :clearline 1  &pushd "%MOD_DIR%\src\-LowViolence" &set ".=%MOD_DIR%\log\LowViolence.txt"
-if not defined @verbose call :unselect -LowViolence MOD_CHOICES &%TIMER% &goto :skip_lowviolence
-echo %.% &cd.>"%.%" &for /f delims^=^ eol^= %%a in ('dir /a:-d /b /s') do set "__fa=%%~fa" &call echo/%%__fa:%__CD__%=%%>>"%.%"
-call :unselect -LowViolence MOD_CHOICES
+mkdir "%MOD_DIR%\src\-LowViolence" >nul 2>nul &cd/d "%MOD_DIR%\src\-LowViolence" &set "LOGLV=%MOD_DIR%\log\LowViolence.txt"
+pushd "%SRC_CONTENT%" &findstr /l /s /m /off /c:"m_hLowViolenceDef" "particles\*">"%MOD_DIR%\src\-LowViolence\LV.txt" &popd 
+for /f delims^= %%a in (LV.txt) do mkdir "%%~dpa" 2>nul &findstr /l /v /off /c:"m_hLowViolenceDef" "%SRC_CONTENT%\%%a" > "%%~dpnxa"
+del /f /q "%LOGLV%" >nul 2>nul &move LV.txt "%MOD_DIR%\log\LowViolence.txt" >nul 2>nul
+call :clearline 1 &call :unselect -LowViolence MOD_CHOICES
 %TIMER%
 :skip_lowviolence rem comment this whole code block to use the integrated JS engine reliable but slower method instead
+
+pause
 
 %LABEL% " Extracting items_game.txt from game\dota\pak01_dir.vpk "
 if defined @verbose ( set ".= " ) else set ".=>nul 2>nul"
@@ -210,7 +212,9 @@ if defined @verbose ( set ".= " ) else set ".=>nul 2>nul"
 %LABEL% " Processing items_game.txt using JS engine "
 pushd "%MOD_DIR%"
 %TIMER%
-%js_engine% No_Bling "%SRC_CONTENT%" "%MOD_DIR%" "%VPK_ROOT%" "%MOD_CHOICES%" "%@verbose%" "%@timers%" &rem ^> "%~dp0DEBUG.TXT"
+%js_engine% No_Bling "%SRC_CONTENT%" "%MOD_DIR%" "%VPK_ROOT%" "%MOD_CHOICES%" "%@verbose%" "%@timers%"
+rem ^> "%~dp0DEBUG.TXT"
+rem %js_engine% No_Bling "%SRC_CONTENT%" "%MOD_DIR%" "%VPK_ROOT%" "%MOD_CHOICES%" "%@verbose%" "%@timers%" &rem ^> "%~dp0DEBUG.TXT"
 %TIMER%
 :: Verify items_game.txt VDF parser
 if defined @verbose pushd "%MOD_DIR%\scripts\items" &echo. &echo n|COMP items_game.txt items_game_out.txt 2>NUL
@@ -288,13 +292,13 @@ echo Simply a competent alternative to Settings -- Video -- Effects Quality with
 echo No-Bling DOTA mod is economy-friendly, gracefully disabling particle spam while leaving hats model untouched. >>%.%  
 echo Might say it even helps differentiate great artistic work, shadowed by the particle effects galore Valve slaps on top. >>%.%  
 echo. >>%.%  
-echo  How to manually install the zip / vpk releases? >>%.%  
+echo  How to manually install the .vpk / .zip releases? >>%.%  
 echo ------------------------------------------------- >>%.%
 echo 1. Browse with a filemanager to: >>%.%  
 echo   \steamapps\common\dota 2 beta\game\ >>%.%  
 echo 2. Delete content of directory: >>%.%  
 echo   dota_lv >>%.%  
-echo 3. Unpack release zip file / copy pak01_dir.vpk there >>%.%  
+echo 3. Copy pak01_dir.vpk / unpack release zip file there >>%.%  
 echo 4. Verify that this file exists: >>%.%  
 echo   \steamapps\common\dota 2 beta\game\dota_lv\pak01_dir.vpk >>%.%  
 echo 5. Add Dota 2 LAUNCH OPTIONS: >>%.%  
@@ -358,7 +362,7 @@ goto :eof
 ::----------------------------------------------------------------------------------------------------------------------------------
 :set_window %1:Bg[hex] %2:Fg[hex] %3:Cols[int] %4:Lines[int]     " also initiates text macros used by :color and :mcolor functions "
 set "_bg=%~1"&set "_fg=%~2" &set "_cols=%~3" &call color %~1%~2 &call mode %~3,%~4 & <nul set/p "=-">"%TEMP%\`"
-for /f "skip=4 tokens=2 delims=:" %%a in ('mode con') do for %%c in (%%a) do if not defined _cols set "_cols=%%c"
+for /f "skip=4 tokens=2 delims=:" %%a in ('mode con') do for %%c in (%%a) do if not defined _cols call set "_cols=%%c"
 for /f %%b in ('"prompt $H &for %%h in (1) do rem"') do set "`BS=%%b" &for /f %%c in ('copy /z "%~dpf0" nul') do set "`CR=%%c"
 for /f %%n in ('cscript //E:JScript //nologo "%~dpn0.js" OutChars "160"') do call set "`NBSB=%%n"
 set "`B_B=%`BS% %`BS%" &set "`LINE=%`CR%" &for /l %%i in (1,1,%_cols%) do call set "`LINE=%`BS% %`BS%%%`LINE%%"
@@ -427,8 +431,18 @@ set "p=;$b.add_Click($BCLK[$j]); $f.Controls.Add($b); $j++; };"
 set "o=$f.Text=$n; $f.BackColor="DarkRed"; $f.Forecolor="White"; $f.FormBorderStyle="Fixed3D"; $f.StartPosition="CenterScreen";"
 set "n=$f.MaximizeBox=$false; $f.MinimumSize=$fminsize; $f.AutoSize=$true; $f.AutoSizeMode='GrowAndShrink';"
 set "m=$f.Add_Shown({$f.Activate()}); [void]$f.ShowDialog();"
-set "ps_choices=%z:"=\"%%y:"=\"%%x:"=\"%%w:"=\"%%v:"=\"%%u:"=\"%%t:"=\"%%s:"=\"%%r:"=\"%%q:"=\"%%p:"=\"%%o:"=\"%%n:"=\"%%m:"=\"%"
-powershell -c "$n='%~3 choices'; $all='%~4'; $def='%~5'; $p='HKCU:\Environment'; $pad=32; %ps_choices%" &rem >nul 2>nul
+set "ps_choices=%z%%y%%x%%w%%v%%u%%t%%s%%r%%q%%p%%o%%n%%m%"
+powershell -c "$n='%~3 choices'; $all='%~4'; $def='%~5'; $p='HKCU:\Environment'; $pad=32; %ps_choices:"=\"%" &rem >nul 2>nul
 call :reg_query "HKCU\Environment" "%~3 choices" CHOICES
 endlocal &set "CHOICES=%CHOICES%" &goto :eof                  ||:i AveYo:" GUI dialog with autosize checkboxes - outputs %CHOICES% "
 :: end of BAT_Core
+
+:set_console Disable console extended text modes such as QuickEdit to prevent accidental script pausing
+reg copy HKCU\Console HKCU\Environment\Console-Backup /s /f >nul 2>nul &rem backup current settings
+for %%j in (ForceV2_ InsertMode QuickEdit ExtendedEditKey) do (
+ reg add "HKCU\Console" /v %%j /d 0 /t REG_DWORD /f
+ reg add "HKCU\Console\%%SystemRoot%%_system32_cmd.exe" /v %%j /d 0 /t REG_DWORD /f
+ reg add "HKCU\Console\%%SystemRoot%%_System32_WindowsPowerShell_v1.0_powershell.exe" /v %%j /d 0 /t REG_DWORD /f
+ reg add "HKCU\Console\%%SystemRoot%%_SysWOW64_WindowsPowerShell_v1.0_powershell.exe" /v %%j /d 0 /t REG_DWORD /f
+) >nul 2>nul
+start "w" "%~f0" _SELF_ &exit

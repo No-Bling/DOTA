@@ -1,4 +1,4 @@
-//                    No-Bling dota_lv mod builder by AveYo - version 1.1
+//                    No-Bling dota_lv mod builder by AveYo - version 1.2
 //  This JS script is used internally by the main "No-Bling dota_lv mod builder.bat" launcher 
 
 // AveYo: manual filters to supplement the auto generated ones by the No_Bling JS function - moved here on top, for convenience
@@ -21,7 +21,7 @@ KEEP_HERO['particles/units/heroes/hero_enigma/enigma_ambient_body.vpcf']='';    
 KEEP_HERO['particles/units/heroes/hero_enigma/enigma_ambient_eyes.vpcf']='';                          // enigma iconic eyes effect
 //KEEP_HERO['particles/units/heroes/hero_enigma/enigma_eidolon_ambient.vpcf']='';        // don't uncomment this one if you need fps
 KEEP_HERO['particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf']='';          // invisible healing ward effect !!!
-//KEEP_HERO['particles/units/heroes/hero_lich/lich_ambient_frost.vpcf']='';        // lich ball - iconic, but recognizable without
+KEEP_HERO['particles/units/heroes/hero_lich/lich_ambient_frost.vpcf']='';        // lich ball - iconic, but recognizable without
 KEEP_HERO['particles/units/heroes/hero_medusa/medusa_bow.vpcf']='';                                        // invisible bow string
 //KEEP_HERO['particles/units/heroes/hero_morphling/morphling_ambient_new.vpcf']='';    // morph iconic vortex - recognizable without
 KEEP_HERO['particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf']='';      // pa weapon effect at lvl6
@@ -388,15 +388,17 @@ No_Bling=function(src_content,mod_dir,vpk_root,mod_choices,verbose,timers) {
   } // next id
   t.end();
 
+/* // using purebatch -LowViolence removal instead as it is way faster when cached
   if (MOD_LV) {
     console.log('Removing LowViolence definitions...');
     t=timer(' Patch -LV');
     var lv_src=path.normalize(path.join(SOURCE, 'particles'));
-    var lv_dst=path.normalize(path.join(OUTPUT, 'src\\lowviolence\\particles'));
+    var lv_dst=path.normalize(path.join(OUTPUT, 'src\\-LowViolence\\particles'));
     var lv_regex=new RegExp('^[ \t]*m_hLowViolenceDef =[^\n]+\n','m');
     log_lv=RegexStrReplaceRecursiveDir(lv_regex, '', lv_src, lv_dst, DEF_ENCODING, LOG);
     t.end();
   }
+*/
 
 } // End of No_Bling
 
@@ -514,6 +516,7 @@ if (typeof ScriptEngine == 'function' && ScriptEngine() == 'JScript') {
     ado.Mode=3; ado.Type=2; ado.Charset=encoding || 'Windows-1252'; ado.Open();
     ado.WriteText(data); ado.SaveToFile(fn, 2); ado.Close(); return 0;
   }
+/* // using purebatch -LowViolence removal instead as it is way faster when cached
   RegexStrReplaceRecursiveDir=function(regex, str, src, dst, charset, verbose,  _root,_base,_list) {
     charset=charset || 'utf-8', _root=_root || src, _base=_base || path.basename(dst), VERBOSE =verbose || false, _list=_list || [];
     var root=fso.GetFolder(src), files=new Enumerator(root.Files), dirs=new Enumerator(root.SubFolders);
@@ -535,6 +538,7 @@ if (typeof ScriptEngine == 'function' && ScriptEngine() == 'JScript') {
     }
     return _list;
   };
+*/
   // end of JScript specific code
 } else {
   // start of Node.js specific code
@@ -544,6 +548,7 @@ if (typeof ScriptEngine == 'function' && ScriptEngine() == 'JScript') {
   FileExists=function(f) { try{ return fs.statSync(f).isFile(); }catch(e){ if (e.code == 'ENOENT') return false } }
   PathExists=function(f) { try{ return fs.statSync(f).isDirectory(); }catch(e){ if (e.code == 'ENOENT') return false } }
   MakeDir=function(f) { try{ fs.mkdirSync(f) }catch(e){ if (e.code == 'ENOENT') { MakeDir(path.dirname(f)); MakeDir(f) } } }
+/* // using purebatch -LowViolence removal instead as it is way faster when cached
   RegexStrReplaceRecursiveDir=function(regex, str, src, dst, charset, verbose,  _root,_base,_list) {
     charset=charset || 'utf-8', _root=_root || src, _base=_base || path.basename(dst), VERBOSE =verbose || false, _list=_list || [];
     var root=fs.readdirSync(src);
@@ -563,6 +568,7 @@ if (typeof ScriptEngine == 'function' && ScriptEngine() == 'JScript') {
     });
     return _list; // async variant is a few secs faster, but does not warrant code bloat or using 3x-4x size newer node.exe binaries
   };
+*/
   // end of Node.js specific code
 }
 function timer(f) {
