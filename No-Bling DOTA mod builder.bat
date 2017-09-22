@@ -201,7 +201,7 @@ call :clearline 1 &call :unselect -LowViolence MOD_CHOICES
 %TIMER%
 :skip_lowviolence rem comment this whole code block to use the integrated JS engine reliable but slower method instead
 
-pause
+rem pause lol
 
 %LABEL% " Extracting items_game.txt from game\dota\pak01_dir.vpk "
 if defined @verbose ( set ".= " ) else set ".=>nul 2>nul"
