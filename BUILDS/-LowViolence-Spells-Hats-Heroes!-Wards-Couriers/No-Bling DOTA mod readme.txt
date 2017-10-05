@@ -1110,6 +1110,7 @@ particles\econ\items\rubick\rubick_fortuneteller_ambient\rubick_fortuneteller_ba
 particles\econ\items\rubick\rubick_fortuneteller_ambient\rubick_fortuneteller_back_candle_3.vpcf_c 
 particles\econ\items\rubick\rubick_fortuneteller_ambient\rubick_fortuneteller_back_candle_4.vpcf_c 
 particles\econ\items\rubick\rubick_fortuneteller_ambient\rubick_fortuneteller_staff_ambient.vpcf_c 
+particles\econ\items\rubick\rubick_gambling_mage\rubick_gambling_mage_ambient.vpcf_c 
 particles\econ\items\rubick\rubick_ornithomancer_gold\rubick_ornithomancer_gold_ambient.vpcf_c 
 particles\econ\items\rubick\rubick_puppet_master\rubick_back_puppet_ambient.vpcf_c 
 particles\econ\items\rubick\rubick_puppet_master\rubick_doll_puppet_ambient.vpcf_c 
@@ -1636,7 +1637,6 @@ particles\units\heroes\hero_juggernaut\jugg_weapon_glow_variation_white.vpcf_c
 particles\units\heroes\hero_keeper_of_the_light\keeper_of_the_light_ambient.vpcf_c 
 particles\units\heroes\hero_kunkka\kunkka_weapon_glow_ambient.vpcf_c 
 particles\units\heroes\hero_leshrac\leshrac_ambient_glow.vpcf_c 
-particles\units\heroes\hero_lich\lich_ambient_frost.vpcf_c 
 particles\units\heroes\hero_lich\lich_ambient_frost_legs.vpcf_c 
 particles\units\heroes\hero_life_stealer\life_stealer_ambient.vpcf_c 
 particles\units\heroes\hero_life_stealer\life_stealer_infest_cast_blood01.vpcf_c 
