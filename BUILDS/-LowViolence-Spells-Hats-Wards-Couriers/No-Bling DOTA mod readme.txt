@@ -1110,6 +1110,7 @@ particles\econ\items\rubick\rubick_fortuneteller_ambient\rubick_fortuneteller_ba
 particles\econ\items\rubick\rubick_fortuneteller_ambient\rubick_fortuneteller_back_candle_3.vpcf_c 
 particles\econ\items\rubick\rubick_fortuneteller_ambient\rubick_fortuneteller_back_candle_4.vpcf_c 
 particles\econ\items\rubick\rubick_fortuneteller_ambient\rubick_fortuneteller_staff_ambient.vpcf_c 
+particles\econ\items\rubick\rubick_gambling_mage\rubick_gambling_mage_ambient.vpcf_c 
 particles\econ\items\rubick\rubick_ornithomancer_gold\rubick_ornithomancer_gold_ambient.vpcf_c 
 particles\econ\items\rubick\rubick_puppet_master\rubick_back_puppet_ambient.vpcf_c 
 particles\econ\items\rubick\rubick_puppet_master\rubick_doll_puppet_ambient.vpcf_c 
