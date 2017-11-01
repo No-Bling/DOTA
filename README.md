@@ -1,3 +1,13 @@
+## What happened in 7.07?
+#### -LV launch option has been removed, for no other reason than to kill this mod or at least make it more of a hassle.
+
+Other client-side modding are unaffected!
+So Valve does not give a fuck about soviet d2?s and clones cheats that can do 85-90% of what ensa?e can do with client-side modding via gameinfo.gi, but throws a tantrum towards harmless particles-only No-Bling mod. Got it.
+
+Stay tuned.
+
+---
+
 ## No-Bling DOTA "GlanceValue" restoration mod  
 #### We all know where we are headed looking at the Immortals spam in the last two years...  
 
