@@ -6,7 +6,7 @@ So Valve does not give a fuck about soviet d2?s and clones cheats that can do 85
 
 Could be an unintended side-effect of some refactoring going on with low violence, but who does not like a little drama flavoured conspiracy? Fact is, mod is dead atm, and the fix is uglier since I can't just safely change `m_hLowViolenceDef` and be done with it. Might as well get rid of resource-compiling and do blind file-replacing. Launch options gets complicated now as it's language-dependant, unlike convenient, unified, stand-alone `-LV` _( RIP 2017-11-1 )_
 
-Stay tuned.
+##### I'm gonna refactor it this weekend (dumb it down to simple file replacements), but it's a shame, LowViolence interface was perfect for the job. 
 
 ---
 
