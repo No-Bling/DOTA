@@ -5,7 +5,8 @@ Other client-side modding methods are unaffected, so No-Bling will use the `-lan
 No point on doing resource-compiling if `m_hLowViolenceDef` is unavailable, so that part is dumbed-down to file-replacing.  
 Launch options gets complicated as it's language-dependant, unlike convenient, unified, stand-alone `-LV` _( RIP 2017-11-1 )_
 
-Working test builds using the `-language` method have been updated, while the script is pending a more in-dept rework.
+Working test builds using the `-language` method have been updated, while the script is pending a more in-dept rework.  
+Instructions below.
 
 ---
 
@@ -58,7 +59,7 @@ ingeniously and optimally using the built-in LowViolence interface, and whitelis
 ## No-Bling DOTA mod builder.bat released!  
 1. Download `No-Bling DOTA mod builder.zip`, unpack all files, run the included batch script, select build choices  
 2. Profit!  
-*Requires Windows x64. Does not need Workshop Tools DLC installed~~, but runs better / faster / more reliable if you have it.~~*  
+*Requires Windows x64. Does not need Workshop Tools DLC installed*~~, but runs better / faster / more reliable if you have it.~~  
   
 ### No-Bling DOTA mod builder choices:  
 Category       | GlanceValue | Description                                                              | Note  
@@ -85,8 +86,8 @@ Soundboard     | **bonus**   | Chatwheel Sounds: silence the annoying chatwheel 
 - Builder script creates a local cache directly from game files that gets outdated - simply select @refresh choice  
   
 ### Notes:  
-~~Due to -lv (lowviolence) being used, you might want to add to your autoexec.cfg:  
-`violence_ablood 1; violence_agibs 1; violence_hblood 1; violence_hgibs 1;`  
+~~Due to -lv (lowviolence) being used, you might want to add to your autoexec.cfg:~~~  
+~~violence_ablood 1; violence_agibs 1; violence_hblood 1; violence_hgibs 1;~~  
  
 Published under [MIT](LICENSE) license.  
   
