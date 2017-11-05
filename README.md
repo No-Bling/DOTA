@@ -1,12 +1,11 @@
-## What happened in 7.07?
-#### -LV launch option has been removed, for no other reason than to kill this mod or at least make it more of a hassle.
+## What happened in 7.07?  
+#### Valve removed -LV launch option. Looking at backend code, there might be some internal refactoring.  
 
-Other client-side modding are unaffected!
-So Valve does not give a fuck about soviet d2?s and clones cheats that can do 85-90% of what ensa?e can do with client-side modding via gameinfo.gi, but throws a tantrum towards harmless particles-only No-Bling mod. Got it.
+Other client-side modding methods are unaffected, so No-Bling will use the `-language` method.  
+No point on doing resource-compiling if `m_hLowViolenceDef` is unavailable, so that part is dumbed-down to file-replacing.  
+Launch options gets complicated as it's language-dependant, unlike convenient, unified, stand-alone `-LV` _( RIP 2017-11-1 )_
 
-Could be an unintended side-effect of some refactoring going on with low violence, but who does not like a little drama flavoured conspiracy? Fact is, mod is dead atm, and the fix is uglier since I can't just safely change `m_hLowViolenceDef` and be done with it. Might as well get rid of resource-compiling and do blind file-replacing. Launch options gets complicated now as it's language-dependant, unlike convenient, unified, stand-alone `-LV` _( RIP 2017-11-1 )_
-
-##### I'm gonna refactor it this weekend (dumb it down to simple file replacements), but it's a shame, LowViolence interface was perfect for the job. 
+Will post working builds shortly, and a crude builder script update.
 
 ---
 
