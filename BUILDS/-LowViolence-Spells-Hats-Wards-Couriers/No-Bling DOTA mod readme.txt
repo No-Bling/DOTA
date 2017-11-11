@@ -1238,6 +1238,7 @@ particles\econ\items\venomancer\poison_touch_shoulder\venon_ambient_poison_touch
 particles\econ\items\venomancer\toxicant\veno_toxicant_tail.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\venomancer\toxicant\venomancter_toxicant_belly.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\venomancer\toxicant\venomancter_toxicant_shoulder_master.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\viper\viper_king_head\viper_king_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\viper\viper_ti7_immortal\viper_immortal_ti7_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\viper\viper_ti7_immortal\viper_immortal_ti7_ambient_eyes.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\viper\viper_ti7_immortal\viper_immortal_ti7_crimson_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
