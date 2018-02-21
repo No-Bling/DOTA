@@ -17,7 +17,9 @@
 A competent companion to *Settings -- Video -- Effects Quality* with the main focus on GlanceValue.  
 No-Bling<sup>tm</sup> mod is economy-friendly, gracefully disabling particle spam while leaving hats model untouched.  
 Might say it even helps differentiate great artistic work, shadowed by the particle effects galore Valve slaps on top.  
-  
+
+### Check the [BUILDS](https://github.com/No-Bling/DOTA/tree/master/BUILDS) folder for pre-made versions 
+
 ### How to manually install the .vpk / .zip builds after 7.07?  
    Instructions for English language (default)  
    ~ CREATE FOLDER `\steamapps\common\dota 2 beta\game\dota_english%`  
@@ -42,9 +44,9 @@ Simply remove / rename the launch options!
   
 ### Before you ask about VAC:  
 Don't worry, this is a perfectly safe, well intended, hats friendly, good behaviour particles-only mod,  
-ingeniously and optimally using  ? ?t?h?e? ?b?u?i?l?t?-?i?n? ?L?o?w?V?i?o?l?e?n?c?e? ?i?n?t?e?r?f?a?c?e?  file-replacement, and whitelist-able at a glance...  
+ingeniously and optimally using ̶t̶h̶e̶ ̶b̶u̶i̶l̶t̶-̶i̶n̶ ̶L̶o̶w̶V̶i̶o̶l̶e̶n̶c̶e̶ ̶i̶n̶t̶e̶r̶f̶a̶c̶e̶  file-replacement, and whitelist-able at a glance...  
   
-## No-Bling DOTA mod builder.bat released!  
+## [No-Bling DOTA mod builder.bat](https://github.com/No-Bling/DOTA/blob/master/No-Bling%20DOTA%20mod%20builder.zip) released!  
 1. Download `No-Bling DOTA mod builder.zip`, unpack all files, run the included batch script, select build choices  
 2. Profit! It will create a custom build in the proper location, and add the now complicated launch options automatically! 
 *Tested on Windows 7 & 10 x64. Does not need Workshop Tools DLC installed.*  
