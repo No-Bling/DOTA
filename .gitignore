@@ -1,7 +1,8 @@
 ## Ignore
 
 # MOD
-MOD/
+src/
+log/
 
 # tools
 # tools/

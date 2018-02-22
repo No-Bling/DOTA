@@ -1,5 +1,5 @@
 goto="init" /* %~nx0
-:: v2.0rc1 - finally updated after 7.07 - way faster, new options, detailed instructions, auto-install method for Steam language
+:: v2.0rc2 - finally updated after 7.07 - way faster, new options, detailed instructions, auto-install method for Steam language
 ::----------------------------------------------------------------------------------------------------------------------------------
 :main No-Bling DOTA :G :l :a :n :c :e :V :a :l :u :e restoration mod builder                                      edited in SynWrite
 ::----------------------------------------------------------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ rem set "MOD_LANGUAGE=english"         || rem = current Steam language,
 rem set "MOD_FILE=pak01_dir.vpk"       || rem = localized versions might use pak02_dir.vpk,
 set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,Heroes,Tweaks"
 set "def_choices=Abilities,Hats,Couriers,Wards,Seasonal,Heroes"
-set "version=2.0rc1"
+set "version=2.0rc2"
 
 title No-Bling DOTA mod builder by AveYo v%version%
 setlocal &rem free script so no bitching!
@@ -298,7 +298,7 @@ if defined @autoclose ( %WARN%  Closing Dota / Steam to auto-install ) else %WAR
 timeout /t 10 & call :clearline 4
 call :mcolor 0c " G " 04 " L " 0c " A " 04 " N " 0c " C "  04 " E " 4c " V " 04 " A " 0c " L " 04 " U " 0c " E " 04 " +" 0c. " +"
 (
-if defined @autoclose taskkill /f /im dota2.exe /t
+if defined @autoclose taskkill /f /im dota2.exe /t & del /f /q "%STEAMPATH%\.crash" >nul 2>nul & timeout /t 1 >nul
 mkdir "%DOTA%\%MOD_FOLDER%"
 copy /y "%BUILDS%\pak01_dir.vpk" "%DOTA%\%MOD_FOLDER%\%MOD_FILE%"
 copy /y "%BUILDS%\No-Bling DOTA mod readme.txt" "%DOTA%\%MOD_FOLDER%\"
@@ -308,9 +308,10 @@ if defined @autoclose taskkill /f /im steam.exe /t >nul 2>nul
 pushd "%STEAMDATA%\config" & copy /y localconfig.vdf localconfig.vdf.bak >nul
 %js_engine% Dota_LOptions "localconfig.vdf" "-lv,-language x,-textlanguage x,+cl_language x" -remove
 %js_engine% Dota_LOptions "localconfig.vdf" "%MOD_OPTIONS%" -add
-:: Relaunch Steam
-set steam_options= -console -silent -forceservice -tcp -noassert -nocrashmonitor -single_core -tcp -no-browser
-if defined @autoclose start "w" "%STEAMPATH%\Steam.exe" %steam_options%
+:: Relaunch Steam with fast options
+set l1=-silent -console -forceservice -windowed -nobigpicture -nointro -vrdisable -single_core -no-dwrite -tcp
+set l2=-inhibitbootstrap -nobootstrapperupdate -nodircheck -norepairfiles -noverifyfiles -nocrashmonitor -noassert
+if defined @autoclose start "Steam" "%STEAMPATH%\Steam.exe" %l1% %l2%
 
 :done                                                                                                       Gaben shall not prevail!
 call :end  Done!
