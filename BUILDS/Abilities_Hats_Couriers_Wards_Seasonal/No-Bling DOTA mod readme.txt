@@ -1,10 +1,10 @@
- No-Bling DOTA mod v2.0rc choices: Abilities,Hats,Couriers,Wards,Seasonal
+ No-Bling DOTA mod v2.0rc1 choices: Abilities,Hats,Couriers,Wards,Seasonal
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
 
  About
 --------------------------------------------------------------------------------
-Simply a competent alternative to Settings -- Video -- Effects Quality with the main focus on GlanceValue.
+Simply a competent companion to Settings -- Video -- Effects Quality with the main focus on GlanceValue.
 No-Bling DOTA mod is economy-friendly, gracefully disabling particle spam while leaving hats model untouched.
 Might say it even helps differentiate great artistic work, shadowed by the particle effects galore Valve slaps on top.
 

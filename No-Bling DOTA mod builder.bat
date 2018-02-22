@@ -1,5 +1,5 @@
 goto="init" /* %~nx0
-:: v2.0rc - finally updated after 7.07 - way faster, new options, detailed instructions, auto-install method for Steam language
+:: v2.0rc1 - finally updated after 7.07 - way faster, new options, detailed instructions, auto-install method for Steam language
 ::----------------------------------------------------------------------------------------------------------------------------------
 :main No-Bling DOTA :G :l :a :n :c :e :V :a :l :u :e restoration mod builder                                      edited in SynWrite
 ::----------------------------------------------------------------------------------------------------------------------------------
@@ -22,14 +22,14 @@ rem set "-LowViolence=0"               ||   1 = undo -lv launch option turning a
 set "@refresh=0"                       ||   1 = always recompile mod instead of reusing cached files,  0 = just when new patch found
 set "@verbose=0"                       ||   1 = show extra details; log detailed per-hero item lists,  0 = skip detailed item lists
 set "@dialog=1"                        ||   1 = show choices dialog,                                   0 = no dialog - use above
-set "@autoclose=0"                      ||   1 = auto-install kills Steam and Dota,                     0 = can't add launch options!
+set "@autoclose=1"                     ||   1 = auto-install kills Steam and Dota,                     0 = can't add launch options!
 set "@timers=1"                        ||   1 = total and per tasks accurate timers,                   0 = no reason to disable them
 rem set "MOD_OUTPUT=%~dp0"             || rem = current batch file directory,
 rem set "MOD_LANGUAGE=english"         || rem = current Steam language,
 rem set "MOD_FILE=pak01_dir.vpk"       || rem = localized versions might use pak02_dir.vpk,
 set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,Heroes,Tweaks"
 set "def_choices=Abilities,Hats,Couriers,Wards,Seasonal,Heroes"
-set "version=2.0rc"
+set "version=2.0rc1"
 
 title No-Bling DOTA mod builder by AveYo v%version%
 setlocal &rem free script so no bitching!
@@ -229,7 +229,7 @@ set .="%BUILDS%\No-Bling DOTA mod readme.txt"
 >>%.% echo.
 >>%.% echo  About
 >>%.% echo --------------------------------------------------------------------------------
->>%.% echo Simply a competent alternative to Settings -- Video -- Effects Quality with the main focus on GlanceValue.
+>>%.% echo Simply a competent companion to Settings -- Video -- Effects Quality with the main focus on GlanceValue.
 >>%.% echo No-Bling DOTA mod is economy-friendly, gracefully disabling particle spam while leaving hats model untouched.
 >>%.% echo Might say it even helps differentiate great artistic work, shadowed by the particle effects galore Valve slaps on top.
 >>%.% echo.

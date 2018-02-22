@@ -1,10 +1,10 @@
- No-Bling DOTA mod v2.0rc choices: Abilities,Hats,Couriers,Wards,Seasonal,Heroes,Tweaks
+ No-Bling DOTA mod v2.0rc1 choices: Abilities,Hats,Couriers,Wards,Seasonal,Heroes,Tweaks
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
 
  About
 --------------------------------------------------------------------------------
-Simply a competent alternative to Settings -- Video -- Effects Quality with the main focus on GlanceValue.
+Simply a competent companion to Settings -- Video -- Effects Quality with the main focus on GlanceValue.
 No-Bling DOTA mod is economy-friendly, gracefully disabling particle spam while leaving hats model untouched.
 Might say it even helps differentiate great artistic work, shadowed by the particle effects galore Valve slaps on top.
 
@@ -1800,12 +1800,15 @@ particles\rain_fx\journey_terrain.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\rain_fx\spring_terrain.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\rain_fx\winter_terrain.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\terrain_fx\classical_fountain001_water.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\ui\static_fog_flash.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\static_ground_smoke.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\static_ground_smoke_soft.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\static_ground_smoke_soft_ring.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\static_ground_smoke_soft_small.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\ui_accept_ember.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\ui_find_match_status_ember.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\ui\ui_find_match_status_glow.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\ui\ui_find_match_status_steam.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\ui_game_start_hero_spotlight.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\ui_home_button.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\ui_home_button_default.vpcf_c?particles\dev\empty_particle.vpcf_c

@@ -1,4 +1,4 @@
-//                    No-Bling dota_lv mod builder by AveYo - version 2.0rc
+//                    No-Bling dota_lv mod builder by AveYo - version 2.0rc1
 //  This JS script is used internally by the main "No-Bling dota_lv mod builder.bat" launcher                     edited in SynWrite
 
 //----------------------------------------------------------------------------------------------------------------------------------
@@ -26,13 +26,16 @@ MOD_TWEAK['particles/ui/ui_home_button_default.vpcf']=off;//
 MOD_TWEAK['particles/ui/ui_home_button_logo.vpcf']=off;//
 MOD_TWEAK['particles/ui/ui_mid_debris.vpcf']=off;//
 MOD_TWEAK['particles/ui/ui_game_start_hero_spotlight.vpcf']=off;//
+MOD_TWEAK['particles/ui/static_fog_flash.vpcf']=off;//
 MOD_TWEAK['particles/ui/static_ground_smoke.vpcf']=off;//
 MOD_TWEAK['particles/ui/static_ground_smoke_soft.vpcf']=off;//
 MOD_TWEAK['particles/ui/static_ground_smoke_soft_ring.vpcf']=off;//
 MOD_TWEAK['particles/ui/static_ground_smoke_soft_small.vpcf']=off;//
-MOD_TWEAK['particles/ui/ui_loadout_preview.vpcf']=off;//
 MOD_TWEAK['particles/ui/ui_accept_ember.vpcf']=off;//
 MOD_TWEAK['particles/ui/ui_find_match_status_ember.vpcf']=off;//
+MOD_TWEAK['particles/ui/ui_find_match_status_glow.vpcf']=off;//
+MOD_TWEAK['particles/ui/ui_find_match_status_steam.vpcf']=off;//
+MOD_TWEAK['particles/ui/ui_loadout_preview.vpcf']=off;//
   /* Potato PC tweaks - Map ancients */
 MOD_TWEAK['particles/dire_fx/bad_ancient_core.vpcf']=off;//
 MOD_TWEAK['particles/dire_fx/bad_ancient_deflights.vpcf']=off;//
@@ -698,29 +701,39 @@ Dota_LOptions=function(fn, options, _flag){
   // fn:localconfig.vdf    options:separated by ,    _flag: -read=print -remove=delete -add=default if ommited
   var regs={}, lo=options.split(","), i=0,n=lo.length;
   for (i=0;i<n;i++){
-    regs[lo[i]]=new RegExp('(' + lo[i].split(" ")[0].replace(/([-+])/,"\\$1") + ((lo[i].indexOf(' ')==-1) ? ')' : ' [\\w%]+)'),'gi');
+    regs[lo[i]]=new RegExp('(' + lo[i].split(" ")[0].replace(/([-+])/,"\\$1")+((lo[i].indexOf(' ')==-1) ? ')' : ' [\\w%]+)'),'gi');
   }
   var flag=_flag || '-add', file=path.normalize(fn), data=fs.readFileSync(file, DEF_ENCODING);
-  var vdf=ValveDataFormat(), parsed=vdf.parse(data), steam=parsed.UserLocalConfigStore.Software.Valve.Steam;
-  var dota=(typeof steam.Apps == 'object') ? steam.Apps[vdf.nr('570')] : steam.apps[vdf.nr('570')];  // Gaben, please! why the caps?
-  if (flag == '-read'){ w.echo(dota.LaunchOptions); return; }                             // print existing launch options and exit
-  if (typeof dota.LaunchOptions === 'undefined' || dota.LaunchOptions === ''){
-    if (flag != '-remove') dota.LaunchOptions=lo.join(" ");                                    // no launch options defined, add all
+  var vdf=ValveDataFormat(), parsed=vdf.parse(data), apps=getKeYpath(parsed,"UserLocalConfigStore/Software/Valve/Steam/Apps");
+  var dota=apps[vdf.nr('570')];                              // added getKeYpath function to fix inconsistent key case used by Valve
+  if (flag == '-read'){ w.echo(dota["LaunchOptions"]); return; }                           // print existing launch options and exit
+  if (typeof dota["LaunchOptions"] === 'undefined' || dota["LaunchOptions"] === ''){
+    dota["LaunchOptions"]=(flag != '-remove') ? lo.join(" ") : "";                             // no launch options defined, add all
   } else {
     for (i=0;i<n;i++){
       if (lo[i] !== ''){
-        if (regs[lo[i]].test(dota.LaunchOptions)){
-          if (flag == '-remove') dota.LaunchOptions=dota.LaunchOptions.replace(regs[lo[i]], '');   // found existing, delete one by one
-          else dota.LaunchOptions=dota.LaunchOptions.replace(regs[lo[i]], lo[i]);                 // found existing, replace one by one
+        if (regs[lo[i]].test(dota["LaunchOptions"])){
+          if (flag == '-remove') dota["LaunchOptions"]=dota["LaunchOptions"].replace(regs[lo[i]], '');// found existing, delete 1by1
+          else dota["LaunchOptions"]=dota["LaunchOptions"].replace(regs[lo[i]], lo[i]);              // found existing, replace 1by1
         } else {
-          if (flag != '-remove') dota.LaunchOptions+=' '+lo[i];                                   // not found existing, add one by one
+          if (flag != '-remove') dota["LaunchOptions"]+=' '+lo[i];                                   // not found existing, add 1by1
         }
       }
     }
   }
-  dota.LaunchOptions=dota.LaunchOptions.replace(/\s\s+/g, ' ');                           // replace multiple spaces between options
+  dota["LaunchOptions"]=dota["LaunchOptions"].replace(/\s\s+/g, ' ');                     // replace multiple spaces between options
   fs.writeFileSync(fn, vdf.stringify(parsed,true), DEF_ENCODING);                    // update fn if flag is -add -remove or ommited
 };
+function getKeYpath(obj,kp){
+  var test=kp.split("/");
+  var out=obj;
+  for (var i=0;i<test.length;i++) {
+    for (var KeY in out) {
+      if (out.hasOwnProperty(KeY) && (KeY+"").toLowerCase()==(test[i]+"").toLowerCase()) {out=out[KeY]; /*w.echo("found "+KeY);*/}
+    }
+  }
+  return out;
+}
 
 OutChars=function(s){ new Function('w.echo(String.fromCharCode('+s+'))')(); };
 
