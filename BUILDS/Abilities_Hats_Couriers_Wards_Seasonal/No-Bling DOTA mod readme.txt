@@ -1,4 +1,5 @@
- No-Bling DOTA mod v2.0rc1 choices: Abilities,Hats,Couriers,Wards,Seasonal
+ No-Bling DOTA mod v2.0 choices: 
+ Abilities,Hats,Couriers,Wards,Seasonal
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
 
@@ -8,7 +9,7 @@ Simply a competent companion to Settings -- Video -- Effects Quality with the ma
 No-Bling DOTA mod is economy-friendly, gracefully disabling particle spam while leaving hats model untouched.
 Might say it even helps differentiate great artistic work, shadowed by the particle effects galore Valve slaps on top.
 
- How to manually install the .vpk / .zip builds after 7.07?
+ How to manually install the .vpk builds after 7.07?
 --------------------------------------------------------------------------------
 Instructions for English language (default)
 - CREATE FOLDER \steamapps\common\dota 2 beta\game\dota_english%

@@ -1,14 +1,15 @@
 ## Ignore
 
 # MOD
-src/
 log/
+src/
+zip/
 
 # tools
 # tools/
 
-# builds
-*.zip
+# package
+# *.zip
 
 # hashes
 # *.sha256

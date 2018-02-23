@@ -1,81 +1,132 @@
-//                    No-Bling dota_lv mod builder by AveYo - version 2.0rc1
-//  This JS script is used internally by the main "No-Bling dota_lv mod builder.bat" launcher                     edited in SynWrite
-
+//  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                        edited in SynWrite
 //----------------------------------------------------------------------------------------------------------------------------------
-var ACTIVE_EVENT='EVENT_ID_INTERNATIONAL_2017:EXPIRED_AND_NO_NEW_BATTLEPASS'; // Hard-coded current event
+// What's new in No-Bling DOTA mod builder.js v2.0 final: 
+// - Seasonal category reinstated, as it's still useful for TI7 replays despite event being expired
+// - Extended manual filters to make certain items like arcana's less underwelming
+// - New Tweaks category - split into subcategories for more fine-tuning - effigies support, proper shrines, filtered portraits 
+// - More reliable Dota_LOptions function and consistent verbose output in both Node.js and JScript engines  
+//----------------------------------------------------------------------------------------------------------------------------------
+var ACTIVE_EVENT='EVENT_ID_INTERNATIONAL_2017'; // Hard-coded current event for the Seasonal category
 var off='particles/dev/empty_particle.vpcf'; // Disable particle files by replacing them with default empty particle
-var KEEP_ITEM={};   // [Experimental] Ignore any auto-generated mod for item id - example: KEEP_ITEM[7507]=0; KEEP_ITEM[9521]=0;
-var KEEP_HERO={};   // [Experimental] Ignore any auto-generated mod for hero name - example: KEEP_HERO['sven']=1;
-var KEEP_RARITY={}; // [Experimental] Ignore any auto-generated mod for rarity - example: KEEP_RARITY['arcana']=1;
-var KEEP={};        // Ignore any auto-generated mod for particle file
-var REV_KEEP={};    // [Advanced] Ignore any auto-generated mod for particle file - reverse lookup asset values
-var MOD_ABILITY={}; // Add particle replacement file in the Abilities category
-var MOD_HAT={};     // Add particle replacement file in the Hats category
-var MOD_HERO={};    // Add particle replacement file in the Heroes category
-var MOD_TWEAK={};   // Add particle replacement file in the Potato category
-var REV_MOD={};     // [Advanced] Replace any auto-generated mod for particle file - reverse lookup asset values
+var KEEP_ITEM={};            // [Experimental] Ignore any auto-generated mod for item id - ex: KEEP_ITEM[7507]=0; KEEP_ITEM[9521]=0;
+var KEEP_HERO={};            // [Experimental] Ignore any auto-generated mod for hero name - ex: KEEP_HERO['sven']=1;
+var KEEP_RARITY={};          // [Experimental] Ignore any auto-generated mod for rarity - ex: KEEP_RARITY['arcana']=1;
+var REV_KEEP={};             // [Advanced] Ignore any auto-generated mod for specific particle file - reverse lookup asset values
+var REV_MOD={};              // [Advanced] Replace any auto-generated mod for particle file - reverse lookup asset values
+var KEEP={};                 // Ignore any auto-generated mod for specific particle file
+var MOD_ABILITY={};          // Add particle replacement file in the Abilities category
+var MOD_HAT={};              // Add particle replacement file in the Hats category
+var MOD_HERO={};             // Add particle replacement file in the Heroes category
+// v2.0 final - Tweaks has been split into subcategories:
+var MOD_BASE={};             // Add particle replacement file in the Base category
+var MOD_EFFIGY={};           // Add particle replacement file in the Effigies category
+var MOD_SHRINE={};           // Add particle replacement file in the Shrines category
+var MOD_PROP={};             // Add particle replacement file in the Props category
+var MOD_MENU={};             // Add particle replacement file in the Menu (UI) category
 //----------------------------------------------------------------------------------------------------------------------------------
 // Manual filters to supplement the auto generated ones by the No_Bling JS function - for convenience moved here on top
 // Tip: while debugging a hero, list loaded particles using console command: dumpparticlelist | grep partial_hero_name
 // WARNING! Don`t touch before understanding the No_Bling function and the definitions above; expect glitches if changed
 //----------------------------------------------------------------------------------------------------------------------------------
-  /*  Potato PC tweaks - UI */
-MOD_TWEAK['particles/econ/events/ti7/golden_treasure_ti7_ambient.vpcf']=off;//                     mod ui-only golden treasure chest
-MOD_TWEAK['particles/ui/ui_home_button.vpcf']=off;//                                                                   tweak main ui
-MOD_TWEAK['particles/ui/ui_home_button_default.vpcf']=off;//
-MOD_TWEAK['particles/ui/ui_home_button_logo.vpcf']=off;//
-MOD_TWEAK['particles/ui/ui_mid_debris.vpcf']=off;//
-MOD_TWEAK['particles/ui/ui_game_start_hero_spotlight.vpcf']=off;//
-MOD_TWEAK['particles/ui/static_fog_flash.vpcf']=off;//
-MOD_TWEAK['particles/ui/static_ground_smoke.vpcf']=off;//
-MOD_TWEAK['particles/ui/static_ground_smoke_soft.vpcf']=off;//
-MOD_TWEAK['particles/ui/static_ground_smoke_soft_ring.vpcf']=off;//
-MOD_TWEAK['particles/ui/static_ground_smoke_soft_small.vpcf']=off;//
-MOD_TWEAK['particles/ui/ui_accept_ember.vpcf']=off;//
-MOD_TWEAK['particles/ui/ui_find_match_status_ember.vpcf']=off;//
-MOD_TWEAK['particles/ui/ui_find_match_status_glow.vpcf']=off;//
-MOD_TWEAK['particles/ui/ui_find_match_status_steam.vpcf']=off;//
-MOD_TWEAK['particles/ui/ui_loadout_preview.vpcf']=off;//
+  /* Potato PC tweaks - Map Aegis of Champions */
+MOD_BASE['particles/econ/events/ti7/aegis_lvl_1000_ambient_ti7.vpcf']=off;//
   /* Potato PC tweaks - Map ancients */
-MOD_TWEAK['particles/dire_fx/bad_ancient_core.vpcf']=off;//
-MOD_TWEAK['particles/dire_fx/bad_ancient_deflights.vpcf']=off;//
-MOD_TWEAK['particles/dire_fx/bad_ancient_flow_test.vpcf']=off;//
-MOD_TWEAK['particles/dire_fx/bad_ancient_embers.vpcf']=off;//
-MOD_TWEAK['particles/dire_fx/bad_ancient_smoke.vpcf']=off;//
-MOD_TWEAK['particles/radiant_fx2/good_ancient001_deflights.vpcf']=off;//
-MOD_TWEAK['particles/radiant_fx2/good_ancient001_spherering.vpcf']=off;//
-MOD_TWEAK['particles/radiant_fx2/good_ancient001_base_pool_c.vpcf']=off;//
+MOD_BASE['particles/dire_fx/bad_ancient_core.vpcf']=off;//
+MOD_BASE['particles/dire_fx/bad_ancient_deflights.vpcf']=off;//
+MOD_BASE['particles/dire_fx/bad_ancient_flow_test.vpcf']=off;//
+MOD_BASE['particles/dire_fx/bad_ancient_embers.vpcf']=off;//
+MOD_BASE['particles/dire_fx/bad_ancient_smoke.vpcf']=off;//
+MOD_BASE['particles/radiant_fx2/good_ancient001_deflights.vpcf']=off;//
+MOD_BASE['particles/radiant_fx2/good_ancient001_spherering.vpcf']=off;//
+MOD_BASE['particles/radiant_fx2/good_ancient001_base_pool_c.vpcf']=off;//
   /* Potato PC tweaks - Map barracs */
-MOD_TWEAK['particles/dire_fx/barracks_bad_smoke.vpcf']=off;//
-MOD_TWEAK['particles/dire_fx/barracks_bad_ranged_flow.vpcf']=off;//
-MOD_TWEAK['particles/dire_fx/barracks_bad_ranged_flow2.vpcf']=off;//
+MOD_BASE['particles/dire_fx/barracks_bad_smoke.vpcf']=off;//
+MOD_BASE['particles/dire_fx/barracks_bad_ranged_flow.vpcf']=off;//
+MOD_BASE['particles/dire_fx/barracks_bad_ranged_flow2.vpcf']=off;//
   /* Potato PC tweaks - Map buildings */
-MOD_TWEAK['particles/dire_fx/bad_column001_firetorch_embers.vpcf']=off;//
-MOD_TWEAK['particles/dire_fx/bad_column001_firetorch_flame_b.vpcf']=off;//
-MOD_TWEAK['particles/dire_fx/incense_large_b.vpcf']=off;//
-MOD_TWEAK['particles/dire_fx/bad_column001_firetorch_glow.vpcf']=off;//
-MOD_TWEAK['particles/dire_fx/bad_column01_smoketorch.vpcf']=off;//
-MOD_TWEAK['particles/radiant_fx/good_statue008_amb_mdlwisp.vpcf']=off;//
-MOD_TWEAK['particles/radiant_fx/good_statue010_ambienglow_fallback_med.vpcf']=off;//
-MOD_TWEAK['particles/radiant_fx/good_statue010_ambienglow_c.vpcf']=off;//
+MOD_BASE['particles/dire_fx/bad_column001_firetorch_embers.vpcf']=off;//
+MOD_BASE['particles/dire_fx/bad_column001_firetorch_flame_b.vpcf']=off;//
+MOD_BASE['particles/dire_fx/incense_large_b.vpcf']=off;//
+MOD_BASE['particles/dire_fx/bad_column001_firetorch_glow.vpcf']=off;//
+MOD_BASE['particles/dire_fx/bad_column01_smoketorch.vpcf']=off;//
+MOD_BASE['particles/radiant_fx/good_statue008_amb_mdlwisp.vpcf']=off;//
+MOD_BASE['particles/radiant_fx/good_statue010_ambienglow_fallback_med.vpcf']=off;//
+MOD_BASE['particles/radiant_fx/good_statue010_ambienglow_c.vpcf']=off;//
   /* Potato PC tweaks - Map towers */
-MOD_TWEAK['particles/dire_fx/tower_bad_lamp.vpcf']=off;//
+MOD_BASE['particles/dire_fx/tower_bad_lamp.vpcf']=off;//
+  /* Potato PC tweaks - Map effigies */
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/ambientfx_effigy_wm16_dire.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/ambientfx_effigy_wm16_dire_lvl2.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/ambientfx_effigy_wm16_dire_lvl3.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/ambientfx_effigy_wm16_radiant.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/ambientfx_effigy_wm16_radiant_lvl1.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/ambientfx_effigy_wm16_radiant_lvl2.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/ambientfx_effigy_wm16_radiant_lvl3.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/frosty_effigy_ambient_dire.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/frosty_effigy_ambient_l2_dire.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/frosty_effigy_ambient_l2_radiant.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/frosty_effigy_ambient_radiant.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/gold_effigy_ambient_dire.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/gold_effigy_ambient_dire_lvl2.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/gold_effigy_ambient_radiant.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/gold_effigy_ambient_radiant_lvl2.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/jade_effigy_ambient_dire.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/jade_effigy_ambient_radiant.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/se_ambient_fm16_dire_lvl1.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/se_ambient_fm16_dire_lvl2.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/se_ambient_fm16_dire_lvl3.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/se_ambient_fm16_rad_lvl1.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/se_ambient_fm16_rad_lvl2.vpcf']=off;//
+MOD_EFFIGY['particles/econ/items/effigies/status_fx_effigies/se_ambient_fm16_rad_lvl3.vpcf']=off;//
   /* Potato PC tweaks - Map shrines */
-MOD_TWEAK['particles/world_shrine/dire_shrine_ambient.vpcf']=
-          'particles/world_shrine/dire_shrine_ambient_flares.vpcf';
-MOD_TWEAK['particles/world_shrine/radiant_shrine_ambient.vpcf']=
-         'particles/world_shrine/radiant_shrine_ambient_flares.vpcf';
+MOD_SHRINE['particles/world_shrine/dire_shrine_ambient_detail.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/dire_shrine_ambient_embers.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/dire_shrine_ambient_flares.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/dire_shrine_ambient_ground.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/dire_shrine_ambient_ground_b.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/dire_shrine_ambient_ground_splash.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/dire_shrine_ambient_haze.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/dire_shrine_ambient_lava.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/dire_shrine_ambient_puddle.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/dire_shrine_ambient_ray.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/dire_shrine_ambient_splash.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/dire_shrine_ambient_vapor.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/dire_shrine_ambient_warp.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/radiant_shrine_ambient_bubbles.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/radiant_shrine_ambient_embers.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/radiant_shrine_ambient_flares.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/radiant_shrine_ambient_puddle.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/radiant_shrine_ambient_ray.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/radiant_shrine_ambient_steam.vpcf']=off;//
+MOD_SHRINE['particles/world_shrine/radiant_shrine_ambient_swirl.vpcf']=off;//
   /* Potato PC tweaks - Map fountains */
-MOD_TWEAK['particles/addons_gameplay/fountain_tintable_ambient.vpcf']=off;//
-MOD_TWEAK['particles/terrain_fx/classical_fountain001_water.vpcf']=off;//
-MOD_TWEAK['maps/journey_assets/particles/journey_fountain_radiant.vpcf']=off;//
-MOD_TWEAK['maps/journey_assets/particles/journey_fountain_dire.vpcf']=off;//
-  /* Potato PC tweaks - Map weather */
-MOD_TWEAK['particles/rain_fx/journey_terrain.vpcf']=off;//
-MOD_TWEAK['particles/rain_fx/coloseum_terrain.vpcf']=off;//
-MOD_TWEAK['particles/rain_fx/spring_terrain.vpcf']=off;//
-MOD_TWEAK['particles/rain_fx/desert_terrain.vpcf']=off;//
-MOD_TWEAK['particles/rain_fx/winter_terrain.vpcf']=off;//
+MOD_PROP['particles/addons_gameplay/fountain_tintable_ambient.vpcf']=off;//
+MOD_PROP['particles/terrain_fx/classical_fountain001_water.vpcf']=off;//
+MOD_PROP['maps/journey_assets/particles/journey_fountain_radiant.vpcf']=off;//
+MOD_PROP['maps/journey_assets/particles/journey_fountain_dire.vpcf']=off;//
+  /* Potato PC tweaks - Map bundled weather */
+MOD_PROP['particles/rain_fx/journey_terrain.vpcf']=off;//
+MOD_PROP['particles/rain_fx/coloseum_terrain.vpcf']=off;//
+MOD_PROP['particles/rain_fx/spring_terrain.vpcf']=off;//
+MOD_PROP['particles/rain_fx/desert_terrain.vpcf']=off;//
+MOD_PROP['particles/rain_fx/winter_terrain.vpcf']=off;//
+  /*  Potato PC tweaks - Menu */
+MOD_MENU['particles/ui/ui_home_button.vpcf']=off;//                                                                    tweak menu ui
+MOD_MENU['particles/ui/ui_home_button_default.vpcf']=off;//
+MOD_MENU['particles/ui/ui_home_button_logo.vpcf']=off;//
+MOD_MENU['particles/ui/ui_mid_debris.vpcf']=off;//
+MOD_MENU['particles/ui/ui_game_start_hero_spotlight.vpcf']=off;//
+MOD_MENU['particles/ui/static_fog_flash.vpcf']=off;//
+MOD_MENU['particles/ui/static_ground_smoke.vpcf']=off;//
+MOD_MENU['particles/ui/static_ground_smoke_soft.vpcf']=off;//
+MOD_MENU['particles/ui/static_ground_smoke_soft_ring.vpcf']=off;//
+MOD_MENU['particles/ui/static_ground_smoke_soft_small.vpcf']=off;//
+MOD_MENU['particles/ui/ui_accept_ember.vpcf']=off;//
+MOD_MENU['particles/ui/ui_find_match_status_ember.vpcf']=off;//
+MOD_MENU['particles/ui/ui_find_match_status_glow.vpcf']=off;//
+MOD_MENU['particles/ui/ui_find_match_status_steam.vpcf']=off;//
+MOD_MENU['particles/ui/ui_loadout_preview.vpcf']=off;//
+
   /*  ABADDON  */
   /*  ABYSSAL_UNDERLORD  */
   /*  ALCHEMIST  */
@@ -334,28 +385,34 @@ MOD_HAT['particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot_rays_b.vpc
 // No_Bling JS main function
 //----------------------------------------------------------------------------------------------------------------------------------
 No_Bling=function(content, output, choices, verbose, timers){
-  w.echo(''+run+' @ '+engine+((jscript) ? ': Try the faster Node.js engine\r' : '\r')); w.echo('------------------------\r');
+  w.echo(''+run+' @ '+engine+((jscript) ? ': Try the faster Node.js engine' : '')); w.echo('------------------------');
   // Parse arguments
-  var CONTENT_DIR  = path.normalize(content);
-  var OUTPUT_DIR   = path.normalize(output);
-  var ABILITIES    = (choices.indexOf('Abilities') > -1);   // Penguin Frostbite and stuff like that..
-  var HATS         = (choices.indexOf('Hats') > -1);        // Cosmetic particles spam - slowly turning into TF2..
-  var COURIERS     = (choices.indexOf('Couriers') > -1);    // Couriers particles are fine.. until a dumber abuses gems
-  var WARDS        = (choices.indexOf('Wards') > -1);       // Just a few of them make the ward and the sentry item similar
-  var SEASONAL     = (choices.indexOf('Seasonal') > -1);    // The International 7 custom tp, blink etc.
-  var HEROES       = (choices.indexOf('Heroes') > -1);      // Model particles, helps potato pc but glancevalue can suffer
-  var TWEAKS       = (choices.indexOf('Tweaks') > -1);      // Optimizations for potato pc
-  var LOG          = (verbose == '1');                      // Exports detailed per-hero lists, useful for debugging mod
-  var MEASURE      = (timers == '1'); if (!MEASURE) timer = function(f){return{end:function(){}};}; var t;
+  var CONTENT_DIR    = path.normalize(content);
+  var OUTPUT_DIR     = path.normalize(output);
+  var ABILITIES      = (choices.indexOf('Abilities') > -1);      // Penguin Frostbite and stuff like that..
+  var HATS           = (choices.indexOf('Hats') > -1);           // Cosmetic particles spam - slowly turning into TF2..
+  var COURIERS       = (choices.indexOf('Couriers') > -1);       // Couriers particles are fine.. until someone abuses gems on hats
+  var WARDS          = (choices.indexOf('Wards') > -1);          // Just a few of them make the ward and the sentry item similar
+  var SEASONAL       = (choices.indexOf('Seasonal') > -1);       // The International 7 custom tp, blink, penis-contest towers etc.
+  var HEROES         = (choices.indexOf('HEROES') > -1);         // Model particles, helps potato pc but glancevalue can suffer
+  var BASE           = (choices.indexOf('Base') > -1);           // tweak map base buildings - ancients, barracks, towers
+  var EFFIGIES       = (choices.indexOf('Effigies') > -1);       // tweak map effigies
+  var SHRINES        = (choices.indexOf('Shrines') > -1);        // tweak map shrines
+  var PROPS          = (choices.indexOf('Props') > -1);          // tweak map props - fountains and terrain-bundled weather
+  var MENU           = (choices.indexOf('Menu') > -1);           // tweak menu - ui, hero preview
+
+  var LOG            = (verbose == '1');                           // Exports detailed per-hero lists, useful for debugging mod
+  var MEASURE        = (timers == '1'); if (!MEASURE) timer = function(f){ return { end:function(){} }; }; var t;
 
   // Quit early if no choice selected
-  var HAS_CHOICES=(TWEAKS || HEROES || SEASONAL || WARDS || COURIERS || HATS || ABILITIES);
+  var HAS_CHOICES=(ABILITIES || HATS || COURIERS || WARDS || SEASONAL || HEROES || BASE || EFFIGIES || SHRINES || PROPS || MENU); 
   if (!HAS_CHOICES && !LOG) w.quit();
 
   // Initiate filter variables
   var off='particles/dev/empty_particle.vpcf', q='"', used_by_heroes={};
-  var mods={ 'Abilities':{},'Hats':{},'Couriers':{},'Wards':{},'Seasonal':{},'Heroes':{},'Tweaks':{},'Others':{} };
   var logs={ 'Wearables':{},'Heroes':{},'Couriers':{},'Wards':{},'Seasonal':{},'Others':{} };
+  var mods={ 'Abilities':{},'Hats':{},'Couriers':{},'Wards':{},'Seasonal':{},'Heroes':{},'Others':{}, 
+             'Base':{},'Effigies':{},'Shrines':{},'Props':{},'Menu':{} };
 
   // Read and vdf.parse items_game.txt
   var items_game_src=path.normalize(CONTENT_DIR+'\\scripts\\items\\items_game.txt');
@@ -404,7 +461,7 @@ No_Bling=function(content, output, choices, verbose, timers){
       if (items[i].event_id != ACTIVE_EVENT) expired=true;                  // hard-coded ACTIVE_EVENT = EVENT_ID_INTERNATIONAL_2017
     }
     // generate item category tracking text for debugging
-    if (LOG) logitem='  '+iname+' ['+hero+'] '+prefab+' '+(rarity ? rarity+' ' : '')+iid+'\r\n';
+    if (LOG) logitem='  '+iname+' ['+hero+'] '+prefab+' '+(rarity ? rarity+' ' : '')+iid+RN;
 
     // Still in the item i loop above, check visuals section for asset_modifier* particles
     for (var f in items[i].visuals){
@@ -418,26 +475,26 @@ No_Bling=function(content, output, choices, verbose, timers){
       if (modifier && modifier.lastIndexOf('_local.vpcf') > -1) continue;                                   // skip staged modifiers
       if (asset && asset.indexOf('particles/ability_modifier') > -1) continue;                             // skip dynamic modifiers
       if (asset && asset.indexOf('particles/reftononexistent') > -1) asset=off;                           // skip dynamic references
-      if (asset && asset in REV_KEEP){ if (LOG) logitem+='    rev_skip: '+path.basename(modifier)+'\r\n'; KEEP[modifier]=1; } // reverse
-      if (asset && asset in REV_MOD)  { if (LOG) logitem+='    rev_mod: '+path.basename(modifier)+'\r\n'; asset=REV_MOD[asset]; }// lookup
+      if (asset && asset in REV_KEEP){ KEEP[modifier]=1; if (LOG) logitem+='    rev_skip: '+path.basename(modifier)+RN; } // reverse
+      if (asset && asset in REV_MOD){ asset=REV_MOD[asset]; if (LOG) logitem+='    rev_mod: '+path.basename(modifier)+RN; }// lookup
       // ABILITIES AND HATS
       if (precat == 'Wearables' && type == 'particle'){
         // expecting .asset
         if (modifier.indexOf('particles/econ/items') > -1){
           // Abilities mostly but we can have Hats, too. Separating them is not simple, but Gaben shall not prevail!
-          if (LOG) logitem+= '      maybe_ability? '+modifier+'\r\n';
+          if (LOG) logitem+= '      maybe_ability? '+modifier+RN;
           if (asset && asset.indexOf('particles/econ/items') > -1){
             cat='Hats'; mods[cat][modifier]=off;                                                // mod (disable) modifier by default
-            if (LOG) logitem+= '      hat: '+modifier+'\r\n';
+            if (LOG) logitem+= '      hat: '+modifier+RN;
           } else {
             cat='Abilities'; maybe_ability[modifier]= (asset) ? asset : off;                             // use found asset if valid
           }
         } else if (modifier.indexOf('particles/units/heroes') > -1){
           cat='Heroes'; //mods[cat][modifier]=(asset) ? asset : off;                                            // just log ignored
-          if (LOG) logitem+= '      ignore_hero: '+modifier+'\r\n';
+          if (LOG) logitem+= '      ignore_hero: '+modifier+RN;
         } else {
           cat='Others'; //mods[cat][modifier]=(asset) ? asset : off;                                             // just log ignored
-          if (LOG) logitem+= '      skip_other1: '+modifier+'\r\n';
+          if (LOG) logitem+= '      skip_other1: '+modifier+RN;
         }
         has_particles = true;
       } else if (precat == 'Wearables' && type == 'particle_create'){
@@ -448,14 +505,14 @@ No_Bling=function(content, output, choices, verbose, timers){
           if (asset && asset.indexOf('particles/econ/items') == -1){
             mods[cat][modifier]=(asset) ? asset : off;                                                   // use found asset if valid
           }
-          if (LOG) logitem+= '      hat: '+modifier+'\r\n';
+          if (LOG) logitem+= '      hat: '+modifier+RN;
         } else if (modifier.indexOf('particles/units/heroes') > -1){
           cat='Heroes'; // Default item overrides
           mods[cat][modifier]=(asset) ? asset : off; maybe_hat[modifier]=(asset) ? asset : off;
-          if (LOG) logitem+= '      maybe_hat? '+modifier+'\r\n';
+          if (LOG) logitem+= '      maybe_hat? '+modifier+RN;
         } else {
           cat='Others'; //mods[cat][modifier]=(asset) ? asset : off;                                             // just log ignored
-          if (LOG) logitem+= '      skip_other2: '+modifier+'\r\n';
+          if (LOG) logitem+= '      skip_other2: '+modifier+RN;
         }
         has_particles = true;
       }
@@ -463,40 +520,40 @@ No_Bling=function(content, output, choices, verbose, timers){
       if (precat == 'Heroes'){
         if (modifier.indexOf('particles/units/heroes') > -1){
           cat='Heroes'; mods[cat][modifier]=off; has_particles = true;
-          if (LOG) logitem+= '      hero: '+modifier+'\r\n';
+          if (LOG) logitem+= '      hero: '+modifier+RN;
         }
       }
       // COURIERS
       if (precat == 'Couriers'){
         cat='Couriers'; mods[cat][modifier]=(asset) ? asset : off; has_particles = true;
-        if (LOG) logitem+= '      courier: '+modifier+'\r\n';
+        if (LOG) logitem+= '      courier: '+modifier+RN;
       }
       // WARDS
       if (precat == 'Wards'){
         cat='Wards'; mods[cat][modifier]=(asset) ? asset : off; has_particles = true;
-        if (LOG) logitem+= '      ward: '+modifier+'\r\n';
+        if (LOG) logitem+= '      ward: '+modifier+RN;
       }
       // SEASONAL
       if (precat == 'Seasonal'){
         if (expired && !(iid in KEEP_ITEM)) continue;
         cat='Seasonal'; mods[cat][modifier]=(asset) ? asset : off; has_particles = true;
-        if (LOG) logitem+= '      seasonal: '+modifier+'\r\n';
+        if (LOG) logitem+= '      seasonal: '+modifier+RN;
       }
       // OTHERS
       if (precat == 'Others'){
         if (expired && !(iid in KEEP_ITEM)) continue;
         cat='Others'; mods[cat][modifier]=(asset) ? asset : off; has_particles = true;
-        if (LOG) logitem+= '      others: '+modifier+'\r\n';
+        if (LOG) logitem+= '      others: '+modifier+RN;
       }
       // add generic manual particle filters
       if (rarity && rarity in KEEP_RARITY){
-        KEEP[modifier]=1; if (LOG) logitem+= '    skip_'+rarity+': '+path.basename(modifier)+'\r\n';
+        KEEP[modifier]=1; if (LOG) logitem+= '    skip_'+rarity+': '+path.basename(modifier)+RN;
       }
       for (var shero in KEEP_HERO){
-        if (modifier.indexOf(shero+'/') > -1){KEEP[modifier]=1; if (LOG) logitem+= '    skip_'+hero+': '+path.basename(modifier)+'\r\n';}
+        if (modifier.indexOf(shero+'/') > -1){KEEP[modifier]=1; if (LOG) logitem+='    skip_'+hero+': '+path.basename(modifier)+RN;}
       }
       if (iid && iid in KEEP_ITEM){
-        KEEP[modifier]=1; if (LOG) logitem+= '    skip_'+iid+': '+path.basename(modifier)+'\r\n';
+        KEEP[modifier]=1; if (LOG) logitem+= '    skip_'+iid+': '+path.basename(modifier)+RN;
       }
     } // next f in visuals section
 
@@ -505,30 +562,30 @@ No_Bling=function(content, output, choices, verbose, timers){
       if (maybe_ability[hat] in maybe_hat){
         if (maybe_ability[hat] in mods['Heroes']){
           mods['Hats'][hat]=maybe_ability[hat];
-          if (LOG) logitem+= '        hat! '+path.basename(hat)+'\r\n';
+          if (LOG) logitem+= '        hat! '+path.basename(hat)+RN;
         } else {
           mods['Abilities'][hat]=maybe_ability[hat];
-          if (LOG) logitem+= '        ability! '+path.basename(hat)+'\r\n'; // none?!
+          if (LOG) logitem+= '        ability! '+path.basename(hat)+RN; // none?!
         }
       } else {
         if (maybe_ability[hat] in mods['Heroes']){
           mods['Hats'][hat]=maybe_ability[hat];
-          if (LOG) logitem+= '        hat! '+path.basename(hat)+'\r\n';
+          if (LOG) logitem+= '        hat! '+path.basename(hat)+RN;
         } else {
           mods['Abilities'][hat]=maybe_ability[hat];
-          if (LOG) logitem+= '        ability! '+path.basename(hat)+'\r\n';
+          if (LOG) logitem+= '        ability! '+path.basename(hat)+RN;
         }
       }
     }
 
-    // Find portrait particle definitions and add them to TWEAK manual filter
+    // Find portrait particle definitions and add them to MOD_MENU manual filter
     if (typeof items[i].portraits == 'object'){
       for (var p in items[i].portraits){
-        if (typeof items[i].portraits[p] == 'object'){
-          if (typeof items[i].portraits[p].PortraitParticle == 'string' && !(items[i].portraits[p].PortraitParticle in KEEP)){
-            MOD_TWEAK[items[i].portraits[p].PortraitParticle]=off; has_particles=true;
-          }
-        }
+        if (typeof items[i].portraits[p] != 'object') continue;
+        if (typeof items[i].portraits[p].PortraitParticle != 'string') continue;
+        if (items[i].portraits[p].PortraitParticle.indexOf('portrait') < 1) continue; 
+        if (items[i].portraits[p].PortraitParticle in KEEP) continue;
+        MOD_MENU[items[i].portraits[p].PortraitParticle]=off; has_particles=true;
       }
     }
 
@@ -572,17 +629,17 @@ No_Bling=function(content, output, choices, verbose, timers){
     for (cat in mods){if (modifier in mods[cat]) existing=true;}
     if (existing) continue;                                                                                 // do not override items
     if (modifier.indexOf('particles/units/heroes') > -1){
-      mods['Heroes'][modifier]=off; if (LOG) w.echo('  hero: '+modifier+'\r');
+      mods['Heroes'][modifier]=off; if (LOG) w.echo('  hero: '+modifier);
     } else if (modifier.indexOf('particles/econ/items') > -1){
-      mods['Hats'][modifier]=off; if (LOG) w.echo('  hat: '+modifier+'\r');
+      mods['Hats'][modifier]=off; if (LOG) w.echo('  hat: '+modifier);
     } else if (modifier.indexOf('particles/econ/courier') > -1){
-      mods['Couriers'][modifier]=off; if (LOG) w.echo('  courier: '+modifier+'\r');
+      mods['Couriers'][modifier]=off; if (LOG) w.echo('  courier: '+modifier);
     } else if (modifier.indexOf('particles/econ/wards') > -1){
-      mods['Wards'][modifier]=off; if (LOG) w.echo('  ward: '+modifier+'\r');
+      mods['Wards'][modifier]=off; if (LOG) w.echo('  ward: '+modifier);
     }
     // add generic manual particle filters
     for (shero in KEEP_HERO){
-      if (modifier.indexOf(shero+'/') > -1){KEEP[modifier]=1; if (LOG) w.echo('    skip_'+hero+': '+path.basename(modifier)+'\r');}
+      if (modifier.indexOf(shero+'/') > -1){KEEP[modifier]=1; if (LOG) w.echo('    skip_'+hero+': '+path.basename(modifier));}
     }
   } // next ap
   if (LOG) t.end();
@@ -602,13 +659,13 @@ No_Bling=function(content, output, choices, verbose, timers){
         if (!modifier || !asset) continue;                   // skip if modifier or asset are not defined / not .vpcf particle files
         for (cat in mods){if (modifier in mods[cat]) existing=true;}
         if (existing) continue;                                                                             // do not override items
-        if (asset in REV_KEEP){ KEEP[modifier]=1; if (LOG) w.echo('    rev_skip: '+path.basename(modifier)+'\r'); }  // reverse skip
-        if (asset in REV_MOD)  { asset=REV_MOD[asset]; if (LOG) w.echo('    rev_mod: '+path.basename(modifier)+'\r');  }//reverse mod
+        if (asset in REV_KEEP){ KEEP[modifier]=1; if (LOG) w.echo('    rev_skip: '+path.basename(modifier)); }  // reverse skip
+        if (asset in REV_MOD)  { asset=REV_MOD[asset]; if (LOG) w.echo('    rev_mod: '+path.basename(modifier));  }//reverse mod
         mods['Abilities'][modifier]=asset;
-        if (LOG) w.echo('  ability: '+modifier+'\r');
+        if (LOG) w.echo('  ability: '+modifier);
         // add generic manual particle filters
         for (shero in KEEP_HERO){
-          if (modifier.indexOf(shero+'/') > -1){KEEP[modifier]=1; if (LOG) w.echo('    skip_'+hero+': '+path.basename(modifier)+'\r');}
+          if (modifier.indexOf(shero+'/') > -1){KEEP[modifier]=1; if (LOG) w.echo('    skip_'+hero+': '+path.basename(modifier));}
         }
       }
     } // next m
@@ -622,21 +679,24 @@ No_Bling=function(content, output, choices, verbose, timers){
 
   // Import manual filters
   for (hat in KEEP){
-    for (var scat in {'Hats':1,'Abilities':1,'Heroes':1,'Tweaks':1}) delete mods[scat][hat];
-    if (LOG) w.echo('  skip: '+hat+'\r');
+    for (var scat in {'Hats':1,'Abilities':1,'Heroes':1}) delete mods[scat][hat]; if (LOG) w.echo('  skip: '+hat);
   }
 
-  for (hat in REV_KEEP){ delete mods['Heroes'][hat];  if (LOG) w.echo('  rev_skip: '+hat+'\r'); }
-  for (hat in REV_MOD){ mods['Heroes'][hat]=REV_MOD[hat];  if (LOG) w.echo('  rev_mod: '+hat+'\r'); }
+  for (hat in REV_KEEP){ delete mods['Heroes'][hat];  if (LOG) w.echo('  rev_skip: '+hat); }
+  for (hat in REV_MOD){ mods['Heroes'][hat]=REV_MOD[hat];  if (LOG) w.echo('  rev_mod: '+hat); }
 
-  for (hat in MOD_ABILITY){ mods['Abilities'][hat]=MOD_ABILITY[hat]; if (LOG) w.echo('  mod_ability: '+hat+'\r'); }
-  for (hat in MOD_HAT){ mods['Hats'][hat]=MOD_HAT[hat]; if (LOG) w.echo('  mod_hat: '+hat+'\r'); }
-  for (hat in MOD_HERO){ mods['Heroes'][hat]=MOD_HERO[hat]; if (LOG) w.echo('  mod_hero: '+hat+'\r'); }
-  for (hat in MOD_TWEAK){ mods['Tweaks'][hat]=MOD_TWEAK[hat]; if (LOG) w.echo('  mod_tweak: '+hat+'\r'); }
+  for (hat in MOD_ABILITY){ mods['Abilities'][hat]=MOD_ABILITY[hat]; if (LOG) w.echo('  mod_ability: '+hat); }
+  for (hat in MOD_HAT){ mods['Hats'][hat]=MOD_HAT[hat]; if (LOG) w.echo('  mod_hat: '+hat); }
+  for (hat in MOD_HERO){ mods['Heroes'][hat]=MOD_HERO[hat]; if (LOG) w.echo('  mod_hero: '+hat); }
+  for (hat in MOD_BASE){ mods['Base'][hat]=MOD_BASE[hat]; if (LOG) w.echo('  mod_base: '+hat); }
+  for (hat in MOD_EFFIGY){ mods['Effigies'][hat]=MOD_EFFIGY[hat]; if (LOG) w.echo('  mod_effigy: '+hat); }  
+  for (hat in MOD_SHRINE){ mods['Shrines'][hat]=MOD_SHRINE[hat]; if (LOG) w.echo('  mod_shrine: '+hat); }
+  for (hat in MOD_PROP){ mods['Props'][hat]=MOD_PROP[hat]; if (LOG) w.echo('  mod_prop: '+hat); }
+  for (hat in MOD_MENU){ mods['Menu'][hat]=MOD_MENU[hat]; if (LOG) w.echo('  mod_menu: '+hat); }    
 
   // Heroes option supersedes Hats option so include non-moded particles
   for (hat in mods['Hats']){
-    if (mods['Hats'][hat]!=off && !(mods['Hats'][hat] in KEEP)){mods['Heroes'][hat]=off; if (LOG) w.echo('  hero_include: '+hat+'\r');}
+    if (mods['Hats'][hat]!=off && !(mods['Hats'][hat] in KEEP)){mods['Heroes'][hat]=off; if (LOG) w.echo('  hero_include: '+hat);}
   }
 
   if (LOG) t.end();
@@ -744,7 +804,8 @@ OutChars=function(s){ new Function('w.echo(String.fromCharCode('+s+'))')(); };
 // greatly improved cscript performance - it's not that bad overall but still lags behind node.js       stringify:  0.922s   3.439s
 //----------------------------------------------------------------------------------------------------------------------------------
 function ValveDataFormat(){
-  var jscript=(typeof ScriptEngine == 'function' && ScriptEngine() == 'JScript'); if (!jscript){ var w={}; w.echo=console.log; }
+  var jscript=(typeof ScriptEngine == 'function' && ScriptEngine() == 'JScript');
+  if (!jscript){ var w={}; w.echo=function(s){console.log(s+'\r');}; }
   var order=!jscript, dups=false, comments=false, newline='\n', empty=(jscript) ? '' : undefined;
   return {
     parse: function(txt, flag){
@@ -813,11 +874,11 @@ if (typeof ScriptEngine == 'function' && ScriptEngine() == 'JScript'){
   // start of JScript specific code
   jscript=true; engine='JScript'; w=WScript; launcher=new ActiveXObject('WScript.Shell'); argc=w.Arguments.Count(); argv=[]; run='';
   if (argc > 0){ run=w.Arguments(0); for (var i=1;i<argc;i++) argv.push( '"'+w.Arguments(i).replace(/[\\\/]+/g,'\\\\')+'"'); }
-  process={}; process.argv=[ScriptEngine(),w.ScriptFullName]; for (var j=0;j<argc;j++) process.argv[j+2]=w.Arguments(j);
+  process={}; process.argv=[ScriptEngine(),w.ScriptFullName]; for (var j=0;j<argc;j++) process.argv[j+2]=w.Arguments(j); RN='\r\n';
   path={}; path.join=function(f,n){return fso.BuildPath(f,n);}; path.normalize=function(f){return fso.GetAbsolutePathName(f);};
   path.basename=function(f){return fso.GetFileName(f);}; path.dirname=function(f){return fso.GetParentFolderName(f);};path.sep='\\';
   fs={}; fso=new ActiveXObject("Scripting.FileSystemObject"); ado=new ActiveXObject('ADODB.Stream'); DEF_ENCODING='Windows-1252';
-  FileExists=function(f){ return fso.FileExists(f); }; PathExists=function(f){ return fso.FolderExists(f); };
+  FileExists=function(f){ return fso.FileExists(f); }; PathExists=function(f){ return fso.FolderExists(f); }; 
   MakeDir=function(fn){
     if (fso.FolderExists(fn)) return; var pfn=fso.GetAbsolutePathName(fn), d=pfn.match(/[^\\\/]+/g), p='';
     for(var i=0,n=d.length; i<n; i++){ p+= d[i]+'\\'; if (!fso.FolderExists(p)) fso.CreateFolder(p); }
@@ -833,16 +894,16 @@ if (typeof ScriptEngine == 'function' && ScriptEngine() == 'JScript'){
   // end of JScript specific code
 } else {
   // start of Node.js specific code
-  jscript=false; engine='Node.js'; w={}; argc=process.argv.length; argv=[]; run=''; p=process.argv; w.quit=process.exit;
+  jscript=false; engine='Node.js'; w={}; argc=process.argv.length; argv=[]; run=''; p=process.argv; w.quit=process.exit; RN='\r\n';
   if (argc > 2){ run=p[2]; for (var n=3;n<argc;n++) argv.push('"'+p[n].replace(/[\\\/]+/g,'\\\\')+'"'); }
-  path=require('path'); fs=require('fs'); DEF_ENCODING='utf-8'; w.echo=console.log;
+  path=require('path'); fs=require('fs'); DEF_ENCODING='utf-8'; w.echo=function(s){console.log(s+'\r');}; 
   FileExists=function(f){ try{ return fs.statSync(f).isFile(); }catch(e){ if (e.code == 'ENOENT') return false; } };
   PathExists=function(f){ try{ return fs.statSync(f).isDirectory(); }catch(e){ if (e.code == 'ENOENT') return false; } };
   MakeDir=function(f){ try{ fs.mkdirSync(f); }catch(e){ if (e.code == 'ENOENT'){ MakeDir(path.dirname(f)); MakeDir(f); } } };
   // end of Node.js specific code
 }
 function timer(f){
-  var b=new Date(); return { end:function(){ var e=new Date(), t=(e.getTime()-b.getTime())/1000; w.echo(f+': '+t+'s\r'); } };
+  var b=new Date(); return { end:function(){ var e=new Date(), t=(e.getTime()-b.getTime())/1000; w.echo(f+': '+t+'s\r\n'); } };
 }
 // If run without parameters the .js file must have been double-clicked in shell, so try to launch the correct .bat file instead
 if (jscript && run === '' && FileExists(w.ScriptFullName.slice(0, -2)+'bat')) launcher.Run('"'+w.ScriptFullName.slice(0, -2)+'bat"');

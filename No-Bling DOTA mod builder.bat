@@ -1,35 +1,38 @@
 goto="init" /* %~nx0
-:: v2.0rc2 - finally updated after 7.07 - way faster, new options, detailed instructions, auto-install method for Steam language
+:: What's new in No-Bling DOTA mod builder.bat v2.0 final: 
+:: - Way faster and more reliable, improved caching, less storage operations, long paths support, auto-install with current language 
+:: - Press Enter to accept No-Bling choices dialog, integrated endtask choice, clearline working in both Windows 7 and 10, output++   
 ::----------------------------------------------------------------------------------------------------------------------------------
 :main No-Bling DOTA :G :l :a :n :c :e :V :a :l :u :e restoration mod builder                                      edited in SynWrite
 ::----------------------------------------------------------------------------------------------------------------------------------
 :: Mod builder gui choices - no need to edit defaults here, script shows a graphical dialog for easier selection
-set "Abilities=1"                      ||   1 = penguin Frostbite and stuff like that..
-set "Hats=1"                           ||   1 = cosmetic particles spam - slowly turning into TF2..                              LOW
+set "Abilities=1"                      ||   1 = penguin Frostbite and stuff like that..                                          LOW
+set "Hats=1"                           ||   1 = cosmetic particles spam - slowly turning into TF2..                              
 set "Couriers=1"                       ||   1 = couriers particles are fine.. until a dumber abuses gems on hats
 set "Wards=1"                          ||   1 = only a few of them make the ward and the sentry item too similar
 set "Seasonal=1"                       ||   1 = the International 7 custom tp, blink etc.
 
-set "Heroes=1"                         ||   1 = default hero particles, helps potato pc but glancevalue can suffer               MED
+set "HEROES=1"                         ||   1 = default hero particles, helps potato pc but glancevalue can suffer               MED
 
-set "Tweaks=1"                         ||   1 = extra potato pc optimizations                                                   HIGH
+set "Base=1"                           ||   1 = tweak map base buildings - ancients, barracks, towers                
+set "Effigies=1"                       ||   1 = tweak map effigies
+set "Shrines=1"                        ||   1 = tweak map shrines
+set "Props=1"                          ||   1 = tweak map props - fountains, terrain-bundled weather 
+set "Menu=1"                           ||   1 = tweak main menu - ui, hero preview                                              HIGH
 
-rem set "Towers=0"                     ||   1 = just the tower particle effects, models remain unchanged                     EXPIRED
-rem set "Soundboard=0"                 ||   1 = silence the annoying chatwheel sounds - temporarily featured                 EXPIRED
-rem set "-LowViolence=0"               ||   1 = undo -lv launch option turning all blood into alien green                   RIP 7.07
+set "@verbose=0"                       ||   1 = show extra details; log detailed per-hero item lists,  0 = skip detailed item lists
+set "@endtask=0"                       ||   1 = auto-install closes Dota and Steam,                    0 = can't add launch options!
+set "@refresh=0"                       ||   1 = always recompile mod instead of reusing cached files,  0 = just when new patch found
 ::----------------------------------------------------------------------------------------------------------------------------------
 :: Script options - not available in gui so set them here if needed
-set "@refresh=0"                       ||   1 = always recompile mod instead of reusing cached files,  0 = just when new patch found
-set "@verbose=0"                       ||   1 = show extra details; log detailed per-hero item lists,  0 = skip detailed item lists
 set "@dialog=1"                        ||   1 = show choices dialog,                                   0 = no dialog - use above
-set "@autoclose=1"                     ||   1 = auto-install kills Steam and Dota,                     0 = can't add launch options!
 set "@timers=1"                        ||   1 = total and per tasks accurate timers,                   0 = no reason to disable them
-rem set "MOD_OUTPUT=%~dp0"             || rem = current batch file directory,
-rem set "MOD_LANGUAGE=english"         || rem = current Steam language,
-rem set "MOD_FILE=pak01_dir.vpk"       || rem = localized versions might use pak02_dir.vpk,
-set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,Heroes,Tweaks"
-set "def_choices=Abilities,Hats,Couriers,Wards,Seasonal,Heroes"
-set "version=2.0rc2"
+rem set "MOD_OUTPUT=%~dp0"             || rem = current batch file directory, uncomment if needed
+rem set "MOD_LANGUAGE=english"         || rem = current Steam language is auto-detected, override here
+rem set "MOD_FILE=pak01_dir.vpk"       || rem = localized versions might use pak02_dir.vpk, override here
+set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"
+set "def_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"        || dialog [Reset] sets these
+set "version=2.0"
 
 title No-Bling DOTA mod builder by AveYo v%version%
 setlocal &rem free script so no bitching!
@@ -76,11 +79,13 @@ powershell -c "$first=322; $last=355; %ps_dota:"=\"%"    &rem comment this line 
 endlocal
 
 :: Parse Script options
-for %%o in (@verbose @refresh @dialog @autoclose @timers) do call set "%%o=%%%%o:0=%%"
+for %%o in (@verbose @refresh @dialog @endtask @timers) do call set "%%o=%%%%o:0=%%"
 if defined @timers ( set "@time=%TIME: =0%" & set "TIMER=call :timer" ) else set "TIMER=call :noop"
 
 :: Check DOTA, tools and environment
 call :set_steam & call :set_dota & call :set_tools
+if not defined MOD_OUTPUT set "MOD_OUTPUT=%~dp0"
+if "%MOD_OUTPUT::=%"=="%MOD_OUTPUT%" set "MOD_OUTPUT=%~dp0%MOD_OUTPUT%"
 
 :: Check for new DOTA patch (quick and dirty, useful for testing options without extracting the particles from vpk each time)
 mkdir "%CONTENT%" >nul 2>nul &rem Should be \steamapps\common\dota 2 beta\content\
@@ -98,6 +103,7 @@ if /i "%MOD_LANGUAGE%"=="english" set "MOD_FOLDER=dota_english%%"
 if not defined MOD_FILE set "MOD_FILE=pak01_dir.vpk"
 for %%# in (russian schinese koreana) do if /i "%MOD_LANGUAGE%"=="%%#" set "MOD_FILE=pak02_dir.vpk"
 if not exist "%DOTA%\%MOD_FOLDER%\pak01_dir.vpk" set "MOD_FILE=pak01_dir.vpk"
+set "MOD_VPK=%MOD_FILE:.vpk=%"
 
 :: Check DOTA launch options
 if defined STEAMDATA pushd "%STEAMDATA%\config" & if exist localconfig.vdf (
@@ -105,8 +111,10 @@ if defined STEAMDATA pushd "%STEAMDATA%\config" & if exist localconfig.vdf (
 )
 
 :: Parse gui dialog choices - rather complicated back & forth define - undefine, but it gets the job done!
-set "@choices=" & if defined @dialog if not defined @refresh set "all_choices=%all_choices%,@refresh"    &rem insert @refresh option
 set "@choices=" & if defined @dialog if not defined @verbose set "all_choices=%all_choices%,@verbose"    &rem insert @verbose option
+set "@choices=" & if defined @dialog if not defined @endtask set "all_choices=%all_choices%,@endtask"    &rem insert @endtask option
+set "@choices=" & if defined @dialog if not defined @refresh set "all_choices=%all_choices%,@refresh"    &rem insert @refresh option
+
 for %%o in (%all_choices%) do call set "%%o=%%%%o:0=%%"                     &rem undefine any option equal to 0, easier script usage
 for %%o in (%all_choices%) do if defined %%o (if defined @choices ( call set "@choices=%%@choices%%,%%o" ) else set "@choices=%%o")
 if defined @dialog call :choices 322 444 "No-Bling" "%all_choices%" "%def_choices%"  &rem width height title all_choices def_choices
@@ -114,8 +122,10 @@ if defined @dialog if not defined CHOICES call :end ! No choices selected!
 if defined CHOICES ( set "MOD_CHOICES=%CHOICES%" ) else set "MOD_CHOICES=%@choices%"
 for %%o in (%all_choices%) do set "%%o="  &rem undefine all initial choices
 for %%o in (%MOD_CHOICES%) do set "%%o=1" &rem then redefine selected ones to 1
+if not defined NEWPATCH ( set "REFRESH_HINT=no" ) else set "REFRESH_HINT="
+if not defined NEWPATCH if defined @refresh set "REFRESH_HINT=no, forced refresh [usually not needed]"
 :: Clear script-only options and export choices to registry
-call :unselect @verbose MOD_CHOICES & call :unselect @refresh MOD_CHOICES
+call :unselect @verbose MOD_CHOICES & call :unselect @endtask MOD_CHOICES & call :unselect @refresh MOD_CHOICES
 set "CHOICES=%MOD_CHOICES%" & reg add "HKCU\Environment" /v "No-Bling choices" /t REG_SZ /d "%MOD_CHOICES%" /f >nul 2>nul
 
 :: Print configuration
@@ -126,18 +136,17 @@ echo  Mod options    = %MOD_OPTIONS%
 echo  User profile   = %STEAMDATA%
 echo  User options   = %LOPTIONS%
 echo  Content        = %CONTENT%\pak01_dir
-echo  New patch?     = %NEWPATCH%
-echo  Script options = @refresh:%@refresh%  @verbose:%@verbose%  @dialog:%@dialog%  @autoclose:%@autoclose%  @timers:%@timers%
+echo  New patch?     = %NEWPATCH%%REFRESH_HINT%
+echo  Script options = @refresh:%@refresh%  @endtask:%@endtask%  @verbose:%@verbose%  @dialog:%@dialog%  @timers:%@timers%
+echo  Script version = v%version%       get latest release at https://github.com/No-Bling/DOTA
 echo.
 
 :: Prepare directories
 %WARN%  Preparing directories, please wait..
-if not defined MOD_OUTPUT set "MOD_OUTPUT=%~dp0"
-if "%MOD_OUTPUT::=%"=="%MOD_OUTPUT%" set "MOD_OUTPUT=%~dp0%MOD_OUTPUT%"
 mkdir "%MOD_OUTPUT%\log" >nul 2>nul & pushd "%MOD_OUTPUT%"
 set "MOD_OUTPUT=%CD%" & set "BUILDS=%CD%\BUILDS\%CHOICES:,=_%"
 mkdir "%BUILDS%" >nul 2>nul
-set ".="%CD%\src""
+set ".="%CD%\src" "%CD%\~TMP""
 if defined @refresh set ".=%.% "%CONTENT%\pak01_dir""
 rem if defined @verbose set ".=%.% "%MOD_OUTPUT%\log""       &rem no need to clear the log folder each time [~2k files ~200 folders]
 for %%i in (%.%) do ( del /f/s/q "%%~i" & rmdir /s/q "%%~i" & mkdir "%%~i" ) >nul 2>nul
@@ -147,7 +156,7 @@ call :clearline 2
 if defined @verbose if not defined CHOICES echo. & %INFO%  No mod choices selected, just generating logs & goto :skip_update_content
 
 :: Skip lengthy compile process and only do it if there is a new patch or requested by @refresh option
-if not defined @refresh echo. & %INFO%  No new patch - skipping update content step. Select @refresh option to force update..
+if not defined @refresh echo. & %INFO%  No new patch - skipping update content step. Select @refresh option to force update...
 if not defined @refresh goto :skip_update_content
 
 :: Update source content
@@ -173,20 +182,22 @@ if not exist %.% copy /y evil_eyed_arms_eye_sparks.vpcf_c %.% >nul 2>nul & popd
 
 ::----------------------------------------------------------------------------------------------------------------------------------
 %LABEL% " Extracting items_game.txt from dota\pak01_dir.vpk "
+echo  Source 2 Resource Decompiler - https://github.com/SteamDatabase/ValveResourceFormat          &rem advertise tool [contributor]
 if defined @verbose ( set ".= " ) else set ".=>nul 2>nul"
 %TIMER%
 %decompiler% -i "%DOTA%\dota\pak01_dir.vpk" -o "%CONTENT%\pak01_dir" -d -e txt -f "scripts/items/items_game.txt" %.%
 %TIMER%
 
-%LABEL% " Processing items_game.txt using JS engine ... "
+if defined nodejs ( set "js_engine_name=Node.js" ) else "set js_engine_name=JScript"
+%LABEL% " Processing items_game.txt using %js_engine_name% engine "
+if defined @verbose echo Verbose output enabled - writing per-hero / category slice logs...
 pushd "%MOD_OUTPUT%"
 %TIMER%
 %js_engine% No_Bling "%CONTENT%\pak01_dir" "%MOD_OUTPUT%" "%MOD_CHOICES%" "%@verbose%" "%@timers%" >"%MOD_OUTPUT%\log\no_bling.txt"
-%TIMER%
-
 :: Verify items_game.txt VDF parser
 if defined @verbose pushd "%CONTENT%\pak01_dir\scripts\items" & echo n | comp items_game.txt "%MOD_OUTPUT%\log\items_game.txt" 2>nul
 if defined @verbose call :clearline 1
+%TIMER%
 
 :: Sort particle?mod definitions for each src category
 pushd "%MOD_OUTPUT%\src" & for %%a in (*.ini) do sort "%%a" /o "%%a"
@@ -196,11 +207,12 @@ if not defined CHOICES goto :done
 
 ::----------------------------------------------------------------------------------------------------------------------------------
 :: Resource-compiling before 7.07 - now dumbed-down to file replacement
-%LABEL% " Deploying src particles ... "
+%LABEL% " Deploying src particles "
 %TIMER%
 pushd "%MOD_OUTPUT%\src" & set/a MOD_COUNT=0 & for %%a in (*.ini) do set/a MOD_COUNT+=1 >nul 2>nul
 if %MOD_COUNT% LSS 1 goto :done &rem there must be a category folder under MOD\src
 for %%a in (*.ini) do (
+ for /f "tokens=3" %%B in ('find /v /c "" "%%a" 2^>nul ^| find /i "%%a" 2^>nul') do call :color 05 " %%~na " & echo : %%B files
  mkdir "%%~na" >nul 2>nul & pushd "%%~na"
  for /f "usebackq skip=1 tokens=1,2 delims=?" %%i in ("%%~dpnxa") do (
   if not exist "%%~dpi" mkdir "%%~dpi" >nul 2>nul
@@ -212,18 +224,26 @@ for %%a in (*.ini) do (
 :skip_compiling
 
 :: Create mod vpk
-%LABEL% " ValvePak-ing src particles ... "
+%LABEL% " ValvePak-ing src particles "
 %TIMER%
-pushd "%MOD_OUTPUT%"
-for %%a in (%CHOICES%) do if exist "src\%%a" call :color 0e " %%a " &xcopy /E/C/I/Q/R/Y "src\%%a\*.*" "%BUILDS%\pak01_dir"
-pushd "%BUILDS%"
-for /f %%a in ('dir /a:d /b') do %vpk% %%~na & echo  %%~na.vpk done
-pushd "%BUILDS%" & for /f %%a in ('dir /a:d /b') do ( del /f/s/q %%a\*.* & rmdir /s/q %%a ) >nul 2>nul
+:: Grab src files in one place
+pushd "%MOD_OUTPUT%" & mkdir "%MOD_OUTPUT%\~TMP\%MOD_VPK%" >nul 2>nul
+set "copy_tool=xcopy /E/C/I/Q/R/Y" & set "copy_ext=\*.*"
+for /f %%# in ('robocopy /? 2^>nul ^|find /i "/S"') do set "robust=%%#" &rem better long paths support 
+if defined robust set "copy_tool=robocopy /E /R:1 /W:1 /MT /NFL /NDL /NJH /NJS /NP" &set "copy_ext="
+for %%a in (%CHOICES%) do if exist "src\%%a" (
+ call :color 03 " %%a " & echo ... & %copy_tool% "src\%%a%copy_ext%" "~TMP\%MOD_VPK%" >nul 2>nul
+)
+:: Run SourceFilmMaker vpk tool
+pushd "%MOD_OUTPUT%\~TMP"
+%vpk% %MOD_VPK% & copy /y %MOD_VPK%.vpk "%BUILDS%\" >nul 2>nul 
 %TIMER%
 
 :: Generate readme
+pushd "%BUILDS%"
 set .="%BUILDS%\No-Bling DOTA mod readme.txt"
- >%.% echo  No-Bling DOTA mod v%version% choices: %CHOICES%
+ >%.% echo  No-Bling DOTA mod v%version% choices: 
+>>%.% echo  %CHOICES%
 >>%.% echo --------------------------------------------------------------------------------
 >>%.% echo We all know where we are headed looking at the Immortals spam in the last two years...
 >>%.% echo.
@@ -233,7 +253,7 @@ set .="%BUILDS%\No-Bling DOTA mod readme.txt"
 >>%.% echo No-Bling DOTA mod is economy-friendly, gracefully disabling particle spam while leaving hats model untouched.
 >>%.% echo Might say it even helps differentiate great artistic work, shadowed by the particle effects galore Valve slaps on top.
 >>%.% echo.
->>%.% echo  How to manually install the .vpk / .zip builds after 7.07?
+>>%.% echo  How to manually install the .vpk builds after 7.07?
 >>%.% echo --------------------------------------------------------------------------------
 >>%.% echo Instructions for English language (default)
 >>%.% echo - CREATE FOLDER \steamapps\common\dota 2 beta\game\dota_english%%
@@ -258,9 +278,8 @@ set .="%BUILDS%\No-Bling DOTA mod readme.txt"
 >>%.% echo --------------------------------------------------------------------------------
 for %%a in (%CHOICES:,= %) do if exist "%MOD_OUTPUT%\src\%%a.ini" type "%MOD_OUTPUT%\src\%%a.ini" >>%.%
 
-:: Print install mod instructions
-%LABEL% " Installing No-Bling DOTA mod after 7.07 "
-echo  Press Alt+F4 to Cancel now if you prefer manual install:
+:: Print install mod manually instructions
+%LABEL% " Installing No-Bling DOTA mod manually after 7.07 "
 setlocal
 set "322= ______________________________________________________________________________________ /"
 set "323= /"
@@ -289,30 +308,31 @@ set "n= $delims=$inst.split("/"); foreach ($i in $delims) { $fc="Gray"; $bc="Bla
 set "s= if($i.Contains("dota_")){$fc="Magenta"}; if($i.Contains("-")){$fc="Cyan"}; if($i.Contains("[")){$fc="White"};"
 set "t= write-host $i -BackgroundColor $bc -ForegroundColor $fc -NoNewLine };"
 set "ps_inst=%i%%n%%s%%t%"
-powershell -c "$first=322; $last=343; %ps_inst:"=\"%"
+powershell -c "$first=322; $last=342; %ps_inst:"=\"%"
 endlocal
 
-:: Auto-Install No-Bling mod
-echo.
-if defined @autoclose ( %WARN%  Closing Dota / Steam to auto-install ) else %WARN%  Auto-install can fail if Dota / Steam is running
-timeout /t 10 & call :clearline 4
+:: Auto-Install No-Bling DOTA mod
+if not defined @endtask call :mcolor 0e. " Cannot auto-install mod / launch options without @endtask if Dota / Steam is running " 
+if defined @endtask call :mcolor 0e " Press " 0c "Alt+F4" 0e. " to stop auto-install from closing Dota / Steam "
+if defined @endtask timeout /t 10 & call :clearline 4
 call :mcolor 0c " G " 04 " L " 0c " A " 04 " N " 0c " C "  04 " E " 4c " V " 04 " A " 0c " L " 04 " U " 0c " E " 04 " +" 0c. " +"
-(
-if defined @autoclose taskkill /f /im dota2.exe /t & del /f /q "%STEAMPATH%\.crash" >nul 2>nul & timeout /t 1 >nul
-mkdir "%DOTA%\%MOD_FOLDER%"
-copy /y "%BUILDS%\pak01_dir.vpk" "%DOTA%\%MOD_FOLDER%\%MOD_FILE%"
-copy /y "%BUILDS%\No-Bling DOTA mod readme.txt" "%DOTA%\%MOD_FOLDER%\"
-) >nul 2>nul
+if defined @endtask taskkill /f /im dota2.exe /t >nul 2>nul
+:: Simply create the necessary mod folder and copy the current build of pak01_dir.vpk to it
+mkdir "%DOTA%\%MOD_FOLDER%" >nul 2>nul
+copy /y "%BUILDS%\pak01_dir.vpk" "%DOTA%\%MOD_FOLDER%\%MOD_FILE%" >nul 2>nul
+copy /y "%BUILDS%\No-Bling DOTA mod readme.txt" "%DOTA%\%MOD_FOLDER%\" >nul 2>nul
 if not defined STEAMDATA goto :done
-if defined @autoclose taskkill /f /im steam.exe /t >nul 2>nul
+if defined @endtask taskkill /f /im steam.exe /t >nul 2>nul & timeout /t 2 >nul 
+:: Add launch options for Dota 2 directly in the config file [ does not update if Steam is running hence the @autoclose option ]
 pushd "%STEAMDATA%\config" & copy /y localconfig.vdf localconfig.vdf.bak >nul
 %js_engine% Dota_LOptions "localconfig.vdf" "-lv,-language x,-textlanguage x,+cl_language x" -remove
 %js_engine% Dota_LOptions "localconfig.vdf" "%MOD_OPTIONS%" -add
-:: Relaunch Steam with fast options
-set l1=-silent -console -forceservice -windowed -nobigpicture -nointro -vrdisable -single_core -no-dwrite -tcp
+:: Relaunch Steam with fast options                PSA: you can add such options to your Steam shorcut at the end of the Target line 
+if defined @endtask del /f /q "%STEAMPATH%\.crash" >nul 2>nul
+set l1=-silent -console -forceservice -windowed -nobigpicture -nointro -vrdisable -skipstreamingdrivers -single_core -no-dwrite -tcp
 set l2=-inhibitbootstrap -nobootstrapperupdate -nodircheck -norepairfiles -noverifyfiles -nocrashmonitor -noassert
-if defined @autoclose start "Steam" "%STEAMPATH%\Steam.exe" %l1% %l2%
-
+if defined @endtask start "Steam" "%STEAMPATH%\Steam.exe" %l1% %l2% +"@AllowSkipGameUpdate 1"  
+    
 :done                                                                                                       Gaben shall not prevail!
 call :end  Done!
 exit/b
@@ -371,6 +391,7 @@ setlocal & set "mc=" & for %%C in (%*) do if "%%C"=="%%~C" ( call set "mc=%%mc%%
 echo. %mc% & endlocal & exit/b                                  &rem AveYo - Usage: call :mcolor fc "Hello" _c " fancy " cf. "World"
 
 :end %1:Message[Delayed termination with status message - prefix with ! to signal failure]
+if exist "%MOD_OUTPUT%\~TMP" del /f/s/q "%MOD_OUTPUT%\~TMP\*.*" >nul 2>nul & rmdir /s/q "%MOD_OUTPUT%\~TMP" >nul 2>nul  &rem Cleanup
 echo. & (if defined @time call :timer "%@time%" &call :timer ) & if "%~1"=="!" (%ERROR% %* ) else %INFO%  %*
 pause>nul & exit
 
@@ -409,7 +430,7 @@ set "t=;$c.Text=$l; $c.Location=New-Object System.Drawing.Point(($pad*2.5),(16+(
 set "s=;$c.add_Click({CLK}); $f.Controls.Add($c); $c; $i++; }; foreach($s in $cb){if($opt -contains $s.Text){$s.Checked=$true}}"
 set "r=$j=1;$bn=@("OK","Reset"); foreach($t in $bn){ $b=New-Object System.Windows.Forms.Button; $b.Name="b$j""
 set "q=;$b.Text=$t; $b.Location=New-Object System.Drawing.Point(($pad*2+($j-1)*$pad*3),(32+(($i-1)*24))); $b.add_Click($BCLK[$j])"
-set "p=;if ($t -eq "OK"){$b.DialogResult=[System.Windows.Forms.DialogResult]::OK}; $f.Controls.Add($b); $j++; }"
+set "p=;if ($t -eq "OK"){$b.DialogResult=[System.Windows.Forms.DialogResult]::OK; $f.AcceptButton=$b}; $f.Controls.Add($b); $j++; }"
 set "o=$f.Text=$n; $f.BackColor="DarkRed"; $f.Forecolor="White"; $f.FormBorderStyle="Fixed3D"; $f.StartPosition="CenterScreen""
 set "n=$f.MaximizeBox=$false; $f.MinimumSize=$fminsize; $f.AutoSize=$true; $f.AutoSizeMode='GrowAndShrink'"
 set "m=$f.Add_Shown({$f.Activate()}); $result=$f.ShowDialog(); if ($result -ne [System.Windows.Forms.DialogResult]::OK){"

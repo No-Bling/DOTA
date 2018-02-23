@@ -1,4 +1,5 @@
- No-Bling DOTA mod v2.0rc1 choices: Abilities,Hats,Couriers,Wards,Seasonal,Heroes,Tweaks
+ No-Bling DOTA mod v2.0 choices: 
+ Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
 
@@ -8,7 +9,7 @@ Simply a competent companion to Settings -- Video -- Effects Quality with the ma
 No-Bling DOTA mod is economy-friendly, gracefully disabling particle spam while leaving hats model untouched.
 Might say it even helps differentiate great artistic work, shadowed by the particle effects galore Valve slaps on top.
 
- How to manually install the .vpk / .zip builds after 7.07?
+ How to manually install the .vpk builds after 7.07?
 --------------------------------------------------------------------------------
 Instructions for English language (default)
 - CREATE FOLDER \steamapps\common\dota 2 beta\game\dota_english%
@@ -1551,6 +1552,66 @@ particles\econ\wards\smeevil\smeevil_ward\smeevil_ward_yellow_ambient.vpcf_c?par
 particles\econ\wards\the_watcher_below\watcher_below\watcher_below_ambient.vpcf_c?particles\items2_fx\ward.vpcf_c
 particles\econ\wards\the_watcher_below\watcher_below\watcher_below_sentry_ambient.vpcf_c?particles\items2_fx\ward_true_sight.vpcf_c
 particles\econ\wards\warlock\ward_warlock\warlock_ambient_ward.vpcf_c?particles\dev\empty_particle.vpcf_c
+[Seasonal]
+particles\econ\events\ti7\blink_dagger_end_ti7.vpcf_c?particles\items_fx\blink_dagger_end.vpcf_c
+particles\econ\events\ti7\blink_dagger_end_ti7_lvl2.vpcf_c?particles\items_fx\blink_dagger_end.vpcf_c
+particles\econ\events\ti7\blink_dagger_start_ti7.vpcf_c?particles\items_fx\blink_dagger_start.vpcf_c
+particles\econ\events\ti7\blink_dagger_start_ti7_lvl2.vpcf_c?particles\items_fx\blink_dagger_start.vpcf_c
+particles\econ\events\ti7\bottle_ti7.vpcf_c?particles\items_fx\bottle.vpcf_c
+particles\econ\events\ti7\cyclone_ti7.vpcf_c?particles\items_fx\cyclone.vpcf_c
+particles\econ\events\ti7\dagon_ti7.vpcf_c?particles\items_fx\dagon.vpcf_c
+particles\econ\events\ti7\force_staff_ti7.vpcf_c?particles\items_fx\force_staff.vpcf_c
+particles\econ\events\ti7\fountain_regen_ti7.vpcf_c?particles\generic_gameplay\radiant_fountain_regen.vpcf_c
+particles\econ\events\ti7\fountain_regen_ti7_lvl2.vpcf_c?particles\generic_gameplay\radiant_fountain_regen.vpcf_c
+particles\econ\events\ti7\fountain_regen_ti7_lvl3.vpcf_c?particles\generic_gameplay\radiant_fountain_regen.vpcf_c
+particles\econ\events\ti7\golden_treasure_ti7_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\events\ti7\hero_levelup_ti7.vpcf_c?particles\generic_hero_status\hero_levelup.vpcf_c
+particles\econ\events\ti7\maelstorm_ti7.vpcf_c?particles\items_fx\chain_lightning.vpcf_c
+particles\econ\events\ti7\mekanism_recipient_ti7.vpcf_c?particles\items2_fx\mekanism_recipient.vpcf_c
+particles\econ\events\ti7\mekanism_ti7.vpcf_c?particles\items2_fx\mekanism.vpcf_c
+particles\econ\events\ti7\mjollnir_shield_ti7.vpcf_c?particles\items2_fx\mjollnir_shield.vpcf_c
+particles\econ\events\ti7\phase_boots_ti7.vpcf_c?particles\items2_fx\phase_boots.vpcf_c
+particles\econ\events\ti7\radiance_owner_ti7.vpcf_c?particles\items2_fx\radiance_owner.vpcf_c
+particles\econ\events\ti7\radiance_ti7.vpcf_c?particles\items2_fx\radiance.vpcf_c
+particles\econ\events\ti7\shivas_guard_active_ti7.vpcf_c?particles\items2_fx\shivas_guard_active.vpcf_c
+particles\econ\events\ti7\shivas_guard_impact_ti7.vpcf_c?particles\items2_fx\shivas_guard_impact.vpcf_c
+particles\econ\events\ti7\shivas_guard_slow.vpcf_c?particles\generic_gameplay\generic_slowed_cold.vpcf_c
+particles\econ\events\ti7\status_effect_shivas_guard_ti7.vpcf_c?particles\status_fx\status_effect_frost.vpcf_c
+particles\econ\events\ti7\teleport_end_ti7.vpcf_c?particles\items2_fx\teleport_end.vpcf_c
+particles\econ\events\ti7\teleport_end_ti7_lvl2.vpcf_c?particles\items2_fx\teleport_end.vpcf_c
+particles\econ\events\ti7\teleport_end_ti7_lvl3.vpcf_c?particles\items2_fx\teleport_end.vpcf_c
+particles\econ\events\ti7\teleport_start_ti7.vpcf_c?particles\items2_fx\teleport_start.vpcf_c
+particles\econ\events\ti7\teleport_start_ti7_lvl2.vpcf_c?particles\items2_fx\teleport_start.vpcf_c
+particles\econ\events\ti7\teleport_start_ti7_lvl3.vpcf_c?particles\items2_fx\teleport_start.vpcf_c
+particles\econ\events\ti7\ti7_hero_effect.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_tower\tower_upgrade\ti7_dire_tower_lvl1_dest.vpcf_c?particles\dire_fx\dire_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_dire_tower_lvl10_dest.vpcf_c?particles\dire_fx\dire_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_dire_tower_lvl11_dest.vpcf_c?particles\dire_fx\dire_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_dire_tower_lvl2_dest.vpcf_c?particles\dire_fx\dire_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_dire_tower_lvl21_orb.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_tower\tower_upgrade\ti7_dire_tower_lvl3_dest.vpcf_c?particles\dire_fx\dire_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_dire_tower_lvl4_dest.vpcf_c?particles\dire_fx\dire_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_dire_tower_lvl5_dest.vpcf_c?particles\dire_fx\dire_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_dire_tower_lvl6_dest.vpcf_c?particles\dire_fx\dire_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_dire_tower_lvl7_dest.vpcf_c?particles\dire_fx\dire_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_dire_tower_lvl8_dest.vpcf_c?particles\dire_fx\dire_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_dire_tower_lvl9_dest.vpcf_c?particles\dire_fx\dire_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_dire_tower_orb.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_tower\tower_upgrade\ti7_dire_tower_projectile.vpcf_c?particles\base_attacks\ranged_tower_bad.vpcf_c
+particles\world_tower\tower_upgrade\ti7_radiant_tower_lvl1_dest.vpcf_c?particles\radiant_fx\radiant_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_radiant_tower_lvl10_dest.vpcf_c?particles\radiant_fx\radiant_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_radiant_tower_lvl11_dest.vpcf_c?particles\radiant_fx\radiant_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_radiant_tower_lvl11_orb.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_tower\tower_upgrade\ti7_radiant_tower_lvl2_dest.vpcf_c?particles\radiant_fx\radiant_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_radiant_tower_lvl3_dest.vpcf_c?particles\radiant_fx\radiant_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_radiant_tower_lvl4_dest.vpcf_c?particles\radiant_fx\radiant_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_radiant_tower_lvl5_dest.vpcf_c?particles\radiant_fx\radiant_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_radiant_tower_lvl6_dest.vpcf_c?particles\radiant_fx\radiant_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_radiant_tower_lvl7_dest.vpcf_c?particles\radiant_fx\radiant_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_radiant_tower_lvl8_dest.vpcf_c?particles\radiant_fx\radiant_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_radiant_tower_lvl9_dest.vpcf_c?particles\radiant_fx\radiant_tower002_destruction.vpcf_c
+particles\world_tower\tower_upgrade\ti7_radiant_tower_orb.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_tower\tower_upgrade\ti7_radiant_tower_proj.vpcf_c?particles\base_attacks\ranged_tower_good.vpcf_c
 [Heroes]
 particles\econ\items\death_prophet\death_prophet_vesture_ambients\death_prophet_vesture_ambients.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\disruptor\disruptor_resistive_pinfold\disruptor_ambient_empty.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1766,10 +1827,7 @@ particles\units\heroes\hero_zeus\zeus_return_king_of_gods_head_ambient.vpcf_c?pa
 particles\units\heroes\hero_zeus\zeus_return_king_of_gods_head_style1_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\heroes_underlord\underlord_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\heroes_underlord\underlord_ambient_eyes.vpcf_c?particles\dev\empty_particle.vpcf_c
-[Tweaks]
-maps\journey_assets\particles\journey_fountain_dire.vpcf_c?particles\dev\empty_particle.vpcf_c
-maps\journey_assets\particles\journey_fountain_radiant.vpcf_c?particles\dev\empty_particle.vpcf_c
-particles\addons_gameplay\fountain_tintable_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+[Base]
 particles\dire_fx\bad_ancient_core.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\dire_fx\bad_ancient_deflights.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\dire_fx\bad_ancient_embers.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1784,22 +1842,70 @@ particles\dire_fx\barracks_bad_ranged_flow2.vpcf_c?particles\dev\empty_particle.
 particles\dire_fx\barracks_bad_smoke.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\dire_fx\incense_large_b.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\dire_fx\tower_bad_lamp.vpcf_c?particles\dev\empty_particle.vpcf_c
-particles\econ\events\ti7\golden_treasure_ti7_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
-particles\econ\items\juggernaut\jugg_fortunes_tout\jugg_healling_ward_fortunes_tout_ward_flame.vpcf_c?particles\dev\empty_particle.vpcf_c
-particles\econ\items\lina\lina_head_headflame\portrait_lina_alt1.vpcf_c?particles\dev\empty_particle.vpcf_c
-particles\econ\items\visage\immortal_familiar\visage_immortal_ti5\visage_familiar_ambient_ti5.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\events\ti7\aegis_lvl_1000_ambient_ti7.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\radiant_fx\good_statue008_amb_mdlwisp.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\radiant_fx\good_statue010_ambienglow_c.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\radiant_fx\good_statue010_ambienglow_fallback_med.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\radiant_fx2\good_ancient001_base_pool_c.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\radiant_fx2\good_ancient001_deflights.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\radiant_fx2\good_ancient001_spherering.vpcf_c?particles\dev\empty_particle.vpcf_c
+[Effigies]
+particles\econ\items\effigies\status_fx_effigies\ambientfx_effigy_wm16_dire.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\ambientfx_effigy_wm16_dire_lvl2.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\ambientfx_effigy_wm16_dire_lvl3.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\ambientfx_effigy_wm16_radiant.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\ambientfx_effigy_wm16_radiant_lvl1.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\ambientfx_effigy_wm16_radiant_lvl2.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\ambientfx_effigy_wm16_radiant_lvl3.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\frosty_effigy_ambient_dire.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\frosty_effigy_ambient_l2_dire.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\frosty_effigy_ambient_l2_radiant.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\frosty_effigy_ambient_radiant.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\gold_effigy_ambient_dire.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\gold_effigy_ambient_dire_lvl2.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\gold_effigy_ambient_radiant.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\gold_effigy_ambient_radiant_lvl2.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\jade_effigy_ambient_dire.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\jade_effigy_ambient_radiant.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\se_ambient_fm16_dire_lvl1.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\se_ambient_fm16_dire_lvl2.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\se_ambient_fm16_dire_lvl3.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\se_ambient_fm16_rad_lvl1.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\se_ambient_fm16_rad_lvl2.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\effigies\status_fx_effigies\se_ambient_fm16_rad_lvl3.vpcf_c?particles\dev\empty_particle.vpcf_c
+[Shrines]
+particles\world_shrine\dire_shrine_ambient_detail.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\dire_shrine_ambient_embers.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\dire_shrine_ambient_flares.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\dire_shrine_ambient_ground.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\dire_shrine_ambient_ground_b.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\dire_shrine_ambient_ground_splash.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\dire_shrine_ambient_haze.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\dire_shrine_ambient_lava.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\dire_shrine_ambient_puddle.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\dire_shrine_ambient_ray.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\dire_shrine_ambient_splash.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\dire_shrine_ambient_vapor.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\dire_shrine_ambient_warp.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\radiant_shrine_ambient_bubbles.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\radiant_shrine_ambient_embers.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\radiant_shrine_ambient_flares.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\radiant_shrine_ambient_puddle.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\radiant_shrine_ambient_ray.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\radiant_shrine_ambient_steam.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_shrine\radiant_shrine_ambient_swirl.vpcf_c?particles\dev\empty_particle.vpcf_c
+[Props]
+maps\journey_assets\particles\journey_fountain_dire.vpcf_c?particles\dev\empty_particle.vpcf_c
+maps\journey_assets\particles\journey_fountain_radiant.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\addons_gameplay\fountain_tintable_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\rain_fx\coloseum_terrain.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\rain_fx\desert_terrain.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\rain_fx\journey_terrain.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\rain_fx\spring_terrain.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\rain_fx\winter_terrain.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\terrain_fx\classical_fountain001_water.vpcf_c?particles\dev\empty_particle.vpcf_c
+[Menu]
+particles\econ\items\lina\lina_head_headflame\portrait_lina_alt1.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\static_fog_flash.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\static_ground_smoke.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\static_ground_smoke_soft.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1825,9 +1931,7 @@ particles\units\heroes\hero_juggernaut\portrait_healingward_flame.vpcf_c?particl
 particles\units\heroes\hero_keeper_of_the_light\portrait_keeper.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_lina\portrait_lina.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_luna\luna_portrait_glow.vpcf_c?particles\dev\empty_particle.vpcf_c
-particles\units\heroes\hero_phoenix\phoenix_supernova_egg_loadout.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_phoenix\phoenix_supernova_portrait.vpcf_c?particles\dev\empty_particle.vpcf_c
-particles\units\heroes\hero_pugna\pugna_ward_portait.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_queenofpain\portrait_queenofpain.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_sandking\sandking_portrait.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_shadow_demon\shadow_demon_portrait.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1836,12 +1940,8 @@ particles\units\heroes\hero_siren\naga_siren_portrait.vpcf_c?particles\dev\empty
 particles\units\heroes\hero_slark\portrait_slark.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_spirit_breaker\spirit_breaker_portrait.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_stormspirit\storm_spirit_portrait.vpcf_c?particles\dev\empty_particle.vpcf_c
-particles\units\heroes\hero_terrorblade\terrorblade_metamorphosis_head.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_tidehunter\tidehunter_portrait.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_tusk\portrait_tusk.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_undying\undying_fg_portrait.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_undying\undying_portrait.vpcf_c?particles\dev\empty_particle.vpcf_c
-particles\units\heroes\hero_visage\visage_familiar_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_winter_wyvern\portrait_winter_wyvern.vpcf_c?particles\dev\empty_particle.vpcf_c
-particles\world_shrine\dire_shrine_ambient.vpcf_c?particles\world_shrine\dire_shrine_ambient_flares.vpcf_c
-particles\world_shrine\radiant_shrine_ambient.vpcf_c?particles\world_shrine\radiant_shrine_ambient_flares.vpcf_c
