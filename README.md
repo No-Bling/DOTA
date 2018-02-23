@@ -84,8 +84,8 @@ Simply remove / rename the `-language x` launch option and restart the game!
 It's recommended to set Effects Quality option to Low for potato pc's as it decreases the nr of particles for certain spells  
   
 ### What's new in v2.0 final: 
-~ Way faster and more reliable, improved caching, less storage operations, long paths support, auto-install with current language 
-~ Press Enter to accept No-Bling choices dialog, integrated endtask choice, clearline working in both Windows 7 and 10, output++  
+~ Faster, more reliable, improved caching, less storage operations, long paths support, auto-install with current language  
+~ Press Enter to accept No-Bling choices dialog, integrated endtask choice, clearline working in both Windows 7 and 10  
 ~ Seasonal category reinstated, as it's still useful for TI7 replays despite event being expired  
 ~ Extended manual filters to make certain items like arcana's less underwelming  
 ~ New Tweaks category - split into subcategories for more fine-tuning - effigies support, proper shrines, filtered portraits  
