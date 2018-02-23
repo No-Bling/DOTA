@@ -16,8 +16,7 @@ var REV_MOD={};              // [Advanced] Replace any auto-generated mod for pa
 var KEEP={};                 // Ignore any auto-generated mod for specific particle file
 var MOD_ABILITY={};          // Add particle replacement file in the Abilities category
 var MOD_HAT={};              // Add particle replacement file in the Hats category
-var MOD_HERO={};             // Add particle replacement file in the Heroes category
-// v2.0 final - Tweaks has been split into subcategories:
+var MOD_HERO={};             // Add particle replacement file in the HEROES category
 var MOD_BASE={};             // Add particle replacement file in the Base category
 var MOD_EFFIGY={};           // Add particle replacement file in the Effigies category
 var MOD_SHRINE={};           // Add particle replacement file in the Shrines category
@@ -410,8 +409,8 @@ No_Bling=function(content, output, choices, verbose, timers){
 
   // Initiate filter variables
   var off='particles/dev/empty_particle.vpcf', q='"', used_by_heroes={};
-  var logs={ 'Wearables':{},'Heroes':{},'Couriers':{},'Wards':{},'Seasonal':{},'Others':{} };
-  var mods={ 'Abilities':{},'Hats':{},'Couriers':{},'Wards':{},'Seasonal':{},'Heroes':{},'Others':{}, 
+  var logs={ 'Wearables':{},'HEROES':{},'Couriers':{},'Wards':{},'Seasonal':{},'Others':{} };
+  var mods={ 'Abilities':{},'Hats':{},'Couriers':{},'Wards':{},'Seasonal':{},'HEROES':{},'Others':{}, 
              'Base':{},'Effigies':{},'Shrines':{},'Props':{},'Menu':{} };
 
   // Read and vdf.parse items_game.txt
@@ -450,7 +449,7 @@ No_Bling=function(content, output, choices, verbose, timers){
       hero=(hero.indexOf('hero_') > -1) ? h.split('hero_')[1] : 'NO'; used_by_heroes[hero]='';
     }
     // convert prefab categories
-    if (prefab == 'wearable' || prefab == 'bundle') precat='Wearables'; else if (prefab == 'default_item') precat='Heroes';
+    if (prefab == 'wearable' || prefab == 'bundle') precat='Wearables'; else if (prefab == 'default_item') precat='HEROES';
     else if (prefab == 'courier' || prefab == 'courier_wearable') precat='Couriers'; else if (prefab == 'ward') precat='Wards';
     else if (prefab == 'tool' || prefab == 'relic' || prefab == 'treasure_chest') precat='Seasonal'; else precat='Others';
     // guess expiration
@@ -490,7 +489,7 @@ No_Bling=function(content, output, choices, verbose, timers){
             cat='Abilities'; maybe_ability[modifier]= (asset) ? asset : off;                             // use found asset if valid
           }
         } else if (modifier.indexOf('particles/units/heroes') > -1){
-          cat='Heroes'; //mods[cat][modifier]=(asset) ? asset : off;                                            // just log ignored
+          cat='HEROES'; //mods[cat][modifier]=(asset) ? asset : off;                                            // just log ignored
           if (LOG) logitem+= '      ignore_hero: '+modifier+RN;
         } else {
           cat='Others'; //mods[cat][modifier]=(asset) ? asset : off;                                             // just log ignored
@@ -507,7 +506,7 @@ No_Bling=function(content, output, choices, verbose, timers){
           }
           if (LOG) logitem+= '      hat: '+modifier+RN;
         } else if (modifier.indexOf('particles/units/heroes') > -1){
-          cat='Heroes'; // Default item overrides
+          cat='HEROES'; // Default item overrides
           mods[cat][modifier]=(asset) ? asset : off; maybe_hat[modifier]=(asset) ? asset : off;
           if (LOG) logitem+= '      maybe_hat? '+modifier+RN;
         } else {
@@ -517,9 +516,9 @@ No_Bling=function(content, output, choices, verbose, timers){
         has_particles = true;
       }
       // HEROES default
-      if (precat == 'Heroes'){
+      if (precat == 'HEROES'){
         if (modifier.indexOf('particles/units/heroes') > -1){
-          cat='Heroes'; mods[cat][modifier]=off; has_particles = true;
+          cat='HEROES'; mods[cat][modifier]=off; has_particles = true;
           if (LOG) logitem+= '      hero: '+modifier+RN;
         }
       }
@@ -560,7 +559,7 @@ No_Bling=function(content, output, choices, verbose, timers){
     // Separate Hats from Abilities out of the ambiguous visuals.asset_modifier.type='particle'
     for (var hat in maybe_ability){
       if (maybe_ability[hat] in maybe_hat){
-        if (maybe_ability[hat] in mods['Heroes']){
+        if (maybe_ability[hat] in mods['HEROES']){
           mods['Hats'][hat]=maybe_ability[hat];
           if (LOG) logitem+= '        hat! '+path.basename(hat)+RN;
         } else {
@@ -568,7 +567,7 @@ No_Bling=function(content, output, choices, verbose, timers){
           if (LOG) logitem+= '        ability! '+path.basename(hat)+RN; // none?!
         }
       } else {
-        if (maybe_ability[hat] in mods['Heroes']){
+        if (maybe_ability[hat] in mods['HEROES']){
           mods['Hats'][hat]=maybe_ability[hat];
           if (LOG) logitem+= '        hat! '+path.basename(hat)+RN;
         } else {
@@ -595,7 +594,7 @@ No_Bling=function(content, output, choices, verbose, timers){
     // Optionally generate per-hero / category items_game.txt log slices keeping original indenting
     if (LOG){
       if (hero != 'NO'){                                                                                    // per-hero items
-        var herocat=(prefab == 'default_item') ? 'Heroes' : 'Wearables';
+        var herocat=(prefab == 'default_item') ? 'HEROES' : 'Wearables';
         if (!logs[herocat][hero]) logs[herocat][hero]={};
         if (!logs[herocat][hero][i]) logs[herocat][hero][i]={};         // for convenience,
         if (!logs[herocat][hero][i]['items_game']) logs[herocat][hero][i]['items_game']={};
@@ -629,7 +628,7 @@ No_Bling=function(content, output, choices, verbose, timers){
     for (cat in mods){if (modifier in mods[cat]) existing=true;}
     if (existing) continue;                                                                                 // do not override items
     if (modifier.indexOf('particles/units/heroes') > -1){
-      mods['Heroes'][modifier]=off; if (LOG) w.echo('  hero: '+modifier);
+      mods['HEROES'][modifier]=off; if (LOG) w.echo('  hero: '+modifier);
     } else if (modifier.indexOf('particles/econ/items') > -1){
       mods['Hats'][modifier]=off; if (LOG) w.echo('  hat: '+modifier);
     } else if (modifier.indexOf('particles/econ/courier') > -1){
@@ -679,15 +678,15 @@ No_Bling=function(content, output, choices, verbose, timers){
 
   // Import manual filters
   for (hat in KEEP){
-    for (var scat in {'Hats':1,'Abilities':1,'Heroes':1}) delete mods[scat][hat]; if (LOG) w.echo('  skip: '+hat);
+    for (var scat in {'Hats':1,'Abilities':1,'HEROES':1}) delete mods[scat][hat]; if (LOG) w.echo('  skip: '+hat);
   }
 
-  for (hat in REV_KEEP){ delete mods['Heroes'][hat];  if (LOG) w.echo('  rev_skip: '+hat); }
-  for (hat in REV_MOD){ mods['Heroes'][hat]=REV_MOD[hat];  if (LOG) w.echo('  rev_mod: '+hat); }
+  for (hat in REV_KEEP){ delete mods['HEROES'][hat];  if (LOG) w.echo('  rev_skip: '+hat); }
+  for (hat in REV_MOD){ mods['HEROES'][hat]=REV_MOD[hat];  if (LOG) w.echo('  rev_mod: '+hat); }
 
   for (hat in MOD_ABILITY){ mods['Abilities'][hat]=MOD_ABILITY[hat]; if (LOG) w.echo('  mod_ability: '+hat); }
   for (hat in MOD_HAT){ mods['Hats'][hat]=MOD_HAT[hat]; if (LOG) w.echo('  mod_hat: '+hat); }
-  for (hat in MOD_HERO){ mods['Heroes'][hat]=MOD_HERO[hat]; if (LOG) w.echo('  mod_hero: '+hat); }
+  for (hat in MOD_HERO){ mods['HEROES'][hat]=MOD_HERO[hat]; if (LOG) w.echo('  mod_hero: '+hat); }
   for (hat in MOD_BASE){ mods['Base'][hat]=MOD_BASE[hat]; if (LOG) w.echo('  mod_base: '+hat); }
   for (hat in MOD_EFFIGY){ mods['Effigies'][hat]=MOD_EFFIGY[hat]; if (LOG) w.echo('  mod_effigy: '+hat); }  
   for (hat in MOD_SHRINE){ mods['Shrines'][hat]=MOD_SHRINE[hat]; if (LOG) w.echo('  mod_shrine: '+hat); }
@@ -696,7 +695,7 @@ No_Bling=function(content, output, choices, verbose, timers){
 
   // Heroes option supersedes Hats option so include non-moded particles
   for (hat in mods['Hats']){
-    if (mods['Hats'][hat]!=off && !(mods['Hats'][hat] in KEEP)){mods['Heroes'][hat]=off; if (LOG) w.echo('  hero_include: '+hat);}
+    if (mods['Hats'][hat]!=off && !(mods['Hats'][hat] in KEEP)){mods['HEROES'][hat]=off; if (LOG) w.echo('  hero_include: '+hat);}
   }
 
   if (LOG) t.end();
@@ -709,7 +708,7 @@ No_Bling=function(content, output, choices, verbose, timers){
     for (cat in logs){
       if (typeof logs[cat] != 'object') continue;
       var islot='';
-      if (cat == 'Heroes' || cat == 'Wearables'){ // per-hero items
+      if (cat == 'HEROES' || cat == 'Wearables'){ // per-hero items
         for (hero in used_by_heroes){
           for (item in logs[cat][hero]){
             iname=logs[cat][hero][item].items_game.items[item].item_name.replace('#DOTA_Item_','').replace('#DOTA_','');
