@@ -2,7 +2,7 @@
 //----------------------------------------------------------------------------------------------------------------------------------
 // What's new in No-Bling DOTA mod builder.js v2.0 final: 
 // - Seasonal category reinstated, as it's still useful for TI7 replays despite event being expired
-// - Extended manual filters to make certain items like arcana's less underwelming
+// - Extended manual filters to make certain items like arcana's less underwhelming
 // - New Tweaks category - split into subcategories for more fine-tuning - effigies support, proper shrines, filtered portraits 
 // - More reliable Dota_LOptions function and consistent verbose output in both Node.js and JScript engines  
 //----------------------------------------------------------------------------------------------------------------------------------
@@ -195,6 +195,7 @@ MOD_HERO['particles/units/heroes/hero_enigma/enigma_ambient_rocks.vpcf']=off;//
   /*  GYROCOPTER  */
 KEEP['particles/units/heroes/hero_gyrocopter/gyro_ambient.vpcf']=0;//                                     FIX empty propeller radius
 MOD_HERO['particles/units/heroes/hero_gyrocopter/gyro_ambient_smokestack.vpcf']=off;//                                   tweak smoke
+MOD_ABILITY['particles/units/heroes/hero_gyrocopter/gyro_call_down_explosion_impact_a.vpcf']=off;//     FIX Gyro call down Valve bug
   /*  HUSKAR  */
   /*  INVOKER  */
   /*  JAKIRO  */

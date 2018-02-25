@@ -85,11 +85,11 @@ It's recommended to set Effects Quality option to Low for Potato PC's as it decr
 Before reporting bugs, list active particles in game console: `clear;dumpparticlelist | grep [^0\s][\d]*,[\s]flags;condump`  
 then share the exported list from: `\Steam\steamapps\common\dota 2 beta\game\dota\condump0XX.txt`  
   
-### What's new in v2.0 final: 
+### What's new in v2.0 final:  
 ~ Faster, more reliable, improved caching, less storage operations, long paths support, auto-install with current language  
 ~ Press Enter to accept No-Bling choices dialog, integrated endtask choice, clearline working in both Windows 7 and 10  
 ~ Seasonal category reinstated, as it's still useful for TI7 replays despite event being expired  
-~ Extended manual filters to make certain items like arcana's less underwelming  
+~ Extended manual filters to make certain items like arcana's less underwhelming, fix Gyro's call down Valve bug  
 ~ New Tweaks category - split into subcategories for more fine-tuning - effigies support, proper shrines, filtered portraits  
 ~ More reliable Dota_LOptions function and consistent verbose output in both Node.js and JScript engines  
   
