@@ -56,7 +56,7 @@ Menu           | **+**       | Tweak main menu - ui, hero preview               
 - New patch detection is generally reliable. If having any issues, select *@refresh* choice to force local cache update  
   
 ## What about non-Windows OS / issues with the builder batch script?  
-Use the pre-made releases in the [BUILDS](https://github.com/No-Bling/DOTA/tree/master/BUILDS) folder  
+Use the pre-made releases in the [BUILDS](https://github.com/No-Bling/DOTA/tree/master/BUILDS) folder via manual install  
   
 ## How to manually install the .vpk builds after 7.07:  
    Instructions for English language (default)  
@@ -80,8 +80,10 @@ Use the pre-made releases in the [BUILDS](https://github.com/No-Bling/DOTA/tree/
 ### How to quickly restore default particle spam DOTA?  
 Simply remove / rename the `-language x` launch option and restart the game!  
   
-### Notes:  
-It's recommended to set Effects Quality option to Low for potato pc's as it decreases the nr of particles for certain spells  
+### Hints:  
+It's recommended to set Effects Quality option to Low for Potato PC's as it decreases the nr of particles for certain spells  
+Before reporting bugs, list active particles in game console: `clear;dumpparticlelist | grep [^0\s][\d]*,[\s]flags;condump`  
+then share the exported list from: `\Steam\steamapps\common\dota 2 beta\game\dota\condump0XX.txt`  
   
 ### What's new in v2.0 final: 
 ~ Faster, more reliable, improved caching, less storage operations, long paths support, auto-install with current language  
@@ -92,7 +94,7 @@ It's recommended to set Effects Quality option to Low for potato pc's as it decr
 ~ More reliable Dota_LOptions function and consistent verbose output in both Node.js and JScript engines  
   
 ## What happened in 7.07?  
-#### Valve removed -LV launch option. Looking at backend code, there might be some internal refactoring.  
+__Valve removed -LV launch option. Looking at backend code, there might be some internal refactoring.__  
 Other client-side modding methods were unaffected, so No-Bling switched to the `-language` method.  
 No point on doing resource-compiling if `m_hLowViolenceDef` is unavailable, so that part is dumbed-down to file-replacing.  
 Launch options gets complicated as it's language-dependant, unlike convenient, unified, stand-alone `-LV` _( RIP 2017-11-1 )_  
