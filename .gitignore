@@ -4,6 +4,7 @@
 log/
 src/
 zip/
+test/
 
 # tools
 # tools/
