@@ -93,7 +93,7 @@ then share the exported list from: `\Steam\steamapps\common\dota 2 beta\game\dot
 ~ New Tweaks category - split into subcategories for more fine-tuning - effigies support, proper shrines, filtered portraits  
 ~ More reliable Dota_LOptions function and consistent verbose output in both Node.js and JScript engines  
 __Bumped version from v2.0 final to match game patch 7.10:__  
-- Add emblem (previously called relic), re-enable expired TI7 Effects for event replays viewing  
+~ Add emblem (previously called relic), re-enable expired TI7 Effects for event replays viewing  
   
 ## What happened in 7.07?  
 __Valve removed -LV launch option. Looking at backend code, there might be some internal refactoring.__  
