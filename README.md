@@ -32,7 +32,7 @@ Category       | GlanceValue | Description                                      
 -------------- | ----------- | ------------------------------------------------------------------------ | ----------  
 Abilities      | **+++++**   | Custom Spells: penguin Frostbite and stuff like that..                   |  Low  
 Hats           | **+++**     | Workshop Hats: cosmetic particles spam - slowly turning into TF2..       |  
-Couriers       | **+++**     | Custom Couriers: these are fine.. until someone abuses gems on hats      |  
+Couriers       | **+++**     | Custom Couriers: these are fine.. until  ̶F̶y̶ someone abuses gems on hats   |  
 Wards          | **++**      | Custom Wards: only a few make the ward and the sentry item similar       |  
 Seasonal       | **++++**    | Event Rewards: the International 7 custom tp, blink, contest towers      |  
 .            . | .         . | .                                                                      . | .       .
@@ -82,7 +82,7 @@ Simply remove / rename the `-language x` launch option and restart the game!
   
 ### Hints:  
 It's recommended to set Effects Quality option to Low for Potato PC's as it decreases the nr of particles for certain spells  
-Before reporting bugs, list active particles in game console: `clear;dumpparticlelist | grep [^0\s][\d]*,[\s]flags;condump`  
+Before reporting bugs, list particles in game console: `clear;dumpparticlelist | grep [^0\s][\d]*,[\s]flags;condump`  
 then share the exported list from: `\Steam\steamapps\common\dota 2 beta\game\dota\condump0XX.txt`  
   
 ### What's new in v7.10:  
