@@ -1,4 +1,4 @@
- No-Bling DOTA mod v2.0 choices: 
+ No-Bling DOTA mod v7.10 choices:
  Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
@@ -1585,6 +1585,7 @@ particles\econ\events\ti7\teleport_start_ti7.vpcf_c?particles\items2_fx\teleport
 particles\econ\events\ti7\teleport_start_ti7_lvl2.vpcf_c?particles\items2_fx\teleport_start.vpcf_c
 particles\econ\events\ti7\teleport_start_ti7_lvl3.vpcf_c?particles\items2_fx\teleport_start.vpcf_c
 particles\econ\events\ti7\ti7_hero_effect.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\events\winter_major_2016\compendium_points_winter_ambient_2016.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\world_tower\tower_upgrade\ti7_dire_tower_lvl1_dest.vpcf_c?particles\dire_fx\dire_tower002_destruction.vpcf_c
 particles\world_tower\tower_upgrade\ti7_dire_tower_lvl10_dest.vpcf_c?particles\dire_fx\dire_tower002_destruction.vpcf_c
 particles\world_tower\tower_upgrade\ti7_dire_tower_lvl11_dest.vpcf_c?particles\dire_fx\dire_tower002_destruction.vpcf_c

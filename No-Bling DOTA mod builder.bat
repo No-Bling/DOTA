@@ -1,23 +1,24 @@
 goto="init" /* %~nx0
-:: What's new in No-Bling DOTA mod builder.bat v2.0 final: 
-:: - Way faster and more reliable, improved caching, less storage operations, long paths support, auto-install with current language 
-:: - Press Enter to accept No-Bling choices dialog, integrated endtask choice, clearline working in both Windows 7 and 10, output++   
+:: Bumped version from v2.0 final to match game patch 7.10
+:: What's new in No-Bling DOTA mod builder.bat v2.0 final:
+:: - Way faster and more reliable, improved caching, less storage operations, long paths support, auto-install with current language
+:: - Press Enter to accept No-Bling choices dialog, integrated endtask choice, clearline working in both Windows 7 and 10, output++
 ::----------------------------------------------------------------------------------------------------------------------------------
 :main No-Bling DOTA :G :l :a :n :c :e :V :a :l :u :e restoration mod builder                                      edited in SynWrite
 ::----------------------------------------------------------------------------------------------------------------------------------
 :: Mod builder gui choices - no need to edit defaults here, script shows a graphical dialog for easier selection
 set "Abilities=1"                      ||   1 = penguin Frostbite and stuff like that..                                          LOW
-set "Hats=1"                           ||   1 = cosmetic particles spam - slowly turning into TF2..                              
+set "Hats=1"                           ||   1 = cosmetic particles spam - slowly turning into TF2..
 set "Couriers=1"                       ||   1 = couriers particles are fine.. until a dumber abuses gems on hats
 set "Wards=1"                          ||   1 = only a few of them make the ward and the sentry item too similar
 set "Seasonal=1"                       ||   1 = the International 7 custom tp, blink etc.
 
 set "HEROES=1"                         ||   1 = default hero particles, helps potato pc but glancevalue can suffer               MED
 
-set "Base=1"                           ||   1 = tweak map base buildings - ancients, barracks, towers                
+set "Base=1"                           ||   1 = tweak map base buildings - ancients, barracks, towers
 set "Effigies=1"                       ||   1 = tweak map effigies
 set "Shrines=1"                        ||   1 = tweak map shrines
-set "Props=1"                          ||   1 = tweak map props - fountains, terrain-bundled weather 
+set "Props=1"                          ||   1 = tweak map props - fountains, terrain-bundled weather
 set "Menu=1"                           ||   1 = tweak main menu - ui, hero preview                                              HIGH
 
 set "@verbose=0"                       ||   1 = show extra details; log detailed per-hero item lists,  0 = skip detailed item lists
@@ -32,7 +33,7 @@ rem set "MOD_LANGUAGE=english"         || rem = current Steam language is auto-d
 rem set "MOD_FILE=pak01_dir.vpk"       || rem = localized versions might use pak02_dir.vpk, override here
 set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"
 set "def_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"        || dialog [Reset] sets these
-set "version=2.0"
+set "version=7.10"
 
 title No-Bling DOTA mod builder by AveYo v%version%
 setlocal &rem free script so no bitching!
@@ -229,20 +230,20 @@ for %%a in (*.ini) do (
 :: Grab src files in one place
 pushd "%MOD_OUTPUT%" & mkdir "%MOD_OUTPUT%\~TMP\%MOD_VPK%" >nul 2>nul
 set "copy_tool=xcopy /E/C/I/Q/R/Y" & set "copy_ext=\*.*"
-for /f %%# in ('robocopy /? 2^>nul ^|find /i "/S"') do set "robust=%%#" &rem better long paths support 
+for /f %%# in ('robocopy /? 2^>nul ^|find /i "/S"') do set "robust=%%#" &rem better long paths support
 if defined robust set "copy_tool=robocopy /E /R:1 /W:1 /MT /NFL /NDL /NJH /NJS /NP" &set "copy_ext="
 for %%a in (%CHOICES%) do if exist "src\%%a" (
  call :color 03 " %%a " & echo ... & %copy_tool% "src\%%a%copy_ext%" "~TMP\%MOD_VPK%" >nul 2>nul
 )
 :: Run SourceFilmMaker vpk tool
 pushd "%MOD_OUTPUT%\~TMP"
-%vpk% %MOD_VPK% & copy /y %MOD_VPK%.vpk "%BUILDS%\" >nul 2>nul 
+%vpk% %MOD_VPK% & copy /y %MOD_VPK%.vpk "%BUILDS%\" >nul 2>nul
 %TIMER%
 
 :: Generate readme
 pushd "%BUILDS%"
 set .="%BUILDS%\No-Bling DOTA mod readme.txt"
- >%.% echo  No-Bling DOTA mod v%version% choices: 
+ >%.% echo  No-Bling DOTA mod v%version% choices:
 >>%.% echo  %CHOICES%
 >>%.% echo --------------------------------------------------------------------------------
 >>%.% echo We all know where we are headed looking at the Immortals spam in the last two years...
@@ -312,7 +313,7 @@ powershell -c "$first=322; $last=342; %ps_inst:"=\"%"
 endlocal
 
 :: Auto-Install No-Bling DOTA mod
-if not defined @endtask call :mcolor 0e. " Cannot auto-install mod / launch options without @endtask if Dota / Steam is running " 
+if not defined @endtask call :mcolor 0e. " Cannot auto-install mod / launch options without @endtask if Dota / Steam is running "
 if defined @endtask call :mcolor 0e " Press " 0c "Alt+F4" 0e. " to stop auto-install from closing Dota / Steam "
 if defined @endtask timeout /t 10 & call :clearline 4
 call :mcolor 0c " G " 04 " L " 0c " A " 04 " N " 0c " C "  04 " E " 4c " V " 04 " A " 0c " L " 04 " U " 0c " E " 04 " +" 0c. " +"
@@ -322,17 +323,17 @@ mkdir "%DOTA%\%MOD_FOLDER%" >nul 2>nul
 copy /y "%BUILDS%\pak01_dir.vpk" "%DOTA%\%MOD_FOLDER%\%MOD_FILE%" >nul 2>nul
 copy /y "%BUILDS%\No-Bling DOTA mod readme.txt" "%DOTA%\%MOD_FOLDER%\" >nul 2>nul
 if not defined STEAMDATA goto :done
-if defined @endtask taskkill /f /im steam.exe /t >nul 2>nul & timeout /t 2 >nul 
+if defined @endtask taskkill /f /im steam.exe /t >nul 2>nul & timeout /t 2 >nul
 :: Add launch options for Dota 2 directly in the config file [ does not update if Steam is running hence the @autoclose option ]
 pushd "%STEAMDATA%\config" & copy /y localconfig.vdf localconfig.vdf.bak >nul
 %js_engine% Dota_LOptions "localconfig.vdf" "-lv,-language x,-textlanguage x,+cl_language x" -remove
 %js_engine% Dota_LOptions "localconfig.vdf" "%MOD_OPTIONS%" -add
-:: Relaunch Steam with fast options                PSA: you can add such options to your Steam shorcut at the end of the Target line 
+:: Relaunch Steam with fast options                PSA: you can add such options to your Steam shorcut at the end of the Target line
 if defined @endtask del /f /q "%STEAMPATH%\.crash" >nul 2>nul
 set l1=-silent -console -forceservice -windowed -nobigpicture -nointro -vrdisable -skipstreamingdrivers -single_core -no-dwrite -tcp
 set l2=-inhibitbootstrap -nobootstrapperupdate -nodircheck -norepairfiles -noverifyfiles -nocrashmonitor -noassert
-if defined @endtask start "Steam" "%STEAMPATH%\Steam.exe" %l1% %l2% +"@AllowSkipGameUpdate 1"  
-    
+if defined @endtask start "Steam" "%STEAMPATH%\Steam.exe" %l1% %l2% +"@AllowSkipGameUpdate 1"
+
 :done                                                                                                       Gaben shall not prevail!
 call :end  Done!
 exit/b

@@ -1,10 +1,12 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                        edited in SynWrite
 //----------------------------------------------------------------------------------------------------------------------------------
-// What's new in No-Bling DOTA mod builder.js v2.0 final: 
+// Bumped version from v2.0 final to match game patch 7.10:
+// - Add emblem (previously called relic), re-enable expired TI7 Effects for event replays viewing
+// What's new in No-Bling DOTA mod builder.js v2.0 final:
 // - Seasonal category reinstated, as it's still useful for TI7 replays despite event being expired
 // - Extended manual filters to make certain items like arcana's less underwhelming
-// - New Tweaks category - split into subcategories for more fine-tuning - effigies support, proper shrines, filtered portraits 
-// - More reliable Dota_LOptions function and consistent verbose output in both Node.js and JScript engines  
+// - New Tweaks category - split into subcategories for more fine-tuning - effigies support, proper shrines, filtered portraits
+// - More reliable Dota_LOptions function and consistent verbose output in both Node.js and JScript engines
 //----------------------------------------------------------------------------------------------------------------------------------
 var ACTIVE_EVENT='EVENT_ID_INTERNATIONAL_2017'; // Hard-coded current event for the Seasonal category
 var off='particles/dev/empty_particle.vpcf'; // Disable particle files by replacing them with default empty particle
@@ -405,13 +407,13 @@ No_Bling=function(content, output, choices, verbose, timers){
   var MEASURE        = (timers == '1'); if (!MEASURE) timer = function(f){ return { end:function(){} }; }; var t;
 
   // Quit early if no choice selected
-  var HAS_CHOICES=(ABILITIES || HATS || COURIERS || WARDS || SEASONAL || HEROES || BASE || EFFIGIES || SHRINES || PROPS || MENU); 
+  var HAS_CHOICES=(ABILITIES || HATS || COURIERS || WARDS || SEASONAL || HEROES || BASE || EFFIGIES || SHRINES || PROPS || MENU);
   if (!HAS_CHOICES && !LOG) w.quit();
 
   // Initiate filter variables
   var off='particles/dev/empty_particle.vpcf', q='"', used_by_heroes={};
   var logs={ 'Wearables':{},'HEROES':{},'Couriers':{},'Wards':{},'Seasonal':{},'Others':{} };
-  var mods={ 'Abilities':{},'Hats':{},'Couriers':{},'Wards':{},'Seasonal':{},'HEROES':{},'Others':{}, 
+  var mods={ 'Abilities':{},'Hats':{},'Couriers':{},'Wards':{},'Seasonal':{},'HEROES':{},'Others':{},
              'Base':{},'Effigies':{},'Shrines':{},'Props':{},'Menu':{} };
 
   // Read and vdf.parse items_game.txt
@@ -452,13 +454,15 @@ No_Bling=function(content, output, choices, verbose, timers){
     // convert prefab categories
     if (prefab == 'wearable' || prefab == 'bundle') precat='Wearables'; else if (prefab == 'default_item') precat='HEROES';
     else if (prefab == 'courier' || prefab == 'courier_wearable') precat='Couriers'; else if (prefab == 'ward') precat='Wards';
-    else if (prefab == 'tool' || prefab == 'relic' || prefab == 'treasure_chest') precat='Seasonal'; else precat='Others';
+    else if (prefab == 'tool' || prefab == 'relic' || prefab == 'emblem' || prefab == 'treasure_chest') precat='Seasonal';
+    else precat='Others'; // 7.10: relic renamed to emblem..
     // guess expiration
     if (precat == 'Seasonal' || precat == 'Others'){
       var age=(typeof items[i].expiration_date == 'string') ? items[i].expiration_date.split(' ')[0].split(/\-0|\-/g) : '';
       if (!age && typeof items[i].creation_date == 'string'){ age=items[i].creation_date.split('-'); age[0]=parseInt(age[0],10)+1; }
       expired=(age && Date.UTC(age[0],age[1],age[2]) - new Date().getTime() < 0);
       if (items[i].event_id != ACTIVE_EVENT) expired=true;                  // hard-coded ACTIVE_EVENT = EVENT_ID_INTERNATIONAL_2017
+      if (items[i].event_id == ACTIVE_EVENT) expired=false;               // re-enable expired TI7 Effects for event replays viewing
     }
     // generate item category tracking text for debugging
     if (LOG) logitem='  '+iname+' ['+hero+'] '+prefab+' '+(rarity ? rarity+' ' : '')+iid+RN;
@@ -583,7 +587,7 @@ No_Bling=function(content, output, choices, verbose, timers){
       for (var p in items[i].portraits){
         if (typeof items[i].portraits[p] != 'object') continue;
         if (typeof items[i].portraits[p].PortraitParticle != 'string') continue;
-        if (items[i].portraits[p].PortraitParticle.indexOf('portrait') < 1) continue; 
+        if (items[i].portraits[p].PortraitParticle.indexOf('portrait') < 1) continue;
         if (items[i].portraits[p].PortraitParticle in KEEP) continue;
         MOD_MENU[items[i].portraits[p].PortraitParticle]=off; has_particles=true;
       }
@@ -689,10 +693,10 @@ No_Bling=function(content, output, choices, verbose, timers){
   for (hat in MOD_HAT){ mods['Hats'][hat]=MOD_HAT[hat]; if (LOG) w.echo('  mod_hat: '+hat); }
   for (hat in MOD_HERO){ mods['HEROES'][hat]=MOD_HERO[hat]; if (LOG) w.echo('  mod_hero: '+hat); }
   for (hat in MOD_BASE){ mods['Base'][hat]=MOD_BASE[hat]; if (LOG) w.echo('  mod_base: '+hat); }
-  for (hat in MOD_EFFIGY){ mods['Effigies'][hat]=MOD_EFFIGY[hat]; if (LOG) w.echo('  mod_effigy: '+hat); }  
+  for (hat in MOD_EFFIGY){ mods['Effigies'][hat]=MOD_EFFIGY[hat]; if (LOG) w.echo('  mod_effigy: '+hat); }
   for (hat in MOD_SHRINE){ mods['Shrines'][hat]=MOD_SHRINE[hat]; if (LOG) w.echo('  mod_shrine: '+hat); }
   for (hat in MOD_PROP){ mods['Props'][hat]=MOD_PROP[hat]; if (LOG) w.echo('  mod_prop: '+hat); }
-  for (hat in MOD_MENU){ mods['Menu'][hat]=MOD_MENU[hat]; if (LOG) w.echo('  mod_menu: '+hat); }    
+  for (hat in MOD_MENU){ mods['Menu'][hat]=MOD_MENU[hat]; if (LOG) w.echo('  mod_menu: '+hat); }
 
   // Heroes option supersedes Hats option so include non-moded particles
   for (hat in mods['Hats']){
@@ -878,7 +882,7 @@ if (typeof ScriptEngine == 'function' && ScriptEngine() == 'JScript'){
   path={}; path.join=function(f,n){return fso.BuildPath(f,n);}; path.normalize=function(f){return fso.GetAbsolutePathName(f);};
   path.basename=function(f){return fso.GetFileName(f);}; path.dirname=function(f){return fso.GetParentFolderName(f);};path.sep='\\';
   fs={}; fso=new ActiveXObject("Scripting.FileSystemObject"); ado=new ActiveXObject('ADODB.Stream'); DEF_ENCODING='Windows-1252';
-  FileExists=function(f){ return fso.FileExists(f); }; PathExists=function(f){ return fso.FolderExists(f); }; 
+  FileExists=function(f){ return fso.FileExists(f); }; PathExists=function(f){ return fso.FolderExists(f); };
   MakeDir=function(fn){
     if (fso.FolderExists(fn)) return; var pfn=fso.GetAbsolutePathName(fn), d=pfn.match(/[^\\\/]+/g), p='';
     for(var i=0,n=d.length; i<n; i++){ p+= d[i]+'\\'; if (!fso.FolderExists(p)) fso.CreateFolder(p); }
@@ -896,7 +900,7 @@ if (typeof ScriptEngine == 'function' && ScriptEngine() == 'JScript'){
   // start of Node.js specific code
   jscript=false; engine='Node.js'; w={}; argc=process.argv.length; argv=[]; run=''; p=process.argv; w.quit=process.exit; RN='\r\n';
   if (argc > 2){ run=p[2]; for (var n=3;n<argc;n++) argv.push('"'+p[n].replace(/[\\\/]+/g,'\\\\')+'"'); }
-  path=require('path'); fs=require('fs'); DEF_ENCODING='utf-8'; w.echo=function(s){console.log(s+'\r');}; 
+  path=require('path'); fs=require('fs'); DEF_ENCODING='utf-8'; w.echo=function(s){console.log(s+'\r');};
   FileExists=function(f){ try{ return fs.statSync(f).isFile(); }catch(e){ if (e.code == 'ENOENT') return false; } };
   PathExists=function(f){ try{ return fs.statSync(f).isDirectory(); }catch(e){ if (e.code == 'ENOENT') return false; } };
   MakeDir=function(f){ try{ fs.mkdirSync(f); }catch(e){ if (e.code == 'ENOENT'){ MakeDir(path.dirname(f)); MakeDir(f); } } };
