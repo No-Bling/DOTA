@@ -9,4 +9,4 @@
   
 See `No-Bling DOTA mod readme.txt` for manual install instructions  
   
-Or use `No-Bling DOTA mod builder.bat` to generate an updated custom version with automatic install!  
+Use `No-Bling DOTA mod builder.bat` if possible to generate an updated custom version with automatic install!  
