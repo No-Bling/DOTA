@@ -1,8 +1,11 @@
   
-##### Providing 3 pre-made builds:  
-High gain - all options *(recommended for Potato PC, up to 15-20% fps increase on the lower end)*  
-Med gain  - all options except Tweaks *(keeps base, effigies, shrines, props, menu effects)*  
-Low gain  - all options except Tweaks and HEROES *(also keeps non-workshop, default hero effects)*  
+##### Providing pre-made builds:  
+- Abilities_Hats_Couriers_Wards_Seasonal_HEROES_Base_Effigies_Shrines_Props_Menu  
+*all options enabled, recommended for Potato PC, up to 15-20% fps increase on the lower end*  
+- Abilities_Hats_Couriers_Wards_Seasonal_HEROES  
+*no Tweaks (no Base, no Effigies, no Shrines, no Props, no Menu)*  
+- Abilities_Hats_Couriers_Wards_Seasonal  
+*no Tweaks and no default HEROES effects (non-workshop)*  
   
 See `No-Bling DOTA mod readme.txt` for manual install instructions  
   
