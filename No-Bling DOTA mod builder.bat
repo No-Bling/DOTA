@@ -1,5 +1,6 @@
 goto="init" /* %~nx0
 :: Bumped version from v2.0 final to match game patch 7.10
+:: - Print new patch status before choices dialog, save it only after processing completes so it remains accurate on canceled runs
 :: What's new in No-Bling DOTA mod builder.bat v2.0 final:
 :: - Way faster and more reliable, improved caching, less storage operations, long paths support, auto-install with current language
 :: - Press Enter to accept No-Bling choices dialog, integrated endtask choice, clearline working in both Windows 7 and 10, output++
@@ -33,7 +34,7 @@ rem set "MOD_LANGUAGE=english"         || rem = current Steam language is auto-d
 rem set "MOD_FILE=pak01_dir.vpk"       || rem = localized versions might use pak02_dir.vpk, override here
 set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"
 set "def_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"        || dialog [Reset] sets these
-set "version=7.10"
+set "version=7.10 r1"
 
 title No-Bling DOTA mod builder by AveYo v%version%
 setlocal &rem free script so no bitching!
@@ -88,11 +89,12 @@ call :set_steam & call :set_dota & call :set_tools
 if not defined MOD_OUTPUT set "MOD_OUTPUT=%~dp0"
 if "%MOD_OUTPUT::=%"=="%MOD_OUTPUT%" set "MOD_OUTPUT=%~dp0%MOD_OUTPUT%"
 
-:: Check for new DOTA patch (quick and dirty, useful for testing options without extracting the particles from vpk each time)
+:: Patch Anticipation Station - quick and dirty check for new DOTA patch (so no pointless extraction of particles from vpk each run)
 mkdir "%CONTENT%" >nul 2>nul &rem Should be \steamapps\common\dota 2 beta\content\
 for /f usebackq^ delims^=^"^ tokens^=4 %%a in (`findstr LastUpdated "%STEAMAPPS%\appmanifest_570.acf"`) do set/a "UPDATED=%%a+0"
 pushd "%CONTENT%" & set "NEWPATCH=" & set/a "LASTUPDATED=0" & if exist last_updated.bat call last_updated.bat
-echo @set/a "LASTUPDATED=%UPDATED%" ^&exit/b>last_updated.bat & if %UPDATED% GTR %LASTUPDATED% set "NEWPATCH=yes" & set "@refresh=1"
+echo @set/a "LASTUPDATED=%UPDATED%" ^&exit/b> pas_updated.bat & if %UPDATED% GTR %LASTUPDATED% set "NEWPATCH=yes" & set "@refresh=1"
+if defined NEWPATCH ( call :color 0c " new patch " ) else call :color 04. " old patch "
 
 :: Check Steam language = MOD languge - used to auto-install mod after 7.07
 if not defined MOD_LANGUAGE call :reg_query "HKCU\SOFTWARE\Valve\Steam" "Language" STEAM_LANGUAGE
@@ -123,8 +125,6 @@ if defined @dialog if not defined CHOICES call :end ! No choices selected!
 if defined CHOICES ( set "MOD_CHOICES=%CHOICES%" ) else set "MOD_CHOICES=%@choices%"
 for %%o in (%all_choices%) do set "%%o="  &rem undefine all initial choices
 for %%o in (%MOD_CHOICES%) do set "%%o=1" &rem then redefine selected ones to 1
-if not defined NEWPATCH ( set "REFRESH_HINT=no" ) else set "REFRESH_HINT="
-if not defined NEWPATCH if defined @refresh set "REFRESH_HINT=no, forced refresh [usually not needed]"
 :: Clear script-only options and export choices to registry
 call :unselect @verbose MOD_CHOICES & call :unselect @endtask MOD_CHOICES & call :unselect @refresh MOD_CHOICES
 set "CHOICES=%MOD_CHOICES%" & reg add "HKCU\Environment" /v "No-Bling choices" /t REG_SZ /d "%MOD_CHOICES%" /f >nul 2>nul
@@ -137,7 +137,6 @@ echo  Mod options    = %MOD_OPTIONS%
 echo  User profile   = %STEAMDATA%
 echo  User options   = %LOPTIONS%
 echo  Content        = %CONTENT%\pak01_dir
-echo  New patch?     = %NEWPATCH%%REFRESH_HINT%
 echo  Script options = @refresh:%@refresh%  @endtask:%@endtask%  @verbose:%@verbose%  @dialog:%@dialog%  @timers:%@timers%
 echo  Script version = v%version%       get latest release at https://github.com/No-Bling/DOTA
 echo.
@@ -179,6 +178,8 @@ if not exist %.%.vpcf_c copy /y %.%_c %.%.vpcf.vpcf_c >nul 2>nul & popd
 :: Workaround for NS evil_eyed_arms renamed? in items_game.txt
 pushd "%CONTENT%\pak01_dir\particles\econ\items\nightstalker\evil_eyed_arms" & set ".=nightstalker_ambient_evil_eyed_arms.vpcf_c"
 if not exist %.% copy /y evil_eyed_arms_eye_sparks.vpcf_c %.% >nul 2>nul & popd
+:: Refresh last_updated only after update_content task completed
+pushd "%CONTENT%" & if exist pas_updated.bat ( copy /y pas_updated.bat last_updated.bat & del /f /q pas_updated.bat ) >nul 2>nul
 :skip_update_content
 
 ::----------------------------------------------------------------------------------------------------------------------------------

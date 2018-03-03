@@ -1,4 +1,4 @@
- No-Bling DOTA mod v7.10 choices:
+ No-Bling DOTA mod v7.10 r1 choices:
  Abilities,Hats,Couriers,Wards,Seasonal,HEROES
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
@@ -650,7 +650,7 @@ particles\econ\items\zeus\arcana_chariot\zeus_arcana_thundergods_wrath_start.vpc
 particles\econ\items\zeus\lightning_weapon_fx\zuus_base_attack_immortal_lightning.vpcf_c?particles\units\heroes\hero_zuus\zuus_base_attack.vpcf_c
 particles\econ\items\zeus\lightning_weapon_fx\zuus_lb_cfx_il.vpcf_c?particles\units\heroes\hero_zuus\zuus_lightning_bolt_castfx.vpcf_c
 particles\econ\items\zeus\lightning_weapon_fx\zuus_lightning_bolt_immortal_lightning.vpcf_c?particles\units\heroes\hero_zuus\zuus_lightning_bolt.vpcf_c
-particles\units\heroes\hero_gyrocopter\gyro_call_down_explosion_impact_a.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_gyrocopter\gyro_call_down_explosion_impact_a.vpcf_c?particles\econ\items\gyrocopter\hero_gyrocopter_gyrotechnics\gyro_call_down_explosion_impact_a.vpcf_c
 [Hats]
 particles\econ\items\abaddon\abaddon_feathers_mace\abaddon_weapon_feathers_mace_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\alchemist\alchemist_aurelian_weapon\alchemist_ambient_aurelian_l.vpcf_c?particles\dev\empty_particle.vpcf_c

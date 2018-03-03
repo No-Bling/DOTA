@@ -2,6 +2,7 @@
 //----------------------------------------------------------------------------------------------------------------------------------
 // Bumped version from v2.0 final to match game patch 7.10:
 // - Add emblem (previously called relic), re-enable expired TI7 Effects for event replays viewing
+// - Proper fix for Gyro call down bug
 // What's new in No-Bling DOTA mod builder.js v2.0 final:
 // - Seasonal category reinstated, as it's still useful for TI7 replays despite event being expired
 // - Extended manual filters to make certain items like arcana's less underwhelming
@@ -197,7 +198,8 @@ MOD_HERO['particles/units/heroes/hero_enigma/enigma_ambient_rocks.vpcf']=off;//
   /*  GYROCOPTER  */
 KEEP['particles/units/heroes/hero_gyrocopter/gyro_ambient.vpcf']=0;//                                     FIX empty propeller radius
 MOD_HERO['particles/units/heroes/hero_gyrocopter/gyro_ambient_smokestack.vpcf']=off;//                                   tweak smoke
-MOD_ABILITY['particles/units/heroes/hero_gyrocopter/gyro_call_down_explosion_impact_a.vpcf']=off;//     FIX Gyro call down Valve bug
+var gyro_cd='particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_call_down_explosion_impact_a.vpcf';//
+MOD_ABILITY['particles/units/heroes/hero_gyrocopter/gyro_call_down_explosion_impact_a.vpcf']=gyro_cd;//    FIX Gyro proper call down
   /*  HUSKAR  */
   /*  INVOKER  */
   /*  JAKIRO  */
