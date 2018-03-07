@@ -1,5 +1,6 @@
 goto="init" /* %~nx0
 :: Bumped version from v2.0 final to match game patch 7.10
+:: - Fixed unable to run script caused by multiple downloaded copies auto-renamed by windows and default extract (r2)
 :: - Print new patch status before choices dialog, save it only after processing completes so it remains accurate on canceled runs
 :: What's new in No-Bling DOTA mod builder.bat v2.0 final:
 :: - Way faster and more reliable, improved caching, less storage operations, long paths support, auto-install with current language
@@ -34,7 +35,7 @@ rem set "MOD_LANGUAGE=english"         || rem = current Steam language is auto-d
 rem set "MOD_FILE=pak01_dir.vpk"       || rem = localized versions might use pak02_dir.vpk, override here
 set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"
 set "def_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"        || dialog [Reset] sets these
-set "version=7.10 r1"
+set "version=7.10 r2"
 
 title No-Bling DOTA mod builder by AveYo v%version%
 setlocal &rem free script so no bitching!
@@ -85,9 +86,10 @@ for %%o in (@verbose @refresh @dialog @endtask @timers) do call set "%%o=%%%%o:0
 if defined @timers ( set "@time=%TIME: =0%" & set "TIMER=call :timer" ) else set "TIMER=call :noop"
 
 :: Check DOTA, tools and environment
+pushd "%~dp0"
+if not defined MOD_OUTPUT set "MOD_OUTPUT=%CD%"
+if "%MOD_OUTPUT::=%"=="%MOD_OUTPUT%" set "MOD_OUTPUT=%CD%\%MOD_OUTPUT%"
 call :set_steam & call :set_dota & call :set_tools
-if not defined MOD_OUTPUT set "MOD_OUTPUT=%~dp0"
-if "%MOD_OUTPUT::=%"=="%MOD_OUTPUT%" set "MOD_OUTPUT=%~dp0%MOD_OUTPUT%"
 
 :: Patch Anticipation Station - quick and dirty check for new DOTA patch (so no pointless extraction of particles from vpk each run)
 mkdir "%CONTENT%" >nul 2>nul &rem Should be \steamapps\common\dota 2 beta\content\
@@ -359,7 +361,7 @@ if not "%1"=="init" for %%# in ("HKCU\Console\init" ) do (
  reg add %%# /v ColorTable06 /d 0x008080 /t REG_DWORD /f & reg add %%# /v ColorTable14 /d 0x00ffff /t REG_DWORD /f &rem yellow lyell
  reg add %%# /v ColorTable07 /d 0xc0c0c0 /t REG_DWORD /f & reg add %%# /v ColorTable15 /d 0xffffff /t REG_DWORD /f &rem lgray  white
 ) >nul 2>nul
-if not "%1"=="init" ( cd/d %~dp0 & start "init" "%~f0" init & exit/b ) else goto :main      &rem " Self-restart or return to :main "
+if not "%1"=="init" ( start "init" "%~f0" init & exit/b ) else goto :main                   &rem " Self-restart or return to :main "
 
 ::----------------------------------------------------------------------------------------------------------------------------------
 :: Core functions
@@ -469,17 +471,18 @@ if not exist "%STEAMAPPS%\common\dota 2 beta\game\dota\maps\dota.vpk" call :end 
 set "DOTA=%STEAMAPPS%\common\dota 2 beta\game" & set "CONTENT=%STEAMAPPS%\common\dota 2 beta\content"
 exit/b
 
-:set_tools outputs %compiler% %decompiler% %vpk% %js_engine%                          &rem AveYo:" Does not require Workshop Tools!"
-if not exist "%~dpn0.js" call :end ! %~n0.js missing! Did you unpack the whole .zip package?
-if not exist "%~dp0tools\*" call :end ! tools subfolder missing! Did you unpack the whole .zip package?
-set "decompiler="%~dp0tools\ValveResourceFormat\Decompiler.exe""
+:set_tools outputs %decompiler% %vpk% %js_engine%                                     &rem AveYo:" Does not require Workshop Tools!"
+if not exist "%MOD_OUTPUT%\%~n0.js" call :end ! %~n0.js missing! Did you unpack the whole .zip package?
+if not exist "%MOD_OUTPUT%\tools\*" call :end ! tools subfolder missing! Did you unpack the whole .zip package?
+set "decompiler="%MOD_OUTPUT%\tools\ValveResourceFormat\Decompiler.exe""
 if not exist %decompiler% call :end ! tools\ValveResourceFormat\Decompiler.exe missing! Did you unpack the whole .zip package?
-set "vpk="%~dp0tools\Steam\SourceFilmmaker\game\bin\vpk.exe""
+set "vpk="%MOD_OUTPUT%\tools\Steam\SourceFilmmaker\game\bin\vpk.exe""
 if not exist %vpk% call :end ! tools\Steam\SourceFilmmaker\bin\vpk.exe missing! Did you unpack the whole .zip package?
-set "nodejs="%~dp0tools\Node.js\node.exe""
-if exist %nodejs% for /f "delims=" %%i in ('%nodejs% -e process.execArgv[0] -p') do if not "%%i"=="-e" set "nodejs="
-if not exist %nodejs% set "nodejs="
-if defined nodejs ( set "js_engine=%nodejs% "%~dpn0.js"" ) else set "js_engine=cscript //E:JScript //nologo "%~dpn0.js""
+set "nodejs="%MOD_OUTPUT%\tools\Node.js\node.exe""
+if not exist %nodejs% ( set "nodejs=" ) else pushd "%MOD_OUTPUT%\tools\Node.js"
+if defined nodejs for /f "delims=" %%i in ('node.exe -e process.execArgv[0] -p') do if not "%%i"=="-e" set "nodejs="
+if defined nodejs set "js_engine=%nodejs% "%~dpn0.js"" & popd
+if not defined nodejs set "js_engine="%WINDIR%\System32\cscript.exe" //E:JScript //nologo "%~dpn0.js""
 exit/b
 
 rem Batch hybrid engine - do not remove */
