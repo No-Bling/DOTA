@@ -1,4 +1,4 @@
- No-Bling DOTA mod v7.10 r1 choices:
+ No-Bling DOTA mod v7.10 r2 choices:
  Abilities,Hats,Couriers,Wards,Seasonal
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
@@ -667,6 +667,10 @@ particles\econ\items\alchemist\alchemist_stove_back\alchemist_stove_back_ambient
 particles\econ\items\ancient_apparition\aa_blast_ti_5\aa_ti5_eyes.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\antimage\antimage_ti7\antimage_ti7_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\antimage\antimage_ti7_golden\antimage_ti7_golden_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\antimage\antimage_weapon_anchorite\antimage_anchorite_ambient_shoulder.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\antimage\antimage_weapon_anchorite\antimage_blade_anchorite.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\antimage\antimage_weapon_anchorite\antimage_blade_anchorite_off_hand.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\antimage\antimage_weapon_anchorite\antimage_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\antimage\antimage_weapon_basher_ti5\antimage_ambient_skullbasher.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\antimage\antimage_weapon_basher_ti5\antimage_ambient_skullbasher_offhand.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\antimage\antimage_weapon_basher_ti5_gold\antimage_ambient_skullbasher_gold.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -802,6 +806,9 @@ particles\econ\items\drow\drow_ti6\drow_ti6_witness_ambient.vpcf_c?particles\dev
 particles\econ\items\drow\drow_ti6_gold\drow_ti6_ambient_gold.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\earth_spirit\earth_spirit_ti6_boulder\espirit_ti6_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\earthshaker\earthshaker_totem_ti6\earthshaker_totem_ti6_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\earthshaker\es_might_arms\es_might_arms_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\earthshaker\es_might_head\es_might_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\earthshaker\es_might_weapon\es_might_weapon_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\elder_titan\elder_titan_fissured_soul\elder_titan_fissured_soul_weapon.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\elder_titan\elder_titan_fissured_soul\elder_titan_fissured_soul_weapon_default.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\elder_titan\elder_titan_shapers_relics_ambient\elder_titan_shapers_relics_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -946,6 +953,10 @@ particles\econ\items\lycan\blood_moon\lycan_blood_moon_weapon_ambient.vpcf_c?par
 particles\econ\items\magnataur\magnus_erupting_wrath\magnus_erupting_wrath.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\magnataur\seismic_berserker\seismic_berserker_weapon.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\magnataur\shock_of_the_anvil\magnataur_shockanvil_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\magnataur\thor\magnus_thors_reward_arms_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\magnataur\thor\magnus_thors_reward_belt_ambient_trace.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\magnataur\thor\magnus_thors_reward_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\magnataur\thor\magnus_thors_reward_weapon_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\medusa\medusa_daughters\medusa_daughters_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\meepo\crystal_scavenger\crystal_scavenger.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\meepo\meepo_colossal_crystal_chorus\meepo_divining_rod_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1019,7 +1030,7 @@ particles\econ\items\ogre_magi\ogre_ti7_set\ogre_ti7_set_style_head_ambient.vpcf
 particles\econ\items\ogre_magi\ogre_ti7_set\ogre_ti7_set_weapon_ambient.vpcf_c?particles\units\heroes\hero_ogre_magi\ogre_magi_weapon.vpcf_c
 particles\econ\items\omniknight\hammer_ti6_immortal\omniknight_hammer_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\omniknight\omni_sacred_light_head\omni_ambient_sacred_light.vpcf_c?particles\dev\empty_particle.vpcf_c
-particles\econ\items\oracle\oracle_fortune_ti7\oracle_fortune_ti7_ambient.vpcf_c?particles\units\heroes\hero_oracle\oracle_ambient.vpcf_c
+particles\econ\items\oracle\oracle_fortune_ti7\oracle_fortune_ti7_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\outworld_devourer\od_lucent_gate_staff_ambient\od_lucent_gate_staff_ambient.vpcf_c?particles\units\heroes\hero_obsidian_destroyer\obsidian_destroyer_staff.vpcf_c
 particles\econ\items\outworld_devourer\od_shards_exile\od_shards_exile_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\outworld_devourer\od_shards_exile_gold\od_shards_exile_ambient_gold.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1168,6 +1179,10 @@ particles\econ\items\sniper\sniper_hare_hunt_hat\sniper_hare_hunt_hat.vpcf_c?par
 particles\econ\items\sniper\sniper_hare_hunt_shoulder\sniper_hare_hunt_shoulder.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\sniper\sniper_immortal_cape\sniper_immortal_cape_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\sniper\sniper_immortal_cape_golden\sniper_immortal_cape_golden_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\sniper\sniper_silverfox\sniper_silverfox_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\sniper\sniper_silverfox\sniper_silverfox_ambient_cape.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\sniper\sniper_silverfox\sniper_silverfox_ambient_head.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\sniper\sniper_silverfox\sniper_silverfox_ambient_shoulder.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\sniper\sniper_witch_hunter\sniper_witch_hunter_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\sniper\sniper_witch_hunter\sniper_witch_hunter_weapon_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\spectre\spectre_phantasmal\spectre_phantasmal_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1221,6 +1236,10 @@ particles\econ\items\tidehunter\tidehunter_conche\tidehunter_conch_drips.vpcf_c?
 particles\econ\items\tidehunter\tidehunter_divinghelmet\tidehunter_divinghelmet_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\tidehunter\tidehunter_mine\tidehunter_mine_drag_sparks.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\tidehunter\tidehunter_squid\tidehunter_squid_trail.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\timbersaw\chopper_knight\chopper_knight_back_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\timbersaw\chopper_knight\chopper_knight_offhand_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\timbersaw\chopper_knight\chopper_knight_shoulder_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\timbersaw\chopper_knight\chopper_knight_weapon_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\timbersaw\hero_timbersaw_fullmetal\shredder_ambient_fullmetal_saw.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\timbersaw\hero_timbersaw_tree_punisher\shredder_ambient_tree_punisher.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\timbersaw\timbersaw_molten_destructor\timbersaw_molten_destructor_saw.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1247,6 +1266,10 @@ particles\econ\items\tuskarr\barrier_rogue\barrier_rogue_ambient_fx.vpcf_c?parti
 particles\econ\items\tuskarr\tusk_barrier_head\tusk_barrier_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\tuskarr\tusk_bobusang_pipe\tusk_bobusang_pipe.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\tuskarr\tusk_frost_touched_cleaver\tusk_frost_touched_cleaver_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\tuskarr\tusk_harmful_fist\tuskar_ironfist_back_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\tuskarr\tusk_harmful_fist\tuskar_ironfist_helmet_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\tuskarr\tusk_harmful_fist\tuskar_ironfist_tusk_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\tuskarr\tusk_harmful_fist\tuskar_ironfist_weapon_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\undying\undying_davy_jones\undying_davy_jones_armor_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\undying\undying_pale_augur\undying_pale_augur_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\undying\undying_scourge\undying_scourge_arm_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
