@@ -54,7 +54,12 @@ Menu           | **+**       | Tweak main menu - ui, hero preview               
 - Simply run the builder script again, it will detect any updates and force a refresh - it only takes a minute or two  
 - A local cache will be created directly from game files so repeated runs are very fast!  
 - New patch detection is generally reliable. If having any issues, select *@refresh* choice to force local cache update  
-  
+
+### Troubleshooting builder batch script issues  
+~ Right-click and run the script as administrator to overcome `Program Files\Steam` permission issues.  
+~ Script generally works on a default Windows 7 install without needing extra libraries but you might be missing some.  
+Try to launch manually the Decompiler.exe utility from `tools\ValveResourceFormat` - it should ask for any needed libs.  
+
 ## What about non-Windows OS / issues with the builder batch script?  
 Use the pre-made releases in the [BUILDS](https://github.com/No-Bling/DOTA/tree/master/BUILDS) folder via manual install  
   
