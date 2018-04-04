@@ -1,4 +1,4 @@
- No-Bling DOTA mod v7.10 r2 choices:
+ No-Bling DOTA mod v7.12 r1 choices:
  Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
@@ -422,6 +422,8 @@ particles\econ\items\puck\puck_alliance_set\puck_orb_damage_aproset.vpcf_c?parti
 particles\econ\items\puck\puck_alliance_set\puck_waning_rift_aproset.vpcf_c?particles\units\heroes\hero_puck\puck_waning_rift.vpcf_c
 particles\econ\items\puck\puck_fairy_wing\puck_waning_rift_fairy_wing.vpcf_c?particles\units\heroes\hero_puck\puck_waning_rift.vpcf_c
 particles\econ\items\puck\puck_merry_wanderer\puck_illusory_orb_merry_wanderer.vpcf_c?particles\units\heroes\hero_puck\puck_illusory_orb.vpcf_c
+particles\econ\items\pudge\pudge_arcana\pudge_arcana_hook_streak.vpcf_c?particles\units\heroes\hero_pudge\pudge_hook_streak.vpcf_c
+particles\econ\items\pudge\pudge_arcana\pudge_arcana_red_hook_streak.vpcf_c?particles\units\heroes\hero_pudge\pudge_hook_streak.vpcf_c
 particles\econ\items\pudge\pudge_dragonclaw\pudge_meathook_dragonclaw.vpcf_c?particles\units\heroes\hero_pudge\pudge_meathook.vpcf_c
 particles\econ\items\pudge\pudge_harvester\pudge_meathook_harvester.vpcf_c?particles\units\heroes\hero_pudge\pudge_meathook.vpcf_c
 particles\econ\items\pudge\pudge_hook_whale\pudge_meathook_whale.vpcf_c?particles\units\heroes\hero_pudge\pudge_meathook.vpcf_c
@@ -1058,6 +1060,12 @@ particles\econ\items\phoenix\phoenix_solar_forge\phoenix_solar_forge_ambient.vpc
 particles\econ\items\puck\puck_merry_wanderer\puck_ambient_merry_wanderer.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\puck\puck_radiant_wanderer\puck_ambient_radiant_wandered_back.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\puck\puck_snowflake\puck_snowflake_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\pudge\pudge_arcana\pudge_arcana_back_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\pudge\pudge_arcana\pudge_arcana_idle_groundscratch.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\pudge\pudge_arcana\pudge_arcana_red_back_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\pudge\pudge_arcana\pudge_arcana_red_idle_groundscratch.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\pudge\pudge_arcana\pudge_arcana_red_walk_groundscratch.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\pudge\pudge_arcana\pudge_arcana_walk_groundscratch.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\pudge\pudge_bloodlust_fork\pudge_bloodlust_fork.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\pudge\pudge_deep_sea_abomination_back\pudge_deep_sea_back_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\pudge\pudge_demon_queller\pudge_demon_queller_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1710,6 +1718,7 @@ particles\units\heroes\hero_dark_willow\dark_willow_bramble_cast_smoke.vpcf_c?pa
 particles\units\heroes\hero_dark_willow\dark_willow_bramble_cast_throw.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_dark_willow\dark_willow_bramble_wraith_ember.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_dark_willow\dark_willow_bramble_wraith_swirl.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_dark_willow\dark_willow_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_dark_willow\dark_willow_lantern_ambient_core.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_dark_willow\dark_willow_lantern_ambient_duel_page.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_dark_willow\dark_willow_lantern_ambient_trail.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1785,7 +1794,6 @@ particles\units\heroes\hero_phoenix\phoenix_ambient.vpcf_c?particles\dev\empty_p
 particles\units\heroes\hero_phoenix\phoenix_supernova_egg_loadout.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_puck\puck_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_pudge\pudge_ambient_chain_right.vpcf_c?particles\dev\empty_particle.vpcf_c
-particles\units\heroes\hero_pudge\pudge_ambient_flies.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_pugna\pugna_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_pugna\pugna_weapon_glow.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_rattletrap\rattletrap_cog_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c

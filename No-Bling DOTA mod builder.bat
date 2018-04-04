@@ -1,4 +1,5 @@
 goto="init" /* %~nx0
+:: v7.12 r1: Pudge Arcana edition 
 :: Bumped version from v2.0 final to match game patch 7.10
 :: - Fixed unable to run script caused by multiple downloaded copies auto-renamed by windows and default extract (r2)
 :: - Print new patch status before choices dialog, save it only after processing completes so it remains accurate on canceled runs
@@ -35,7 +36,7 @@ rem set "MOD_LANGUAGE=english"         || rem = current Steam language is auto-d
 rem set "MOD_FILE=pak01_dir.vpk"       || rem = localized versions might use pak02_dir.vpk, override here
 set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"
 set "def_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"        || dialog [Reset] sets these
-set "version=7.10 r2"
+set "version=7.12 r1"
 
 title No-Bling DOTA mod builder by AveYo v%version%
 setlocal &rem free script so no bitching!
@@ -140,7 +141,7 @@ echo  User profile   = %STEAMDATA%
 echo  User options   = %LOPTIONS%
 echo  Content        = %CONTENT%\pak01_dir
 echo  Script options = @refresh:%@refresh%  @endtask:%@endtask%  @verbose:%@verbose%  @dialog:%@dialog%  @timers:%@timers%
-echo  Script version = v%version%       get latest release at https://github.com/No-Bling/DOTA
+echo  Script version = v%version%   Get latest release at https://github.com/No-Bling/DOTA
 echo.
 
 :: Prepare directories

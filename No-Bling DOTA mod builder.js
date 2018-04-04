@@ -1,5 +1,8 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                        edited in SynWrite
 //----------------------------------------------------------------------------------------------------------------------------------
+// v7.12 r1: Pudge Arcana edition
+// - less underwhelming arcana keeping element dismember, keeping flies globally, removing hook streak extras and ground scratch
+// - can be visually uncluttered later, but for now it stays because it's awesome (like necro immortal scythe) + to not affect sales 
 // Bumped version from v2.0 final to match game patch 7.10:
 // - Add emblem (previously called relic), re-enable expired TI7 Effects for event replays viewing
 // - Proper fix for Gyro call down bug
@@ -301,6 +304,30 @@ MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smi
   /*  PUCK  */
   /*  PUDGE  */
 KEEP['particles/units/heroes/hero_pudge/pudge_ambient_chain.vpcf']=0;//                   FIX pudge chains glitch towards map center
+REV_KEEP['particles/units/heroes/hero_pudge/pudge_ambient_flies.vpcf']=0;//                                Keep pudge flies globally 
+//REV_KEEP['particles/units/heroes/hero_pudge/pudge_hook_streak.vpcf']=0;//                          Keep pudge hook streak globally
+MOD_HAT['particles/econ/items/pudge/pudge_arcana/pudge_arcana_idle_groundscratch.vpcf']=off;//     Tweak pudge Arcana ground scratch
+MOD_HAT['particles/econ/items/pudge/pudge_arcana/pudge_arcana_red_idle_groundscratch.vpcf']=off;//
+MOD_HAT['particles/econ/items/pudge/pudge_arcana/pudge_arcana_walk_groundscratch.vpcf']=off;//       
+MOD_HAT['particles/econ/items/pudge/pudge_arcana/pudge_arcana_red_walk_groundscratch.vpcf']=off;//
+REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_null.vpcf']=0;//                     Keep pudge Arcana element dismember 
+REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_electric.vpcf']=0;//  
+REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_ethereal.vpcf']=0;//  
+REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_fire.vpcf']=0;//  
+REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_goo.vpcf']=0;//  
+REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_ice.vpcf']=0;//  
+REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_motor.vpcf']=0;//  
+REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_stone.vpcf']=0;//  
+REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_wood.vpcf']=0;//  
+//MOD_HERO['particles/econ/items/pudge/pudge_arcana/default/pudge_arcana_dismember_parent_b_default.vpcf']=off;//     Nerf dismember
+//MOD_HERO['particles/econ/items/pudge/pudge_arcana/electric/pudge_arcana_dismember_parent_b_electric.vpcf']=off;//
+//MOD_HERO['particles/econ/items/pudge/pudge_arcana/ethereal/pudge_arcana_dismember_parent_b_ethereal.vpcf']=off;//
+//MOD_HERO['particles/econ/items/pudge/pudge_arcana/fire/pudge_arcana_dismember_parent_b_fire.vpcf']=off;//
+//MOD_HERO['particles/econ/items/pudge/pudge_arcana/goo/pudge_arcana_dismember_parent_b_goo.vpcf']=off;//
+//MOD_HERO['particles/econ/items/pudge/pudge_arcana/ice/pudge_arcana_dismember_parent_b_ice.vpcf']=off;//
+//MOD_HERO['particles/econ/items/pudge/pudge_arcana/motor/pudge_arcana_dismember_parent_b_motor.vpcf']=off;//
+//MOD_HERO['particles/econ/items/pudge/pudge_arcana/stone/pudge_arcana_dismember_parent_b_stone.vpcf']=off;//
+//MOD_HERO['particles/econ/items/pudge/pudge_arcana/wood/pudge_arcana_dismember_parent_b_wood.vpcf']=off;//
   /*  PUGNA  */
 KEEP['particles/units/heroes/hero_pugna/pugna_ward_ambient.vpcf']=0;//                                                FIX empty ward
 //REV_KEEP['particles/units/heroes/hero_pugna/pugna_ward_ambient.vpcf']=0;//

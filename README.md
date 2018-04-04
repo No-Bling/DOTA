@@ -28,10 +28,10 @@ optimally swapping just original files with no content alteration whatsoever, an
 *Tested on Windows 7 & 10 x64. Does not need Workshop Tools DLC installed.*  
   
 ### No-Bling DOTA mod builder choices:  
-Category       | GlanceValue | Description                                                              | Gain  
+Category       | GlanceValue | Description                                                              | FPS Gain  
 -------------- | ----------- | ------------------------------------------------------------------------ | ----------  
 Abilities      | **+++++**   | Custom Spells: penguin Frostbite and stuff like that..                   |  Low  
-Hats           | **+++**     | Workshop Hats: cosmetic particles spam - slowly turning into TF2..       |  
+Hats           | **+++**     | Workshop Hats: cosmetic particles spam - slowly turning into TF2..       |   
 Couriers       | **+++**     | Custom Couriers: these are fine.. until  ̶F̶y̶ someone abuses gems on hats   |  
 Wards          | **++**      | Custom Wards: only a few make the ward and the sentry item similar       |  
 Seasonal       | **++++**    | Event Rewards: the International 7 custom tp, blink, contest towers      |  
@@ -54,7 +54,12 @@ Menu           | **+**       | Tweak main menu - ui, hero preview               
 - Simply run the builder script again, it will detect any updates and force a refresh - it only takes a minute or two  
 - A local cache will be created directly from game files so repeated runs are very fast!  
 - New patch detection is generally reliable. If having any issues, select *@refresh* choice to force local cache update  
-  
+
+### Troubleshooting builder batch script issues  
+~ Right-click and run the script as administrator to overcome `Program Files\Steam` permission issues.  
+~ Script generally works on a default Windows 7 install without needing extra libraries but you might be missing some.  
+Try to launch manually the Decompiler.exe utility from `tools\ValveResourceFormat` - it should ask for any needed libs.  
+
 ## What about non-Windows OS / issues with the builder batch script?  
 Use the pre-made releases in the [BUILDS](https://github.com/No-Bling/DOTA/tree/master/BUILDS) folder via manual install  
   
@@ -85,7 +90,8 @@ It's recommended to set Effects Quality option to Low for Potato PC's as it decr
 Before reporting bugs, list particles in game console: `clear;dumpparticlelist | grep [^0\s][\d]*,[\s]flags;condump`  
 then share the exported list from: `\Steam\steamapps\common\dota 2 beta\game\dota\condump0XX.txt`  
   
-### What's new in v7.10:  
+### What's new in v7.12:  
+~ Pudge Arcana made less underwhelming via manual filter  
 ~ Fixed unable to run script caused by multiple downloaded copies auto-renamed by windows and default extract (r2)  
 ~ Bumped version from v2.0 final to match game patch. Mod will use r1, r2 .. for revision numbers.  
 ~ Faster, more reliable, improved caching, less storage operations, long paths support, auto-install with current language  
