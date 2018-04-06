@@ -4,12 +4,12 @@
 ### Glance  
 <table>  
 	<tr>  
-		<td><img src="http://i.imgur.com/QhB7BkT.jpg"></td>  
-		<td><img src="http://i.imgur.com/hr0lFC4.jpg"></td>  
+		<td><img src="https://i.imgur.com/ys2KKhM.png"></td>  
+		<td><img src="https://i.imgur.com/hr0lFC4.jpg"></td>  
 	</tr>  
 	<tr>  
-		<td><img src="http://i.imgur.com/kUIQ7Jh.png"></td>  
-		<td><img src="http://i.imgur.com/JShyXKs.png"></td>  
+		<td><img src="https://i.imgur.com/kUIQ7Jh.png"></td>  
+		<td><img src="https://i.imgur.com/JShyXKs.png"></td>  
 	</tr>  
 </table>  
   
