@@ -90,7 +90,11 @@ It's recommended to set Effects Quality option to Low for Potato PC's as it decr
 Before reporting bugs, list particles in game console: `clear;dumpparticlelist | grep [^0\s][\d]*,[\s]flags;condump`  
 then share the exported list from: `\Steam\steamapps\common\dota 2 beta\game\dota\condump0XX.txt`  
   
-### What's new in v7.12:  
+### What's new in v7.14:  
+~ Keep filter applies to all categories, not just abilities heroes and hats  
+~ Update ACTIVE_EVENT and re-enable expired TI7 effects  
+~ Prevent STEAMPATH detection possible issue
+
 ~ Pudge Arcana made less underwhelming via manual filter  
 ~ Fixed unable to run script caused by multiple downloaded copies auto-renamed by windows and default extract (r2)  
 ~ Bumped version from v2.0 final to match game patch. Mod will use r1, r2 .. for revision numbers.  
