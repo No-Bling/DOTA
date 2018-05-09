@@ -1,4 +1,4 @@
- No-Bling DOTA mod v7.12 r1 choices:
+ No-Bling DOTA mod v7.14 r1 choices:
  Abilities,Hats,Couriers,Wards,Seasonal,HEROES
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
@@ -48,6 +48,7 @@ particles\econ\items\ancient_apparition\aa_blast_ti_5\ancient_apparition_ice_bla
 particles\econ\items\ancient_apparition\aa_blast_ti_5\ancient_apparition_ice_blast_initial_explode_ti5.vpcf_c?particles\units\heroes\hero_ancient_apparition\ancient_apparition_ice_blast_initial_explode.vpcf_c
 particles\econ\items\ancient_apparition\aa_blast_ti_5\ancient_apparition_ice_blast_initial_ti5.vpcf_c?particles\units\heroes\hero_ancient_apparition\ancient_apparition_ice_blast_initial.vpcf_c
 particles\econ\items\ancient_apparition\aa_blast_ti_5\ancient_apparition_ice_blast_marker_ti5.vpcf_c?particles\units\heroes\hero_ancient_apparition\ancient_apparition_ice_blast_marker.vpcf_c
+particles\econ\items\ancient_apparition\ancient_apparation_ti8\ancient_ice_vortex_ti8.vpcf_c?particles\units\heroes\hero_ancient_apparition\ancient_ice_vortex.vpcf_c
 particles\econ\items\antimage\antimage_ti7\antimage_blink_start_ti7.vpcf_c?particles\units\heroes\hero_antimage\antimage_blink_start.vpcf_c
 particles\econ\items\antimage\antimage_ti7\antimage_blink_ti7_end.vpcf_c?particles\units\heroes\hero_antimage\antimage_blink_end.vpcf_c
 particles\econ\items\antimage\antimage_ti7_golden\antimage_blink_start_ti7_golden.vpcf_c?particles\units\heroes\hero_antimage\antimage_blink_start.vpcf_c
@@ -287,6 +288,7 @@ particles\econ\items\legion\legion_overwhelming_odds_ti7\legion_commander_odds_t
 particles\econ\items\leshrac\leshrac_tormented_staff\leshrac_base_attack_tormented.vpcf_c?particles\units\heroes\hero_leshrac\leshrac_base_attack.vpcf_c
 particles\econ\items\leshrac\leshrac_tormented_staff\leshrac_split_tormented.vpcf_c?particles\units\heroes\hero_leshrac\leshrac_split_earth.vpcf_c
 particles\econ\items\lich\frozen_chains_ti6\lich_frozenchains_frostnova.vpcf_c?particles\units\heroes\hero_lich\lich_frost_nova.vpcf_c
+particles\econ\items\lich\lich_ti8_immortal_arms\lich_ti8_chain_frost.vpcf_c?particles\units\heroes\hero_lich\lich_chain_frost.vpcf_c
 particles\econ\items\lifestealer\lifestealer_immortal_backbone\lifestealer_immortal_backbone_rage.vpcf_c?particles\units\heroes\hero_life_stealer\life_stealer_rage.vpcf_c
 particles\econ\items\lifestealer\lifestealer_immortal_backbone\status_effect_life_stealer_immortal_rage.vpcf_c?particles\status_fx\status_effect_life_stealer_rage.vpcf_c
 particles\econ\items\lifestealer\lifestealer_immortal_backbone_gold\lifestealer_immortal_backbone_gold_rage.vpcf_c?particles\units\heroes\hero_life_stealer\life_stealer_rage.vpcf_c
@@ -393,6 +395,8 @@ particles\econ\items\outworld_devourer\od_shards_exile_gold\od_shards_exile_pris
 particles\econ\items\outworld_devourer\od_shards_exile_gold\od_shards_exile_prison_start_gold.vpcf_c?particles\units\heroes\hero_obsidian_destroyer\obsidian_destroyer_prison_start.vpcf_c
 particles\econ\items\pangolier\pangolier_immortal_musket\pangolier_immortal_swashbuckler.vpcf_c?particles\units\heroes\hero_pangolier\pangolier_swashbuckler.vpcf_c
 particles\econ\items\pangolier\pangolier_immortal_musket\pangolier_immortal_swashbuckler_dash.vpcf_c?particles\units\heroes\hero_pangolier\armadillo_swashbuckler_dash.vpcf_c
+particles\econ\items\phantom_assassin\pa_ti8_immortal_head\pa_ti8_immortal_dagger_debuff.vpcf_c?particles\units\heroes\hero_phantom_assassin\phantom_assassin_stifling_dagger_debuff.vpcf_c
+particles\econ\items\phantom_assassin\pa_ti8_immortal_head\pa_ti8_immortal_stifling_dagger.vpcf_c?particles\units\heroes\hero_phantom_assassin\phantom_assassin_stifling_dagger.vpcf_c
 particles\econ\items\phantom_assassin\phantom_assassin_arcana_elder_smith\pa_arcana_death.vpcf_c?particles\units\heroes\hero_phantom_assassin\phantom_assassin_death.vpcf_c
 particles\econ\items\phantom_assassin\phantom_assassin_arcana_elder_smith\pa_arcana_loadout.vpcf_c?particles\units\heroes\hero_phantom_assassin\phantom_assassin_loadout.vpcf_c
 particles\econ\items\phantom_assassin\phantom_assassin_arcana_elder_smith\pa_arcana_phantom_strike_end.vpcf_c?particles\units\heroes\hero_phantom_assassin\phantom_assassin_phantom_strike_end.vpcf_c
@@ -450,6 +454,8 @@ particles\econ\items\razor\razor_punctured_crest\razor_static_link_blade.vpcf_c?
 particles\econ\items\razor\razor_punctured_crest_golden\razor_static_link_blade_golden.vpcf_c?particles\units\heroes\hero_razor\razor_static_link.vpcf_c
 particles\econ\items\razor\razor_ti6\razor_base_attack_ti6.vpcf_c?particles\units\heroes\hero_razor\razor_base_attack.vpcf_c
 particles\econ\items\razor\razor_ti6\razor_plasmafield_ti6.vpcf_c?particles\units\heroes\hero_razor\razor_plasmafield.vpcf_c
+particles\econ\items\riki\riki_head_ti8\riki_smokebomb_ti8.vpcf_c?particles\units\heroes\hero_riki\riki_smokebomb.vpcf_c
+particles\econ\items\riki\riki_head_ti8_gold\riki_smokebomb_ti8_gold.vpcf_c?particles\units\heroes\hero_riki\riki_smokebomb.vpcf_c
 particles\econ\items\riki\riki_immortal_ti6\riki_immortal_ti6_blinkstrike.vpcf_c?particles\units\heroes\hero_riki\riki_blink_strike.vpcf_c
 particles\econ\items\riki\riki_immortal_ti6\riki_immortal_ti6_blinkstrike_gold.vpcf_c?particles\units\heroes\hero_riki\riki_blink_strike.vpcf_c
 particles\econ\items\rubick\rubick_force_ambient\rubick_telekinesis_force.vpcf_c?particles\units\heroes\hero_rubick\rubick_telekinesis.vpcf_c
@@ -539,6 +545,7 @@ particles\econ\items\spirit_breaker\spirit_breaker_iron_surge\spirit_breaker_cha
 particles\econ\items\spirit_breaker\spirit_breaker_iron_surge\spirit_breaker_charge_start_iron.vpcf_c?particles\units\heroes\hero_spirit_breaker\spirit_breaker_charge_start.vpcf_c
 particles\econ\items\spirit_breaker\spirit_breaker_iron_surge\spirit_breaker_charge_target_iron.vpcf_c?particles\units\heroes\hero_spirit_breaker\spirit_breaker_charge_target.vpcf_c
 particles\econ\items\spirit_breaker\spirit_breaker_iron_surge\status_effect_iron_surge.vpcf_c?particles\status_fx\status_effect_charge_of_darkness.vpcf_c
+particles\econ\items\spirit_breaker\spirit_breaker_weapon_ti8\spirit_breaker_bash_ti8.vpcf_c?particles\units\heroes\hero_spirit_breaker\spirit_breaker_greater_bash.vpcf_c
 particles\econ\items\storm_spirit\storm_spirit_orchid_hat\storm_spirit_orchid.vpcf_c?particles\items2_fx\orchid.vpcf_c
 particles\econ\items\storm_spirit\storm_spirit_orchid_hat\stormspirit_orchid_ball_lightning.vpcf_c?particles\units\heroes\hero_stormspirit\stormspirit_ball_lightning.vpcf_c
 particles\econ\items\sven\sven_cyclopean_marauder\sven_cyclopean_gods_strength_ambient.vpcf_c?particles\units\heroes\hero_sven\sven_spell_gods_strength_ambient.vpcf_c
@@ -567,6 +574,7 @@ particles\econ\items\templar_assassin\templar_assassin_focal\templar_assassin_me
 particles\econ\items\templar_assassin\templar_assassin_focal\templar_assassin_meld_focal_attack.vpcf_c?particles\units\heroes\hero_templar_assassin\templar_assassin_meld_attack.vpcf_c
 particles\econ\items\templar_assassin\templar_assassin_focal\templar_assassin_meld_focal_start.vpcf_c?particles\units\heroes\hero_templar_assassin\templar_assassin_meld_start.vpcf_c
 particles\econ\items\templar_assassin\templar_assassin_focal\templar_meld_focal_overhead.vpcf_c?particles\units\heroes\hero_templar_assassin\templar_meld_overhead.vpcf_c
+particles\econ\items\terrorblade\terrorblade_back_ti8\terrorblade_sunder_ti8.vpcf_c?particles\units\heroes\hero_terrorblade\terrorblade_sunder.vpcf_c
 particles\econ\items\tidehunter\tidehunter_divinghelmet\tidehunter_gush_diving_helmet.vpcf_c?particles\units\heroes\hero_tidehunter\tidehunter_gush.vpcf_c
 particles\econ\items\tidehunter\tidehunter_divinghelmet\tidehunter_gush_diving_helmet_gold.vpcf_c?particles\units\heroes\hero_tidehunter\tidehunter_gush.vpcf_c
 particles\econ\items\tinker\boots_of_travel\teleport_end_bots.vpcf_c?particles\items2_fx\teleport_end.vpcf_c
@@ -580,6 +588,11 @@ particles\econ\items\treant_protector\ti7_shoulder\treant_ti7_livingarmor.vpcf_c
 particles\econ\items\troll_warlord\troll_warlord_ti7_axe\troll_ti7_axe_bash_explosion.vpcf_c?particles\generic_gameplay\generic_minibash.vpcf_c
 particles\econ\items\tuskarr\tusk_ti5_immortal\tusk_ice_shards_projectile_stout.vpcf_c?particles\units\heroes\hero_tusk\tusk_ice_shards_projectile.vpcf_c
 particles\econ\items\tuskarr\tusk_ti5_immortal\tusk_ice_shards_stout.vpcf_c?particles\units\heroes\hero_tusk\tusk_ice_shards.vpcf_c
+particles\econ\items\underlord\underlord_ti8_immortal_weapon\underlord_ti8_immortal_pitofmalice.vpcf_c?particles\units\heroes\heroes_underlord\underlord_pitofmalice.vpcf_c
+particles\econ\items\underlord\underlord_ti8_immortal_weapon\underlord_ti8_immortal_pitofmalice_cast.vpcf_c?particles\units\heroes\heroes_underlord\underlord_pit_cast.vpcf_c
+particles\econ\items\underlord\underlord_ti8_immortal_weapon\underlord_ti8_immortal_pitofmalice_pre.vpcf_c?particles\units\heroes\heroes_underlord\underlord_pitofmalice_pre.vpcf_c
+particles\econ\items\underlord\underlord_ti8_immortal_weapon\underlord_ti8_immortal_pitofmalice_stun.vpcf_c?particles\units\heroes\heroes_underlord\abyssal_underlord_pitofmalice_stun.vpcf_c
+particles\econ\items\underlord\underlord_ti8_immortal_weapon\underlord_ti8_immortal_pitofmalice_stun_light.vpcf_c?particles\units\heroes\heroes_underlord\abyssal_underlord_pitofmalice_stun_light.vpcf_c
 particles\econ\items\underlord\underlord_tyrant\underlord_tyrant_atrophy_weapon.vpcf_c?particles\units\heroes\heroes_underlord\underlord_atrophy_weapon.vpcf_c
 particles\econ\items\undying\undying_manyone\undying_pale_gold_tombstone_ambient.vpcf_c?particles\units\heroes\hero_undying\undying_tombstone_ambient.vpcf_c
 particles\econ\items\undying\undying_manyone\undying_pale_gold_tower_destruction.vpcf_c?particles\units\heroes\hero_undying\undying_tower_destruction.vpcf_c
@@ -593,6 +606,7 @@ particles\econ\items\undying\undying_pale_augur\undying_pale_augur_decay_strengt
 particles\econ\items\ursa\ursa_swift_claw\ursa_swift_claw_left.vpcf_c?particles\units\heroes\hero_ursa\ursa_claw_left.vpcf_c
 particles\econ\items\ursa\ursa_swift_claw\ursa_swift_claw_right.vpcf_c?particles\units\heroes\hero_ursa\ursa_claw_right.vpcf_c
 particles\econ\items\vengeful\vengeful_weapon_talon\vengeful_wave_of_terror_weapon_talon.vpcf_c?particles\units\heroes\hero_vengeful\vengeful_wave_of_terror.vpcf_c
+particles\econ\items\vengeful\vs_ti8_immortal_shoulder\vs_ti8_immortal_magic_missle.vpcf_c?particles\units\heroes\hero_vengeful\vengeful_magic_missle.vpcf_c
 particles\econ\items\viper\viper_ti7_immortal\viper_poison_attack_ti7.vpcf_c?particles\units\heroes\hero_viper\viper_poison_attack.vpcf_c
 particles\econ\items\viper\viper_ti7_immortal\viper_poison_crimson_attack_ti7.vpcf_c?particles\units\heroes\hero_viper\viper_poison_attack.vpcf_c
 particles\econ\items\viper\viper_ti7_immortal\viper_poison_crimson_debuff_ti7.vpcf_c?particles\units\heroes\hero_viper\viper_poison_debuff.vpcf_c
@@ -667,6 +681,7 @@ particles\econ\items\alchemist\alchemist_stove_armor\alchemist_stove_armor_ambie
 particles\econ\items\alchemist\alchemist_stove_arms\alchemist_stove_arms_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\alchemist\alchemist_stove_back\alchemist_stove_back_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\ancient_apparition\aa_blast_ti_5\aa_ti5_eyes.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\ancient_apparition\ancient_apparation_ti8\ancient_ti8_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\antimage\antimage_ti7\antimage_ti7_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\antimage\antimage_ti7_golden\antimage_ti7_golden_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\antimage\antimage_weapon_anchorite\antimage_anchorite_ambient_shoulder.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -723,6 +738,10 @@ particles\econ\items\bounty_hunter\bounty_hunter_ursine\bounty_hunter_usrine_eye
 particles\econ\items\bounty_hunter\bounty_hunter_ursine\bounty_hunter_usrine_eyes_base.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\brewmaster\brewmaster_offhand_elixir\brewmaster_offhand_elixir.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\brewmaster\brewmaster_pirate_cannon\brewmaster_pirate_cannon_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\bristleback\bristle_quest_ti8\bristle_quest_armor_ti8_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\bristleback\bristle_quest_ti8\bristle_quest_armor_ti8_ambient_v2.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\bristleback\bristle_quest_ti8\bristle_quest_weapon_ti8_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\bristleback\bristle_quest_ti8\bristle_quest_weapon_ti8_ambient_v2.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\bristleback\bristle_spikey_spray\bristle_spikey_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\bristleback\ti7_head_nasal_goo\bristleback_ti7_crimson_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\bristleback\ti7_head_nasal_goo\bristleback_ti7_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -909,6 +928,7 @@ particles\econ\items\lich\blizzard_of_the_tyrant\blyzard_of_the_tyrant_back_face
 particles\econ\items\lich\blizzard_of_the_tyrant\blyzard_of_the_tyrant_back_face_dark.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\lich\forbidden_knowledge\lich_forbidden_knowledge_ambient_book.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\lich\frozen_chains_ti6\lich_frozenchains_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\lich\lich_ti8_immortal_arms\lich_ti8_ambient_frost.vpcf_c?particles\units\heroes\hero_lich\lich_ambient_frost.vpcf_c
 particles\econ\items\lifestealer\lifestealer_immortal_backbone\lifestealer_immortal_backbone_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\lifestealer\lifestealer_immortal_backbone\lifestealer_immortal_backbone_rage_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\lifestealer\lifestealer_immortal_backbone_gold\lifestealer_immortal_backbone_gold_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1038,6 +1058,7 @@ particles\econ\items\outworld_devourer\od_shards_exile\od_shards_exile_ambient.v
 particles\econ\items\outworld_devourer\od_shards_exile_gold\od_shards_exile_ambient_gold.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\pangolier\pangolier_immortal_musket\pangolier_immortal_musket_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\pets\pet_frondillo\almond_ambient_gold.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\phantom_assassin\pa_ti8_immortal_head\pa_ti8_immortal_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\phantom_assassin\phantom_assassin_arcana_elder_smith\pa_arcana_blade_d.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\phantom_assassin\phantom_assassin_arcana_elder_smith\pa_arcana_blade_d_fire.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\phantom_assassin\phantom_assassin_arcana_elder_smith\pa_arcana_blade_e.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1105,6 +1126,8 @@ particles\econ\items\riki\riki_cunning_crosair\riki_cunning_crosair_tail_ambient
 particles\econ\items\riki\riki_cunning_crosair\riki_cunning_crosair_weapon_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\riki\riki_haze_atrocity\riki_versuta_eye_smoke.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\riki\riki_haze_atrocity\riki_versuta_tail_smoke.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\riki\riki_head_ti8\riki_head_ambient_ti8.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\riki\riki_head_ti8_gold\riki_head_ambient_ti8_gold.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\riki\riki_immortal_ti6\riki_immortal_ti6_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\riki\riki_immortal_ti6\riki_immortal_ti6_ambient_gold.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\rubick\rubick_force_ambient\rubick_force_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1165,6 +1188,10 @@ particles\econ\items\skywrath_mage\manticore\manticore_staff.vpcf_c?particles\de
 particles\econ\items\skywrath_mage\manticore\wings_of_the_manticore_ambientfx.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\skywrath_mage\manticore\wings_of_the_manticore_golden_ambientfx.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\skywrath_mage\skywrath_mage_weapon_empyrean\skywrath_mage_staff_ambient_empyrean.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\skywrath_mage\ti8_set\skywrath_ti8_head_alternate_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\skywrath_mage\ti8_set\skywrath_ti8_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\skywrath_mage\ti8_set\skywrath_ti8_weapon_alternative_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\skywrath_mage\ti8_set\skywrath_ti8_weapon_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\slardar\sl_slardar_trident\sl_slardar_trident.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\slardar\slardar_andestian_weapon_blade.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\slardar\slardar_crystal_halberd\slardar_crystal_halberd.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1219,6 +1246,7 @@ particles\econ\items\spirit_breaker\spirit_breaker_weapon_fearlessimpactor\spiri
 particles\econ\items\spirit_breaker\spirit_breaker_weapon_fearlessimpactor\spirit_breaker_head_fearlessimpactor.vpcf_c?particles\units\heroes\hero_spirit_breaker\spirit_breaker_ambient_head_fire.vpcf_c
 particles\econ\items\spirit_breaker\spirit_breaker_weapon_fury\spirit_breaker_ambient_flame_fury.vpcf_c?particles\units\heroes\hero_spirit_breaker\spirit_breaker_ambient_flame.vpcf_c
 particles\econ\items\spirit_breaker\spirit_breaker_weapon_ghost_orb\spirit_breaker_ambient_flame_ghost_orb.vpcf_c?particles\units\heroes\hero_spirit_breaker\spirit_breaker_ambient_flame.vpcf_c
+particles\econ\items\spirit_breaker\spirit_breaker_weapon_ti8\spirit_breaker_ambient_ti8.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\storm_spirit\storm_spirit_orchid_hat\storm_spirit_orchid_ambient_eyes.vpcf_c?particles\units\heroes\hero_stormspirit\storm_spirit_ambient_eyes.vpcf_c
 particles\econ\items\storm_spirit\storm_spirit_orchid_hat\stormspirit_orchid_head_ambient.vpcf_c?particles\units\heroes\hero_stormspirit\stormspirit_head_ambient.vpcf_c
 particles\econ\items\storm_spirit\storm_spirit_tormenta_armor\storm_spirit_tormenta_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1233,6 +1261,7 @@ particles\econ\items\templar_assassin\templar_assassin_focal\ta_focal_base_ambie
 particles\econ\items\templar_assassin\templar_assassin_focal\ta_focal_upper_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\templar_assassin\templar_assassin_violet\templar_assassin_violet_shoulder_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\templar_assassin\templar_assassin_weapon_scholar\templar_assassin_ambient_scholar.vpcf_c?particles\units\heroes\hero_templar_assassin\templar_assassin_ambient.vpcf_c
+particles\econ\items\terrorblade\terrorblade_back_ti8\terrorblade_back_ambient_ti8.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\terrorblade\terrorblade_corrupted_blades\terrorblade_ambient_sword_blade_corrupted.vpcf_c?particles\units\heroes\hero_terrorblade\terrorblade_ambient_sword_blade.vpcf_c
 particles\econ\items\terrorblade\terrorblade_corrupted_blades\terrorblade_ambient_sword_blade_corrupted_2.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\terrorblade\terrorblade_corrupted_blades\terrorblade_ambient_sword_corrupted_l.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1278,6 +1307,7 @@ particles\econ\items\tuskarr\tusk_harmful_fist\tuskar_ironfist_back_ambient.vpcf
 particles\econ\items\tuskarr\tusk_harmful_fist\tuskar_ironfist_helmet_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\tuskarr\tusk_harmful_fist\tuskar_ironfist_tusk_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\tuskarr\tusk_harmful_fist\tuskar_ironfist_weapon_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\underlord\underlord_ti8_immortal_weapon\underlord_ti8_immortal_weapon_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\undying\undying_davy_jones\undying_davy_jones_armor_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\undying\undying_pale_augur\undying_pale_augur_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\undying\undying_scourge\undying_scourge_arm_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1293,6 +1323,7 @@ particles\econ\items\vengeful\vengeful_echoes_eyrie\vengeful_echoes_eyrie_weapon
 particles\econ\items\vengeful\vengeful_flightless\vengeful_flightless_weapon_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\vengeful\vengeful_weapon_talon\vengeful_weapon_talon_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\vengeful\vengeful_wing_fallenprincess\venge_wingsoffallenprincess_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\vengeful\vs_ti8_immortal_shoulder\vs_ti8_immortal_shoulder_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\venomancer\poison_touch_shoulder\venon_ambient_poison_touch_shoulder.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\venomancer\toxicant\veno_toxicant_tail.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\venomancer\toxicant\venomancter_toxicant_belly.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1452,6 +1483,13 @@ particles\econ\courier\courier_mei_nei_rabbit\courier_mei_nei_rabbit.vpcf_c?part
 particles\econ\courier\courier_minipudge\courier_minipudge_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\courier\courier_minipudge\courier_minipudge_lvl2_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\courier\courier_mok\mok_prop.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\courier\courier_mole_messenger_ti8\mole_candle_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\courier\courier_mole_messenger_ti8\mole_drill_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\courier\courier_mole_messenger_ti8\mole_headlight_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\courier\courier_mole_messenger_ti8\mole_jadedrill_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\courier\courier_mole_messenger_ti8\mole_propeller_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\courier\courier_mole_messenger_ti8\mole_rocket_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\courier\courier_mole_messenger_ti8\mole_thrusters_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\courier\courier_murrissey_the_smeevil\courier_murrissey_the_smeevil_fl.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\courier\courier_murrissey_the_smeevil\courier_murrissey_the_smeevil_fr.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\courier\courier_nilbog\courier_nilbog.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1491,6 +1529,8 @@ particles\econ\courier\courier_roshan_desert_sands\baby_roshan_desert_sands_ambi
 particles\econ\courier\courier_roshan_desert_sands\baby_roshan_desert_sands_ambient_loadout.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\courier\courier_roshan_frost\courier_roshan_frost_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\courier\courier_roshan_lava\courier_roshan_lava.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\courier\courier_roshan_ti8\courier_roshan_ti8.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\courier\courier_roshan_ti8\courier_roshan_ti8_flying.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\courier\courier_sappling\courier_sappling_ambient_fly_lvl1.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\courier\courier_sappling\courier_sappling_ambient_fly_lvl2.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\courier\courier_sappling\courier_sappling_ambient_fly_lvl3.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1583,6 +1623,8 @@ particles\econ\wards\smeevil\smeevil_ward\smeevil_ward_pink_ambient.vpcf_c?parti
 particles\econ\wards\smeevil\smeevil_ward\smeevil_ward_yellow_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\wards\the_watcher_below\watcher_below\watcher_below_ambient.vpcf_c?particles\items2_fx\ward.vpcf_c
 particles\econ\wards\the_watcher_below\watcher_below\watcher_below_sentry_ambient.vpcf_c?particles\items2_fx\ward_true_sight.vpcf_c
+particles\econ\wards\ti8_ward\ti8_ward_ambient.vpcf_c?particles\items2_fx\ward.vpcf_c
+particles\econ\wards\ti8_ward\ti8_ward_true_sight_ambient.vpcf_c?particles\items2_fx\ward_true_sight.vpcf_c
 particles\econ\wards\warlock\ward_warlock\warlock_ambient_ward.vpcf_c?particles\dev\empty_particle.vpcf_c
 [Seasonal]
 particles\econ\events\ti7\blink_dagger_end_ti7.vpcf_c?particles\items_fx\blink_dagger_end.vpcf_c
@@ -1616,6 +1658,38 @@ particles\econ\events\ti7\teleport_start_ti7.vpcf_c?particles\items2_fx\teleport
 particles\econ\events\ti7\teleport_start_ti7_lvl2.vpcf_c?particles\items2_fx\teleport_start.vpcf_c
 particles\econ\events\ti7\teleport_start_ti7_lvl3.vpcf_c?particles\items2_fx\teleport_start.vpcf_c
 particles\econ\events\ti7\ti7_hero_effect.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\events\ti8\blink_dagger_ti8_end.vpcf_c?particles\items_fx\blink_dagger_end.vpcf_c
+particles\econ\events\ti8\blink_dagger_ti8_end_lvl2.vpcf_c?particles\items_fx\blink_dagger_end.vpcf_c
+particles\econ\events\ti8\blink_dagger_ti8_start.vpcf_c?particles\items_fx\blink_dagger_start.vpcf_c
+particles\econ\events\ti8\blink_dagger_ti8_start_lvl2.vpcf_c?particles\items_fx\blink_dagger_start.vpcf_c
+particles\econ\events\ti8\bottle_ti8.vpcf_c?particles\items_fx\bottle.vpcf_c
+particles\econ\events\ti8\compendium_points_ti8_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\events\ti8\cyclone_ti8.vpcf_c?particles\items_fx\cyclone.vpcf_c
+particles\econ\events\ti8\force_staff_ti8.vpcf_c?particles\items_fx\force_staff.vpcf_c
+particles\econ\events\ti8\fountain_regen_ti8.vpcf_c?particles\generic_gameplay\radiant_fountain_regen.vpcf_c
+particles\econ\events\ti8\fountain_regen_ti8_lvl2.vpcf_c?particles\generic_gameplay\radiant_fountain_regen.vpcf_c
+particles\econ\events\ti8\fountain_regen_ti8_lvl3.vpcf_c?particles\generic_gameplay\radiant_fountain_regen.vpcf_c
+particles\econ\events\ti8\hero_levelup_ti8.vpcf_c?particles\generic_hero_status\hero_levelup.vpcf_c
+particles\econ\events\ti8\maelstorm_ti8.vpcf_c?particles\items_fx\chain_lightning.vpcf_c
+particles\econ\events\ti8\mekanism_recipient_ti8.vpcf_c?particles\items2_fx\mekanism_recipient.vpcf_c
+particles\econ\events\ti8\mekanism_ti8.vpcf_c?particles\items2_fx\mekanism.vpcf_c
+particles\econ\events\ti8\mjollnir_shield_ti8.vpcf_c?particles\items2_fx\mjollnir_shield.vpcf_c
+particles\econ\events\ti8\msg_deny_ti8.vpcf_c?particles\msg_fx\msg_deny.vpcf_c
+particles\econ\events\ti8\phase_boots_ti8.vpcf_c?particles\items2_fx\phase_boots.vpcf_c
+particles\econ\events\ti8\radiance_owner_ti8.vpcf_c?particles\items2_fx\radiance_owner.vpcf_c
+particles\econ\events\ti8\radiance_ti8.vpcf_c?particles\items2_fx\radiance.vpcf_c
+particles\econ\events\ti8\shivas_guard_ti8_active.vpcf_c?particles\items2_fx\shivas_guard_active.vpcf_c
+particles\econ\events\ti8\shivas_guard_ti8_impact.vpcf_c?particles\items2_fx\shivas_guard_impact.vpcf_c
+particles\econ\events\ti8\shivas_guard_ti8_slow.vpcf_c?particles\generic_gameplay\generic_slowed_cold.vpcf_c
+particles\econ\events\ti8\status_effect_shivas_guard_ti8.vpcf_c?particles\status_fx\status_effect_frost.vpcf_c
+particles\econ\events\ti8\teleport_end_ti8.vpcf_c?particles\items2_fx\teleport_end.vpcf_c
+particles\econ\events\ti8\teleport_end_ti8_lvl2.vpcf_c?particles\items2_fx\teleport_end.vpcf_c
+particles\econ\events\ti8\teleport_end_ti8_lvl3.vpcf_c?particles\items2_fx\teleport_end.vpcf_c
+particles\econ\events\ti8\teleport_start_ti8.vpcf_c?particles\items2_fx\teleport_start.vpcf_c
+particles\econ\events\ti8\teleport_start_ti8_lvl2.vpcf_c?particles\items2_fx\teleport_start.vpcf_c
+particles\econ\events\ti8\teleport_start_ti8_lvl3.vpcf_c?particles\items2_fx\teleport_start.vpcf_c
+particles\econ\events\ti8\ti8_hero_effect.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\events\ti8\ti8_hero_effect_loadout.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\events\winter_major_2016\compendium_points_winter_ambient_2016.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\world_tower\tower_upgrade\ti7_dire_tower_lvl1_dest.vpcf_c?particles\dire_fx\dire_tower002_destruction.vpcf_c
 particles\world_tower\tower_upgrade\ti7_dire_tower_lvl10_dest.vpcf_c?particles\dire_fx\dire_tower002_destruction.vpcf_c

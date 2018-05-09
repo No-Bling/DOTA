@@ -1,8 +1,11 @@
-//  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                        edited in SynWrite
-//----------------------------------------------------------------------------------------------------------------------------------
+//  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                       edited in SynWrite
+//---------------------------------------------------------------------------------------------------------------------------------
+// v7.14 r1: TI8 BattlePass edition
+// - keep filter applies to all categories, not just abilities heroes and hats
+// - update ACTIVE_EVENT, re-enable expired TI7 effects, fix missing ball for TI8 lich item, fix emblem only in ui
 // v7.12 r1: Pudge Arcana edition
 // - less underwhelming arcana keeping element dismember, keeping flies globally, removing hook streak extras and ground scratch
-// - can be visually uncluttered later, but for now it stays because it's awesome (like necro immortal scythe) + to not affect sales 
+// - can be visually uncluttered later but for now it stays because it's awesome (like necro immortal scythe) + to not affect sales 
 // Bumped version from v2.0 final to match game patch 7.10:
 // - Add emblem (previously called relic), re-enable expired TI7 Effects for event replays viewing
 // - Proper fix for Gyro call down bug
@@ -11,10 +14,10 @@
 // - Extended manual filters to make certain items like arcana's less underwhelming
 // - New Tweaks category - split into subcategories for more fine-tuning - effigies support, proper shrines, filtered portraits
 // - More reliable Dota_LOptions function and consistent verbose output in both Node.js and JScript engines
-//----------------------------------------------------------------------------------------------------------------------------------
-var ACTIVE_EVENT='EVENT_ID_INTERNATIONAL_2017'; // Hard-coded current event for the Seasonal category
+//---------------------------------------------------------------------------------------------------------------------------------
+var ACTIVE_EVENT='EVENT_ID_INTERNATIONAL_2018'; // Hard-coded current event for the Seasonal category
 var off='particles/dev/empty_particle.vpcf'; // Disable particle files by replacing them with default empty particle
-var KEEP_ITEM={};            // [Experimental] Ignore any auto-generated mod for item id - ex: KEEP_ITEM[7507]=0; KEEP_ITEM[9521]=0;
+var KEEP_ITEM={};            // [Experimental] Ignore any auto-generated mod for item id - ex: KEEP_ITEM[7507]=0;KEEP_ITEM[9521]=0;
 var KEEP_HERO={};            // [Experimental] Ignore any auto-generated mod for hero name - ex: KEEP_HERO['sven']=1;
 var KEEP_RARITY={};          // [Experimental] Ignore any auto-generated mod for rarity - ex: KEEP_RARITY['arcana']=1;
 var REV_KEEP={};             // [Advanced] Ignore any auto-generated mod for specific particle file - reverse lookup asset values
@@ -28,11 +31,11 @@ var MOD_EFFIGY={};           // Add particle replacement file in the Effigies ca
 var MOD_SHRINE={};           // Add particle replacement file in the Shrines category
 var MOD_PROP={};             // Add particle replacement file in the Props category
 var MOD_MENU={};             // Add particle replacement file in the Menu (UI) category
-//----------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
 // Manual filters to supplement the auto generated ones by the No_Bling JS function - for convenience moved here on top
 // Tip: while debugging a hero, list loaded particles using console command: dumpparticlelist | grep partial_hero_name
 // WARNING! Don`t touch before understanding the No_Bling function and the definitions above; expect glitches if changed
-//----------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
   /* Potato PC tweaks - Map Aegis of Champions */
 MOD_BASE['particles/econ/events/ti7/aegis_lvl_1000_ambient_ti7.vpcf']=off;//
   /* Potato PC tweaks - Map ancients */
@@ -116,7 +119,7 @@ MOD_PROP['particles/rain_fx/spring_terrain.vpcf']=off;//
 MOD_PROP['particles/rain_fx/desert_terrain.vpcf']=off;//
 MOD_PROP['particles/rain_fx/winter_terrain.vpcf']=off;//
   /*  Potato PC tweaks - Menu */
-MOD_MENU['particles/ui/ui_home_button.vpcf']=off;//                                                                    tweak menu ui
+MOD_MENU['particles/ui/ui_home_button.vpcf']=off;//                                                                   tweak menu ui
 MOD_MENU['particles/ui/ui_home_button_default.vpcf']=off;//
 MOD_MENU['particles/ui/ui_home_button_logo.vpcf']=off;//
 MOD_MENU['particles/ui/ui_mid_debris.vpcf']=off;//
@@ -132,6 +135,7 @@ MOD_MENU['particles/ui/ui_find_match_status_glow.vpcf']=off;//
 MOD_MENU['particles/ui/ui_find_match_status_steam.vpcf']=off;//
 MOD_MENU['particles/ui/ui_loadout_preview.vpcf']=off;//
 
+KEEP['particles/econ/events/ti8/emblem_loadout_ambient_ti8.vpcf']=0;//                                       show emblem only in ui
   /*  ABADDON  */
   /*  ABYSSAL_UNDERLORD  */
   /*  ALCHEMIST  */
@@ -144,7 +148,7 @@ MOD_MENU['particles/ui/ui_loadout_preview.vpcf']=off;//
   /*  BEASTMASTER  */
   /*  BLOODSEEKER  */
   /*  BOUNTY_HUNTER  */
-KEEP['particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf']=0;//                                FIX empty crit ready
+KEEP['particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf']=0;//                               FIX empty crit ready
 KEEP['particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf']=0;//
   /*  BREWMASTER  */
   /*  BRISTLEBACK  */
@@ -155,31 +159,31 @@ KEEP['particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf']=0;//
   /*  CLINKZ  */
   /*  CRYSTAL_MAIDEN  */
   /*  DARK_SEER  */
-//KEEP['particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands.vpcf']=0;//                            keep iconic hands smoke
-//MOD_HERO['particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands_b.vpcf']=off;//                                tweak smoke
+//KEEP['particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands.vpcf']=0;//                           keep iconic hands smoke
+//MOD_HERO['particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands_b.vpcf']=off;//                               tweak smoke
 //MOD_HERO['particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands_c.vpcf']=off;//
   /*  DARK_WILLOW  */
-KEEP['particles/units/heroes/hero_dark_willow/dark_willow_lantern_ambient.vpcf']=0;//                              FIX empty lantern
-MOD_HERO['particles/units/heroes/hero_dark_willow/dark_willow_lantern_ambient_trail.vpcf']=off;//                      tweak lantern
+KEEP['particles/units/heroes/hero_dark_willow/dark_willow_lantern_ambient.vpcf']=0;//                             FIX empty lantern
+MOD_HERO['particles/units/heroes/hero_dark_willow/dark_willow_lantern_ambient_trail.vpcf']=off;//                     tweak lantern
 MOD_HERO['particles/units/heroes/hero_dark_willow/dark_willow_lantern_ambient_trail_bits.vpcf']=off;//
 MOD_HERO['particles/units/heroes/hero_dark_willow/dark_willow_lantern_ambient_core.vpcf']=off;//
-MOD_HERO['particles/units/heroes/hero_dark_willow/dark_willow_bramble_cast_smoke.vpcf']=off;//                            tweak cast
+MOD_HERO['particles/units/heroes/hero_dark_willow/dark_willow_bramble_cast_smoke.vpcf']=off;//                           tweak cast
 MOD_HERO['particles/units/heroes/hero_dark_willow/dark_willow_bramble_cast_throw.vpcf']=off;//
-MOD_HERO['particles/units/heroes/hero_dark_willow/dark_willow_bramble_wraith_swirl.vpcf']=off;//                        tweak wraith
+MOD_HERO['particles/units/heroes/hero_dark_willow/dark_willow_bramble_wraith_swirl.vpcf']=off;//                       tweak wraith
 MOD_HERO['particles/units/heroes/hero_dark_willow/dark_willow_bramble_wraith_ember.vpcf']=off;//
-MOD_HERO['particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_flash_debris.vpcf']=off;//                  tweak terrorize
+MOD_HERO['particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_flash_debris.vpcf']=off;//                 tweak terrorize
 MOD_HERO['particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_ring_glow.vpcf']=off;//
 MOD_HERO['particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_ring_smoke.vpcf']=off;//
   /*  DAZZLE  */
   /*  DEATH_PROPHET  */
-KEEP['particles/units/heroes/hero_death_prophet/death_prophet_spirit_glow.vpcf']=0;//             FIX empty ultimate spirits healing
+KEEP['particles/units/heroes/hero_death_prophet/death_prophet_spirit_glow.vpcf']=0;//            FIX empty ultimate spirits healing
   /*  DISRUPTOR  */
   /*  DOOM_BRINGER  */
-KEEP['particles/units/heroes/hero_doom_bringer/doom_bringer_ambient.vpcf']=0;//                                      keep doom flame
-MOD_HERO['particles/units/heroes/hero_doom_bringer/doom_bringer_ambient_b.vpcf']=off;//                                  tweak flame
+KEEP['particles/units/heroes/hero_doom_bringer/doom_bringer_ambient.vpcf']=0;//                                     keep doom flame
+MOD_HERO['particles/units/heroes/hero_doom_bringer/doom_bringer_ambient_b.vpcf']=off;//                                 tweak flame
   /*  DRAGON_KNIGHT  */
   /*  DROW_RANGER  */
-var drow_bowstring='particles/units/heroes/hero_drow/drow_bowstring.vpcf';//                                     FIX empty bowstring
+var drow_bowstring='particles/units/heroes/hero_drow/drow_bowstring.vpcf';//                                    FIX empty bowstring
 MOD_HAT['particles/econ/items/drow/drow_bow_dpits3/drow_bowstring_dpits3.vpcf']=drow_bowstring;//
 MOD_HAT['particles/econ/items/drow/drow_arvalias_legacy/drow_bowstring_arvalias.vpcf']=drow_bowstring;//
 KEEP[drow_bowstring]=0;//
@@ -187,36 +191,38 @@ KEEP[drow_bowstring]=0;//
   /*  EARTHSHAKER  */
   /*  ELDER_TITAN  */
   /*  EMBER_SPIRIT  */
-KEEP['particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf']=0;//                              keep ember head fx
+KEEP['particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf']=0;//                             keep ember head fx
 KEEP['particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf']=0;//
   /*  ENCHANTRESS  */
   /*  ENIGMA  */
-KEEP['particles/units/heroes/hero_enigma/enigma_ambient_eyes.vpcf']=0;//                                       FIX empty iconic eyes
-KEEP['particles/units/heroes/hero_enigma/enigma_ambient_body.vpcf']=0;//                              FIX empty iconic body wormhole
-MOD_HERO['particles/units/heroes/hero_enigma/enigma_ambient_pebbles.vpcf']=off;//                                     tweak wormhole
+KEEP['particles/units/heroes/hero_enigma/enigma_ambient_eyes.vpcf']=0;//                                      FIX empty iconic eyes
+KEEP['particles/units/heroes/hero_enigma/enigma_ambient_body.vpcf']=0;//                             FIX empty iconic body wormhole
+MOD_HERO['particles/units/heroes/hero_enigma/enigma_ambient_pebbles.vpcf']=off;//                                    tweak wormhole
 MOD_HERO['particles/units/heroes/hero_enigma/enigma_ambient_rocks.vpcf']=off;//
-//KEEP['particles/units/heroes/hero_enigma/enigma_eidolon_ambient.vpcf']=0;//               don't uncomment this one if you need fps
+//KEEP['particles/units/heroes/hero_enigma/enigma_eidolon_ambient.vpcf']=0;//              don't uncomment this one if you need fps
   /*  FACELESS_VOID  */
   /*  FURION  */
   /*  GYROCOPTER  */
-KEEP['particles/units/heroes/hero_gyrocopter/gyro_ambient.vpcf']=0;//                                     FIX empty propeller radius
-MOD_HERO['particles/units/heroes/hero_gyrocopter/gyro_ambient_smokestack.vpcf']=off;//                                   tweak smoke
+KEEP['particles/units/heroes/hero_gyrocopter/gyro_ambient.vpcf']=0;//                                    FIX empty propeller radius
+MOD_HERO['particles/units/heroes/hero_gyrocopter/gyro_ambient_smokestack.vpcf']=off;//                                  tweak smoke
 var gyro_cd='particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_call_down_explosion_impact_a.vpcf';//
-MOD_ABILITY['particles/units/heroes/hero_gyrocopter/gyro_call_down_explosion_impact_a.vpcf']=gyro_cd;//    FIX Gyro proper call down
+MOD_ABILITY['particles/units/heroes/hero_gyrocopter/gyro_call_down_explosion_impact_a.vpcf']=gyro_cd;//   FIX Gyro proper call down
   /*  HUSKAR  */
   /*  INVOKER  */
   /*  JAKIRO  */
   /*  JUGGERNAUT  */
-KEEP['particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf']=0;//                              FIX empty healing ward
-MOD_HAT['particles/econ/items/juggernaut/jugg_arcana/jugg_arcana_haste.vpcf']=off;//                         mod arcana ground haste
+KEEP['particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf']=0;//                             FIX empty healing ward
+MOD_HAT['particles/econ/items/juggernaut/jugg_arcana/jugg_arcana_haste.vpcf']=off;//                        mod arcana ground haste
   /*  KEEPER_OF_THE_LIGHT  */
   /*  KUNKKA  */
   /*  LEGION_COMMANDER  */
-KEEP['particles/econ/items/legion/legion_weapon_voth_domosh/legion_duel_ring_arcana.vpcf']=0;//                     keep arcana duel
+KEEP['particles/econ/items/legion/legion_weapon_voth_domosh/legion_duel_ring_arcana.vpcf']=0;//                    keep arcana duel
   /*  LESHRAC  */
   /*  LICH  */
-KEEP['particles/units/heroes/hero_lich/lich_ambient_frost.vpcf']=0;//                                          FIX empty iconic ball
-MOD_HERO['particles/units/heroes/hero_lich/lich_ambient_frost_b.vpcf']=off;//                                             tweak ball
+var lich_ball='particles/units/heroes/hero_lich/lich_ambient_frost.vpcf';
+MOD_HAT['particles/econ/items/lich/lich_ti8_immortal_arms/lich_ti8_ambient_frost.vpcf']=lich_ball;//      FIX TI8 empty iconic ball
+KEEP[lich_ball]=0;//                                                                                          FIX empty iconic ball
+MOD_HERO['particles/units/heroes/hero_lich/lich_ambient_frost_b.vpcf']=off;//                                            tweak ball
 MOD_HERO['particles/units/heroes/hero_lich/lich_ambient_frost_c.vpcf']=off;//
 MOD_HERO['particles/units/heroes/hero_lich/lich_ambient_frost_d.vpcf']=off;//
 MOD_HERO['particles/units/heroes/hero_lich/lich_ambient_ball_glow_c.vpcf']=off;//
@@ -224,8 +230,8 @@ MOD_HERO['particles/units/heroes/hero_lich/lich_ambient_ball_light.vpcf']=off;//
 MOD_HERO['particles/units/heroes/hero_lich/lich_ambient_ball_glow.vpcf']=off;//
   /*  LIFE_STEALER  */
   /*  LINA  */
-KEEP['particles/econ/items/lina/lina_head_headflame/lina_headflame.vpcf']=0;//                                keep arcana head flame
-MOD_HAT['particles/econ/items/lina/lina_head_headflame/lina_headflame_f.vpcf']=off;//                               tweak head flame
+KEEP['particles/econ/items/lina/lina_head_headflame/lina_headflame.vpcf']=0;//                               keep arcana head flame
+MOD_HAT['particles/econ/items/lina/lina_head_headflame/lina_headflame_f.vpcf']=off;//                              tweak head flame
 MOD_HAT['particles/econ/items/lina/lina_head_headflame/lina_headflame_d.vpcf']=off;//
 MOD_HAT['particles/econ/items/lina/lina_head_headflame/lina_headflame_e.vpcf']=off;//
 MOD_HAT['particles/econ/items/lina/lina_head_headflame/lina_headflame_g.vpcf']=off;//
@@ -237,29 +243,29 @@ MOD_HAT['particles/econ/items/lina/lina_head_headflame/lina_headflame_i.vpcf']=o
   /*  LYCAN  */
   /*  MAGNATAUR  */
   /*  MEDUSA  */
-KEEP['particles/units/heroes/hero_medusa/medusa_bow.vpcf']=0;//                                                  FIX empty bowstring
+KEEP['particles/units/heroes/hero_medusa/medusa_bow.vpcf']=0;//                                                 FIX empty bowstring
   /*  MEEPO  */
   /*  MIRANA  */
-KEEP['particles/econ/items/mirana/mirana_starstorm_bow/mirana_bowstring_starstorm.vpcf']=0;//                    FIX empty bowstring
+KEEP['particles/econ/items/mirana/mirana_starstorm_bow/mirana_bowstring_starstorm.vpcf']=0;//                   FIX empty bowstring
 MOD_HAT['particles/econ/items/mirana/mirana_starstorm_bow/mirana_bowstring_starstorm_b.vpcf']=off;//
 MOD_HAT['particles/econ/items/mirana/mirana_starstorm_bow/mirana_bow_starstorm.vpcf']=off;//
 MOD_HAT['particles/econ/items/mirana/mirana_starstorm_bow/mirana_bowstring_starstorm_bloom.vpcf']=off;//
 MOD_HAT['particles/econ/items/mirana/mirana_starstorm_bow/mirana_bowstring_starstorm_e.vpcf']=off;//
   /*  MONKEY_KING  */
   /*  MORPHLING  */
-KEEP['particles/units/heroes/hero_morphling/morphling_ambient_new.vpcf']=0;//                                FIX empty iconic vortex
-MOD_HERO['particles/units/heroes/hero_morphling/morphling_ambient_new_b.vpcf']=off;//                                     tweak body
+KEEP['particles/units/heroes/hero_morphling/morphling_ambient_new.vpcf']=0;//                               FIX empty iconic vortex
+MOD_HERO['particles/units/heroes/hero_morphling/morphling_ambient_new_b.vpcf']=off;//                                    tweak body
 MOD_HERO['particles/units/heroes/hero_morphling/morphling_ambient_new_body_b.vpcf']=off;//
-MOD_HERO['particles/units/heroes/hero_morphling/morphling_ambient_trail.vpcf']=off;//                                    tweak trail
+MOD_HERO['particles/units/heroes/hero_morphling/morphling_ambient_trail.vpcf']=off;//                                   tweak trail
   /*  NAGA_SIREN  */
   /*  NECROLYTE  */
-KEEP['particles/econ/items/necrolyte/necrophos_sullen/necro_sullen_pulse_enemy.vpcf']=0;//                            keep ti7 pulse
+KEEP['particles/econ/items/necrolyte/necrophos_sullen/necro_sullen_pulse_enemy.vpcf']=0;//                           keep ti7 pulse
 KEEP['particles/econ/items/necrolyte/necrophos_sullen_gold/necro_sullen_pulse_enemy_gold.vpcf']=0;//
-KEEP['particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe.vpcf']=0;//                      keep ti7 scythe
+KEEP['particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe.vpcf']=0;//                     keep ti7 scythe
 KEEP['particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe_start.vpcf']=0;//
-MOD_HAT['particles/econ/items/necrolyte/necro_sullen_harvest/necro_sullen_harvest_ambient_staff_event.vpcf']=off;//      tweak trail
+MOD_HAT['particles/econ/items/necrolyte/necro_sullen_harvest/necro_sullen_harvest_ambient_staff_event.vpcf']=off;//     tweak trail
   /*  NEVERMORE  */
-KEEP['particles/units/heroes/hero_nevermore/nevermore_trail.vpcf']=0;//                                         keep and tweak trail
+KEEP['particles/units/heroes/hero_nevermore/nevermore_trail.vpcf']=0;//                                        keep and tweak trail
 MOD_HERO['particles/units/heroes/hero_nevermore/nevermore_trail_flek_swirl.vpcf']=off;//
 MOD_HERO['particles/units/heroes/hero_nevermore/nevermore_trail_flek_hit.vpcf']=off;//
 MOD_HERO['particles/units/heroes/hero_nevermore/nevermore_trail_ribbon_b.vpcf']=off;//
@@ -270,7 +276,7 @@ MOD_HERO['particles/units/heroes/hero_nevermore/nevermore_trail_ribbon_rev.vpcf'
 MOD_HERO['particles/units/heroes/hero_nevermore/nevermore_trail_ground_cracks.vpcf']=off;//
 MOD_HERO['particles/units/heroes/hero_nevermore/nevermore_trail_ground_cracks_soft.vpcf']=off;//
 MOD_HERO['particles/units/heroes/hero_nevermore/nevermore_trail_ambient_swirl.vpcf']=off;//
-KEEP['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail.vpcf']=0;//                  keep and tweak arcana trail
+KEEP['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail.vpcf']=0;//                 keep and tweak arcana trail
 MOD_HAT['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail_flek_hit.vpcf']=off;//
 MOD_HAT['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail_embers.vpcf']=off;//
 MOD_HAT['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail_dust.vpcf']=off;//
@@ -281,36 +287,36 @@ MOD_HAT['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail_g
   /*  NIGHT_STALKER  */
   /*  NYX_ASSASSIN  */
   /*  OBSIDIAN_DESTROYER  */
-MOD_HERO['particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_smoke.vpcf']=off;//                WARNING! don't modify
+MOD_HERO['particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_smoke.vpcf']=off;//               WARNING! don't modify
   /*  OGRE_MAGI  */
   /*  OMNIKNIGHT  */
   /*  ORACLE  */
   /*  PANGOLIER  */
   /*  PHANTOM_ASSASSIN  */
-REV_KEEP['particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf']=0;//            FIX lvl6+ weapon glitch
+REV_KEEP['particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf']=0;//           FIX lvl6+ weapon glitch
 KEEP['particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf']=0;//
-KEEP['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_ambient_a.vpcf']=0;//  arcana blade1
-KEEP['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_ambient_b.vpcf']=0;//         blade2
-MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_d.vpcf']=off;//     arcana style1
-MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_d_fire.vpcf']=off;//       style3
-MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_e.vpcf']=off;//            style2
+KEEP['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_ambient_a.vpcf']=0;// arcana blade1
+KEEP['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_ambient_b.vpcf']=0;//        blade2
+MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_d.vpcf']=off;//    arcana style1
+MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_d_fire.vpcf']=off;//      style3
+MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_e.vpcf']=off;//           style2
 MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_f.vpcf']=off;//
-MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl1.vpcf']=off;//    marks
+MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl1.vpcf']=off;//   marks
 MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl2.vpcf']=off;//
 MOD_HAT['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl3.vpcf']=off;//
-//KEEP['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_arcana_swoop.vpcf']=0;//crit
+//KEEP['particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_arcana_swoop.vpcf']=0;//crt
   /*  PHANTOM_LANCER  */
   /*  PHOENIX  */
   /*  PUCK  */
   /*  PUDGE  */
-KEEP['particles/units/heroes/hero_pudge/pudge_ambient_chain.vpcf']=0;//                   FIX pudge chains glitch towards map center
-REV_KEEP['particles/units/heroes/hero_pudge/pudge_ambient_flies.vpcf']=0;//                                Keep pudge flies globally 
-//REV_KEEP['particles/units/heroes/hero_pudge/pudge_hook_streak.vpcf']=0;//                          Keep pudge hook streak globally
-MOD_HAT['particles/econ/items/pudge/pudge_arcana/pudge_arcana_idle_groundscratch.vpcf']=off;//     Tweak pudge Arcana ground scratch
+KEEP['particles/units/heroes/hero_pudge/pudge_ambient_chain.vpcf']=0;//                  FIX pudge chains glitch towards map center
+REV_KEEP['particles/units/heroes/hero_pudge/pudge_ambient_flies.vpcf']=0;//                               Keep pudge flies globally 
+//REV_KEEP['particles/units/heroes/hero_pudge/pudge_hook_streak.vpcf']=0;//                         Keep pudge hook streak globally
+MOD_HAT['particles/econ/items/pudge/pudge_arcana/pudge_arcana_idle_groundscratch.vpcf']=off;//    Tweak pudge Arcana ground scratch
 MOD_HAT['particles/econ/items/pudge/pudge_arcana/pudge_arcana_red_idle_groundscratch.vpcf']=off;//
 MOD_HAT['particles/econ/items/pudge/pudge_arcana/pudge_arcana_walk_groundscratch.vpcf']=off;//       
 MOD_HAT['particles/econ/items/pudge/pudge_arcana/pudge_arcana_red_walk_groundscratch.vpcf']=off;//
-REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_null.vpcf']=0;//                     Keep pudge Arcana element dismember 
+REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_null.vpcf']=0;//                    Keep pudge Arcana element dismember 
 REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_electric.vpcf']=0;//  
 REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_ethereal.vpcf']=0;//  
 REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_fire.vpcf']=0;//  
@@ -319,7 +325,7 @@ REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_ice.vpcf']=0;//
 REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_motor.vpcf']=0;//  
 REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_stone.vpcf']=0;//  
 REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_wood.vpcf']=0;//  
-//MOD_HERO['particles/econ/items/pudge/pudge_arcana/default/pudge_arcana_dismember_parent_b_default.vpcf']=off;//     Nerf dismember
+//MOD_HERO['particles/econ/items/pudge/pudge_arcana/default/pudge_arcana_dismember_parent_b_default.vpcf']=off;//    Nerf dismember
 //MOD_HERO['particles/econ/items/pudge/pudge_arcana/electric/pudge_arcana_dismember_parent_b_electric.vpcf']=off;//
 //MOD_HERO['particles/econ/items/pudge/pudge_arcana/ethereal/pudge_arcana_dismember_parent_b_ethereal.vpcf']=off;//
 //MOD_HERO['particles/econ/items/pudge/pudge_arcana/fire/pudge_arcana_dismember_parent_b_fire.vpcf']=off;//
@@ -329,27 +335,27 @@ REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_wood.vpcf']=0;//
 //MOD_HERO['particles/econ/items/pudge/pudge_arcana/stone/pudge_arcana_dismember_parent_b_stone.vpcf']=off;//
 //MOD_HERO['particles/econ/items/pudge/pudge_arcana/wood/pudge_arcana_dismember_parent_b_wood.vpcf']=off;//
   /*  PUGNA  */
-KEEP['particles/units/heroes/hero_pugna/pugna_ward_ambient.vpcf']=0;//                                                FIX empty ward
+KEEP['particles/units/heroes/hero_pugna/pugna_ward_ambient.vpcf']=0;//                                               FIX empty ward
 //REV_KEEP['particles/units/heroes/hero_pugna/pugna_ward_ambient.vpcf']=0;//
   /*  QUEENOFPAIN  */
   /*  RATTLETRAP  */
   /*  RAZOR  */
-KEEP['particles/units/heroes/hero_razor/razor_whip.vpcf']=0;//                                                        FIX empty whip
-MOD_HERO['particles/units/heroes/hero_razor/razor_whip_b.vpcf']=off;//                                                    tweak whip
+KEEP['particles/units/heroes/hero_razor/razor_whip.vpcf']=0;//                                                       FIX empty whip
+MOD_HERO['particles/units/heroes/hero_razor/razor_whip_b.vpcf']=off;//                                                   tweak whip
 MOD_HERO['particles/units/heroes/hero_razor/razor_whip_light.vpcf']=off;//
-MOD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_ambient_main_reduced_flash.vpcf']=off;//  FIX dota_hud_reduced_flash
+MOD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_ambient_main_reduced_flash.vpcf']=off;// FIX dota_hud_reduced_flash
 MOD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_ambient_reduced_flash.vpcf']=off;//
 MOD_HERO['particles/units/heroes/hero_razor_reduced_flash/razor_whip_reduced_flash.vpcf']=
          'particles/units/heroes/hero_razor/razor_whip.vpcf';//
   /*  RIKI  */
   /*  RUBICK  */
-var rubick_staff='particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf';//                                   FIX empty staff
+var rubick_staff='particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf';//                                  FIX empty staff
 KEEP[rubick_staff]=0;//
-MOD_HAT['particles/econ/items/rubick/rubick_staff_wandering/rubick_staff_ambient_whset.vpcf']=rubick_staff;//            tweak staff
+MOD_HAT['particles/econ/items/rubick/rubick_staff_wandering/rubick_staff_ambient_whset.vpcf']=rubick_staff;//           tweak staff
 MOD_HAT['particles/econ/items/rubick/rubick_fortuneteller_ambient/rubick_fortuneteller_staff_ambient.vpcf']=rubick_staff;//
 MOD_HAT['particles/econ/items/rubick/rubick_wayfaring/rubick_wayfaring_staff_ambient.vpcf']=rubick_staff;//
 MOD_HAT['particles/econ/items/rubick/rubick_gambling_mage/rubick_gambling_mage_ambient.vpcf']=rubick_staff;//
-KEEP['particles/econ/items/rubick/rubick_puppet_master/rubick_telekinesis_puppet.vpcf']=0;//                      keep puppet effect
+KEEP['particles/econ/items/rubick/rubick_puppet_master/rubick_telekinesis_puppet.vpcf']=0;//                     keep puppet effect
   /*  SAND_KING  */
   /*  SHADOW_DEMON  */
   /*  SHADOW_SHAMAN  */
@@ -364,16 +370,16 @@ KEEP['particles/econ/items/rubick/rubick_puppet_master/rubick_telekinesis_puppet
   /*  SPIRIT_BREAKER  */
   /*  STORM_SPIRIT  */
   /*  SVEN  */
-KEEP_ITEM[9449]=0;//     Using experimental item id filter (replacing ~6 manual entries) to keep Vigil_Triumph pay2loose(tm) effects
-MOD_HAT['particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_ambient.vpcf']=off;//                   tweak Vigil_Triumph ambient
+KEEP_ITEM[9449]=0;//    Using experimental item id filter (replacing ~6 manual entries) to keep Vigil_Triumph pay2loose(tm) effects
+MOD_HAT['particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_ambient.vpcf']=off;//                  tweak Vigil_Triumph ambient
   /*  TECHIES  */
   /*  TEMPLAR_ASSASSIN  */
-KEEP['particles/units/heroes/hero_templar_assassin/templar_assassin_ambient.vpcf']=0;//                             FIX iconic hands
-//KEEP['particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_ambient.vpcf']=0;//                      keep immortal
+KEEP['particles/units/heroes/hero_templar_assassin/templar_assassin_ambient.vpcf']=0;//                            FIX iconic hands
+//KEEP['particles/econ/items/templar_assassin/templar_assassin_focal/ta_focal_ambient.vpcf']=0;//                     keep immortal
   /*  TERRORBLADE  */
-KEEP['particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_body_arcana_horns.vpcf']=0;//      FIX body hole
-KEEP['particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_eyes_arcana_horns.vpcf']=0;//      FIX head hole
-var terrorblade_left='particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade_2.vpcf';//        mod workshop ambient
+KEEP['particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_body_arcana_horns.vpcf']=0;//     FIX body hole
+KEEP['particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_eyes_arcana_horns.vpcf']=0;//     FIX head hole
+var terrorblade_left='particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade_2.vpcf';//       mod workshop ambient
 MOD_HAT['particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_left.vpcf']=terrorblade_left;//
 var terrorblade_right='particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf';//
 MOD_HAT['particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_right.vpcf']=terrorblade_right;//
@@ -385,7 +391,7 @@ MOD_HAT['particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_works
   /*  TREANT  */
   /*  TROLL_WARLORD  */
   /*  TUSK  */
-KEEP['particles/units/heroes/hero_tusk/tusk_frozen_sigil.vpcf']=0;//                                                 FIX empty sigil
+KEEP['particles/units/heroes/hero_tusk/tusk_frozen_sigil.vpcf']=0;//                                                FIX empty sigil
   /*  UNDYING  */
   /*  URSA  */
   /*  VENGEFULSPIRIT  */
@@ -393,28 +399,28 @@ KEEP['particles/units/heroes/hero_tusk/tusk_frozen_sigil.vpcf']=0;//            
   /*  VIPER  */
   /*  VISAGE  */
   /*  WARLOCK  */
-REV_MOD['particles/units/heroes/hero_warlock/golem_ambient.vpcf']=off;//                       reverse lookup mod warlock golem fire
+REV_MOD['particles/units/heroes/hero_warlock/golem_ambient.vpcf']=off;//                      reverse lookup mod warlock golem fire
   /*  WEAVER  */
   /*  WINDRUNNER  */
-var windrunner_bowstring='particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf';//        FIX windrunner empty bowstring
+var windrunner_bowstring='particles/units/heroes/hero_windrunner/windrunner_bowstring.vpcf';//       FIX windrunner empty bowstring
 MOD_HAT['particles/econ/items/windrunner/windrunner_weapon_rainmaker/windranger_weapon_rainmaker.vpcf']=windrunner_bowstring;//
 KEEP[windrunner_bowstring]=0;
   /*  WINTER_WYVERN  */
   /*  WISP  */
-KEEP['particles/units/heroes/hero_wisp/wisp_ambient.vpcf']=0;//           WARNING! don't modify - wisp is entirely made of particles
+KEEP['particles/units/heroes/hero_wisp/wisp_ambient.vpcf']=0;//          WARNING! don't modify - wisp is entirely made of particles
   /*  WITCH_DOCTOR  */
-KEEP['particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull.vpcf']=0;//                                 FIX empty ward head
+KEEP['particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull.vpcf']=0;//                                FIX empty ward head
   /*  ZUUS  */
-KEEP['particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot.vpcf']=0;//                                keep zeus arcana cloud
-MOD_HAT['particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot_shadow_b.vpcf']=off;//                      tweak arcana cloud
+KEEP['particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot.vpcf']=0;//                               keep zeus arcana cloud
+MOD_HAT['particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot_shadow_b.vpcf']=off;//                     tweak arcana cloud
 MOD_HAT['particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot_elecd.vpcf']=off;//
 MOD_HAT['particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot_rays_a.vpcf']=off;//
 MOD_HAT['particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot_rays_b.vpcf']=off;//
 
 
-//----------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
 // No_Bling JS main function
-//----------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
 No_Bling=function(content, output, choices, verbose, timers){
   w.echo(''+run+' @ '+engine+((jscript) ? ': Try the faster Node.js engine' : '')); w.echo('------------------------');
   // Parse arguments
@@ -465,16 +471,16 @@ No_Bling=function(content, output, choices, verbose, timers){
     t.end();
   }
 
-  //--------------------------------------------------------------------------------------------------------------------------------
+  //-------------------------------------------------------------------------------------------------------------------------------
   // 1. Loop trough all items, skipping over irrelevant categories and optionally generate accurate slice logs
-  //--------------------------------------------------------------------------------------------------------------------------------
+  //-------------------------------------------------------------------------------------------------------------------------------
   if (LOG) t=timer('--- Check items_game');
   var items=items_game_parsed.items_game.items;
   for (var i in items){
-    var precat='', cat='', expired='', logitem='', hero='NO', has_particles=false, maybe_ability={}, maybe_hat={}, iid=vdf.redup(i);
+    var precat='', cat='', expired='', logitem='',hero='NO', has_particles=false, maybe_ability={}, maybe_hat={}, iid=vdf.redup(i);
     var prefab=items[i].prefab || '', rarity=items[i].item_rarity || '', iname=items[i].item_name.replace('#DOTA_Item_','');
-    if (typeof items[i].prefab != 'string') continue;            // skip if not having .prefab - the hidden item #TF_Default_ItemDef
-    if (typeof items[i].visuals != 'object') continue;                                                // skip if not having .visuals
+    if (typeof items[i].prefab != 'string') continue;           // skip if not having .prefab - the hidden item #TF_Default_ItemDef
+    if (typeof items[i].visuals != 'object') continue;                                               // skip if not having .visuals
     // guess hero name
     if (typeof items[i].used_by_heroes == 'object'){
       for (var h in items[i].used_by_heroes){if (h.indexOf('_dota_') > -1) hero=h.split('_dota_')[1];}
@@ -488,28 +494,28 @@ No_Bling=function(content, output, choices, verbose, timers){
     // guess expiration
     if (precat == 'Seasonal' || precat == 'Others'){
       var age=(typeof items[i].expiration_date == 'string') ? items[i].expiration_date.split(' ')[0].split(/\-0|\-/g) : '';
-      if (!age && typeof items[i].creation_date == 'string'){ age=items[i].creation_date.split('-'); age[0]=parseInt(age[0],10)+1; }
+      if (!age && typeof items[i].creation_date == 'string'){ age=items[i].creation_date.split('-');age[0]=parseInt(age[0],10)+1; }
       expired=(age && Date.UTC(age[0],age[1],age[2]) - new Date().getTime() < 0);
-      if (items[i].event_id != ACTIVE_EVENT) expired=true;                  // hard-coded ACTIVE_EVENT = EVENT_ID_INTERNATIONAL_2017
-      if (items[i].event_id == ACTIVE_EVENT) expired=false;               // re-enable expired TI7 Effects for event replays viewing
+      if (items[i].event_id != ACTIVE_EVENT) expired=true;                 // hard-coded ACTIVE_EVENT = EVENT_ID_INTERNATIONAL_2018
+      if (items[i].event_id == 'EVENT_ID_INTERNATIONAL_2017') expired=false;   // re-enable expired TI7 Effects for replays viewing
     }
     // generate item category tracking text for debugging
     if (LOG) logitem='  '+iname+' ['+hero+'] '+prefab+' '+(rarity ? rarity+' ' : '')+iid+RN;
 
     // Still in the item i loop above, check visuals section for asset_modifier* particles
     for (var f in items[i].visuals){
-      var visuals=items[i].visuals[f];          // .visuals object - don't use exact naming since vdf.parser auto-renamed duplicates
+      var visuals=items[i].visuals[f];         // .visuals object - don't use exact naming since vdf.parser auto-renamed duplicates
       var type=(typeof visuals.type == 'string' && visuals.type.indexOf('particle') === 0 ) ? visuals.type : '';
-      if (!type || type == 'particle_control_point' || type == 'particle_combined') continue; // skip non particle / particle_create
+      if (!type || type == 'particle_control_point' || type == 'particle_combined') continue; //skip non particle / particle_create
       var modifier=(typeof visuals.modifier == 'string' && visuals.modifier.lastIndexOf('.vpcf') > -1) ? visuals.modifier : '';
       var asset=(typeof visuals.asset == 'string' && visuals.asset.lastIndexOf('.vpcf') > -1) ? visuals.asset : '';
-      if (modifier == asset) continue;  // skip if both modifier and asset are the same / are not defined / not .vpcf particle files
-      if (modifier && modifier.lastIndexOf('null.vpcf') > -1) continue;                                      // skip dummy modifiers
-      if (modifier && modifier.lastIndexOf('_local.vpcf') > -1) continue;                                   // skip staged modifiers
-      if (asset && asset.indexOf('particles/ability_modifier') > -1) continue;                             // skip dynamic modifiers
-      if (asset && asset.indexOf('particles/reftononexistent') > -1) asset=off;                           // skip dynamic references
-      if (asset && asset in REV_KEEP){ KEEP[modifier]=1; if (LOG) logitem+='    rev_skip: '+path.basename(modifier)+RN; } // reverse
-      if (asset && asset in REV_MOD){ asset=REV_MOD[asset]; if (LOG) logitem+='    rev_mod: '+path.basename(modifier)+RN; }// lookup
+      if (modifier == asset) continue; // skip if both modifier and asset are the same / are not defined / not .vpcf particle files
+      if (modifier && modifier.lastIndexOf('null.vpcf') > -1) continue;                                     // skip dummy modifiers
+      if (modifier && modifier.lastIndexOf('_local.vpcf') > -1) continue;                                  // skip staged modifiers
+      if (asset && asset.indexOf('particles/ability_modifier') > -1) continue;                            // skip dynamic modifiers
+      if (asset && asset.indexOf('particles/reftononexistent') > -1) asset=off;                          // skip dynamic references
+      if (asset && asset in REV_KEEP){ KEEP[modifier]=1; if (LOG) logitem+='    rev_skip: '+path.basename(modifier)+RN; }// reverse
+      if (asset && asset in REV_MOD){ asset=REV_MOD[asset]; if (LOG) logitem+='    rev_mod: '+path.basename(modifier)+RN; }//lookup
       // ABILITIES AND HATS
       if (precat == 'Wearables' && type == 'particle'){
         // expecting .asset
@@ -517,16 +523,16 @@ No_Bling=function(content, output, choices, verbose, timers){
           // Abilities mostly but we can have Hats, too. Separating them is not simple, but Gaben shall not prevail!
           if (LOG) logitem+= '      maybe_ability? '+modifier+RN;
           if (asset && asset.indexOf('particles/econ/items') > -1){
-            cat='Hats'; mods[cat][modifier]=off;                                                // mod (disable) modifier by default
+            cat='Hats'; mods[cat][modifier]=off;                                               // mod (disable) modifier by default
             if (LOG) logitem+= '      hat: '+modifier+RN;
           } else {
-            cat='Abilities'; maybe_ability[modifier]= (asset) ? asset : off;                             // use found asset if valid
+            cat='Abilities'; maybe_ability[modifier]= (asset) ? asset : off;                            // use found asset if valid
           }
         } else if (modifier.indexOf('particles/units/heroes') > -1){
           cat='HEROES'; //mods[cat][modifier]=(asset) ? asset : off;                                            // just log ignored
           if (LOG) logitem+= '      ignore_hero: '+modifier+RN;
         } else {
-          cat='Others'; //mods[cat][modifier]=(asset) ? asset : off;                                             // just log ignored
+          cat='Others'; //mods[cat][modifier]=(asset) ? asset : off;                                            // just log ignored
           if (LOG) logitem+= '      skip_other1: '+modifier+RN;
         }
         has_particles = true;
@@ -534,9 +540,9 @@ No_Bling=function(content, output, choices, verbose, timers){
         // not expecting .asset
         if (modifier.indexOf('particles/econ/items') > -1){
           cat='Hats'; // Hats mostly
-          mods[cat][modifier]=off;                                                              // mod (disable) modifier by default
+          mods[cat][modifier]=off;                                                             // mod (disable) modifier by default
           if (asset && asset.indexOf('particles/econ/items') == -1){
-            mods[cat][modifier]=(asset) ? asset : off;                                                   // use found asset if valid
+            mods[cat][modifier]=(asset) ? asset : off;                                                  // use found asset if valid
           }
           if (LOG) logitem+= '      hat: '+modifier+RN;
         } else if (modifier.indexOf('particles/units/heroes') > -1){
@@ -544,7 +550,7 @@ No_Bling=function(content, output, choices, verbose, timers){
           mods[cat][modifier]=(asset) ? asset : off; maybe_hat[modifier]=(asset) ? asset : off;
           if (LOG) logitem+= '      maybe_hat? '+modifier+RN;
         } else {
-          cat='Others'; //mods[cat][modifier]=(asset) ? asset : off;                                             // just log ignored
+          cat='Others'; //mods[cat][modifier]=(asset) ? asset : off;                                            // just log ignored
           if (LOG) logitem+= '      skip_other2: '+modifier+RN;
         }
         has_particles = true;
@@ -583,7 +589,7 @@ No_Bling=function(content, output, choices, verbose, timers){
         KEEP[modifier]=1; if (LOG) logitem+= '    skip_'+rarity+': '+path.basename(modifier)+RN;
       }
       for (var shero in KEEP_HERO){
-        if (modifier.indexOf(shero+'/') > -1){KEEP[modifier]=1; if (LOG) logitem+='    skip_'+hero+': '+path.basename(modifier)+RN;}
+        if (modifier.indexOf(shero+'/') > -1){KEEP[modifier]=1; if(LOG) logitem+='    skip_'+hero+': '+path.basename(modifier)+RN;}
       }
       if (iid && iid in KEEP_ITEM){
         KEEP[modifier]=1; if (LOG) logitem+= '    skip_'+iid+': '+path.basename(modifier)+RN;
@@ -627,14 +633,14 @@ No_Bling=function(content, output, choices, verbose, timers){
 
     // Optionally generate per-hero / category items_game.txt log slices keeping original indenting
     if (LOG){
-      if (hero != 'NO'){                                                                                    // per-hero items
+      if (hero != 'NO'){                                                                                          // per-hero items
         var herocat=(prefab == 'default_item') ? 'HEROES' : 'Wearables';
         if (!logs[herocat][hero]) logs[herocat][hero]={};
         if (!logs[herocat][hero][i]) logs[herocat][hero][i]={};         // for convenience,
         if (!logs[herocat][hero][i]['items_game']) logs[herocat][hero][i]['items_game']={};
         if (!logs[herocat][hero][i]['items_game']['items']) logs[herocat][hero][i]['items_game']['items']={};
         if (!logs[herocat][hero][i]['items_game']['items'][i+'']) logs[herocat][hero][i]['items_game']['items'][i+'']=items[i];
-      } else {                                                                                                     // non-hero items
+      } else {                                                                                                    // non-hero items
         if (!logs[precat]) logs[precat]={};
         if (!logs[precat][i]) logs[precat][i]={};
         if (!logs[precat][i]['items_game']) logs[precat][i]['items_game']={};
@@ -649,18 +655,18 @@ No_Bling=function(content, output, choices, verbose, timers){
   }  // next item i loop
   if (LOG) t.end();
 
-  //--------------------------------------------------------------------------------------------------------------------------------
+  //-------------------------------------------------------------------------------------------------------------------------------
   // 2. Loop trough generic attached_particles definitions in items_game.txt - these are mostly for Hats & Courier trails
-  //--------------------------------------------------------------------------------------------------------------------------------
+  //-------------------------------------------------------------------------------------------------------------------------------
   if (LOG) t=timer('--- Check generic attached_particles');
   var attached_particles=items_game_parsed.items_game.attribute_controlled_attached_particles;
   for (var ap in attached_particles){
-    if (typeof attached_particles[ap] != 'object') continue;                                                   // skip if not object
+    if (typeof attached_particles[ap] != 'object') continue;                                                  // skip if not object
     var generic=attached_particles[ap], existing=false;
     modifier=(typeof generic.system == 'string' && generic.system.lastIndexOf('.vpcf') > -1) ? generic.system : '';
-    if (!modifier) continue;                                                                        // skip not .vpcf particle files
+    if (!modifier) continue;                                                                       // skip not .vpcf particle files
     for (cat in mods){if (modifier in mods[cat]) existing=true;}
-    if (existing) continue;                                                                                 // do not override items
+    if (existing) continue;                                                                                // do not override items
     if (modifier.indexOf('particles/units/heroes') > -1){
       mods['HEROES'][modifier]=off; if (LOG) w.echo('  hero: '+modifier);
     } else if (modifier.indexOf('particles/econ/items') > -1){
@@ -677,23 +683,23 @@ No_Bling=function(content, output, choices, verbose, timers){
   } // next ap
   if (LOG) t.end();
 
-  //--------------------------------------------------------------------------------------------------------------------------------
+  //-------------------------------------------------------------------------------------------------------------------------------
   // 3. Loop trough generic asset_modifiers definitions in items_game.txt - these are mostly for custom Abilities effects
-  //--------------------------------------------------------------------------------------------------------------------------------
+  //-------------------------------------------------------------------------------------------------------------------------------
   if (LOG) t=timer('--- Check generic asset_modifiers');
   var asset_modifiers=items_game_parsed.items_game.asset_modifiers;
   for (var am in asset_modifiers){
-    if (typeof asset_modifiers[am] != 'object') continue;                                                      // skip if not object
+    if (typeof asset_modifiers[am] != 'object') continue;                                                     // skip if not object
     for (var m in asset_modifiers[am]){
       generic=asset_modifiers[am][m]; existing=false;
       if (typeof generic.type == 'string' && generic.type == 'particle'){
         modifier=(typeof generic.modifier == 'string' && generic.modifier.lastIndexOf('.vpcf') > -1) ? generic.modifier : '';
         asset=(typeof generic.asset == 'string' && generic.asset.lastIndexOf('.vpcf') > -1) ? generic.asset : '';
-        if (!modifier || !asset) continue;                   // skip if modifier or asset are not defined / not .vpcf particle files
+        if (!modifier || !asset) continue;                  // skip if modifier or asset are not defined / not .vpcf particle files
         for (cat in mods){if (modifier in mods[cat]) existing=true;}
-        if (existing) continue;                                                                             // do not override items
-        if (asset in REV_KEEP){ KEEP[modifier]=1; if (LOG) w.echo('    rev_skip: '+path.basename(modifier)); }  // reverse skip
-        if (asset in REV_MOD)  { asset=REV_MOD[asset]; if (LOG) w.echo('    rev_mod: '+path.basename(modifier));  }//reverse mod
+        if (existing) continue;                                                                            // do not override items
+        if (asset in REV_KEEP){ KEEP[modifier]=1; if (LOG) w.echo('    rev_skip: '+path.basename(modifier)); }      // reverse skip
+        if (asset in REV_MOD)  { asset=REV_MOD[asset]; if (LOG) w.echo('    rev_mod: '+path.basename(modifier));  }   //reverse mod
         mods['Abilities'][modifier]=asset;
         if (LOG) w.echo('  ability: '+modifier);
         // add generic manual particle filters
@@ -705,14 +711,15 @@ No_Bling=function(content, output, choices, verbose, timers){
   } // next am
   if (LOG) t.end();
 
-  //--------------------------------------------------------------------------------------------------------------------------------
+  //-------------------------------------------------------------------------------------------------------------------------------
   // 4. Import manual filters defined at the top of this script and sanitize categories
-  //--------------------------------------------------------------------------------------------------------------------------------
+  //-------------------------------------------------------------------------------------------------------------------------------
   if (LOG) t=timer('--- Import manual filters');
 
   // Import manual filters
   for (hat in KEEP){
-    for (var scat in {'Hats':1,'Abilities':1,'HEROES':1}) delete mods[scat][hat]; if (LOG) w.echo('  skip: '+hat);
+    for (filtercat in mods) delete mods[filtercat][hat]; 
+    if (LOG) w.echo('  skip: '+hat);
   }
 
   for (hat in REV_KEEP){ delete mods['HEROES'][hat];  if (LOG) w.echo('  rev_skip: '+hat); }
@@ -734,9 +741,9 @@ No_Bling=function(content, output, choices, verbose, timers){
 
   if (LOG) t.end();
 
-  //--------------------------------------------------------------------------------------------------------------------------------
+  //-------------------------------------------------------------------------------------------------------------------------------
   // 5. Optionally log to file per-hero / category items lists
-  //--------------------------------------------------------------------------------------------------------------------------------
+  //-------------------------------------------------------------------------------------------------------------------------------
   if (LOG){
     t=timer('Write per-hero / category slice logs to file');
     for (cat in logs){
@@ -763,9 +770,9 @@ No_Bling=function(content, output, choices, verbose, timers){
     t.end();
   } // end log to file
 
-  //--------------------------------------------------------------------------------------------------------------------------------
+  //-------------------------------------------------------------------------------------------------------------------------------
   // 6. Write particle?mod definitions for each category used for lame file replacement - RIP proper m_hLowViolenceDef after 7.07
-  //--------------------------------------------------------------------------------------------------------------------------------
+  //-------------------------------------------------------------------------------------------------------------------------------
   if (!HAS_CHOICES) w.quit();   // Do not output source files if no choice selected other than verbose (LOG)
   t=timer('Write particle?mod definitions for each src category');
   for (cat in mods){
@@ -787,9 +794,9 @@ No_Bling=function(content, output, choices, verbose, timers){
 
 }; // End of No_Bling
 
-//----------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
 // Utility JS functions - callable independently
-//----------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
 Dota_LOptions=function(fn, options, _flag){
   // fn:localconfig.vdf    options:separated by ,    _flag: -read=print -remove=delete -add=default if ommited
   var regs={}, lo=options.split(","), i=0,n=lo.length;
@@ -798,24 +805,24 @@ Dota_LOptions=function(fn, options, _flag){
   }
   var flag=_flag || '-add', file=path.normalize(fn), data=fs.readFileSync(file, DEF_ENCODING);
   var vdf=ValveDataFormat(), parsed=vdf.parse(data), apps=getKeYpath(parsed,"UserLocalConfigStore/Software/Valve/Steam/Apps");
-  var dota=apps[vdf.nr('570')];                              // added getKeYpath function to fix inconsistent key case used by Valve
-  if (flag == '-read'){ w.echo(dota["LaunchOptions"]); return; }                           // print existing launch options and exit
+  var dota=apps[vdf.nr('570')];                             // added getKeYpath function to fix inconsistent key case used by Valve
+  if (flag == '-read'){ w.echo(dota["LaunchOptions"]); return; }                          // print existing launch options and exit
   if (typeof dota["LaunchOptions"] === 'undefined' || dota["LaunchOptions"] === ''){
-    dota["LaunchOptions"]=(flag != '-remove') ? lo.join(" ") : "";                             // no launch options defined, add all
+    dota["LaunchOptions"]=(flag != '-remove') ? lo.join(" ") : "";                            // no launch options defined, add all
   } else {
     for (i=0;i<n;i++){
       if (lo[i] !== ''){
         if (regs[lo[i]].test(dota["LaunchOptions"])){
-          if (flag == '-remove') dota["LaunchOptions"]=dota["LaunchOptions"].replace(regs[lo[i]], '');// found existing, delete 1by1
-          else dota["LaunchOptions"]=dota["LaunchOptions"].replace(regs[lo[i]], lo[i]);              // found existing, replace 1by1
+          if (flag == '-remove') dota["LaunchOptions"]=dota["LaunchOptions"].replace(regs[lo[i]], '');//found existing, delete 1by1
+          else dota["LaunchOptions"]=dota["LaunchOptions"].replace(regs[lo[i]], lo[i]);              //found existing, replace 1by1
         } else {
-          if (flag != '-remove') dota["LaunchOptions"]+=' '+lo[i];                                   // not found existing, add 1by1
+          if (flag != '-remove') dota["LaunchOptions"]+=' '+lo[i];                                   //not found existing, add 1by1
         }
       }
     }
   }
-  dota["LaunchOptions"]=dota["LaunchOptions"].replace(/\s\s+/g, ' ');                     // replace multiple spaces between options
-  fs.writeFileSync(fn, vdf.stringify(parsed,true), DEF_ENCODING);                    // update fn if flag is -add -remove or ommited
+  dota["LaunchOptions"]=dota["LaunchOptions"].replace(/\s\s+/g, ' ');                    // replace multiple spaces between options
+  fs.writeFileSync(fn, vdf.stringify(parsed,true), DEF_ENCODING);                   // update fn if flag is -add -remove or ommited
 };
 function getKeYpath(obj,kp){
   var test=kp.split("/");
@@ -830,12 +837,12 @@ function getKeYpath(obj,kp){
 
 OutChars=function(s){ new Function('w.echo(String.fromCharCode('+s+'))')(); };
 
-//----------------------------------------------------------------------------------------------------------------------------------
-// ValveDataFormat hybrid js parser by AveYo, 2016                                                VDF test on 20.1 MB items_game.txt
-// loosely based on vdf-parser by Rossen Popov, 2014-2016                                                           node.js  cscript
+//---------------------------------------------------------------------------------------------------------------------------------
+// ValveDataFormat hybrid js parser by AveYo, 2016                                               VDF test on 20.1 MB items_game.txt
+// loosely based on vdf-parser by Rossen Popov, 2014-2016                                                          node.js  cscript
 // featuring auto-renaming duplicate keys, saving comments, grabbing lame one-line "key" { "k" "v" }        parse:  1.329s   9.285s
 // greatly improved cscript performance - it's not that bad overall but still lags behind node.js       stringify:  0.922s   3.439s
-//----------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
 function ValveDataFormat(){
   var jscript=(typeof ScriptEngine == 'function' && ScriptEngine() == 'JScript');
   if (!jscript){ var w={}; w.echo=function(s){console.log(s+'\r');}; }
@@ -844,24 +851,24 @@ function ValveDataFormat(){
     parse: function(txt, flag){
       var obj={}, stack=[obj], expect_bracket=false, i=0; comments=flag || false;
       if (/\r\n/.test(txt)){newline='\r\n';} else newline='\n';
-      var m, regex =/[^"\r\n]*(\/\/.*)|"([^"]*)"[ \t]+"([^"]*\\"[^"]*\\"[^"]*|[^"]*)"|"([^"]*)"|({)|(})/g;                       //"
+      var m, regex =/[^"\r\n]*(\/\/.*)|"([^"]*)"[ \t]+"([^"]*\\"[^"]*\\"[^"]*|[^"]*)"|"([^"]*)"|({)|(})/g;                      //"
       while ((m=regex.exec(txt)) !== null){
         //lf='\n'; w.echo(' cmnt:'+m[1]+lf+' key:'+m[2]+lf+' val:'+m[3]+lf+' add:'+m[4]+lf+' open:'+m[5]+lf+' close:'+m[6]+lf);
         if (comments && m[1] !== empty){
-          i++;key='\x10'+i; stack[stack.length-1][key]=m[1];                                        // AveYo: optionally save comments
+          i++;key='\x10'+i; stack[stack.length-1][key]=m[1];                                     // AveYo: optionally save comments
         } else if (m[4] !== empty){
           key=m[4]; if (expect_bracket){ w.echo('VDF.parse: invalid bracket near '+m[0]); return this.stringify(obj,true); }
           if (order && key == ''+~~key){key='\x11'+key;}              // AveYo: prepend nr. keys with \x11 to keep order in node.js
           if (typeof stack[stack.length-1][key] === 'undefined'){
             stack[stack.length-1][key]={};
           } else {
-            i++;key+= '\x12'+i; stack[stack.length-1][key]={}; dups=true;               // AveYo: rename duplicate key obj with \x12+i
+            i++;key+= '\x12'+i; stack[stack.length-1][key]={}; dups=true;            // AveYo: rename duplicate key obj with \x12+i
           }
           stack.push(stack[stack.length-1][key]); expect_bracket=true;
         } else if (m[2] !== empty){
           key=m[2]; if (expect_bracket){ w.echo('VDF.parse: invalid bracket near '+m[0]); return this.stringify(obj,true); }
-          if (order && key == ''+~~key) key='\x11'+key;                // AveYo: prepend nr. keys with \x11 to keep order in node.js
-          if (typeof stack[stack.length-1][key] !== 'undefined'){ i++;key+= '\x12'+i; dups=true; } // AveYo: rename duplicate k-v pair
+          if (order && key == ''+~~key) key='\x11'+key;               // AveYo: prepend nr. keys with \x11 to keep order in node.js
+          if (typeof stack[stack.length-1][key] !== 'undefined'){ i++;key+= '\x12'+i; dups=true; }   // AveYo: rename duplicate k-v
           stack[stack.length-1][key]=m[3]||'';
         } else if (m[5] !== empty){
           expect_bracket=false; continue; // one level deeper
@@ -885,31 +892,31 @@ function ValveDataFormat(){
         if (typeof obj[key] == 'object')  {
           buf+= idt+'"'+this.redup(key)+'"'+nl+idt+'{'+nl+this.dump(obj[key], pretty, nl, level+1)+idt+'}'+nl;
         } else {
-          if (comments && key.indexOf('\x10') !== -1){ buf+= idt+obj[key]+nl; continue; }      // AveYo: restore comments (optional)
+          if (comments && key.indexOf('\x10') !== -1){ buf+= idt+obj[key]+nl; continue; }     // AveYo: restore comments (optional)
           buf+= idt+'"'+this.redup(key)+'"'+indent+indent+'"'+obj[key]+'"'+nl;
         }
       }
       return buf;
     },
     redup: function(key){
-      if (order && key.indexOf('\x11') !== -1) key=key.split('\x11')[1];                    // AveYo: restore number keys in node.js
-      if (dups && key.indexOf('\x12') !== -1) key=key.split('\x12')[0];                        // AveYo: restore duplicate key names
+      if (order && key.indexOf('\x11') !== -1) key=key.split('\x11')[1];                   // AveYo: restore number keys in node.js
+      if (dups && key.indexOf('\x12') !== -1) key=key.split('\x12')[0];                       // AveYo: restore duplicate key names
       return key;
     },
-    nr: function(key){return (!jscript && key.indexOf('\x11') == -1) ? '\x11'+key : key;}   // AveYo: check number key: vdf.nr('nr')
+    nr: function(key){return (!jscript && key.indexOf('\x11') == -1) ? '\x11'+key : key;}  // AveYo: check number key: vdf.nr('nr')
   };
 } // End of ValveDataFormat
 
-//----------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
 // Hybrid Node.js / JScript Engine by AveYo - can call specific functions as the first script argument
-//----------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
 if (typeof ScriptEngine == 'function' && ScriptEngine() == 'JScript'){
   // start of JScript specific code
-  jscript=true; engine='JScript'; w=WScript; launcher=new ActiveXObject('WScript.Shell'); argc=w.Arguments.Count(); argv=[]; run='';
+  jscript=true; engine='JScript'; w=WScript; launcher=new ActiveXObject('WScript.Shell'); argc=w.Arguments.Count();argv=[]; run='';
   if (argc > 0){ run=w.Arguments(0); for (var i=1;i<argc;i++) argv.push( '"'+w.Arguments(i).replace(/[\\\/]+/g,'\\\\')+'"'); }
   process={}; process.argv=[ScriptEngine(),w.ScriptFullName]; for (var j=0;j<argc;j++) process.argv[j+2]=w.Arguments(j); RN='\r\n';
   path={}; path.join=function(f,n){return fso.BuildPath(f,n);}; path.normalize=function(f){return fso.GetAbsolutePathName(f);};
-  path.basename=function(f){return fso.GetFileName(f);}; path.dirname=function(f){return fso.GetParentFolderName(f);};path.sep='\\';
+  path.basename=function(f){return fso.GetFileName(f);};path.dirname=function(f){return fso.GetParentFolderName(f);};path.sep='\\';
   fs={}; fso=new ActiveXObject("Scripting.FileSystemObject"); ado=new ActiveXObject('ADODB.Stream'); DEF_ENCODING='Windows-1252';
   FileExists=function(f){ return fso.FileExists(f); }; PathExists=function(f){ return fso.FolderExists(f); };
   MakeDir=function(fn){
@@ -939,9 +946,9 @@ function timer(f){
   var b=new Date(); return { end:function(){ var e=new Date(), t=(e.getTime()-b.getTime())/1000; w.echo(f+': '+t+'s\r\n'); } };
 }
 // If run without parameters the .js file must have been double-clicked in shell, so try to launch the correct .bat file instead
-if (jscript && run === '' && FileExists(w.ScriptFullName.slice(0, -2)+'bat')) launcher.Run('"'+w.ScriptFullName.slice(0, -2)+'bat"');
-//----------------------------------------------------------------------------------------------------------------------------------
+if (jscript && run==='' && FileExists(w.ScriptFullName.slice(0, -2)+'bat')) launcher.Run('"'+w.ScriptFullName.slice(0, -2)+'bat"');
+//---------------------------------------------------------------------------------------------------------------------------------
 // Auto-run JS: if first script argument is a function name - call it, passing the next arguments
-//----------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
 if (run && !(/[^A-Z0-9$_]/i.test(run))) new Function('if(typeof '+run+' == "function"){'+run+'('+argv+');}')();
 //
