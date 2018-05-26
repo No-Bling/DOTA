@@ -1,4 +1,4 @@
- No-Bling DOTA mod v7.14 r1 choices:
+ No-Bling DOTA mod v7.15 r1 choices:
  Abilities,Hats,Couriers,Wards,Seasonal,HEROES
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
@@ -303,6 +303,11 @@ particles\econ\items\lina\lina_ti7\lina_spell_light_strike_array_ti7_gold.vpcf_c
 particles\econ\items\lion\fish_stick\fish_stick_spell_ambient.vpcf_c?particles\units\heroes\hero_lion\lion_spell_voodoo_ambient.vpcf_c
 particles\econ\items\lion\fish_stick\fish_stick_spell_fish.vpcf_c?particles\units\heroes\hero_lion\lion_spell_voodoo.vpcf_c
 particles\econ\items\lion\lion_demon_drain\lion_spell_mana_drain_demon.vpcf_c?particles\units\heroes\hero_lion\lion_spell_mana_drain.vpcf_c
+particles\econ\items\lion\lion_ti8\lion_spell_finger_death_arcana.vpcf_c?particles\units\heroes\hero_lion\lion_spell_finger_of_death_proxy.vpcf_c
+particles\econ\items\lion\lion_ti8\lion_spell_finger_of_death_charge_ti8.vpcf_c?particles\units\heroes\hero_lion\lion_spell_finger_of_death_charge.vpcf_c
+particles\econ\items\lion\lion_ti8\lion_spell_finger_of_death_overhead_ti8.vpcf_c?particles\units\heroes\hero_lion\lion_spell_finger_of_death_overhead.vpcf_c
+particles\econ\items\lion\lion_ti8\lion_spell_finger_of_death_overhead_ti8_counter.vpcf_c?particles\units\heroes\hero_lion\lion_spell_finger_of_death_overhead_counter.vpcf_c
+particles\econ\items\lion\lion_ti8\lion_spell_finger_ti8.vpcf_c?particles\units\heroes\hero_lion\lion_spell_finger_of_death.vpcf_c
 particles\econ\items\lone_druid\lone_druid_cauldron\lone_druid_bear_entangle_body_cauldron.vpcf_c?particles\units\heroes\hero_lone_druid\lone_druid_bear_entangle_body.vpcf_c
 particles\econ\items\lone_druid\lone_druid_cauldron\lone_druid_bear_entangle_cauldron.vpcf_c?particles\units\heroes\hero_lone_druid\lone_druid_bear_entangle.vpcf_c
 particles\econ\items\luna\luna_crescent_moon\luna_attack_crescent_moon.vpcf_c?particles\units\heroes\hero_luna\luna_base_attack.vpcf_c
@@ -955,6 +960,8 @@ particles\econ\items\lion\inferno_rambler_for_lion_arms\inferno_rambler_for_lion
 particles\econ\items\lion\lion_demon_drain\lion_demon_drain_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\lion\lion_demon_drain\lion_demon_drain_witness_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\lion\lion_demon_glove\lion_demon_glove.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\lion\lion_ti8\lion_ti8_arm_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\lion\lion_ti8\lion_ti8_arm_ambient_lvl2.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\lion\stone_hand\lion_stone_hand.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\lone_druid\lone_druid_cauldron\lone_druid_cauldron.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\luna\luna_burning_shadow\luna_burning_shadow_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
