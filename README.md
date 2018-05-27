@@ -90,7 +90,10 @@ It's recommended to set Effects Quality option to Low for Potato PC's as it decr
 Before reporting bugs, list particles in game console: `clear;dumpparticlelist | grep [^0\s][\d]*,[\s]flags;condump`  
 then share the exported list from: `\Steam\steamapps\common\dota 2 beta\game\dota\condump0XX.txt`  
   
-### What's new in v7.14:  
+### What's new in v7.16:  
+~ Add support for persistent language override. To define it, open a command prompt and enter: `setx NOBLING_LANGUAGE english`  
+~ Add Menu filter for TI8 ui rays  
+
 ~ Keep filter applies to all categories, not just abilities heroes and hats  
 ~ Update ACTIVE_EVENT and re-enable expired TI7 effects  
 ~ Prevent STEAMPATH detection possible issue

@@ -1,4 +1,6 @@
 @goto :init "No-Bling DOTA mod builder by AveYo"
+:: v7.16 r1:
+:: - Added support for persistent language override. To define it, open a command prompt and enter: setx NOBLING_LANGUAGE english
 :: v7.15 r1: TI8 Lion Prestige item
 :: - version bump, no script changes
 :: v7.14 r1: TI8 BattlePass edition
@@ -36,11 +38,11 @@ set "@refresh=0"                       ||   1 = always recompile mod instead of 
 set "@dialog=1"                        ||   1 = show choices dialog,                                  0 = no dialog - use above
 set "@timers=1"                        ||   1 = total and per tasks accurate timers,                  0 = no reason to disable them
 rem set "MOD_OUTPUT=%~dp0"             || rem = current batch file directory, uncomment if needed
-rem set "MOD_LANGUAGE=english"         || rem = current Steam language is auto-detected, override here
 rem set "MOD_FILE=pak01_dir.vpk"       || rem = localized versions might use pak02_dir.vpk, override here
+rem set "MOD_LANGUAGE=english"         || rem = current Steam language is auto-detected, override here or setx NOBLING_LANGUAGE xxx
 set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"
 set "def_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"       || dialog [Reset] sets these
-set "version=7.15 r1"
+set "version=7.16 r1"
 
 title No-Bling DOTA mod builder by AveYo v%version%
 setlocal &rem free script so no bitching!
@@ -104,6 +106,7 @@ echo @set/a "LASTUPDATED=%UPDATED%" ^&exit/b>pas_updated.bat & if %UPDATED% GTR 
 if defined NEWPATCH ( call :color 0c " new patch " ) else call :color 04. " old patch "
 
 :: Check Steam language = MOD languge - used to auto-install mod after 7.07
+if not defined MOD_LANGUAGE if defined NOBLING_LANGUAGE set "MOD_LANGUAGE=%NOBLING_LANGUAGE%"
 if not defined MOD_LANGUAGE call :reg_query "HKCU\SOFTWARE\Valve\Steam" "Language" STEAM_LANGUAGE
 if not defined MOD_LANGUAGE if defined STEAM_LANGUAGE set "MOD_LANGUAGE=%STEAM_LANGUAGE%"
 if not defined MOD_LANGUAGE set "MOD_LANGUAGE=english"

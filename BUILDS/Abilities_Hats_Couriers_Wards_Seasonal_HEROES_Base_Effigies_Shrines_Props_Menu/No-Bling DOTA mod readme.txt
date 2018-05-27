@@ -1,4 +1,4 @@
- No-Bling DOTA mod v7.15 r1 choices:
+ No-Bling DOTA mod v7.16 r1 choices:
  Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
