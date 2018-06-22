@@ -1,4 +1,4 @@
- No-Bling DOTA mod v7.16 r1 choices:
+ No-Bling DOTA mod v7.17 r1 choices:
  Abilities,Hats,Couriers,Wards,Seasonal
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
@@ -125,6 +125,10 @@ particles\econ\items\crystal_maiden\crystal_maiden_maiden_of_icewrack\maiden_fre
 particles\econ\items\crystal_maiden\ti7_immortal_shoulder\cm_ti7_immortal_base_attack.vpcf_c?particles\units\heroes\hero_crystalmaiden\maiden_base_attack.vpcf_c
 particles\econ\items\crystal_maiden\ti7_immortal_shoulder\cm_ti7_immortal_frostbite.vpcf_c?particles\units\heroes\hero_crystalmaiden\maiden_frostbite_buff.vpcf_c
 particles\econ\items\crystal_maiden\ti7_immortal_shoulder\cm_ti7_immortal_frostbite_proj.vpcf_c?particles\units\heroes\hero_crystalmaiden\maiden_frostbite.vpcf_c
+particles\econ\items\dark_seer\dark_seer_ti8_immortal_arms\dark_seer_ti8_immortal_ion_shell.vpcf_c?particles\units\heroes\hero_dark_seer\dark_seer_ion_shell.vpcf_c
+particles\econ\items\dark_seer\dark_seer_ti8_immortal_arms\dark_seer_ti8_immortal_ion_shell_dmg.vpcf_c?particles\units\heroes\hero_dark_seer\dark_seer_ion_shell_damage.vpcf_c
+particles\econ\items\dark_seer\dark_seer_ti8_immortal_arms\dark_seer_ti8_immortal_ion_shell_dmg_golden.vpcf_c?particles\units\heroes\hero_dark_seer\dark_seer_ion_shell_damage.vpcf_c
+particles\econ\items\dark_seer\dark_seer_ti8_immortal_arms\dark_seer_ti8_immortal_ion_shell_golden.vpcf_c?particles\units\heroes\hero_dark_seer\dark_seer_ion_shell.vpcf_c
 particles\econ\items\dark_willow\dark_willow_chakram_immortal\dark_willow_bramble_precast.vpcf_c?particles\units\heroes\hero_dark_willow\dark_willow_bramble_precast.vpcf_c
 particles\econ\items\dark_willow\dark_willow_chakram_immortal\dark_willow_chakram_immortal_bramble.vpcf_c?particles\units\heroes\hero_dark_willow\dark_willow_bramble.vpcf_c
 particles\econ\items\dark_willow\dark_willow_chakram_immortal\dark_willow_chakram_immortal_bramble_wraith.vpcf_c?particles\units\heroes\hero_dark_willow\dark_willow_bramble_wraith.vpcf_c
@@ -134,6 +138,7 @@ particles\econ\items\dazzle\dazzle_ti6_gold\dazzle_ti6_shallow_grave_gold.vpcf_c
 particles\econ\items\death_prophet\death_prophet_acherontia\death_prophet_acher_swarm.vpcf_c?particles\units\heroes\hero_death_prophet\death_prophet_carrion_swarm.vpcf_c
 particles\econ\items\disruptor\disruptor_resistive_pinfold\disruptor_ecage_formation.vpcf_c?particles\units\heroes\hero_disruptor\disruptor_kineticfield_formation.vpcf_c
 particles\econ\items\disruptor\disruptor_resistive_pinfold\disruptor_ecage_kineticfield.vpcf_c?particles\units\heroes\hero_disruptor\disruptor_kineticfield.vpcf_c
+particles\econ\items\doom\doom_ti8_immortal_arms\doom_ti8_immortal_devour.vpcf_c?particles\units\heroes\hero_doom_bringer\doom_bringer_devour.vpcf_c
 particles\econ\items\dragon_knight\dk_immortal_dragon\dragon_knight_dragon_tail_dragonform_iron_dragon.vpcf_c?particles\units\heroes\hero_dragon_knight\dragon_knight_dragon_tail_dragonform.vpcf_c
 particles\econ\items\dragon_knight\dk_immortal_dragon\dragon_knight_dragon_tail_knightform_iron_dragon.vpcf_c?particles\units\heroes\hero_dragon_knight\dragon_knight_dragon_tail_knightform.vpcf_c
 particles\econ\items\drow\drow_bow_monarch\drow_frost_arrow_monarch.vpcf_c?particles\units\heroes\hero_drow\drow_frost_arrow.vpcf_c
@@ -211,6 +216,8 @@ particles\econ\items\invoker\invoker_ti7\invoker_ti7_alacrity_cast.vpcf_c?partic
 particles\econ\items\invoker\invoker_ti7\status_effect_alacrity_ti7.vpcf_c?particles\status_fx\status_effect_alacrity.vpcf_c
 particles\econ\items\jakiro\jakiro_ti7_immortal_head\jakiro_ti7_immortal_head_ice_path.vpcf_c?particles\units\heroes\hero_jakiro\jakiro_ice_path.vpcf_c
 particles\econ\items\jakiro\jakiro_ti7_immortal_head\jakiro_ti7_immortal_head_ice_path_b.vpcf_c?particles\units\heroes\hero_jakiro\jakiro_ice_path_b.vpcf_c
+particles\econ\items\jakiro\jakiro_ti8_immortal_head\jakiro_ti8_dual_breath_fire.vpcf_c?particles\units\heroes\hero_jakiro\jakiro_dual_breath_fire.vpcf_c
+particles\econ\items\jakiro\jakiro_ti8_immortal_head\jakiro_ti8_dual_breath_ice.vpcf_c?particles\units\heroes\hero_jakiro\jakiro_dual_breath_ice.vpcf_c
 particles\econ\items\juggernaut\armor_of_the_favorite\juggernaut_armor_of_the_favorite_crit.vpcf_c?particles\units\heroes\hero_juggernaut\jugg_crit_blur.vpcf_c
 particles\econ\items\juggernaut\armor_of_the_favorite\juggernaut_blade_fury_favoriteblade.vpcf_c?particles\units\heroes\hero_juggernaut\juggernaut_blade_fury.vpcf_c
 particles\econ\items\juggernaut\bladekeeper_bladefury\_dc_juggernaut_blade_fury.vpcf_c?particles\units\heroes\hero_juggernaut\juggernaut_blade_fury.vpcf_c
@@ -251,6 +258,12 @@ particles\econ\items\juggernaut\jugg_sword_jade\jugg_attack_blur_jade.vpcf_c?par
 particles\econ\items\juggernaut\jugg_sword_jade\juggernaut_blade_fury_jade.vpcf_c?particles\units\heroes\hero_juggernaut\juggernaut_blade_fury.vpcf_c
 particles\econ\items\juggernaut\jugg_sword_script\juggernaut_blade_fury_script_new.vpcf_c?particles\units\heroes\hero_juggernaut\juggernaut_blade_fury.vpcf_c
 particles\econ\items\juggernaut\jugg_sword_shred\juggernaut_blade_fury_shred.vpcf_c?particles\units\heroes\hero_juggernaut\juggernaut_blade_fury.vpcf_c
+particles\econ\items\juggernaut\jugg_ti8_sword\juggernaut_blade_fury_abyssal.vpcf_c?particles\units\heroes\hero_juggernaut\juggernaut_blade_fury.vpcf_c
+particles\econ\items\juggernaut\jugg_ti8_sword\juggernaut_blade_fury_abyssal_golden.vpcf_c?particles\units\heroes\hero_juggernaut\juggernaut_blade_fury.vpcf_c
+particles\econ\items\juggernaut\jugg_ti8_sword\juggernaut_blade_fury_abyssal_tgt.vpcf_c?particles\units\heroes\hero_juggernaut\juggernaut_blade_fury_tgt.vpcf_c
+particles\econ\items\juggernaut\jugg_ti8_sword\juggernaut_blade_fury_abyssal_tgt_golden.vpcf_c?particles\units\heroes\hero_juggernaut\juggernaut_blade_fury_tgt.vpcf_c
+particles\econ\items\juggernaut\jugg_ti8_sword\juggernaut_ti8_sword_crit.vpcf_c?particles\units\heroes\hero_juggernaut\jugg_crit_blur.vpcf_c
+particles\econ\items\juggernaut\jugg_ti8_sword\juggernaut_ti8_sword_crit_golden.vpcf_c?particles\units\heroes\hero_juggernaut\jugg_crit_blur.vpcf_c
 particles\econ\items\juggernaut\jugg_ward_foo\juggernaut_healing_ward_foo.vpcf_c?particles\units\heroes\hero_juggernaut\juggernaut_healing_ward.vpcf_c
 particles\econ\items\juggernaut\lord_sword_ivory\juggernaut_blade_fury_ivory.vpcf_c?particles\units\heroes\hero_juggernaut\juggernaut_blade_fury.vpcf_c
 particles\econ\items\juggernaut\nomad_sword_grand_claive\juggernaut_blade_fury_grand_claive.vpcf_c?particles\units\heroes\hero_juggernaut\juggernaut_blade_fury.vpcf_c
@@ -387,6 +400,8 @@ particles\econ\items\ogre_magi\ogre_magi_jackpot\ogre_magi_jackpot_multicast.vpc
 particles\econ\items\ogre_magi\ogre_magi_jackpot\ogre_magi_jackpot_multicast_counter.vpcf_c?particles\units\heroes\hero_ogre_magi\ogre_magi_multicast_counter.vpcf_c
 particles\econ\items\omniknight\hammer_ti6_immortal\omniknight_purification_immortal_cast.vpcf_c?particles\units\heroes\hero_omniknight\omniknight_purification_cast.vpcf_c
 particles\econ\items\omniknight\hammer_ti6_immortal\omniknight_purification_ti6_immortal.vpcf_c?particles\units\heroes\hero_omniknight\omniknight_purification.vpcf_c
+particles\econ\items\omniknight\omni_ti8_head\omniknight_repel_buff_ti8.vpcf_c?particles\units\heroes\hero_omniknight\omniknight_repel_buff.vpcf_c
+particles\econ\items\omniknight\omni_ti8_head\omniknight_repel_cast_ti8.vpcf_c?particles\units\heroes\hero_omniknight\omniknight_repel_cast.vpcf_c
 particles\econ\items\oracle\oracle_fortune_ti7\oracle_fortune_ti7_aoe.vpcf_c?particles\units\heroes\hero_oracle\oracle_fortune_aoe.vpcf_c
 particles\econ\items\oracle\oracle_fortune_ti7\oracle_fortune_ti7_cast_tgt.vpcf_c?particles\units\heroes\hero_oracle\oracle_fortune_cast_tgt.vpcf_c
 particles\econ\items\oracle\oracle_fortune_ti7\oracle_fortune_ti7_channel.vpcf_c?particles\units\heroes\hero_oracle\oracle_fortune_channel.vpcf_c
@@ -398,6 +413,9 @@ particles\econ\items\outworld_devourer\od_shards_exile\od_shards_exile_prison_st
 particles\econ\items\outworld_devourer\od_shards_exile_gold\od_shards_exile_prison_gold.vpcf_c?particles\units\heroes\hero_obsidian_destroyer\obsidian_destroyer_prison.vpcf_c
 particles\econ\items\outworld_devourer\od_shards_exile_gold\od_shards_exile_prison_ring.vpcf_c?particles\units\heroes\hero_obsidian_destroyer\obsidian_destroyer_prison_ring.vpcf_c
 particles\econ\items\outworld_devourer\od_shards_exile_gold\od_shards_exile_prison_start_gold.vpcf_c?particles\units\heroes\hero_obsidian_destroyer\obsidian_destroyer_prison_start.vpcf_c
+particles\econ\items\outworld_devourer\od_ti8\od_ti8_sanity_eclipse_damage.vpcf_c?particles\units\heroes\hero_obsidian_destroyer\obsidian_destroyer_sanity_eclipse_damage.vpcf_c
+particles\econ\items\outworld_devourer\od_ti8\od_ti8_sanity_eclipse_mana_loss.vpcf_c?particles\units\heroes\hero_obsidian_destroyer\obsidian_destroyer_sanity_eclipse_mana_loss.vpcf_c
+particles\econ\items\outworld_devourer\od_ti8\od_ti8_santies_eclipse_area.vpcf_c?particles\units\heroes\hero_obsidian_destroyer\obsidian_destroyer_sanity_eclipse_area.vpcf_c
 particles\econ\items\pangolier\pangolier_immortal_musket\pangolier_immortal_swashbuckler.vpcf_c?particles\units\heroes\hero_pangolier\pangolier_swashbuckler.vpcf_c
 particles\econ\items\pangolier\pangolier_immortal_musket\pangolier_immortal_swashbuckler_dash.vpcf_c?particles\units\heroes\hero_pangolier\armadillo_swashbuckler_dash.vpcf_c
 particles\econ\items\phantom_assassin\pa_ti8_immortal_head\pa_ti8_immortal_dagger_debuff.vpcf_c?particles\units\heroes\hero_phantom_assassin\phantom_assassin_stifling_dagger_debuff.vpcf_c
@@ -612,6 +630,9 @@ particles\econ\items\ursa\ursa_swift_claw\ursa_swift_claw_left.vpcf_c?particles\
 particles\econ\items\ursa\ursa_swift_claw\ursa_swift_claw_right.vpcf_c?particles\units\heroes\hero_ursa\ursa_claw_right.vpcf_c
 particles\econ\items\vengeful\vengeful_weapon_talon\vengeful_wave_of_terror_weapon_talon.vpcf_c?particles\units\heroes\hero_vengeful\vengeful_wave_of_terror.vpcf_c
 particles\econ\items\vengeful\vs_ti8_immortal_shoulder\vs_ti8_immortal_magic_missle.vpcf_c?particles\units\heroes\hero_vengeful\vengeful_magic_missle.vpcf_c
+particles\econ\items\viper\viper_immortal_tail_ti8\viper_immortal_ti8_nethertoxin.vpcf_c?particles\units\heroes\hero_viper\viper_nethertoxin.vpcf_c
+particles\econ\items\viper\viper_immortal_tail_ti8\viper_immortal_ti8_nethertoxin_debuff.vpcf_c?particles\units\heroes\hero_viper\viper_nethertoxin_debuff.vpcf_c
+particles\econ\items\viper\viper_immortal_tail_ti8\viper_immortal_ti8_nethertoxin_proj.vpcf_c?particles\units\heroes\hero_viper\viper_nethertoxin_proj.vpcf_c
 particles\econ\items\viper\viper_ti7_immortal\viper_poison_attack_ti7.vpcf_c?particles\units\heroes\hero_viper\viper_poison_attack.vpcf_c
 particles\econ\items\viper\viper_ti7_immortal\viper_poison_crimson_attack_ti7.vpcf_c?particles\units\heroes\hero_viper\viper_poison_attack.vpcf_c
 particles\econ\items\viper\viper_ti7_immortal\viper_poison_crimson_debuff_ti7.vpcf_c?particles\units\heroes\hero_viper\viper_poison_debuff.vpcf_c
@@ -782,6 +803,8 @@ particles\econ\items\crystal_maiden\ti7_immortal_shoulder\cm_ti7_immortal_ambien
 particles\econ\items\dark_seer\dark_seer_imperious\dark_seer_imperious_back.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\dark_seer\dark_seer_imperious\dark_seer_imperious_back_pages.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\dark_seer\dark_seer_tactician\dark_seer_tactician_back.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\dark_seer\dark_seer_ti8_immortal_arms\dark_seer_ti8_immortal_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\dark_seer\dark_seer_ti8_immortal_arms\dark_seer_ti8_immortal_ambient_golden.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\dark_willow\dark_willow_chakram_immortal\dark_willow_chakram_immortal_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\dazzle\dazzle_darkclaw\dazzle_darkclaw_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\dazzle\dazzle_darkclaw\dazzle_darkclaw_ambient_head.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -806,6 +829,7 @@ particles\econ\items\disruptor\disruptor_resistive_pinfold\disruptor_ambient_emp
 particles\econ\items\disruptor\disruptor_resistive_pinfold\disruptor_resistive_ambient_glow.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\doom\doom_baphomet_set\doom_skulleye.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\doom\doom_baphomet_set\doom_skullwing.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\doom\doom_ti8_immortal_arms\doom_ti8_immortal_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\doom\doom_weapon_demonshard\doom_demonshard_ambient.vpcf_c?particles\units\heroes\hero_doom_bringer\doom_bringer_ambient.vpcf_c
 particles\econ\items\doom\doom_weapon_hellthorns_sword\doom_hellthorns_sword.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\dragon_knight\dk_aurora_warrior\dk_aurora_warrior_shield_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -887,6 +911,7 @@ particles\econ\items\invoker\invoker_ti7\invoker_ti7_bracer_ambient.vpcf_c?parti
 particles\econ\items\invoker\ti8_invoker_prism_crystal_spellcaster\ti8_invoker_prism_forge_spirit_ambient.vpcf_c?particles\units\heroes\hero_invoker\invoker_forge_spirit_ambient.vpcf_c
 particles\econ\items\jakiro\jakiro_ti7_immortal_head\jakiro_ti7_immortal_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\jakiro\jakiro_ti7_immortal_head\jakiro_ti7_immortal_body_ambient.vpcf_c?particles\units\heroes\hero_jakiro\jakiro_ambient.vpcf_c
+particles\econ\items\jakiro\jakiro_ti8_immortal_head\jakiro_ti8_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\juggernaut\armor_of_the_favorite\jugg_weapon_base_ribbon.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\juggernaut\armor_of_the_favorite\juggernaut_favorite_body_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\juggernaut\armor_of_the_favorite\juggernaut_favorite_eyes.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -908,6 +933,11 @@ particles\econ\items\juggernaut\jugg_sword_fireborn_odachi\jugg_weapon_glow_vari
 particles\econ\items\juggernaut\jugg_sword_jade\jugg_weapon_glow_variation_jade.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\juggernaut\jugg_sword_script\jugg_weapon_glow_variation_script.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\juggernaut\jugg_sword_thousand_faces\jugg_weapon_glow_thousand_faces.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\juggernaut\jugg_ti8_sword\jugg_ti8_sword_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\juggernaut\jugg_ti8_sword\jugg_ti8_sword_ambient_golden.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\juggernaut\jugg_ti8_sword\juggernaut_ti8_sword_attack_a_golden.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\juggernaut\jugg_ti8_sword\juggernaut_ti8_sword_attack_b_golden.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\juggernaut\jugg_ti8_sword\juggernaut_ti8_sword_crit_golden.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\juggernaut\lord_sword_ivory\jugg_weapon_glow_variation_ivory.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\juggernaut\nomad_sword_grand_claive\jugg_weapon_glow_variation_grand_claive.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\keeper_of_the_light\kotl_ti7_illuminate\kotl_ti7_immortal_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1066,10 +1096,12 @@ particles\econ\items\ogre_magi\ogre_ti7_set\ogre_ti7_set_style_head_ambient.vpcf
 particles\econ\items\ogre_magi\ogre_ti7_set\ogre_ti7_set_weapon_ambient.vpcf_c?particles\units\heroes\hero_ogre_magi\ogre_magi_weapon.vpcf_c
 particles\econ\items\omniknight\hammer_ti6_immortal\omniknight_hammer_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\omniknight\omni_sacred_light_head\omni_ambient_sacred_light.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\omniknight\omni_ti8_head\omni_ti8_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\oracle\oracle_fortune_ti7\oracle_fortune_ti7_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\outworld_devourer\od_lucent_gate_staff_ambient\od_lucent_gate_staff_ambient.vpcf_c?particles\units\heroes\hero_obsidian_destroyer\obsidian_destroyer_staff.vpcf_c
 particles\econ\items\outworld_devourer\od_shards_exile\od_shards_exile_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\outworld_devourer\od_shards_exile_gold\od_shards_exile_ambient_gold.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\outworld_devourer\od_ti8\od_ti8_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\pangolier\pangolier_immortal_musket\pangolier_immortal_musket_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\pets\pet_frondillo\almond_ambient_gold.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\phantom_assassin\pa_ti8_immortal_head\pa_ti8_immortal_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1349,6 +1381,7 @@ particles\econ\items\venomancer\poison_touch_shoulder\venon_ambient_poison_touch
 particles\econ\items\venomancer\toxicant\veno_toxicant_tail.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\venomancer\toxicant\venomancter_toxicant_belly.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\venomancer\toxicant\venomancter_toxicant_shoulder_master.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\viper\viper_immortal_tail_ti8\viper_immortal_ti8_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\viper\viper_king_head\viper_king_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\viper\viper_ti7_immortal\viper_immortal_ti7_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\viper\viper_ti7_immortal\viper_immortal_ti7_ambient_eyes.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1385,6 +1418,8 @@ particles\econ\items\wraith_king\wraith_king_ti6_bracer\wraith_king_ti6_ambient.
 particles\econ\items\wraith_king\wraith_king_ti6_bracer\wraith_king_ti6_ambient_default.vpcf_c?particles\units\heroes\hero_skeletonking\wraith_king_ambient.vpcf_c
 particles\econ\items\wraith_king\wraith_king_ti6_bracer\wraith_king_ti6_witness_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\wraith_king\wraith_king_ti6_bracer\wraith_king_ti6_witness_ambient_body.vpcf_c?particles\units\heroes\hero_skeletonking\wraith_king_ambient.vpcf_c
+particles\econ\items\wraith_king\wraith_king_ti8\wk_ti8_creep_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\wraith_king\wraith_king_ti8\wk_ti8_sword_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\wraith_king\wraith_king_winterblight_weapon\wraith_king_winterblight_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\zeus\arcana_chariot\zeus_ambient_arcana_eyes.vpcf_c?particles\units\heroes\hero_zeus\zeus_ambient_eyes.vpcf_c
 particles\econ\items\zeus\arcana_chariot\zeus_arcana_chariot_elecd.vpcf_c?particles\dev\empty_particle.vpcf_c

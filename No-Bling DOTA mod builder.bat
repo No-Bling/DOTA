@@ -1,4 +1,6 @@
 @goto :init "No-Bling DOTA mod builder by AveYo"
+:: v7.17 r1: TI8 Immortal Treasure II
+:: - version bump, no script changes
 :: v7.16 r1:
 :: - Added support for persistent language override. To define it, open a command prompt and enter: setx NOBLING_LANGUAGE english
 :: v7.15 r1: TI8 Lion Prestige item
@@ -42,7 +44,7 @@ rem set "MOD_FILE=pak01_dir.vpk"       || rem = localized versions might use pak
 rem set "MOD_LANGUAGE=english"         || rem = current Steam language is auto-detected, override here or setx NOBLING_LANGUAGE xxx
 set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"
 set "def_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"       || dialog [Reset] sets these
-set "version=7.16 r1"
+set "version=7.17 r1"
 
 title No-Bling DOTA mod builder by AveYo v%version%
 setlocal &rem free script so no bitching!
