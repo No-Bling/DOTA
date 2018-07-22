@@ -1,5 +1,7 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                       edited in SynWrite
 //---------------------------------------------------------------------------------------------------------------------------------
+// v7.18 r1: TI8 Collector's Cache II
+// - add Hat filters for Enigma, Brew, DK, NS
 // v7.15 r1: TI8 Lion Prestige item
 // - add Menu filter for TI8 ui rays
 // v7.14 r1: TI8 BattlePass edition
@@ -154,6 +156,8 @@ KEEP['particles/econ/events/ti8/emblem_loadout_ambient_ti8.vpcf']=0;//          
 KEEP['particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_l.vpcf']=0;//                               FIX empty crit ready
 KEEP['particles/units/heroes/hero_bounty_hunter/bounty_hunter_hand_r.vpcf']=0;//
   /*  BREWMASTER  */
+KEEP['particles/econ/items/brewmaster/brewmaster_ti8_tipsy_digger/ti8_brewmaster_tipsy_digger_flame_group.vpcf']=0;// keep ti8 brew
+KEEP['particles/econ/items/brewmaster/brewmaster_ti8_tipsy_digger/ti8_brewmaster_tipsy_digger_flame_lamp_group.vpcf']=0;//  candles
   /*  BRISTLEBACK  */
   /*  BROODMOTHER  */
   /*  CENTAUR  */
@@ -185,6 +189,9 @@ KEEP['particles/units/heroes/hero_death_prophet/death_prophet_spirit_glow.vpcf']
 KEEP['particles/units/heroes/hero_doom_bringer/doom_bringer_ambient.vpcf']=0;//                                     keep doom flame
 MOD_HERO['particles/units/heroes/hero_doom_bringer/doom_bringer_ambient_b.vpcf']=off;//                                 tweak flame
   /*  DRAGON_KNIGHT  */
+KEEP['particles/econ/items/dragon_knight/dk_ti8_awakening/dk_ti8_awakening_shield_ambient.vpcf']=0;//            keep ti8 dk shield
+MOD_HAT['particles/econ/items/dragon_knight/dk_ti8_awakening/dk_ti8_awakening_shield_ambient_trace.vpcf']=off;//              tweak 
+MOD_HAT['particles/econ/items/dragon_knight/dk_ti8_awakening/dk_ti8_awakening_shield_ambient_mouth_ember.vpcf']=off;//       shield
   /*  DROW_RANGER  */
 var drow_bowstring='particles/units/heroes/hero_drow/drow_bowstring.vpcf';//                                    FIX empty bowstring
 MOD_HAT['particles/econ/items/drow/drow_bow_dpits3/drow_bowstring_dpits3.vpcf']=drow_bowstring;//
@@ -198,6 +205,8 @@ KEEP['particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf']=
 KEEP['particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf']=0;//
   /*  ENCHANTRESS  */
   /*  ENIGMA  */
+KEEP['particles/econ/items/enigma/enigma_absolute_armour/enigma_absolute_armour_body_ambient.vpcf']=0;//     FIX TI8 empty wormhole
+KEEP['particles/econ/items/enigma/enigma_absolute_head/enigma_absolute_head_ambient_eye.vpcf']=0;//              FIX TI8 empty eyes
 KEEP['particles/units/heroes/hero_enigma/enigma_ambient_eyes.vpcf']=0;//                                      FIX empty iconic eyes
 KEEP['particles/units/heroes/hero_enigma/enigma_ambient_body.vpcf']=0;//                             FIX empty iconic body wormhole
 MOD_HERO['particles/units/heroes/hero_enigma/enigma_ambient_pebbles.vpcf']=off;//                                    tweak wormhole
@@ -288,6 +297,7 @@ MOD_HAT['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail_c
 MOD_HAT['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail_ground_soft.vpcf']=off;//
 MOD_HAT['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail_ground_dark.vpcf']=off;//
   /*  NIGHT_STALKER  */
+KEEP['particles/econ/items/nightstalker/nightstalker_endless_head_ambient.vpcf']=0;//                           keep ns ti8 head fx
   /*  NYX_ASSASSIN  */
   /*  OBSIDIAN_DESTROYER  */
 MOD_HERO['particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_smoke.vpcf']=off;//               WARNING! don't modify

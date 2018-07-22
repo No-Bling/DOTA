@@ -1,4 +1,6 @@
 @goto :init "No-Bling DOTA mod builder by AveYo"
+:: v7.18 r1: TI8 Collector's Cache II
+:: - version bump, no script changes
 :: v7.17 r1: TI8 Immortal Treasure II
 :: - version bump, no script changes
 :: v7.16 r1:
@@ -44,7 +46,7 @@ rem set "MOD_FILE=pak01_dir.vpk"       || rem = localized versions might use pak
 rem set "MOD_LANGUAGE=english"         || rem = current Steam language is auto-detected, override here or setx NOBLING_LANGUAGE xxx
 set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"
 set "def_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"       || dialog [Reset] sets these
-set "version=7.17 r1"
+set "version=7.18 r1"
 
 title No-Bling DOTA mod builder by AveYo v%version%
 setlocal &rem free script so no bitching!
@@ -414,7 +416,7 @@ exit/b
 
 :reg_query %1:KeyName %2:ValueName %3:OutputVariable %4:other_options[example: "/t REG_DWORD"]
 setlocal & for /f "skip=2 delims=" %%s in ('reg query "%~1" /v "%~2" /z 2^>nul') do set "rq=%%s" & call set "rv=%%rq:*)    =%%"
-endlocal & call set "%~3=%rv%" & exit/b                         &rem AveYo - Usage:" call :reg_query "HKCU\MyKey" "MyValue" MyVar "
+endlocal & set "%~3=%rv%" & exit/b                              &rem AveYo - Usage:" call :reg_query "HKCU\MyKey" "MyValue" MyVar "
 
 :timer %1:input[optional] %2:nodisplay[optional]
 if not defined timer_set ( if not "%~1"=="" ( call set "timer_set=%~1" ) else set "timer_set=%TIME: =0%" ) & exit/b
