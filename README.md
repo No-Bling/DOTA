@@ -9,7 +9,7 @@
 	</tr>  
 	<tr>  
 		<td><img src="https://i.imgur.com/yeN2UfR.png"></td>  
-		<td><img src="https://i.imgur.com/kUIQ7Jh.png"></td>  
+		<td><img src="https://i.imgur.com/JtihgLz.png"></td>  
 	</tr>  
 </table>  
   
@@ -90,8 +90,11 @@ It's recommended to set Effects Quality option to Low for Potato PC's as it decr
 Before reporting bugs, list particles in game console: `clear;dumpparticlelist | grep [^0\s][\d]*,[\s]flags;condump`  
 then share the exported list from: `\Steam\steamapps\common\dota 2 beta\game\dota\condump0XX.txt`  
   
-### What's new in v7.16:  
-~ Add support for persistent language override. To define it, open a command prompt and enter: `setx NOBLING_LANGUAGE english`  
+### What's new in v7.18:  
+~ Add Hat filters for Enigma, Brew, DK, NS in TI8 Collector's Cache II  
+
+~ Add support for persistent language override.  
+To define it, open a command prompt and enter: `setx NOBLING_LANGUAGE english`  
 ~ Add Menu filter for TI8 ui rays  
 
 ~ Keep filter applies to all categories, not just abilities heroes and hats  
