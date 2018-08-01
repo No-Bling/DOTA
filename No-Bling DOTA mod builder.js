@@ -1,5 +1,7 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                       edited in SynWrite
 //---------------------------------------------------------------------------------------------------------------------------------
+// v7.19 r1: TI8 Immortal Treasure III
+// - add manual filters for Naga, QoP, WD
 // v7.18 r1: TI8 Collector's Cache II
 // - add Hat filters for Enigma, Brew, DK, NS
 // v7.15 r1: TI8 Lion Prestige item
@@ -166,9 +168,9 @@ KEEP['particles/econ/items/brewmaster/brewmaster_ti8_tipsy_digger/ti8_brewmaster
   /*  CLINKZ  */
   /*  CRYSTAL_MAIDEN  */
   /*  DARK_SEER  */
-//KEEP['particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands.vpcf']=0;//                           keep iconic hands smoke
-//MOD_HERO['particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands_b.vpcf']=off;//                               tweak smoke
-//MOD_HERO['particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands_c.vpcf']=off;//
+KEEP['particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands.vpcf']=0;//                             keep iconic hands smoke
+MOD_HERO['particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands_b.vpcf']=off;//                                 tweak smoke
+MOD_HERO['particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands_c.vpcf']=off;//
   /*  DARK_WILLOW  */
 KEEP['particles/units/heroes/hero_dark_willow/dark_willow_lantern_ambient.vpcf']=0;//                             FIX empty lantern
 MOD_HERO['particles/units/heroes/hero_dark_willow/dark_willow_lantern_ambient_trail.vpcf']=off;//                     tweak lantern
@@ -205,8 +207,8 @@ KEEP['particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_eyes.vpcf']=
 KEEP['particles/units/heroes/hero_ember_spirit/ember_spirit_ambient_head.vpcf']=0;//
   /*  ENCHANTRESS  */
   /*  ENIGMA  */
-KEEP['particles/econ/items/enigma/enigma_absolute_armour/enigma_absolute_armour_body_ambient.vpcf']=0;//     FIX TI8 empty wormhole
-KEEP['particles/econ/items/enigma/enigma_absolute_head/enigma_absolute_head_ambient_eye.vpcf']=0;//              FIX TI8 empty eyes
+KEEP['particles/econ/items/enigma/enigma_absolute_armour/enigma_absolute_armour_body_ambient.vpcf']=0;//     FIX ti8 empty wormhole
+KEEP['particles/econ/items/enigma/enigma_absolute_head/enigma_absolute_head_ambient_eye.vpcf']=0;//              FIX ti8 empty eyes
 KEEP['particles/units/heroes/hero_enigma/enigma_ambient_eyes.vpcf']=0;//                                      FIX empty iconic eyes
 KEEP['particles/units/heroes/hero_enigma/enigma_ambient_body.vpcf']=0;//                             FIX empty iconic body wormhole
 MOD_HERO['particles/units/heroes/hero_enigma/enigma_ambient_pebbles.vpcf']=off;//                                    tweak wormhole
@@ -232,7 +234,7 @@ KEEP['particles/econ/items/legion/legion_weapon_voth_domosh/legion_duel_ring_arc
   /*  LESHRAC  */
   /*  LICH  */
 var lich_ball='particles/units/heroes/hero_lich/lich_ambient_frost.vpcf';
-MOD_HAT['particles/econ/items/lich/lich_ti8_immortal_arms/lich_ti8_ambient_frost.vpcf']=lich_ball;//      FIX TI8 empty iconic ball
+MOD_HAT['particles/econ/items/lich/lich_ti8_immortal_arms/lich_ti8_ambient_frost.vpcf']=lich_ball;//      FIX ti8 empty iconic ball
 KEEP[lich_ball]=0;//                                                                                          FIX empty iconic ball
 MOD_HERO['particles/units/heroes/hero_lich/lich_ambient_frost_b.vpcf']=off;//                                            tweak ball
 MOD_HERO['particles/units/heroes/hero_lich/lich_ambient_frost_c.vpcf']=off;//
@@ -270,6 +272,15 @@ MOD_HERO['particles/units/heroes/hero_morphling/morphling_ambient_new_b.vpcf']=o
 MOD_HERO['particles/units/heroes/hero_morphling/morphling_ambient_new_body_b.vpcf']=off;//
 MOD_HERO['particles/units/heroes/hero_morphling/morphling_ambient_trail.vpcf']=off;//                                   tweak trail
   /*  NAGA_SIREN  */
+KEEP['particles/econ/items/naga/naga_ti8_immortal_tail/naga_ti8_immortal_riptide.vpcf']=0;//                       keep ti8 riptide
+MOD_ABILITY['particles/econ/items/naga/naga_ti8_immortal_tail/naga_ti8_immortal_riptide_spray.vpcf']=off;//           tweak riptide
+MOD_ABILITY['particles/econ/items/naga/naga_ti8_immortal_tail/naga_ti8_immortal_riptide_outer_wave.vpcf']=off;//
+KEEP['particles/econ/items/naga/naga_ti8_immortal_tail/naga_ti8_immortal_ambient.vpcf']=0;//                         keep ti8 trail
+MOD_HAT['particles/econ/items/naga/naga_ti8_immortal_tail/naga_ti8_immortal_ambient_glow.vpcf']=off;//              tweak ti8 trail
+MOD_HAT['particles/econ/items/naga/naga_ti8_immortal_tail/naga_ti8_immortal_ambient_glint.vpcf']=off;//
+MOD_HAT['particles/econ/items/naga/naga_ti8_immortal_tail/naga_ti8_immortal_ambient_fin_l.vpcf']=off;//
+MOD_HAT['particles/econ/items/naga/naga_ti8_immortal_tail/naga_ti8_immortal_ambient_fin_r.vpcf']=off;//
+//MOD_HAT['particles/econ/items/naga/naga_ti8_immortal_tail/naga_ti8_immortal_ambient_fin_trail.vpcf']=off;//  immersive so keep it
   /*  NECROLYTE  */
 KEEP['particles/econ/items/necrolyte/necrophos_sullen/necro_sullen_pulse_enemy.vpcf']=0;//                           keep ti7 pulse
 KEEP['particles/econ/items/necrolyte/necrophos_sullen_gold/necro_sullen_pulse_enemy_gold.vpcf']=0;//
@@ -351,6 +362,8 @@ REV_KEEP['particles/units/heroes/hero_pudge/pudge_dismember_wood.vpcf']=0;//
 KEEP['particles/units/heroes/hero_pugna/pugna_ward_ambient.vpcf']=0;//                                               FIX empty ward
 //REV_KEEP['particles/units/heroes/hero_pugna/pugna_ward_ambient.vpcf']=0;//
   /*  QUEENOFPAIN  */
+KEEP['particles/econ/items/queen_of_pain/qop_ti8_immortal/queen_ti8_golden_shadow_strike_debuff.vpcf']=0;//     keep ti8 qop debuff
+KEEP['particles/econ/items/queen_of_pain/qop_ti8_immortal/queen_ti8_shadow_strike_debuff.vpcf']=0;//            keep ti8 qop debuff
   /*  RATTLETRAP  */
   /*  RAZOR  */
 KEEP['particles/units/heroes/hero_razor/razor_whip.vpcf']=0;//                                                       FIX empty whip
@@ -423,6 +436,8 @@ KEEP[windrunner_bowstring]=0;
 KEEP['particles/units/heroes/hero_wisp/wisp_ambient.vpcf']=0;//          WARNING! don't modify - wisp is entirely made of particles
   /*  WITCH_DOCTOR  */
 KEEP['particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull.vpcf']=0;//                                FIX empty ward head
+KEEP['particles/econ/items/witch_doctor/wd_ti8_immortal_bonkers/wd_ti8_immortal_bonkers_cask.vpcf']=0;//        keep ti8 wd bonkers
+KEEP['particles/econ/items/witch_doctor/wd_ti8_immortal_head/wd_ti8_immortal_maledict.vpcf']=0;//              keep ti8 wd maledict
   /*  ZUUS  */
 KEEP['particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot.vpcf']=0;//                               keep zeus arcana cloud
 MOD_HAT['particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot_shadow_b.vpcf']=off;//                     tweak arcana cloud

@@ -90,7 +90,9 @@ It's recommended to set Effects Quality option to Low for Potato PC's as it decr
 Before reporting bugs, list particles in game console: `clear;dumpparticlelist | grep [^0\s][\d]*,[\s]flags;condump`  
 then share the exported list from: `\Steam\steamapps\common\dota 2 beta\game\dota\condump0XX.txt`  
   
-### What's new in v7.18:  
+### What's new in v7.19:  
+~ Add manual filters for Naga, QoP, WD in TI8 Immortal Treasure III  
+
 ~ Add Hat filters for Enigma, Brew, DK, NS in TI8 Collector's Cache II  
 
 ~ Add support for persistent language override.  
