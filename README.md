@@ -89,7 +89,15 @@ Simply remove / rename the `-language x` launch option and restart the game!
 It's recommended to set Effects Quality option to Low for Potato PC's as it decreases the nr of particles for certain spells  
 Before reporting bugs, list particles in game console: `clear;dumpparticlelist | grep [^0\s][\d]*,[\s]flags;condump`  
 then share the exported list from: `\Steam\steamapps\common\dota 2 beta\game\dota\condump0XX.txt`  
-  
+
+Question from /u/malistev: __How can I manually allow certain effects, like a Halo on Omni's Crown of Sacred Light?__  
+There are several ways to help you add your own manual filters. If you read the code, it supports both item-wide filter (by number = id) and specific particle effects filters. For both it's easier to just run the script once with the __@verbose__ additional choice, as it will generate a log folder with all/most items involved, separated into categories.  
+For this inquiry, it would be `-noblingscriptfolder-\log\Wearables\omniknight`. Atm it would contain _Adoring_Wingfall_7580.txt, Paragons_Rebuke_9748_head.txt and Crown_of_Sacred_Light_8958_head.txt_. The number represents the __id__, that you can add in the manual filters section from `No-Bling DOTA mod builder.js` _(beginning of file, there will be a list by hero name with all the manual filters)._ More exactly, add the following line after the _/* OMNIKNIGHT */_ entry (~script line 316):  
+`KEEP_ITEM[8958]=0;` _// keep omni halo (number after equal sign does not matter)_  
+Since most immortals have multiple effects (not the case here), to keep specific effects you can read the _Crown_of_Sacred_Light_8958_head.txt_ file and look for _"modifier" "particles/ ... .vpcf"_ entries, then add them as specific filters:  
+`KEEP['particles/econ/items/omniknight/omni_sacred_light_head/omni_ambient_sacred_light.vpcf']=0;`  
+Some stuff won't be available in the log folder because it's not part of items_game.txt, in that case, you identify the particles involved in-game, by demo-ing the respective item, opening in-game console, and list particles in game console as mentioned above under Hints. Also check out `log\no_bling.txt` as it shows some of the logic in categorizing, and the generated build readme.txt.  
+
 ### What's new in v7.19:  
 ~ Add manual filters for Naga, QoP, WD in TI8 Immortal Treasure III  
 
