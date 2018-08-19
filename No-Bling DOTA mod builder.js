@@ -1,5 +1,7 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                       edited in SynWrite
 //---------------------------------------------------------------------------------------------------------------------------------
+// v7.19 r2: TI8 Trove Carafe
+// - add manual filters for Ogre and Mirana, everything else - not impressed
 // v7.19 r1: TI8 Immortal Treasure III
 // - add manual filters for Naga, QoP, WD
 // v7.18 r1: TI8 Collector's Cache II
@@ -265,6 +267,8 @@ MOD_HAT['particles/econ/items/mirana/mirana_starstorm_bow/mirana_bowstring_stars
 MOD_HAT['particles/econ/items/mirana/mirana_starstorm_bow/mirana_bow_starstorm.vpcf']=off;//
 MOD_HAT['particles/econ/items/mirana/mirana_starstorm_bow/mirana_bowstring_starstorm_bloom.vpcf']=off;//
 MOD_HAT['particles/econ/items/mirana/mirana_starstorm_bow/mirana_bowstring_starstorm_e.vpcf']=off;//
+KEEP['particles/econ/items/mirana/mirana_ti8_immortal_mount/mirana_ti8_immortal_leap_trail.vpcf']=0;//          keep ti8 leap trail
+MOD_ABILITY['particles/econ/items/mirana/mirana_ti8_immortal_mount/mirana_ti8_immortal_leap_trail_embers.vpcf']=off;//  tweak trail
   /*  MONKEY_KING  */
   /*  MORPHLING  */
 KEEP['particles/units/heroes/hero_morphling/morphling_ambient_new.vpcf']=0;//                               FIX empty iconic vortex
@@ -313,6 +317,9 @@ KEEP['particles/econ/items/nightstalker/nightstalker_endless_head_ambient.vpcf']
   /*  OBSIDIAN_DESTROYER  */
 MOD_HERO['particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_smoke.vpcf']=off;//               WARNING! don't modify
   /*  OGRE_MAGI  */
+KEEP['particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_weapon_ambient.vpcf']=0;//            keep ogre ti8
+MOD_HAT['particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_weapon_ambient_foam.vpcf']=off;//   tweak weapon
+MOD_HAT['particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_weapon_ambient_foam_b.vpcf']=off;//
   /*  OMNIKNIGHT  */
   /*  ORACLE  */
   /*  PANGOLIER  */

@@ -1,14 +1,8 @@
 @goto :init "No-Bling DOTA mod builder by AveYo"
-:: v7.19 r1: TI8 Immortal Treasure III
-:: - version bump, no script changes
-:: v7.18 r1: TI8 Collector's Cache II
-:: - version bump, no script changes
-:: v7.17 r1: TI8 Immortal Treasure II
-:: - version bump, no script changes
+:: v7.19 r2: TI8 Trove Carafe
+:: - Improved choices snippet
 :: v7.16 r1:
 :: - Added support for persistent language override. To define it, open a command prompt and enter: setx NOBLING_LANGUAGE english
-:: v7.15 r1: TI8 Lion Prestige item
-:: - version bump, no script changes
 :: v7.14 r1: TI8 BattlePass edition
 :: - Prevent STEAMPATH detection possible issue; correct js_engine_name
 :: v7.12 r1: Pudge Arcana edition
@@ -48,7 +42,7 @@ rem set "MOD_FILE=pak01_dir.vpk"       || rem = localized versions might use pak
 rem set "MOD_LANGUAGE=english"         || rem = current Steam language is auto-detected, override here or setx NOBLING_LANGUAGE xxx
 set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"
 set "def_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"       || dialog [Reset] sets these
-set "version=7.19 r1"
+set "version=7.19 r2"
 
 title No-Bling DOTA mod builder by AveYo v%version%
 setlocal &rem free script so no bitching!
@@ -136,7 +130,7 @@ set "@choices=" & if defined @dialog if not defined @refresh set "all_choices=%a
 
 for %%o in (%all_choices%) do call set "%%o=%%%%o:0=%%"                    &rem undefine any option equal to 0, easier script usage
 for %%o in (%all_choices%) do if defined %%o (if defined @choices ( call set "@choices=%%@choices%%,%%o" ) else set "@choices=%%o")
-if defined @dialog call :choices 322 444 "No-Bling" "%all_choices%" "%def_choices%" &rem width height title all_choices def_choices
+if defined @dialog call :choices "No-Bling choices" "%all_choices%" "%def_choices%" CHOICES
 if defined @dialog if not defined CHOICES call :end ! No choices selected!
 if defined CHOICES ( set "MOD_CHOICES=%CHOICES%" ) else set "MOD_CHOICES=%@choices%"
 for %%o in (%all_choices%) do set "%%o="  &rem undefine all initial choices
@@ -435,28 +429,26 @@ if not defined %~2 exit/b
 setlocal & call set "ops=%%%~2%%" & call set "ops=%%ops:,%~1=%%" & call set "ops=%%ops:%~1,=%%" & call set "ops=%%ops:%~1=%%"
 endlocal & call set "%~2=%ops%" & exit/b
 
-:choices %1:width %2:height %3:title %4:all_choices %5:def_choices
-setlocal &rem example:" call :choices 322 96 "Test" "opt1 opt2 opt3" "opt2 opt3"  ": all opt shown, but just opt2 and opt3 selected
-:: gui dialog choices powershell snippet                                                         cached temporarily to %ps_choices%
-set "z=[void][System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms"); $f=New-Object System.Windows.Forms.Form"
-set "y=[void][System.Reflection.Assembly]::LoadWithPartialName("System.Drawing"); $fminsize=New-Object System.Drawing.Size(320,32)"
-set "x=$r=(Get-ItemProperty $p).$n; if($r -ne $null){$opt=$r.split(",")}else{$opt=$def.split(",")}; function CLK(){ $v=@()"
-set "w=;foreach($x in $cb){if($x.Checked){$v+=$x.Text}}; New-ItemProperty -Path $p -Name $n -Value $($v -join ",") -Force }"
-set "v=$BCLK=@(0,{CLK},{foreach($z in $cb){$z.Checked=$false;if($def.split(",") -contains $z.Text){$z.Checked=$true}};CLK})"
-set "u=$i=1;$cb=foreach($l in $all.split(",")){ $c=New-Object System.Windows.Forms.CheckBox; $c.Name="c$i"; $c.AutoSize=$true"
-set "t=;$c.Text=$l; $c.Location=New-Object System.Drawing.Point(($pad*2.5),(16+(($i-1)*24))); $c.BackColor="Transparent""
-set "s=;$c.add_Click({CLK}); $f.Controls.Add($c); $c; $i++; }; foreach($s in $cb){if($opt -contains $s.Text){$s.Checked=$true}}"
-set "r=$j=1;$bn=@("OK","Reset"); foreach($t in $bn){ $b=New-Object System.Windows.Forms.Button; $b.Name="b$j""
-set "q=;$b.Text=$t; $b.Location=New-Object System.Drawing.Point(($pad*2+($j-1)*$pad*3),(32+(($i-1)*24))); $b.add_Click($BCLK[$j])"
-set "p=;if ($t -eq "OK"){$b.DialogResult=[System.Windows.Forms.DialogResult]::OK; $f.AcceptButton=$b}; $f.Controls.Add($b); $j++;}"
-set "o=$f.Text=$n; $f.BackColor="DarkRed"; $f.Forecolor="White"; $f.FormBorderStyle="Fixed3D"; $f.StartPosition="CenterScreen""
-set "n=$f.MaximizeBox=$false; $f.MinimumSize=$fminsize; $f.AutoSize=$true; $f.AutoSizeMode='GrowAndShrink'"
-set "m=$f.Add_Shown({$f.Activate()}); $result=$f.ShowDialog(); if ($result -ne [System.Windows.Forms.DialogResult]::OK){"
-set "l=Remove-ItemProperty -Path $p -Name $n -Force -erroraction 'silentlycontinue' | out-null}"
-set "ps_choices_s=%z%;%y%;%x%;%w%;%v%;%u%;%t%;%s%;%r%;%q%;%p%;%o%;%n%;%m%;%l%;" & call set "ps_choices=%%ps_choices_s:"=\"%%"
-powershell -c "$n='%~3 choices'; $all='%~4'; $def='%~5'; $p='HKCU:\Environment'; $pad=32; %ps_choices%" &rem >nul 2>nul
-call :reg_query "HKCU\Environment" "%~3 choices" CHOICES
-endlocal & set "CHOICES=%CHOICES%" & exit/b                  &rem AveYo:" GUI dialog with autosize checkboxes - outputs %CHOICES% "
+:choices %1:title %2:all_choices %3:def_choices %4:output_variable       example: call :choices "Test" "opt1 opt2 opt3" "opt2 opt3"
+setlocal &set "parameters=$n='%~1'; $all='%~2'; $def='%~3'; $p='HKCU:\Environment'; $pad=32;"
+set "s1=[void][System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms'); $f=New-Object System.Windows.Forms.Form;"
+set "s2=[void][System.Reflection.Assembly]::LoadWithPartialName('System.Drawing'); $f.Forecolor='White';$f.BackColor='DarkRed';"
+set "s3=$r=(Get-ItemProperty $p).$n; if($r -ne $null){$opt=$r.split(',')}else{$opt=$def.split(',')}; function CLK(){ $v=@();"
+set "s4=foreach($x in $cb){if($x.Checked){$v+=$x.Text}}; New-ItemProperty -Path $p -Name $n -Value $($v -join ',') -Force };"
+set "s5=$BCLK=@(0, {CLK}, {foreach($z in $cb){$z.Checked=$false;if($def.split(',') -contains $z.Text){$z.Checked=$true}};CLK});"
+set "s6=$i=1; $cb=foreach($l in $all.split(',')){$c=New-Object System.Windows.Forms.CheckBox; $c.Name='c$i'; $c.AutoSize=$true;"
+set "s7=$c.Text=$l; $c.Location=New-Object System.Drawing.Point(($pad*2.5),(16+(($i-1)*24))); $c.BackColor='Transparent';"
+set "s8=$c.add_Click({CLK}); $f.Controls.Add($c); $c; $i++; }; foreach($s in $cb){if($opt -contains $s.Text){$s.Checked=$true}};"
+set "s9=$j=1; $bn=@('OK','Reset');foreach($t in $bn){ $b=New-Object System.Windows.Forms.Button; $b.BackColor='Transparent';"
+set "s10=$b.Location=New-Object System.Drawing.Point(($pad*2+($j-1)*$pad*3),(32+(($i-1)*24))); $b.Margin='0,0,72,20';"
+set "s11=$b.add_Click($BCLK[$j]); if ($t -eq 'OK'){$b.DialogResult=1;$f.AcceptButton=$b}; $b.Name='b$j'; $b.Text=$t;"
+set "s12=$f.Controls.Add($b);$j++;}; $f.Text=$n; $f.FormBorderStyle='Fixed3D'; $f.AutoSize=$true; $f.AutoSizeMode='GrowAndShrink';"
+set "s13=$f.MaximizeBox=$false; $f.StartPosition='CenterScreen'; $f.Add_Shown({$f.Activate()}); $ret=$f.ShowDialog();"
+set "s14=if ($ret -ne 1) {Remove-ItemProperty -Path $p -Name $n -Force  -erroraction 'silentlycontinue' | out-null}"
+set "s15=else {write-host (Get-ItemProperty -Path $p -Name $n).$n;}"
+for /l %%# in (1,1,15) do call set "ps_Choices=%%ps_Choices%%%%s%%#:"=\"%%"                          
+for /f "usebackq tokens=* delims=" %%# in (`powershell -c "%parameters% %ps_Choices%"`) do set "choices_var=%%#"
+endlocal & set "%~4=%choices_var%" & exit/b                  &rem AveYo:" GUI dialog with autosize checkboxes - outputs %CHOICES% "           
 
 ::---------------------------------------------------------------------------------------------------------------------------------
 :: Utility functions
