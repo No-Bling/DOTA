@@ -99,6 +99,8 @@ Since most immortals have multiple effects (not the case here), to keep specific
 Some stuff won't be available in the log folder because it's not part of items_game.txt, in that case, you identify the particles involved in-game, by demo-ing the respective item, opening in-game console, and list particles in game console as mentioned above under Hints. Also check out `log\no_bling.txt` as it shows some of the logic in categorizing, and the generated build readme.txt.  
 
 ### What's new in v7.19:  
+~ Add manual filters for the new hero Grimstroke
+
 ~ Add manual filters for Ogre, Mirana in TI8 Trove Carafe  
 
 ~ Add manual filters for Naga, QoP, WD in TI8 Immortal Treasure III  

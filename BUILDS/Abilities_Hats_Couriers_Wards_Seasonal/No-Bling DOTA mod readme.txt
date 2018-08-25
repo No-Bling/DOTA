@@ -1,4 +1,4 @@
- No-Bling DOTA mod v7.19 r2 choices:
+ No-Bling DOTA mod v7.19 r3 choices:
  Abilities,Hats,Couriers,Wards,Seasonal
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
@@ -762,6 +762,37 @@ particles\econ\items\zeus\lightning_weapon_fx\zuus_lb_cfx_il.vpcf_c?particles\un
 particles\econ\items\zeus\lightning_weapon_fx\zuus_lightning_bolt_immortal_lightning.vpcf_c?particles\units\heroes\hero_zuus\zuus_lightning_bolt.vpcf_c
 particles\econ\items\zeus\zeus_ti8_immortal_arms\zeus_ti8_immortal_arc.vpcf_c?particles\units\heroes\hero_zuus\zuus_arc_lightning.vpcf_c
 particles\econ\items\zeus\zeus_ti8_immortal_arms\zeus_ti8_immortal_arc_head.vpcf_c?particles\units\heroes\hero_zuus\zuus_arc_lightning_head.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_cast_soulchain_arc.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_cast_soulchain_arc_energy.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_cast_soulchain_embers.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_cast2_brush_blur_splash.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_cast2_ground_dark_spray.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_cast2_ground_ember.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_cast2_ground_spray.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_darkartistry_proj_endcap_spray_up.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_darkartistry_proj_ground_spray.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_darkartistry_proj_ink_core.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_darkartistry_proj_ink_spray.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_ink_swell_aoe_ground_ink.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_ink_swell_aoe_ground_splatter.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_ink_swell_aoe_ground_steam.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_ink_swell_aoe_ring_flare.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_ink_swell_buff_drips.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_ink_swell_buff_ground_smoke.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_ink_swell_buff_ground_splash.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_phantom_ambient_energy.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_phantom_ambient_ground_spray.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_phantom_ambient_inkdrops.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_phantom_attacked_splash.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_phantom_death_ground_smoke.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_phantom_return_rope_trail_smoke.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_phantom_return_start.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_soulchain_ground_chains_glow.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_soulchain_ground_splash.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_soulchain_main_embers.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_soulchain_main_glow.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_soulchain_marker_flames.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_grimstroke\grimstroke_soulchain_tether_inkdrop.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_gyrocopter\gyro_call_down_explosion_impact_a.vpcf_c?particles\econ\items\gyrocopter\hero_gyrocopter_gyrotechnics\gyro_call_down_explosion_impact_a.vpcf_c
 [Hats]
 particles\econ\items\abaddon\abaddon_feathers_mace\abaddon_weapon_feathers_mace_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1203,8 +1234,6 @@ particles\econ\items\ogre_magi\ogre_ti7_set\ogre_ti7_set_back_ambient.vpcf_c?par
 particles\econ\items\ogre_magi\ogre_ti7_set\ogre_ti7_set_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\ogre_magi\ogre_ti7_set\ogre_ti7_set_style_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\ogre_magi\ogre_ti7_set\ogre_ti7_set_weapon_ambient.vpcf_c?particles\units\heroes\hero_ogre_magi\ogre_magi_weapon.vpcf_c
-particles\econ\items\ogre_magi\ogre_ti8_immortal_weapon\ogre_ti8_immortal_weapon_ambient_foam.vpcf_c?particles\dev\empty_particle.vpcf_c
-particles\econ\items\ogre_magi\ogre_ti8_immortal_weapon\ogre_ti8_immortal_weapon_ambient_foam_b.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\omniknight\hammer_ti6_immortal\omniknight_hammer_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\omniknight\omni_sacred_light_head\omni_ambient_sacred_light.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\omniknight\omni_ti8_head\omni_ti8_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c

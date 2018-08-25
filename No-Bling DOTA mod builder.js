@@ -1,5 +1,7 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                       edited in SynWrite
 //---------------------------------------------------------------------------------------------------------------------------------
+// v7.19 r3: Grimstroke
+// - add manual filters for new Dota 2 hero
 // v7.19 r2: TI8 Trove Carafe
 // - add manual filters for Ogre and Mirana, everything else - not impressed
 // v7.19 r1: TI8 Immortal Treasure III
@@ -223,6 +225,51 @@ KEEP['particles/units/heroes/hero_gyrocopter/gyro_ambient.vpcf']=0;//           
 MOD_HERO['particles/units/heroes/hero_gyrocopter/gyro_ambient_smokestack.vpcf']=off;//                                  tweak smoke
 var gyro_cd='particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_call_down_explosion_impact_a.vpcf';//
 MOD_ABILITY['particles/units/heroes/hero_gyrocopter/gyro_call_down_explosion_impact_a.vpcf']=gyro_cd;//   FIX Gyro proper call down
+  /*  GRIMSTROKE  */
+KEEP['particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient.vpcf']=off;//                           keep grimstroke brush
+MOD_HERO['particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient_rope.vpcf']=off;//                            tweak brush
+MOD_HERO['particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient_rope_rev.vpcf']=off;//
+MOD_HERO['particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient_drip.vpcf']=off;//
+MOD_HERO['particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient_spray.vpcf']=off;//
+MOD_HERO['particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient_ground_spray.vpcf']=off;//
+MOD_HERO['particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient_ground_spray_detail.vpcf']=off;//
+MOD_HERO['particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient_arcs.vpcf']=off;//
+MOD_HERO['particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient_detail.vpcf']=off;//
+MOD_HERO['particles/units/heroes/hero_grimstroke/grimstroke_base_attack_ink.vpcf']=off;//                         tweak base attack
+MOD_HERO['particles/units/heroes/hero_grimstroke/grimstroke_base_attack_launch.vpcf']=off;//
+MOD_HERO['particles/units/heroes/hero_grimstroke/grimstroke_base_attack_smoke.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_cast2_brush_blur_splash.vpcf']=off;//           tweak stroke of fate
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_cast2_ground_ember.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_cast2_ground_spray.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_cast2_ground_dark_spray.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_proj_ink_core.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_proj_ink_spray.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_proj_endcap_spray_up.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_proj_ground_spray.vpcf']=off;//
+//MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_dmg_steam.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_phantom_return_rope_trail_smoke.vpcf']=off;//       tweak ph embrace
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_phantom_ambient_energy.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_phantom_ambient_ground_spray.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_phantom_ambient_inkdrops.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_phantom_death_ground_smoke.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_phantom_attacked_splash.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_phantom_return_start.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_aoe_ground_ink.vpcf']=off;//               tweak ink swell
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_aoe_ground_steam.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_aoe_ground_splatter.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_aoe_ring_flare.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_buff_ground_splash.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_buff_ground_smoke.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_buff_drips.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_cast_soulchain_embers.vpcf']=off;//                   tweak soulbind
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_cast_soulchain_arc.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_cast_soulchain_arc_energy.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_soulchain_ground_splash.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_soulchain_main_embers.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_soulchain_main_glow.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_soulchain_ground_chains_glow.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_soulchain_marker_flames.vpcf']=off;//
+MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_soulchain_tether_inkdrop.vpcf']=off;//
   /*  HUSKAR  */
   /*  INVOKER  */
   /*  JAKIRO  */
@@ -318,8 +365,8 @@ KEEP['particles/econ/items/nightstalker/nightstalker_endless_head_ambient.vpcf']
 MOD_HERO['particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_smoke.vpcf']=off;//               WARNING! don't modify
   /*  OGRE_MAGI  */
 KEEP['particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_weapon_ambient.vpcf']=0;//            keep ogre ti8
-MOD_HAT['particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_weapon_ambient_foam.vpcf']=off;//   tweak weapon
-MOD_HAT['particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_weapon_ambient_foam_b.vpcf']=off;//
+//MOD_HAT['particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_weapon_ambient_foam.vpcf']=off;//   tweak weapon
+//MOD_HAT['particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_weapon_ambient_foam_b.vpcf']=off;//
   /*  OMNIKNIGHT  */
   /*  ORACLE  */
   /*  PANGOLIER  */
