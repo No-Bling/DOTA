@@ -1,5 +1,7 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                       edited in SynWrite
 //---------------------------------------------------------------------------------------------------------------------------------
+// v7.19 r4: 7.20 when?
+// - add experimental non-particle based effects override 1: ShadowShaman's TI8 Censer of Gliss
 // v7.19 r3: Grimstroke
 // - add manual filters for new Dota 2 hero
 // v7.19 r2: TI8 Trove Carafe
@@ -41,6 +43,7 @@ var MOD_EFFIGY={};           // Add particle replacement file in the Effigies ca
 var MOD_SHRINE={};           // Add particle replacement file in the Shrines category
 var MOD_PROP={};             // Add particle replacement file in the Props category
 var MOD_MENU={};             // Add particle replacement file in the Menu (UI) category
+var MOD_OTHER={}             // Add experimental non-particle based override (in the Hats category)
 //---------------------------------------------------------------------------------------------------------------------------------
 // Manual filters to supplement the auto generated ones by the No_Bling JS function - for convenience moved here on top
 // Tip: while debugging a hero, list loaded particles using console command: dumpparticlelist | grep partial_hero_name
@@ -196,7 +199,7 @@ KEEP['particles/units/heroes/hero_doom_bringer/doom_bringer_ambient.vpcf']=0;// 
 MOD_HERO['particles/units/heroes/hero_doom_bringer/doom_bringer_ambient_b.vpcf']=off;//                                 tweak flame
   /*  DRAGON_KNIGHT  */
 KEEP['particles/econ/items/dragon_knight/dk_ti8_awakening/dk_ti8_awakening_shield_ambient.vpcf']=0;//            keep ti8 dk shield
-MOD_HAT['particles/econ/items/dragon_knight/dk_ti8_awakening/dk_ti8_awakening_shield_ambient_trace.vpcf']=off;//              tweak 
+MOD_HAT['particles/econ/items/dragon_knight/dk_ti8_awakening/dk_ti8_awakening_shield_ambient_trace.vpcf']=off;//              tweak
 MOD_HAT['particles/econ/items/dragon_knight/dk_ti8_awakening/dk_ti8_awakening_shield_ambient_mouth_ember.vpcf']=off;//       shield
   /*  DROW_RANGER  */
 var drow_bowstring='particles/units/heroes/hero_drow/drow_bowstring.vpcf';//                                    FIX empty bowstring
@@ -439,6 +442,9 @@ KEEP['particles/econ/items/rubick/rubick_puppet_master/rubick_telekinesis_puppet
   /*  SAND_KING  */
   /*  SHADOW_DEMON  */
   /*  SHADOW_SHAMAN  */
+var no_bling_snake='materials/dev/bloom_cs.vmat';//                          experimental non-particle based override ss ti8 effect
+MOD_OTHER['models/items/shadowshaman/ss_ti8_immortal_offhand/ss_ti8_immortal_offhand03_scroll.vmat']=no_bling_snake;//
+MOD_OTHER['models/items/shadowshaman/ss_ti8_immortal_offhand/ss_crimson_ti8_immortal_offhand03_scroll.vmat']=no_bling_snake;//
   /*  SHREDDER  */
   /*  SILENCER  */
   /*  SKELETON_KING  */
@@ -820,6 +826,9 @@ No_Bling=function(content, output, choices, verbose, timers){
   for (hat in mods['Hats']){
     if (mods['Hats'][hat]!=off && !(mods['Hats'][hat] in KEEP)){mods['HEROES'][hat]=off; if (LOG) w.echo('  hero_include: '+hat);}
   }
+
+  // Add experimental non-particle based override (in the Hats category)
+  for (hat in MOD_OTHER){ mods['Hats'][hat]=MOD_OTHER[hat]; if (LOG) w.echo('  mod_other: '+hat); }
 
   if (LOG) t.end();
 

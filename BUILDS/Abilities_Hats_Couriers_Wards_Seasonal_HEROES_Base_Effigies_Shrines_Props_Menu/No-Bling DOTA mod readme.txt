@@ -1,4 +1,4 @@
- No-Bling DOTA mod v7.19 r3 choices:
+ No-Bling DOTA mod v7.19 r4 choices:
  Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
@@ -795,6 +795,8 @@ particles\units\heroes\hero_grimstroke\grimstroke_soulchain_marker_flames.vpcf_c
 particles\units\heroes\hero_grimstroke\grimstroke_soulchain_tether_inkdrop.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_gyrocopter\gyro_call_down_explosion_impact_a.vpcf_c?particles\econ\items\gyrocopter\hero_gyrocopter_gyrotechnics\gyro_call_down_explosion_impact_a.vpcf_c
 [Hats]
+models\items\shadowshaman\ss_ti8_immortal_offhand\ss_crimson_ti8_immortal_offhand03_scroll.vmat_c?materials\dev\bloom_cs.vmat_c
+models\items\shadowshaman\ss_ti8_immortal_offhand\ss_ti8_immortal_offhand03_scroll.vmat_c?materials\dev\bloom_cs.vmat_c
 particles\econ\items\abaddon\abaddon_feathers_mace\abaddon_weapon_feathers_mace_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\alchemist\alchemist_aurelian_weapon\alchemist_ambient_aurelian_l.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\alchemist\alchemist_aurelian_weapon\alchemist_ambient_aurelian_r.vpcf_c?particles\dev\empty_particle.vpcf_c

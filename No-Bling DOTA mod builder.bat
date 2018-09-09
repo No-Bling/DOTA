@@ -1,4 +1,6 @@
 @goto :init "No-Bling DOTA mod builder by AveYo"
+:: v7.19 r4: 7.20 when?
+:: - Experimental non-particle based effects override 1: ShadowShaman's TI8 Censer of Gliss
 :: v7.19 r3: Grimstroke
 :: - No batch script changes
 :: v7.19 r2: TI8 Trove Carafe
@@ -44,7 +46,7 @@ rem set "MOD_FILE=pak01_dir.vpk"       || rem = localized versions might use pak
 rem set "MOD_LANGUAGE=english"         || rem = current Steam language is auto-detected, override here or setx NOBLING_LANGUAGE xxx
 set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"
 set "def_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"       || dialog [Reset] sets these
-set "version=7.19 r3"
+set "version=7.19 r4"
 
 title No-Bling DOTA mod builder by AveYo v%version%
 setlocal &rem free script so no bitching!
@@ -176,6 +178,7 @@ if not exist "%CONTENT%\pak01_dir\particles\dev\*.vpcf_c" del /f /q "%DOTA%\dota
 if exist "%CONTENT%\pak01_dir\particles\dev\*.vpcf_c" if not defined NEWPATCH goto :skip_update_content
 call :mcolor 70 " Updating Content from dota\pak01_dir.vpk directly ... " c0. " ETA: 1-3m "
 %TIMER%
+%decompiler% -i "%DOTA%\dota\pak01_dir.vpk" -o "%CONTENT%\pak01_dir" -f materials/dev/bloom_cs.vmat_c >nul 2>nul
 %decompiler% -i "%DOTA%\dota\pak01_dir.vpk" -o "%CONTENT%\pak01_dir" --vpk_cache -e vpcf_c >nul 2>nul
 set "newmanifest=%DOTA%\dota\pak01_dir.vpk.manifest.txt" & set "oldmanifest=%CONTENT%\pak01_dir.vpk.manifest.txt"
 set "OUTDATED=" & if not exist "%newmanifest%" set "OUTDATED=yes" & copy /y "%newmanifest%" "%oldmanifest%" >nul 2>nul
@@ -190,6 +193,11 @@ if not exist %.%.vpcf_c copy /y %.%_c %.%.vpcf.vpcf_c >nul 2>nul & popd
 :: Workaround for NS evil_eyed_arms renamed? in items_game.txt
 pushd "%CONTENT%\pak01_dir\particles\econ\items\nightstalker\evil_eyed_arms" & set ".=nightstalker_ambient_evil_eyed_arms.vpcf_c"
 if not exist %.% copy /y evil_eyed_arms_eye_sparks.vpcf_c %.% >nul 2>nul & popd
+:: Experimental non-particle based effects override 1: ShadowShaman's TI8 Censer of Gliss
+set "dst1=%CONTENT%\pak01_dir\models\items\shadowshaman\ss_ti8_immortal_offhand"
+mkdir "%dst1%" >nul 2>nul &pushd "%dst1%"
+cd.>ss_ti8_immortal_offhand03_scroll.vmat_c
+cd.>ss_crimson_ti8_immortal_offhand03_scroll.vmat_c
 :: Refresh last_updated only after update_content task completed
 pushd "%CONTENT%" & if exist pas_updated.bat ( copy /y pas_updated.bat last_updated.bat & del /f /q pas_updated.bat ) >nul 2>nul
 :skip_update_content
@@ -448,9 +456,9 @@ set "s12=$f.Controls.Add($b);$j++;}; $f.Text=$n; $f.FormBorderStyle='Fixed3D'; $
 set "s13=$f.MaximizeBox=$false; $f.StartPosition='CenterScreen'; $f.Add_Shown({$f.Activate()}); $ret=$f.ShowDialog();"
 set "s14=if ($ret -ne 1) {Remove-ItemProperty -Path $p -Name $n -Force  -erroraction 'silentlycontinue' | out-null}"
 set "s15=else {write-host (Get-ItemProperty -Path $p -Name $n).$n;}"
-for /l %%# in (1,1,15) do call set "ps_Choices=%%ps_Choices%%%%s%%#:"=\"%%"                          
+for /l %%# in (1,1,15) do call set "ps_Choices=%%ps_Choices%%%%s%%#:"=\"%%"
 for /f "usebackq tokens=* delims=" %%# in (`powershell -c "%parameters% %ps_Choices%"`) do set "choices_var=%%#"
-endlocal & set "%~4=%choices_var%" & exit/b                  &rem AveYo:" GUI dialog with autosize checkboxes - outputs %CHOICES% "           
+endlocal & set "%~4=%choices_var%" & exit/b                  &rem AveYo:" GUI dialog with autosize checkboxes - outputs %CHOICES% "
 
 ::---------------------------------------------------------------------------------------------------------------------------------
 :: Utility functions
