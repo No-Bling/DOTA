@@ -1,4 +1,5 @@
 @goto :init "No-Bling DOTA mod builder by AveYo"
+:: v7.19 r5: not 7.20 Treasure Update
 :: v7.19 r4: 7.20 when?
 :: - Experimental non-particle based effects override 1: ShadowShaman's TI8 Censer of Gliss
 :: v7.19 r3: Grimstroke
@@ -46,7 +47,7 @@ rem set "MOD_FILE=pak01_dir.vpk"       || rem = localized versions might use pak
 rem set "MOD_LANGUAGE=english"         || rem = current Steam language is auto-detected, override here or setx NOBLING_LANGUAGE xxx
 set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"
 set "def_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"       || dialog [Reset] sets these
-set "version=7.19 r4"
+set "version=7.19 r5"
 
 title No-Bling DOTA mod builder by AveYo v%version%
 setlocal &rem free script so no bitching!

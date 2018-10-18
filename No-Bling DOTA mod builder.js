@@ -1,5 +1,6 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                       edited in SynWrite
 //---------------------------------------------------------------------------------------------------------------------------------
+// v7.19 r5: not 7.20 Treasure Update
 // v7.19 r4: 7.20 when?
 // - add experimental non-particle based effects override 1: ShadowShaman's TI8 Censer of Gliss
 // v7.19 r3: Grimstroke
@@ -936,7 +937,7 @@ OutChars=function(s){ new Function('w.echo(String.fromCharCode('+s+'))')(); };
 //---------------------------------------------------------------------------------------------------------------------------------
 function ValveDataFormat(){
   var jscript=(typeof ScriptEngine == 'function' && ScriptEngine() == 'JScript');
-  if (!jscript){ var w={}; w.echo=function(s){console.log(s+'\r');}; }
+  if (!jscript){ var w={}; w.echo=function(s){console.log(s+'\r');}; } else { w=WScript; }
   var order=!jscript, dups=false, comments=false, newline='\n', empty=(jscript) ? '' : undefined;
   return {
     parse: function(txt, flag){

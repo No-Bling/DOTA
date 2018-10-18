@@ -1,4 +1,4 @@
- No-Bling DOTA mod v7.19 r4 choices:
+ No-Bling DOTA mod v7.19 r5 choices:
  Abilities,Hats,Couriers,Wards,Seasonal,HEROES
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
@@ -991,6 +991,8 @@ particles\econ\items\ember_spirit\ember_spirit_burning_god_offhand\ember_spirit_
 particles\econ\items\ember_spirit\ember_spirit_burning_god_offhand\ember_spirit_ambient_burning_god_l_blade.vpcf_c?particles\units\heroes\hero_ember_spirit\ember_spirit_ambient_sword_offhand_blade.vpcf_c
 particles\econ\items\ember_spirit\ember_spirit_burning_god_weapon\ember_spirit_ambient_burning_god_r.vpcf_c?particles\units\heroes\hero_ember_spirit\ember_spirit_ambient_sword_primary.vpcf_c
 particles\econ\items\ember_spirit\ember_spirit_burning_god_weapon\ember_spirit_ambient_burning_god_r_blade.vpcf_c?particles\units\heroes\hero_ember_spirit\ember_spirit_ambient_sword_primary_blade.vpcf_c
+particles\econ\items\ember_spirit\ember_spirit_desert_warrior_off\ember_spirit_desert_warrior_off_primary_blade.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\ember_spirit\ember_spirit_desert_warrior_weapon\ember_spirit_desert_warrior_weapon_primary_blade.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\ember_spirit\ember_spirit_lesser_greater_purifier\ember_spirit_ambient_greaterpurifier_primary_blade.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\ember_spirit\ember_spirit_lesser_greater_purifier\ember_spirit_ambient_lesserpurifier_offhand_blade.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\ember_spirit\ember_spirit_vanishing_flame\ember_spirit_vanishing_flame_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
