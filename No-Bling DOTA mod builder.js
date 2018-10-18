@@ -1,6 +1,7 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                       edited in SynWrite
 //---------------------------------------------------------------------------------------------------------------------------------
-// v7.19 r5: not 7.20 Treasure Update
+// v7.19 r6: not 7.20 Treasure Update
+// - update vdf parser to account for lame json inside vdf as seen in SteamVoiceSettings_ thanks u/h4uja2 for reporting it
 // v7.19 r4: 7.20 when?
 // - add experimental non-particle based effects override 1: ShadowShaman's TI8 Censer of Gliss
 // v7.19 r3: Grimstroke
@@ -895,10 +896,9 @@ Dota_LOptions=function(fn, options, _flag){
   for (i=0;i<n;i++){
     regs[lo[i]]=new RegExp('(' + lo[i].split(" ")[0].replace(/([-+])/,"\\$1")+((lo[i].indexOf(' ')==-1) ? ')' : ' [\\w%]+)'),'gi');
   }
-  var flag=_flag || '-add', file=path.normalize(fn), data=fs.readFileSync(file, DEF_ENCODING);
-  var vdf=ValveDataFormat(), parsed=vdf.parse(data), apps=getKeYpath(parsed,"UserLocalConfigStore/Software/Valve/Steam/Apps");
-  var dota=apps[vdf.nr('570')];                             // added getKeYpath function to fix inconsistent key case used by Valve
-  if (flag == '-read'){ w.echo(dota["LaunchOptions"]); return; }                          // print existing launch options and exit
+  var flag=_flag || '-add', file=path.normalize(fn), data=fs.readFileSync(file, DEF_ENCODING), vdf=ValveDataFormat();
+  var parsed=vdf.parse(data), dota=getKeYpath(parsed,"UserLocalConfigStore/Software/Valve/Steam/Apps/"+vdf.nr('570'));
+  if (flag == '-read'){ var found=dota["LaunchOptions"]; if (found) w.echo(found); return; }     // print existing options and exit
   if (typeof dota["LaunchOptions"] === 'undefined' || dota["LaunchOptions"] === ''){
     dota["LaunchOptions"]=(flag != '-remove') ? lo.join(" ") : "";                            // no launch options defined, add all
   } else {
@@ -943,7 +943,7 @@ function ValveDataFormat(){
     parse: function(txt, flag){
       var obj={}, stack=[obj], expect_bracket=false, i=0; comments=flag || false;
       if (/\r\n/.test(txt)){newline='\r\n';} else newline='\n';
-      var m, regex =/[^"\r\n]*(\/\/.*)|"([^"]*)"[ \t]+"([^"]*\\"[^"]*\\"[^"]*|[^"]*)"|"([^"]*)"|({)|(})/g;                      //"
+      var m, regex =/[^"\r\n]*(\/\/.*)|"([^"]*)"[ \t]+"(.*)"|"([^"]*)"|({)|(})/g; //"
       while ((m=regex.exec(txt)) !== null){
         //lf='\n'; w.echo(' cmnt:'+m[1]+lf+' key:'+m[2]+lf+' val:'+m[3]+lf+' add:'+m[4]+lf+' open:'+m[5]+lf+' close:'+m[6]+lf);
         if (comments && m[1] !== empty){

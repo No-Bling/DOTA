@@ -1,5 +1,6 @@
 @goto :init "No-Bling DOTA mod builder by AveYo"
-:: v7.19 r5: not 7.20 Treasure Update
+:: v7.19 r6: not 7.20 Treasure Update
+:: - update vdf parser to account for lame json inside vdf as seen in SteamVoiceSettings_ thanks u/h4uja2 for reporting it
 :: v7.19 r4: 7.20 when?
 :: - Experimental non-particle based effects override 1: ShadowShaman's TI8 Censer of Gliss
 :: v7.19 r3: Grimstroke
