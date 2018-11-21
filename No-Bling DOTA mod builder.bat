@@ -1,4 +1,6 @@
 @goto :init "No-Bling DOTA mod builder by AveYo"
+:: v7.20 r1: Artifact
+:: - various backend script changes
 :: v7.19 r6: not 7.20 Treasure Update
 :: - update vdf parser to account for lame json inside vdf as seen in SteamVoiceSettings_ thanks u/h4uja2 for reporting it
 :: v7.19 r4: 7.20 when?
@@ -8,91 +10,90 @@
 :: v7.19 r2: TI8 Trove Carafe
 :: - Improved choices snippet
 :: v7.16 r1:
-:: - Added support for persistent language override. To define it, open a command prompt and enter: setx NOBLING_LANGUAGE english
+:: - Added support for persistent language override. To define it open a command prompt and enter: setx NOBLING_LANGUAGE english
 :: v7.14 r1: TI8 BattlePass edition
 :: - Prevent STEAMPATH detection possible issue; correct js_engine_name
 :: v7.12 r1: Pudge Arcana edition
 :: Bumped version from v2.0 final to match game patch 7.10
 :: - Fixed unable to run script caused by multiple downloaded copies auto-renamed by windows and default extract (r2)
-:: - Print new patch status before choices dialog, save it only after processing completes so it remains accurate on canceled runs
+:: - Print new patch status before choices dialog, save only after processing completes so it remains accurate on canceled runs
 :: What's new in No-Bling DOTA mod builder.bat v2.0 final:
-:: - Way faster and more reliable, improved caching, less storage operations, long path support, auto-install with current language
-:: - Press Enter to accept No-Bling choices dialog, integrated endtask choice, clearline working in both Windows 7 and 10, output++
-::---------------------------------------------------------------------------------------------------------------------------------
-:main No-Bling DOTA :G :l :a :n :c :e :V :a :l :u :e restoration mod builder                                     edited in SynWrite
-::---------------------------------------------------------------------------------------------------------------------------------
+:: - Way faster and more reliable, improved caching, less storage operations, long path support, auto-install w current language
+:: - Press Enter to accept No-Bling choices dialog, integrated endtask choice, clearline working in both Win 7 and 10, output++
+::------------------------------------------------------------------------------------------------------------------------------
+:main No-Bling DOTA :G :l :a :n :c :e :V :a :l :u :e restoration mod builder                                  edited in SynWrite
+::------------------------------------------------------------------------------------------------------------------------------
 :: Mod builder gui choices - no need to edit defaults here, script shows a graphical dialog for easier selection
-set "Abilities=1"                      ||   1 = penguin Frostbite and stuff like that..                                         LOW
-set "Hats=1"                           ||   1 = cosmetic particles spam - slowly turning into TF2..
-set "Couriers=1"                       ||   1 = couriers particles are fine.. until a dumber abuses gems on hats
-set "Wards=1"                          ||   1 = only a few of them make the ward and the sentry item too similar
-set "Seasonal=1"                       ||   1 = the International 8 custom tp, blink etc.
+set "Abilities=1"                  &rem  1 = penguin Frostbite and stuff like that..                                         LOW
+set "Hats=1"                       &rem  1 = cosmetic particles spam - slowly turning into TF2..
+set "Couriers=1"                   &rem  1 = couriers particles are fine.. until a dumber abuses gems on hats
+set "Wards=1"                      &rem  1 = only a few of them make the ward and the sentry item too similar
+set "Seasonal=1"                   &rem  1 = the International 8 custom tp, blink etc.
 
-set "HEROES=1"                         ||   1 = default hero particles, helps potato pc but glancevalue can suffer              MED
+set "HEROES=1"                     &rem  1 = default hero particles, helps potato pc but glancevalue can suffer              MED
 
-set "Base=1"                           ||   1 = tweak map base buildings - ancients, barracks, towers
-set "Effigies=1"                       ||   1 = tweak map effigies
-set "Shrines=1"                        ||   1 = tweak map shrines
-set "Props=1"                          ||   1 = tweak map props - fountains, terrain-bundled weather
-set "Menu=1"                           ||   1 = tweak main menu - ui, hero preview                                             HIGH
-
-set "@verbose=0"                       ||   1 = show extra details; log detailed per-hero item lists, 0 = skip detailed item lists
-set "@endtask=0"                       ||   1 = auto-install closes Dota and Steam,                   0 = can't add launch options!
-set "@refresh=0"                       ||   1 = always recompile mod instead of reusing cached files, 0 = just when new patch found
-::---------------------------------------------------------------------------------------------------------------------------------
+set "Base=1"                       &rem  1 = tweak map base buildings - ancients, barracks, towers
+set "Effigies=1"                   &rem  1 = tweak map effigies
+set "Shrines=1"                    &rem  1 = tweak map shrines
+set "Props=1"                      &rem  1 = tweak map props - fountains, terrain-bundled weather
+set "Menu=1"                       &rem  1 = tweak main menu - ui, hero preview                                             HIGH
+                                                                           
+set "@verbose=0"                   &rem  1 = show extra details; log detailed per-hero item lists, 0 = skip detailed item lists
+set "@endtask=0"                   &rem  1 = auto-install closes Dota and Steam,                   0 = can't add launch options!
+set "@refresh=0"                   &rem  1 = always recompile mod instead of reusing cached files, 0 = just when new patch found
+::------------------------------------------------------------------------------------------------------------------------------
 :: Script options - not available in gui so set them here if needed
-set "@dialog=1"                        ||   1 = show choices dialog,                                  0 = no dialog - use above
-set "@timers=1"                        ||   1 = total and per tasks accurate timers,                  0 = no reason to disable them
-rem set "MOD_OUTPUT=%~dp0"             || rem = current batch file directory, uncomment if needed
-rem set "MOD_FILE=pak01_dir.vpk"       || rem = localized versions might use pak02_dir.vpk, override here
-rem set "MOD_LANGUAGE=english"         || rem = current Steam language is auto-detected, override here or setx NOBLING_LANGUAGE xxx
+set "@dialog=1"                    &rem  1 = show choices dialog,                                  0 = no dialog - use above
+set "@timers=1"                    &rem  1 = total and per tasks accurate timers,                  0 = no reason to disable them
+rem set "MOD_OUTPUT=%~dp0"         &rem    = current batch file directory, uncomment if needed
+rem set "MOD_FILE=pak01_dir.vpk"   &rem    = localized versions might use pak02_dir.vpk, override here
+rem set "MOD_LANGUAGE=english"     &rem    = current Steam language is auto-detected, override here / setx NOBLING_LANGUAGE xxx
 set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"
-set "def_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"       || dialog [Reset] sets these
-set "version=7.19 r5"
+set "def_choices=%all_choices%"
+set "version=7.20 r1"
 
-title No-Bling DOTA mod builder by AveYo v%version%
-setlocal &rem free script so no bitching!
-set "322=  ,,,,,, ,,,,,,,,,     , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,     :"
-set "323= ,,:.................:,,,,,,,,,:.........:,,,,,,:............:,,:.......:,    :"
-set "324= ,,:......................................:,,:.......................:,,  :"
-set "325= ,,,:.............................................................:,,,  :"
-set "326= ,,,:.............................................................:,,,  :"
-set "327= ,,,:.............................................................:,,,  :"
-set "328=,,,,:........:,,,,:................................:,,,:..............:,,,  :"
-set "329= ,,:........:,,,,,,,:.......................:,,,,,,,,,,,,:.............:,,, :"
-set "330=,,,:..........:,,,,,,,,:.....................:,,, ,    ,,,:............:,,, :"
-set "331= ,,:............:,,,  ,,,,,:....................:,,,,  ,,:.............:,,  :"
-set "332=,,,:..............:,,,  ,,,,,,:...................:,,,,,,:.............:,,  :"
-set "333= ,,,:...............:,,    ,,,,,:....................:,,,:............:,,,  :"
-set "334=  ,,:................:,,,       ,,,,:..............................:,,    :"
-set "335=  ,,:..................:,,,,      ,,,,,:..........................:,,,    :"
-set "336=  ,,:....................:,,,       , ,,,:.........................:,,,   :"
-set "337=  ,,:......................:,,,         ,,,,:.......................:,,   :"
-set "338=  ,,,:.......................:,,,,        ,,,,,:....................:,,,  :"
-set "339= ,,,:..........................:,,,           ,,,,:.................:,,,  :"
-set "340= ,,:.............................:,,,            ,,,,:..............:,,,  :"
-set "341= ,,:..............................:,,,,            ,,,,,:............:,,  :"
-set "342= ,,:...........:,,:...................:,,,,             ,,,,,:.........:,,, :"
-set "343= ,,,:.........:,,,,,:....................:,,,               ,,:........:,,  :"
-set "344=   ,,:.......:,,, ,,,,:...................:,,,,            ,,,:........:,,, :"
-set "345=  ,,,:.......:,,,    ,,,:...................:,,,,          ,,:.........:,,, :"
-set "346= ,,,:.......:,,,      ,,,,:...................:,,,        ,,:..........:,,  :"
-set "347= ,,:.........:,,,     ,,,,,,:...................:,,,, ,  ,,,:..........:,, ,:"
-set "348= ,,:...........:,,,,,,,,,:......................:,,,,,,,:...........:,,,    :"
-set "349= ,,:...............................................................:,,, :"
-set "350= ,,:...............................................................:,,, :"
-set "351=,,,:...............................                       .........:,, ,:"
-set "352= ,,:...............................:  No-: Bling : DOTA mod  :.........:,,, :"
-set "353=,,,,:..............................                       .........:, , :"
-set "354= ,,,,,,,,,,,,,,,,,,,,,,,,,:..:,,,:.............................:,,,,:..:,,, :"
-set "355=    , ,,, ,,,, , , ,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,  ,,,,   :"
-set "d=$logo=""; for($l=$first;$l -le $last;$l++){ $logo += " " * 24 + (Get-Item env:$l).Value + "`n" };"
-set "o=$bling=$logo.split(":"); foreach ($i in $bling) { $fc="Cyan"; $bc="Black";"
-set "t=if($i.Contains(".")){$fc="Red"}; if($i.Contains(",")){$fc="DarkRed"}; if($i.Contains("Bling")){$fc="Black";$bc="Cyan"};"
-set "a=$i=$i.replace(".","#").replace(",","``"); write-host $i -BackgroundColor $bc -ForegroundColor $fc -NoNewLine };"
-set "ps_dota=%d%%o%%t%%a%"
-powershell -c "$first=322; $last=355; %ps_dota:"=\"%"   &rem comment this line to -commit heresy- skip the awesome ascii art logo..
-endlocal
+title No-Bling DOTA mod builder by AveYo v%version% 
+set a = free script so no bitching! & for /f delims^=^ eol^= %%. in (
+        "  ,,,,,, ,,,,,,,,,     , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,     :_"
+        " ,,:.................:,,,,,,,,,:.........:,,,,,,:............:,,:.......:,    :_"
+        " ,,:......................................:,,:.......................:,,  :_"
+        " ,,,:.............................................................:,,,  :_"
+        " ,,,:.............................................................:,,,  :_"
+        " ,,,:.............................................................:,,,  :_"
+        ",,,,:........:,,,,:................................:,,,:..............:,,,  :_"
+        " ,,:........:,,,,,,,:.......................:,,,,,,,,,,,,:.............:,,, :_"
+        ",,,:..........:,,,,,,,,:.....................:,,, ,    ,,,:............:,,, :_"
+        " ,,:............:,,,  ,,,,,:....................:,,,,  ,,:.............:,,  :_"
+        ",,,:..............:,,,  ,,,,,,:...................:,,,,,,:.............:,,  :_"
+        " ,,,:...............:,,    ,,,,,:....................:,,,:............:,,,  :_"
+        "  ,,:................:,,,       ,,,,:..............................:,,    :_"
+        "  ,,:..................:,,,,      ,,,,,:..........................:,,,    :_"
+        "  ,,:....................:,,,       , ,,,:.........................:,,,   :_"
+        "  ,,:......................:,,,         ,,,,:.......................:,,   :_"
+        "  ,,,:.......................:,,,,        ,,,,,:....................:,,,  :_"
+        " ,,,:..........................:,,,           ,,,,:.................:,,,  :_"
+        " ,,:.............................:,,,            ,,,,:..............:,,,  :_"
+        " ,,:..............................:,,,,            ,,,,,:............:,,  :_"
+        " ,,:...........:,,:...................:,,,,             ,,,,,:.........:,,, :_"
+        " ,,,:.........:,,,,,:....................:,,,               ,,:........:,,  :_"
+        "   ,,:.......:,,, ,,,,:...................:,,,,            ,,,:........:,,, :_"
+        "  ,,,:.......:,,,    ,,,:...................:,,,,          ,,:.........:,,, :_"
+        " ,,,:.......:,,,      ,,,,:...................:,,,        ,,:..........:,,  :_"
+        " ,,:.........:,,,     ,,,,,,:...................:,,,, ,  ,,,:..........:,, ,:_"
+        " ,,:...........:,,,,,,,,,:......................:,,,,,,,:...........:,,,    :_"
+        " ,,:...............................................................:,,, :_"
+        " ,,:...............................................................:,,, :_"
+        ",,,:...............................                       .........:,, ,:_"
+        " ,,:...............................:  No-: Bling : DOTA mod  :.........:,,, :_"
+        ",,,,:..............................                       .........:, , :_"
+        " ,,,,,,,,,,,,,,,,,,,,,,,,,:..:,,,:.............................:,,,,:..:,,, :_"
+        "    , ,,, ,,,, , , ,,,,,,,,, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,  ,,,,   _"
+) do set "_=%%~."
+set "D=$logo=''; foreach ($l in '%_:" "=%'.split('_')){ $logo += ' ' * 24 + $l + \"`n\" }; $bling=$logo.split(':');"
+set "O=foreach ($i in $bling) { $fc='Cyan'; $bc='Black'; if($i.Contains('.')){$fc='Red'}; if($i.Contains(',')){$fc='DarkRed'};"
+set "T=if($i.Contains('Bling')){$fc='Black';$bc='Cyan'};$i=$i.replace('.','#').replace(',','`');"
+set "A=write-host $i -BackgroundColor $bc -ForegroundColor $fc -NoNewLine }"
+powershell -noprofile -c "%D%;%O%;%T%;%A%"           &rem comment this line to -commit heresy- skip the awesome ascii art logo..
 
 :: Parse Script options
 for %%o in (@verbose @refresh @dialog @endtask @timers) do call set "%%o=%%%%o:0=%%"
@@ -104,16 +105,16 @@ if not defined MOD_OUTPUT set "MOD_OUTPUT=%CD%"
 if "%MOD_OUTPUT::=%"=="%MOD_OUTPUT%" set "MOD_OUTPUT=%CD%\%MOD_OUTPUT%"
 call :set_steam & call :set_dota & call :set_tools
 
-:: Patch Anticipation Station - quick and dirty check for new DOTA patch (no pointless extraction of particles from vpk each run)
+:: Patch Anticipation Station - quick and dirty check for new DOTA patch (no pointless particles extraction from vpk each run)
 mkdir "%CONTENT%" >nul 2>nul &rem Should be \steamapps\common\dota 2 beta\content\
 for /f usebackq^ delims^=^"^ tokens^=4 %%a in (`findstr LastUpdated "%STEAMAPPS%\appmanifest_570.acf"`) do set/a "UPDATED=%%a+0"
 pushd "%CONTENT%" & set "NEWPATCH=" & set/a "LASTUPDATED=0" & if exist last_updated.bat call last_updated.bat
-echo @set/a "LASTUPDATED=%UPDATED%" ^&exit/b>pas_updated.bat & if %UPDATED% GTR %LASTUPDATED% set "NEWPATCH=yes" & set "@refresh=1"
+echo @set/a "LASTUPDATED=%UPDATED%" ^&exit/b>pas_updated.bat &if %UPDATED% GTR %LASTUPDATED% set "NEWPATCH=yes"&set "@refresh=1"
 if defined NEWPATCH ( call :color 0c " new patch " ) else call :color 04. " old patch "
 
 :: Check Steam language = MOD languge - used to auto-install mod after 7.07
 if not defined MOD_LANGUAGE if defined NOBLING_LANGUAGE set "MOD_LANGUAGE=%NOBLING_LANGUAGE%"
-if not defined MOD_LANGUAGE call :reg_query "HKCU\SOFTWARE\Valve\Steam" "Language" STEAM_LANGUAGE
+if not defined MOD_LANGUAGE call :reg_query STEAM_LANGUAGE "HKCU\SOFTWARE\Valve\Steam" "Language"
 if not defined MOD_LANGUAGE if defined STEAM_LANGUAGE set "MOD_LANGUAGE=%STEAM_LANGUAGE%"
 if not defined MOD_LANGUAGE set "MOD_LANGUAGE=english"
 set "MOD_FOLDER=dota_%MOD_LANGUAGE%" & set "MOD_OPTIONS=-language %MOD_LANGUAGE%"
@@ -133,10 +134,9 @@ if defined STEAMDATA pushd "%STEAMDATA%\config" & if exist localconfig.vdf (
 set "@choices=" & if defined @dialog if not defined @verbose set "all_choices=%all_choices%,@verbose"   &rem insert @verbose option
 set "@choices=" & if defined @dialog if not defined @endtask set "all_choices=%all_choices%,@endtask"   &rem insert @endtask option
 set "@choices=" & if defined @dialog if not defined @refresh set "all_choices=%all_choices%,@refresh"   &rem insert @refresh option
-
 for %%o in (%all_choices%) do call set "%%o=%%%%o:0=%%"                    &rem undefine any option equal to 0, easier script usage
 for %%o in (%all_choices%) do if defined %%o (if defined @choices ( call set "@choices=%%@choices%%,%%o" ) else set "@choices=%%o")
-if defined @dialog call :choices "No-Bling choices" "%all_choices%" "%def_choices%" CHOICES
+if defined @dialog call :choices CHOICES "%all_choices%" "%def_choices%" "No-Bling choices" 14 DarkRed Snow
 if defined @dialog if not defined CHOICES call :end ! No choices selected!
 if defined CHOICES ( set "MOD_CHOICES=%CHOICES%" ) else set "MOD_CHOICES=%@choices%"
 for %%o in (%all_choices%) do set "%%o="  &rem undefine all initial choices
@@ -164,7 +164,7 @@ set "MOD_OUTPUT=%CD%" & set "BUILDS=%CD%\BUILDS\%CHOICES:,=_%"
 mkdir "%BUILDS%" >nul 2>nul
 set ".="%CD%\src" "%CD%\~TMP""
 if defined @refresh set ".=%.% "%CONTENT%\pak01_dir""
-rem if defined @verbose set ".=%.% "%MOD_OUTPUT%\log""      &rem no need to clear the log folder each time [~2k files ~200 folders]
+rem if defined @verbose set ".=%.% "%MOD_OUTPUT%\log""          &rem no need to clear the log each time [~2k files ~200 folders]
 for %%i in (%.%) do ( del /f/s/q "%%~i" & rmdir /s/q "%%~i" & mkdir "%%~i" ) >nul 2>nul
 call :clearline 2
 
@@ -193,7 +193,7 @@ if not exist "%CONTENT%\pak01_dir\particles\dev\*.vpcf_c" call :end ! Could not 
 pushd "%CONTENT%\pak01_dir\particles\econ\items\juggernaut\bladekeeper_omnislash" & set ".=_dc_juggernaut_omni_slash_tgt.vpcf_c"
 if not exist %.%.vpcf_c copy /y %.%_c %.%.vpcf.vpcf_c >nul 2>nul & popd
 :: Workaround for NS evil_eyed_arms renamed? in items_game.txt
-pushd "%CONTENT%\pak01_dir\particles\econ\items\nightstalker\evil_eyed_arms" & set ".=nightstalker_ambient_evil_eyed_arms.vpcf_c"
+pushd "%CONTENT%\pak01_dir\particles\econ\items\nightstalker\evil_eyed_arms" &set ".=nightstalker_ambient_evil_eyed_arms.vpcf_c"
 if not exist %.% copy /y evil_eyed_arms_eye_sparks.vpcf_c %.% >nul 2>nul & popd
 :: Experimental non-particle based effects override 1: ShadowShaman's TI8 Censer of Gliss
 set "dst1=%CONTENT%\pak01_dir\models\items\shadowshaman\ss_ti8_immortal_offhand"
@@ -204,9 +204,9 @@ cd.>ss_crimson_ti8_immortal_offhand03_scroll.vmat_c
 pushd "%CONTENT%" & if exist pas_updated.bat ( copy /y pas_updated.bat last_updated.bat & del /f /q pas_updated.bat ) >nul 2>nul
 :skip_update_content
 
-::---------------------------------------------------------------------------------------------------------------------------------
+::------------------------------------------------------------------------------------------------------------------------------
 %LABEL% " Extracting items_game.txt from dota\pak01_dir.vpk "
-echo  Source 2 Resource Decompiler - https://github.com/SteamDatabase/ValveResourceFormat         &rem advertise tool [contributor]
+echo  Source 2 Resource Decompiler - https://github.com/SteamDatabase/ValveResourceFormat      &rem advertise tool [contributor]
 if defined @verbose ( set ".= " ) else set ".=>nul 2>nul"
 %TIMER%
 %decompiler% -i "%DOTA%\dota\pak01_dir.vpk" -o "%CONTENT%\pak01_dir" -d -e txt -f "scripts/items/items_game.txt" %.%
@@ -336,7 +336,7 @@ powershell -c "$first=322; $last=342; %ps_inst:"=\"%"
 endlocal
 
 :: Auto-Install No-Bling DOTA mod
-if not defined @endtask call :mcolor 0e. " Cannot auto-install mod / launch options without @endtask if Dota / Steam is running "
+if not defined @endtask call :mcolor 0e. " To auto-install mod / launch options if Dota / Steam is running check @endtask"
 if defined @endtask call :mcolor 0e " Press " 0c "Alt+F4" 0e. " to stop auto-install from closing Dota / Steam "
 if defined @endtask timeout /t 10 & call :clearline 4
 call :mcolor 0c " G " 04 " L " 0c " A " 04 " N " 0c " C "  04 " E " 4c " V " 04 " A " 0c " L " 04 " U " 0c " E " 04 " +" 0c. " +"
@@ -351,20 +351,20 @@ if defined @endtask taskkill /f /im steam.exe /t >nul 2>nul & timeout /t 2 >nul
 pushd "%STEAMDATA%\config" & copy /y localconfig.vdf localconfig.vdf.bak >nul
 %js_engine% Dota_LOptions "localconfig.vdf" "-lv,-language x,-textlanguage x,+cl_language x" -remove
 %js_engine% Dota_LOptions "localconfig.vdf" "%MOD_OPTIONS%" -add
-:: Relaunch Steam with fast options               PSA: you can add such options to your Steam shorcut at the end of the Target line
+:: Relaunch Steam with fast options            PSA: you can add such options to your Steam shorcut at the end of the Target line
 if defined @endtask del /f /q "%STEAMPATH%\.crash" >nul 2>nul
 set l1=-silent -console -forceservice -windowed -nobigpicture -nointro -vrdisable -skipstreamingdrivers -single_core -no-dwrite
 set l2=-inhibitbootstrap -nobootstrapperupdate -nodircheck -norepairfiles -noverifyfiles -nocrashmonitor -noassert
 if defined @endtask start "Steam" "%STEAMPATH%\Steam.exe" %l1% %l2% +"@AllowSkipGameUpdate 1"
 
-:done                                                                                                      Gaben shall not prevail!
+:done                                                                                                   Gaben shall not prevail!
 call :end  Done!
 exit/b
 
-::---------------------------------------------------------------------------------------------------------------------------------
-:init Console preferences                                                       " Batch hybrid engine jumps here after goto :init "
-::---------------------------------------------------------------------------------------------------------------------------------
-@echo off & setlocal &set "BackClr=0" &set "TextClr=7" &set "Columns=40" &set "Lines=120" &set "Buff=9999" &call :clearline 1 2>nul
+::------------------------------------------------------------------------------------------------------------------------------
+:init Console preferences
+::------------------------------------------------------------------------------------------------------------------------------
+@echo off &setlocal &set "BackClr=0"&set "TextClr=7"&set "Columns=40" &set "Lines=120" &set "Buff=9999" &call :clearline 1 2>nul
 if not "%1"=="init" set/a SColors=0x%BackClr%%TextClr% & set/a WSize=Columns*256*256+Lines & set/a SBSize=Buff*256*256+Lines
 if not "%1"=="init" for %%# in ("HKCU\Console\init" ) do (
  reg add %%# /v QuickEdit /d 0 /t REG_DWORD /f &reg add %%# /v CtrlKeyShortcutsDisabled /d 0 /t REG_DWORD /f
@@ -372,16 +372,16 @@ if not "%1"=="init" for %%# in ("HKCU\Console\init" ) do (
  reg add %%# /v FaceName /d "Lucida Console" /t REG_SZ /f &reg add %%# /v FontSize /d 0xe0008 /t REG_DWORD /f
  reg add %%# /v ScreenBufferSize /d %SBSize% /t REG_DWORD /f &reg add %%# /v WindowSize /d %WSize% /t REG_DWORD /f
  reg add %%# /v ScreenColors /d %SColors% /t REG_DWORD /f &reg add HKCU\Console /v ForceV2 /d 1 /t REG_DWORD /f
- reg add %%# /v ColorTable00 /d 0x000000 /t REG_DWORD /f &reg add %%# /v ColorTable08 /d 0x808080 /t REG_DWORD /f &rem black  dgray
- reg add %%# /v ColorTable01 /d 0x800000 /t REG_DWORD /f &reg add %%# /v ColorTable09 /d 0xff0000 /t REG_DWORD /f &rem blue   lblue
- reg add %%# /v ColorTable02 /d 0x008000 /t REG_DWORD /f &reg add %%# /v ColorTable10 /d 0x00ff00 /t REG_DWORD /f &rem green  lgree
- reg add %%# /v ColorTable03 /d 0x808000 /t REG_DWORD /f &reg add %%# /v ColorTable11 /d 0xffff00 /t REG_DWORD /f &rem cyan   lcyan
- reg add %%# /v ColorTable04 /d 0x000080 /t REG_DWORD /f &reg add %%# /v ColorTable12 /d 0x0000ff /t REG_DWORD /f &rem red    lred
- reg add %%# /v ColorTable05 /d 0x800080 /t REG_DWORD /f &reg add %%# /v ColorTable13 /d 0xff00ff /t REG_DWORD /f &rem purple lpurp
- reg add %%# /v ColorTable06 /d 0x008080 /t REG_DWORD /f &reg add %%# /v ColorTable14 /d 0x00ffff /t REG_DWORD /f &rem yellow lyell
- reg add %%# /v ColorTable07 /d 0xc0c0c0 /t REG_DWORD /f &reg add %%# /v ColorTable15 /d 0xffffff /t REG_DWORD /f &rem lgray  white
+ reg add %%# /v ColorTable00 /d 0x000000 /t REG_DWORD /f &reg add %%# /v ColorTable08 /d 0x808080 /t REG_DWORD /f &rem black  dg
+ reg add %%# /v ColorTable01 /d 0x800000 /t REG_DWORD /f &reg add %%# /v ColorTable09 /d 0xff0000 /t REG_DWORD /f &rem blue   lb
+ reg add %%# /v ColorTable02 /d 0x008000 /t REG_DWORD /f &reg add %%# /v ColorTable10 /d 0x00ff00 /t REG_DWORD /f &rem green  lg
+ reg add %%# /v ColorTable03 /d 0x808000 /t REG_DWORD /f &reg add %%# /v ColorTable11 /d 0xffff00 /t REG_DWORD /f &rem cyan   lc
+ reg add %%# /v ColorTable04 /d 0x000080 /t REG_DWORD /f &reg add %%# /v ColorTable12 /d 0x0000ff /t REG_DWORD /f &rem red    lr
+ reg add %%# /v ColorTable05 /d 0x800080 /t REG_DWORD /f &reg add %%# /v ColorTable13 /d 0xff00ff /t REG_DWORD /f &rem purple lp
+ reg add %%# /v ColorTable06 /d 0x008080 /t REG_DWORD /f &reg add %%# /v ColorTable14 /d 0x00ffff /t REG_DWORD /f &rem yellow ly
+ reg add %%# /v ColorTable07 /d 0xc0c0c0 /t REG_DWORD /f &reg add %%# /v ColorTable15 /d 0xffffff /t REG_DWORD /f &rem lgray  wh
 ) >nul 2>nul
-if not "%1"=="init" ( start "init" "%~f0" init & exit/b ) else goto :main                  &rem " Self-restart or return to :main "
+if not "%1"=="init" ( start "init" "%~f0" init & exit/b ) else goto :main               &rem " Self-restart or return to :main "
 
 ::---------------------------------------------------------------------------------------------------------------------------------
 :: Core functions
@@ -390,87 +390,81 @@ if not "%1"=="init" ( start "init" "%~f0" init & exit/b ) else goto :main       
 pushd "%TEMP%" & echo=WSH.Echo(String.fromCharCode(160))>` & for /f %%# in ('cscript //E:JScript //nologo `') do set "[GL]=%%#"
 for /f %%# in ('echo prompt $H ^| cmd') do set "[BS]=%%#" & for /f %%# in ('copy /z "%~dpf0" nul') do set "[CR]=%%#"
 for /f "tokens=2 delims=1234567890" %%# in ('shutdown /?^|findstr /bc:"E"') do set "[TAB]=%%#"
-set/p "=-"<nul>` & set "ECHOP=<nul set/p =%[BS]%" & set "[DEL]=%[BS]%%[GL]%%[BS]%" & call set "[DEL3]=%%[DEL]%%%%[DEL]%%%%[DEL]%%"
-set "[L]=-%[DEL]%\..\%[DEL3]%" & set "[J]=-%[DEL]%/..\%[DEL3]%" &set "[DEL6]=%[DEL3]%%[DEL3]%" &set "LABEL=echo. &call :color 70. "
+set/p "=-"<nul>` &set "ECHOP=<nul set/p =%[BS]%" &set "[DEL]=%[BS]%%[GL]%%[BS]%" &call set "[DEL3]=%%[DEL]%%%%[DEL]%%%%[DEL]%%"
+set "[L]=-%[DEL]%\..\%[DEL3]%"&set "[J]=-%[DEL]%/..\%[DEL3]%"&set "[DEL6]=%[DEL3]%%[DEL3]%" &set "LABEL=echo. &call :color 70. "
 set "INFO=call :color b0 " INFO " &echo" & set "WARN=call :color e0 " WARN " &echo" & set "ERROR=call :color cf " ERROR " &echo"
-exit/b                                          &rem AveYo - :clearline and :color depend on this, initialize with call :set_macros
+exit/b                                       &rem AveYo - :clearline and :color depend on this, initialize with call :set_macros
 
 :clearline %1:Number[how many lines above to delete - macro designed for Windows 10 but adjusted to work under 7 too]
-( if not defined [DEL] call :set_macros ) & setlocal enableDelayedExpansion & set "[LINE]=%[CR]%" & set "[LINE7]=" & set "[COL]="
+( if not defined [DEL] call :set_macros ) &setlocal enableDelayedExpansion & set "[LINE]=%[CR]%" & set "[LINE7]=" & set "[COL]="
 for /f "skip=4 tokens=2 delims=:" %%a in ('mode con') do for %%c in (%%a) do if not defined [COL] call set "[COL]=%%c"
-set/a "[COL7]=2+(%[COL]%+7)/8" &for /l %%i in (1,1,%[COL]%) do call set "[CLR]=%%[CLR]%%%[GL]%"&call set "[LINE]=%[DEL]%%%[LINE]%%"
-for /L %%a in (1,1,%[COL7]%) do call set "[LINE7]=%%[LINE7]%%%[BS]%"
-ver | find "10." > nul & if errorlevel 1 ( for /L %%i in (1,1,%1) do echo;%[TAB]%%[LINE7]%%[CLR]% & echo;%[TAB]%%[LINE7]% ) else (
+set/a "[C7]=2+(%[COL]%+7)/8"&for /l %%i in (1,1,%[COL]%) do call set "[CLR]=%%[CLR]%%%[GL]%"&call set "[LINE]=%[DEL]%%%[LINE]%%"
+for /L %%a in (1,1,%[C7]%) do call set "[LINE7]=%%[LINE7]%%%[BS]%"
+ver | find "10." >nul & if errorlevel 1 (for /L %%i in (1,1,%1) do echo;%[TAB]%%[LINE7]%%[CLR]% & echo;%[TAB]%%[LINE7]% ) else (
 for /l %%i in (1,1,%1) do <nul set/p "=![LINE]!" )
-endlocal & exit/b                                                                                     &rem Usage: call :clearline 2
+endlocal & exit/b                                                                                  &rem Usage: call :clearline 2
 
 :color %1:BgFg.[one or both of hexpair can be _ as defcolor, optional . use newline] %2:text["text with spaces"]
-setlocal enableDelayedExpansion &set "bf=%~1" &set "tx=%~2"&set "tx=-%[BS]%!tx:\=%[L]%!" &set "tx=!tx:/=%[J]%!" &set "tx=!tx:"=\"!"
-set "bf=!bf: =!" &set "bc=!bf:~0,1!" &set "fc=!bf:~1,1!" &set "nl=!bf:~2,1!" &set "bc=!bc:_=%BackClr%!" &set "fc=!fc:_=%TextClr%!"
-pushd "%TEMP%" & findstr /p /r /a:!bc!!fc! "^^-" "!tx!\..\`" nul & <nul set/p "=%[DEL]%%[DEL6]%" & popd & if defined nl echo/%[GL]%
-endlocal & exit/b                       &rem AveYo - Usage: call :color fc Hello & call :color _c " fancy " & call :color cf. World
+setlocal enableDelayedExpansion &set "bf=%~1"&set "tx=%~2"&set "tx=-%[BS]%!tx:\=%[L]%!"&set "tx=!tx:/=%[J]%!"&set "tx=!tx:"=\"!"
+set "bf=!bf: =!" &set "bc=!bf:~0,1!" &set "fc=!bf:~1,1!" &set "nl=!bf:~2,1!"&set "bc=!bc:_=%BackClr%!"&set "fc=!fc:_=%TextClr%!"
+pushd "%TEMP%" & findstr /p /r /a:!bc!!fc! "^^-" "!tx!\..\`" nul &<nul set/p "=%[DEL]%%[DEL6]%" &popd &if defined nl echo/%[GL]%
+endlocal & exit/b                    &rem AveYo - Usage: call :color fc Hello & call :color _c " fancy " & call :color cf. World
 
 :mcolor %1:BgFg. %2:"only-quoted-text1" %3:BgFg. %4:"only-quoted-text2" etc.
-setlocal & set "mc=" & for %%C in (%*) do if "%%C"=="%%~C" ( call set "mc=%%mc%% & call :color %%C" ) else call set "mc=%%mc%% %%C"
-echo. %mc% & endlocal & exit/b                                 &rem AveYo - Usage: call :mcolor fc "Hello" _c " fancy " cf. "World"
+setlocal &set "mc=" & for %%C in (%*) do if "%%C"=="%%~C" (call set "mc=%%mc%% & call :color %%C") else call set "mc=%%mc%% %%C"
+echo. %mc% & endlocal & exit/b                              &rem AveYo - Usage: call :mcolor fc "Hello" _c " fancy " cf. "World"
 
 :end %1:Message[Delayed termination with status message - prefix with ! to signal failure]
-if exist "%MOD_OUTPUT%\~TMP" del /f/s/q "%MOD_OUTPUT%\~TMP\*.*" >nul 2>nul & rmdir /s/q "%MOD_OUTPUT%\~TMP" >nul 2>nul &rem Cleanup
+if exist "%MOD_OUTPUT%\~TMP" del /f/s/q "%MOD_OUTPUT%\~TMP\*.*" >nul 2>nul & rmdir /s/q "%MOD_OUTPUT%\~TMP" >nul 2>nul
 echo. & (if defined @time call :timer "%@time%" &call :timer ) & if "%~1"=="!" (%ERROR% %* ) else %INFO%  %*
 pause>nul & exit
 
 :noop [does_nothing]
 exit/b
 
-:reg_query %1:KeyName %2:ValueName %3:OutputVariable %4:other_options[example: "/t REG_DWORD"]
-setlocal & for /f "skip=2 delims=" %%s in ('reg query "%~1" /v "%~2" /z 2^>nul') do set "rq=%%s" & call set "rv=%%rq:*)    =%%"
-endlocal & set "%~3=%rv%" & exit/b                              &rem AveYo - Usage:" call :reg_query "HKCU\MyKey" "MyValue" MyVar "
+:reg_query [USAGE] call :reg_query ResultVar "HKCU\KeyName" "ValueName"
+(for /f "skip=2 delims=" %%s in ('reg query "%~2" /v "%~3" /z 2^>nul') do set ".=%%s" & call set "%~1=%%.:*)    =%%") & exit/b
 
 :timer %1:input[optional] %2:nodisplay[optional]
 if not defined timer_set ( if not "%~1"=="" ( call set "timer_set=%~1" ) else set "timer_set=%TIME: =0%" ) & exit/b
 ( if not "%~1"=="" ( call set "timer_end=%~1" ) else set "timer_end=%TIME: =0%" ) & setlocal EnableDelayedExpansion
-for /f "tokens=1-6 delims=0123456789" %%i in ("%timer_end%%timer_set%") do set "CE=%%i" & set "DE=%%k" & set "CS=%%l" &set "DS=%%n"
+for /f "tokens=1-6 delims=0123456789" %%i in ("%timer_end%%timer_set%") do set "CE=%%i"&set "DE=%%k" &set "CS=%%l"&set "DS=%%n"
 set "TE=!timer_end:%DE%=%%100)*100+1!" & set "TS=!timer_set:%DS%=%%100)*100+1!"
 set/A "T=((((10!TE:%CE%=%%100)*60+1!%%100)-((((10!TS:%CS%=%%100)*60+1!%%100)" & set/A "T=!T:-=8640000-!"
 set/A "cc=T%%100+100,T/=100,ss=T%%60+100,T/=60,mm=T%%60+100,hh=T/60+100"
 set "value=!hh:~1!%CE%!mm:~1!%CE%!ss:~1!%DE%!cc:~1!" & if "%~2"=="" echo/!value!
-endlocal & set "timer_end=%value%" & set "timer_set=" & exit/b      &rem AveYo:" Result printed second-call, saved to %timer_end% "
+endlocal & set "timer_end=%value%" & set "timer_set=" & exit/b   &rem AveYo:" Result printed second-call, saved to %timer_end% "
 
 :unselect %1:choice %2:from variable containing a list of choices separated by , comma
 if not defined %~2 exit/b
 setlocal & call set "ops=%%%~2%%" & call set "ops=%%ops:,%~1=%%" & call set "ops=%%ops:%~1,=%%" & call set "ops=%%ops:%~1=%%"
 endlocal & call set "%~2=%ops%" & exit/b
 
-:choices %1:title %2:all_choices %3:def_choices %4:output_variable       example: call :choices "Test" "opt1 opt2 opt3" "opt2 opt3"
-setlocal &set "parameters=$n='%~1'; $all='%~2'; $def='%~3'; $p='HKCU:\Environment'; $pad=32;"
-set "s1=[void][System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms'); $f=New-Object System.Windows.Forms.Form;"
-set "s2=[void][System.Reflection.Assembly]::LoadWithPartialName('System.Drawing'); $f.Forecolor='White';$f.BackColor='DarkRed';"
-set "s3=$r=(Get-ItemProperty $p).$n; if($r -ne $null){$opt=$r.split(',')}else{$opt=$def.split(',')}; function CLK(){ $v=@();"
-set "s4=foreach($x in $cb){if($x.Checked){$v+=$x.Text}}; New-ItemProperty -Path $p -Name $n -Value $($v -join ',') -Force };"
-set "s5=$BCLK=@(0, {CLK}, {foreach($z in $cb){$z.Checked=$false;if($def.split(',') -contains $z.Text){$z.Checked=$true}};CLK});"
-set "s6=$i=1; $cb=foreach($l in $all.split(',')){$c=New-Object System.Windows.Forms.CheckBox; $c.Name='c$i'; $c.AutoSize=$true;"
-set "s7=$c.Text=$l; $c.Location=New-Object System.Drawing.Point(($pad*2.5),(16+(($i-1)*24))); $c.BackColor='Transparent';"
-set "s8=$c.add_Click({CLK}); $f.Controls.Add($c); $c; $i++; }; foreach($s in $cb){if($opt -contains $s.Text){$s.Checked=$true}};"
-set "s9=$j=1; $bn=@('OK','Reset');foreach($t in $bn){ $b=New-Object System.Windows.Forms.Button; $b.BackColor='Transparent';"
-set "s10=$b.Location=New-Object System.Drawing.Point(($pad*2+($j-1)*$pad*3),(32+(($i-1)*24))); $b.Margin='0,0,72,20';"
-set "s11=$b.add_Click($BCLK[$j]); if ($t -eq 'OK'){$b.DialogResult=1;$f.AcceptButton=$b}; $b.Name='b$j'; $b.Text=$t;"
-set "s12=$f.Controls.Add($b);$j++;}; $f.Text=$n; $f.FormBorderStyle='Fixed3D'; $f.AutoSize=$true; $f.AutoSizeMode='GrowAndShrink';"
-set "s13=$f.MaximizeBox=$false; $f.StartPosition='CenterScreen'; $f.Add_Shown({$f.Activate()}); $ret=$f.ShowDialog();"
-set "s14=if ($ret -ne 1) {Remove-ItemProperty -Path $p -Name $n -Force  -erroraction 'silentlycontinue' | out-null}"
-set "s15=else {write-host (Get-ItemProperty -Path $p -Name $n).$n;}"
-for /l %%# in (1,1,15) do call set "ps_Choices=%%ps_Choices%%%%s%%#:"=\"%%"
-for /f "usebackq tokens=* delims=" %%# in (`powershell -c "%parameters% %ps_Choices%"`) do set "choices_var=%%#"
-endlocal & set "%~4=%choices_var%" & exit/b                  &rem AveYo:" GUI dialog with autosize checkboxes - outputs %CHOICES% "
+:choices [USAGE] call :choices ResultVar "all,&choices" "default,choices" [OPTIONAL] "title" "textsize" "backcolor" "textcolor"
+(set "params=" & for %%s in (%*) do call set "params=%%params%% '%%~s'") & if not defined ps_? for /f delims^=^ eol^= %%. in (
+"function Choices($ov='', $all, $def, $n='Choices', [byte]$sz=12, $bc='MidnightBlue', $fc='Snow', $saved='HKCU:\Environment'){"
+"[void][System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms'); $f=New-Object System.Windows.Forms.Form;"
+"$i=1; $j=1; $a=$all.split(','); $s=$def.split(','); $reg=(Get-ItemProperty $saved).$n; if($reg.length){$s=$reg.split(',') };"
+"function rst(){$cb | foreach{$_.Checked=0; if($s -contains $_.Text){$_.Checked=1 } } }; $f.Add_Shown({rst; $f.Activate()});"
+"$cb=@(); $a | foreach{$c=New-Object System.Windows.Forms.CheckBox;$c.Name=$i;$c.Text=$_;$c.MinimumSize='240,14';$c.AutoSize=1;" 
+"$c.Margin='8,4,8,4';$c.Location='128,'+($sz*$i*2);$c.Font='Arial,'+$sz;$c.Cursor='Hand';$f.Controls.Add($c);$cb+=$c;$i++};" 
+"$bt=@(); @('OK','Reset','Cancel') | foreach{$b=New-Object System.Windows.Forms.Button;  $b.Text=$_; $b.AutoSize=1;"
+"$b.Margin='0,0,72,20';$b.Location=''+(64*$j)+','+(($sz+1)*$i*2);$b.Font='Tahoma,'+$sz; $f.Controls.Add($b);$bt+=$b;$j+=2};" 
+"$v=@(); $f.AcceptButton=$bt[0]; $f.CancelButton=$bt[2]; $bt[0].DialogResult=1; $bt[1].add_Click({$s=$def.split(',');rst});" 
+"$f.Text=$n; $f.BackColor=$bc; $f.ForeColor=$fc; $f.StartPosition=4; $f.AutoSize=1; $f.AutoSizeMode=0; $f.FormBorderStyle=3;" 
+"$f.MaximizeBox=0; $r=$f.ShowDialog(); if($r -eq 1){$cb | foreach{if($_.Checked){$v+=$_.Text}}; $val=$v -join ',';" 
+"$null=New-ItemProperty -Path $saved -Name $n -Value $val -Force; return $val } }") do set "/=%%~." &call set "ps_?=%%/:" "=%%"
+(for /f "delims=" %%s in ('powershell -noprofile -c "%ps_?%; Choices %params%;"') do set "%1=%%s") &exit/b      snippet by AveYo
 
-::---------------------------------------------------------------------------------------------------------------------------------
+::------------------------------------------------------------------------------------------------------------------------------
 :: Utility functions
-::---------------------------------------------------------------------------------------------------------------------------------
+::------------------------------------------------------------------------------------------------------------------------------
 :set_steam outputs %STEAMPATH% %STEAMDATA% %STEAMID%
-set "STEAMPATH=D:\Steam"                                                           &rem AveYo:" Override detection here if needed "
-if not exist "%STEAMPATH%\Steam.exe" call :reg_query "HKCU\SOFTWARE\Valve\Steam" "SteamPath" STEAMPATH
+set "STEAMPATH=D:\Steam"                                                        &rem AveYo:" Override detection here if needed "
+if not exist "%STEAMPATH%\Steam.exe" call :reg_query STEAMPATH "HKCU\SOFTWARE\Valve\Steam" "SteamPath"
 set "STEAMDATA=" & if defined STEAMPATH for %%# in ("%STEAMPATH%") do set "STEAMPATH=%%~dpnx#"
 if not exist "%STEAMPATH%\Steam.exe" call :end ! Cannot find SteamPath in registry
-call :reg_query "HKCU\SOFTWARE\Valve\Steam\ActiveProcess" "ActiveUser" ACTIVEUSER & set/a "STEAMID=ACTIVEUSER" >nul 2>nul
+call :reg_query ACTIVEUSER "HKCU\SOFTWARE\Valve\Steam\ActiveProcess" "ActiveUser" & set/a "STEAMID=ACTIVEUSER" >nul 2>nul
 if exist "%STEAMPATH%\userdata\%STEAMID%\config\localconfig.vdf" set "STEAMDATA=%STEAMPATH%\userdata\%STEAMID%"
 if not defined STEAMDATA for /f "delims=" %%# in ('dir "%STEAMPATH%\userdata" /b/o:d/t:w/s 2^>nul') do set "ACTIVEUSER=%%~dp#"
 if not defined STEAMDATA for /f "delims=\" %%# in ("%ACTIVEUSER:*\userdata\=%") do set "STEAMID=%%#"
@@ -478,18 +472,18 @@ if exist "%STEAMPATH%\userdata\%STEAMID%\config\localconfig.vdf" set "STEAMDATA=
 exit/b
 
 :set_dota outputs %STEAMAPPS% %DOTA% %CONTENT%
-set "DOTA=D:\Games\steamapps\common\dota 2 beta\game"                              &rem AveYo:" Override detection here if needed "
+set "DOTA=D:\Games\steamapps\common\dota 2 beta\game"                           &rem AveYo:" Override detection here if needed "
 if exist "%DOTA%\dota\maps\dota.vpk" set "STEAMAPPS=%DOTA:\common\dota 2 beta=%" & exit/b
 set "libfilter=LibraryFolders { TimeNextStatsReport ContentStatsID }"
 if not exist "%STEAMPATH%\SteamApps\libraryfolders.vdf" call :end ! Cannot find "%STEAMPATH%\SteamApps\libraryfolders.vdf"
 for /f usebackq^ delims^=^"^ tokens^=4 %%s in (`findstr /v "%libfilter%" "%STEAMPATH%\SteamApps\libraryfolders.vdf"`) do (
- if exist "%%s\steamapps\appmanifest_570.acf" if exist "%%s\steamapps\common\dota 2 beta\game\dota\maps\dota.vpk" set "libfs=%%s" )
+if exist "%%s\steamapps\appmanifest_570.acf" if exist "%%s\steamapps\common\dota 2 beta\game\dota\maps\dota.vpk" set "libfs=%%s")
 set "STEAMAPPS=%STEAMPATH%\steamapps" & if defined libfs set "STEAMAPPS=%libfs:\\=\%\steamapps"
 if not exist "%STEAMAPPS%\common\dota 2 beta\game\dota\maps\dota.vpk" call :end ! Cannot find "%STEAMAPPS%\common\dota 2 beta\game"
 set "DOTA=%STEAMAPPS%\common\dota 2 beta\game" & set "CONTENT=%STEAMAPPS%\common\dota 2 beta\content"
 exit/b
 
-:set_tools outputs %decompiler% %vpk% %js_engine%                                    &rem AveYo:" Does not require Workshop Tools!"
+:set_tools outputs %decompiler% %vpk% %js_engine%                                 &rem AveYo:" Does not require Workshop Tools!"
 if not exist "%MOD_OUTPUT%\%~n0.js" call :end ! %~n0.js missing! Did you unpack the whole .zip package?
 if not exist "%MOD_OUTPUT%\tools\*" call :end ! tools subfolder missing! Did you unpack the whole .zip package?
 set "decompiler="%MOD_OUTPUT%\tools\ValveResourceFormat\Decompiler.exe""
@@ -502,5 +496,3 @@ if defined nodejs for /f "delims=" %%i in ('node.exe -e process.execArgv[0] -p')
 if defined nodejs set "js_engine=%nodejs% "%~dpn0.js"" & popd
 if not defined nodejs set "js_engine="%WINDIR%\System32\cscript.exe" //E:JScript //nologo "%~dpn0.js""
 exit/b
-
-rem Batch hybrid engine - do not remove */

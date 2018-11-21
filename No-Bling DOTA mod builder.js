@@ -1,5 +1,7 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                       edited in SynWrite
 //---------------------------------------------------------------------------------------------------------------------------------
+// v7.20 r1: Artifact
+// - add manual filter for ad
 // v7.19 r6: not 7.20 Treasure Update
 // - update vdf parser to account for lame json inside vdf as seen in SteamVoiceSettings_ thanks u/h4uja2 for reporting it
 // v7.19 r4: 7.20 when?
@@ -51,6 +53,12 @@ var MOD_OTHER={}             // Add experimental non-particle based override (in
 // Tip: while debugging a hero, list loaded particles using console command: dumpparticlelist | grep partial_hero_name
 // WARNING! Don`t touch before understanding the No_Bling function and the definitions above; expect glitches if changed
 //---------------------------------------------------------------------------------------------------------------------------------
+  /* Potato PC tweaks - Artifact Ad */
+MOD_BASE['particles/world_environmental_fx/artifact_table_glow.vpcf']=off;//
+MOD_BASE['particles/world_environmental_fx/artifact_table_glow_radiant.vpcf']=off;//
+MOD_BASE['particles/world_environmental_fx/artifact_table_godray.vpcf']=off;//
+MOD_BASE['particles/world_environmental_fx/artifact_table_underlight.vpcf']=off;//
+MOD_BASE['particles/world_environmental_fx/candle_flame_medium.vpcf']=off;//
   /* Potato PC tweaks - Map Aegis of Champions */
 MOD_BASE['particles/econ/events/ti7/aegis_lvl_1000_ambient_ti7.vpcf']=off;//
   /* Potato PC tweaks - Map ancients */

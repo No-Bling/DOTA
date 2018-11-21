@@ -1,4 +1,4 @@
- No-Bling DOTA mod v7.19 r5 choices:
+ No-Bling DOTA mod v7.20 r1 choices:
  Abilities,Hats,Couriers,Wards,Seasonal
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
@@ -1888,7 +1888,6 @@ particles\econ\events\ti8\blink_dagger_ti8_end_lvl2.vpcf_c?particles\items_fx\bl
 particles\econ\events\ti8\blink_dagger_ti8_start.vpcf_c?particles\items_fx\blink_dagger_start.vpcf_c
 particles\econ\events\ti8\blink_dagger_ti8_start_lvl2.vpcf_c?particles\items_fx\blink_dagger_start.vpcf_c
 particles\econ\events\ti8\bottle_ti8.vpcf_c?particles\items_fx\bottle.vpcf_c
-particles\econ\events\ti8\compendium_points_ti8_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\events\ti8\cyclone_ti8.vpcf_c?particles\items_fx\cyclone.vpcf_c
 particles\econ\events\ti8\force_staff_ti8.vpcf_c?particles\items_fx\force_staff.vpcf_c
 particles\econ\events\ti8\fountain_regen_ti8.vpcf_c?particles\generic_gameplay\radiant_fountain_regen.vpcf_c
