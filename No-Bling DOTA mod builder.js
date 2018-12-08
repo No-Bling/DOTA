@@ -1,5 +1,7 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                       edited in SynWrite
 //---------------------------------------------------------------------------------------------------------------------------------
+// v7.20 r2: Particle performance / bloat patch 
+// - added particle snapshot files (evaluating if it has any impact)
 // v7.20 r1: Artifact
 // - add manual filter for ad
 // v7.19 r6: not 7.20 Treasure Update
@@ -607,6 +609,10 @@ No_Bling=function(content, output, choices, verbose, timers){
       if (!type || type == 'particle_control_point' || type == 'particle_combined') continue; //skip non particle / particle_create
       var modifier=(typeof visuals.modifier == 'string' && visuals.modifier.lastIndexOf('.vpcf') > -1) ? visuals.modifier : '';
       var asset=(typeof visuals.asset == 'string' && visuals.asset.lastIndexOf('.vpcf') > -1) ? visuals.asset : '';
+      // INSERT PARTICLE SNAPSHOTS TO NON-PARTICLE BASED OVERRIDE (IN THE HATS CATEGORY)
+      if (typeof visuals.asset == 'string' && visuals.asset.lastIndexOf('.vsnap') > -1) { 
+        MOD_OTHER[visuals.modifier]=visuals.asset; logitem+= '      SNAPSHOT '+modifier+RN;
+      }
       if (modifier == asset) continue; // skip if both modifier and asset are the same / are not defined / not .vpcf particle files
       if (modifier && modifier.lastIndexOf('null.vpcf') > -1) continue;                                     // skip dummy modifiers
       if (modifier && modifier.lastIndexOf('_local.vpcf') > -1) continue;                                  // skip staged modifiers

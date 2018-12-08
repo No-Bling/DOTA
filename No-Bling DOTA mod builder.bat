@@ -1,4 +1,6 @@
 @goto :init "No-Bling DOTA mod builder by AveYo"
+:: v7.20 r2: Particle performance patch (but somehow all increased in size) 
+:: - improved newpatch content update ( check @refresh option to force complete but lengthy update )  
 :: v7.20 r1: Artifact
 :: - various backend script changes
 :: v7.19 r6: not 7.20 Treasure Update
@@ -50,7 +52,7 @@ rem set "MOD_FILE=pak01_dir.vpk"   &rem    = localized versions might use pak02_
 rem set "MOD_LANGUAGE=english"     &rem    = current Steam language is auto-detected, override here / setx NOBLING_LANGUAGE xxx
 set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"
 set "def_choices=%all_choices%"
-set "version=7.20 r1"
+set "version=7.20 r2"
 
 title No-Bling DOTA mod builder by AveYo v%version% 
 set a = free script so no bitching! & for /f delims^=^ eol^= %%. in (
@@ -163,25 +165,26 @@ mkdir "%MOD_OUTPUT%\log" >nul 2>nul & pushd "%MOD_OUTPUT%"
 set "MOD_OUTPUT=%CD%" & set "BUILDS=%CD%\BUILDS\%CHOICES:,=_%"
 mkdir "%BUILDS%" >nul 2>nul
 set ".="%CD%\src" "%CD%\~TMP""
-if defined @refresh set ".=%.% "%CONTENT%\pak01_dir""
+if defined @refresh if not defined NEWPATCH set ".=%.% "%CONTENT%\pak01_dir""        &rem clear the content folder only @refresh
 rem if defined @verbose set ".=%.% "%MOD_OUTPUT%\log""          &rem no need to clear the log each time [~2k files ~200 folders]
 for %%i in (%.%) do ( del /f/s/q "%%~i" & rmdir /s/q "%%~i" & mkdir "%%~i" ) >nul 2>nul
 call :clearline 2
 
 :: Skip lengthy compile process if only @verbose was selected #1
-if defined @verbose if not defined CHOICES echo. & %INFO%  No mod choices selected, just generating logs &goto :skip_update_content
+if defined @verbose if not defined CHOICES echo. & %INFO%  No mod choices selected, just creating logs &goto :skip_update_content
 
 :: Skip lengthy compile process and only do it if there is a new patch or requested by @refresh option
 if not defined @refresh echo. & %INFO%  No new patch - skipping update content step. Select @refresh option to force update...
 if not defined @refresh goto :skip_update_content
 
 :: Update source content
+if defined @refresh if not defined NEWPATCH del /f /q "%DOTA%\dota\pak01_dir.vpk.manifest.txt" >nul 2>nul
 if not exist "%CONTENT%\pak01_dir\particles\dev\*.vpcf_c" del /f /q "%DOTA%\dota\pak01_dir.vpk.manifest.txt" >nul 2>nul
-if exist "%CONTENT%\pak01_dir\particles\dev\*.vpcf_c" if not defined NEWPATCH goto :skip_update_content
-call :mcolor 70 " Updating Content from dota\pak01_dir.vpk directly ... " c0. " ETA: 1-3m "
+if exist "%DOTA%\dota\pak01_dir.vpk.manifest.txt" if not defined @refresh goto :skip_update_content
+call :mcolor 70 " Updating Content from dota\pak01_dir.vpk directly ... " c0. " ETA: 1-5m "
 %TIMER%
-%decompiler% -i "%DOTA%\dota\pak01_dir.vpk" -o "%CONTENT%\pak01_dir" -f materials/dev/bloom_cs.vmat_c >nul 2>nul
-%decompiler% -i "%DOTA%\dota\pak01_dir.vpk" -o "%CONTENT%\pak01_dir" --vpk_cache -e vpcf_c >nul 2>nul
+%decompiler% -i "%DOTA%\dota\pak01_dir.vpk" -o "%CONTENT%\pak01_dir" -f materials/dev/bloom_cs.vmat_c --threads 8 >nul 2>nul
+%decompiler% -i "%DOTA%\dota\pak01_dir.vpk" -o "%CONTENT%\pak01_dir" --vpk_cache -e vpcf_c,vsnap_c --threads 8 >nul 2>nul
 set "newmanifest=%DOTA%\dota\pak01_dir.vpk.manifest.txt" & set "oldmanifest=%CONTENT%\pak01_dir.vpk.manifest.txt"
 set "OUTDATED=" & if not exist "%newmanifest%" set "OUTDATED=yes" & copy /y "%newmanifest%" "%oldmanifest%" >nul 2>nul
 if not defined OUTDATED echo n|COMP "%newmanifest%" "%oldmanifest%" >nul 2>nul
