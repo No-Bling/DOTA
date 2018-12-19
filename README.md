@@ -1,4 +1,6 @@
-## No-Bling DOTA "GlanceValue" restoration mod  
+# Grand Magus Rubick has taken this repository hostage
+
+## RIP ~~No-Bling DOTA "GlanceValue" restoration mod  
 #### We all know where we are headed looking at the Immortals spam in the last two years...  
   
 ### Glance  
@@ -134,7 +136,7 @@ Launch options gets complicated as it's language-dependant, unlike convenient, u
 Working test builds using the `-language` method have been updated, while the script was pending a more in-dept rework.  
 Months later, no sign of Valve working further on that refactoring - to be expected, really.  
   
-## The future  
+## ~~The future~~ There is no future  
 Integration with the GUI Effects Quality is technically possible. Valve is also slowly extending it to more spells.  
 The Low, Med, High options could toggle 3 associated No-Bling choices, right from the Settings menu!  
 But after the -LV unwarranted removal, it's better to save energy and keep using dumbed-down file-replacing.  
