@@ -1,29 +1,9 @@
-@goto :init "No-Bling DOTA mod builder by AveYo"
-:: v7.20 r2: Particle performance patch (but somehow all increased in size) 
-:: - improved newpatch content update ( check @refresh option to force complete but lengthy update )  
-:: v7.20 r1: Artifact
-:: - various backend script changes
-:: v7.19 r6: not 7.20 Treasure Update
-:: - update vdf parser to account for lame json inside vdf as seen in SteamVoiceSettings_ thanks u/h4uja2 for reporting it
-:: v7.19 r4: 7.20 when?
-:: - Experimental non-particle based effects override 1: ShadowShaman's TI8 Censer of Gliss
-:: v7.19 r3: Grimstroke
-:: - No batch script changes
-:: v7.19 r2: TI8 Trove Carafe
-:: - Improved choices snippet
-:: v7.16 r1:
-:: - Added support for persistent language override. To define it open a command prompt and enter: setx NOBLING_LANGUAGE english
-:: v7.14 r1: TI8 BattlePass edition
-:: - Prevent STEAMPATH detection possible issue; correct js_engine_name
-:: v7.12 r1: Pudge Arcana edition
-:: Bumped version from v2.0 final to match game patch 7.10
-:: - Fixed unable to run script caused by multiple downloaded copies auto-renamed by windows and default extract (r2)
-:: - Print new patch status before choices dialog, save only after processing completes so it remains accurate on canceled runs
-:: What's new in No-Bling DOTA mod builder.bat v2.0 final:
-:: - Way faster and more reliable, improved caching, less storage operations, long path support, auto-install w current language
-:: - Press Enter to accept No-Bling choices dialog, integrated endtask choice, clearline working in both Win 7 and 10, output++
+@goto :init "No-Bling DOTA mod builder"
+:: v2018.12.19: Script refactoring
+:: - language independent mod launch option -tempcontent with dota_tempcontent mod root folder  
+:: - minimal file io - only extract and cache the specific source files defined in src.lst
 ::------------------------------------------------------------------------------------------------------------------------------
-:main No-Bling DOTA :G :l :a :n :c :e :V :a :l :u :e restoration mod builder                                  edited in SynWrite
+:main No-Bling DOTA G l a n c e V a l u e restoration mod builder                                             edited in SynWrite
 ::------------------------------------------------------------------------------------------------------------------------------
 :: Mod builder gui choices - no need to edit defaults here, script shows a graphical dialog for easier selection
 set "Abilities=1"                  &rem  1 = penguin Frostbite and stuff like that..                                         LOW
@@ -47,14 +27,13 @@ set "@refresh=0"                   &rem  1 = always recompile mod instead of reu
 :: Script options - not available in gui so set them here if needed
 set "@dialog=1"                    &rem  1 = show choices dialog,                                  0 = no dialog - use above
 set "@timers=1"                    &rem  1 = total and per tasks accurate timers,                  0 = no reason to disable them
-rem set "MOD_OUTPUT=%~dp0"         &rem    = current batch file directory, uncomment if needed
-rem set "MOD_FILE=pak01_dir.vpk"   &rem    = localized versions might use pak02_dir.vpk, override here
-rem set "MOD_LANGUAGE=english"     &rem    = current Steam language is auto-detected, override here / setx NOBLING_LANGUAGE xxx
+rem set "MOD_OUTPUT=%~dp0"         &rem    = if needing another output folder than current batch file directory, override here
+rem set "MOD_FILE=pak01_dir.vpk"   &rem    = if having multiple mods and needing another name like pak02_dir.vpk, override here
 set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"
 set "def_choices=%all_choices%"
-set "version=7.20 r2"
-
-title No-Bling DOTA mod builder by AveYo v%version% 
+set "version=2018.12.19"
+::------------------------------------------------------------------------------------------------------------------------------
+title AveYo's No-Bling DOTA mod builder v%version% 
 set a = free script so no bitching! & for /f delims^=^ eol^= %%. in (
         "  ,,,,,, ,,,,,,,,,     , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,     :_"
         " ,,:.................:,,,,,,,,,:.........:,,,,,,:............:,,:.......:,    :_"
@@ -96,7 +75,7 @@ set "O=foreach ($i in $bling) { $fc='Cyan'; $bc='Black'; if($i.Contains('.')){$f
 set "T=if($i.Contains('Bling')){$fc='Black';$bc='Cyan'};$i=$i.replace('.','#').replace(',','`');"
 set "A=write-host $i -BackgroundColor $bc -ForegroundColor $fc -NoNewLine }"
 powershell -noprofile -c "%D%;%O%;%T%;%A%"           &rem comment this line to -commit heresy- skip the awesome ascii art logo..
-
+::------------------------------------------------------------------------------------------------------------------------------
 :: Parse Script options
 for %%o in (@verbose @refresh @dialog @endtask @timers) do call set "%%o=%%%%o:0=%%"
 if defined @timers ( set "@time=%TIME: =0%" & set "TIMER=call :timer" ) else set "TIMER=call :noop"
@@ -105,40 +84,31 @@ if defined @timers ( set "@time=%TIME: =0%" & set "TIMER=call :timer" ) else set
 pushd "%~dp0"
 if not defined MOD_OUTPUT set "MOD_OUTPUT=%CD%"
 if "%MOD_OUTPUT::=%"=="%MOD_OUTPUT%" set "MOD_OUTPUT=%CD%\%MOD_OUTPUT%"
-call :set_steam & call :set_dota & call :set_tools
-
-:: Patch Anticipation Station - quick and dirty check for new DOTA patch (no pointless particles extraction from vpk each run)
-mkdir "%CONTENT%" >nul 2>nul &rem Should be \steamapps\common\dota 2 beta\content\
-for /f usebackq^ delims^=^"^ tokens^=4 %%a in (`findstr LastUpdated "%STEAMAPPS%\appmanifest_570.acf"`) do set/a "UPDATED=%%a+0"
-pushd "%CONTENT%" & set "NEWPATCH=" & set/a "LASTUPDATED=0" & if exist last_updated.bat call last_updated.bat
-echo @set/a "LASTUPDATED=%UPDATED%" ^&exit/b>pas_updated.bat &if %UPDATED% GTR %LASTUPDATED% set "NEWPATCH=yes"&set "@refresh=1"
-if defined NEWPATCH ( call :color 0c " new patch " ) else call :color 04. " old patch "
-
-:: Check Steam language = MOD languge - used to auto-install mod after 7.07
-if not defined MOD_LANGUAGE if defined NOBLING_LANGUAGE set "MOD_LANGUAGE=%NOBLING_LANGUAGE%"
-if not defined MOD_LANGUAGE call :reg_query STEAM_LANGUAGE "HKCU\SOFTWARE\Valve\Steam" "Language"
-if not defined MOD_LANGUAGE if defined STEAM_LANGUAGE set "MOD_LANGUAGE=%STEAM_LANGUAGE%"
-if not defined MOD_LANGUAGE set "MOD_LANGUAGE=english"
-set "MOD_FOLDER=dota_%MOD_LANGUAGE%" & set "MOD_OPTIONS=-language %MOD_LANGUAGE%"
-if /i "%MOD_LANGUAGE%"=="english" set "MOD_OPTIONS=-language english%%,-textlanguage english,+cl_language english"
-if /i "%MOD_LANGUAGE%"=="english" set "MOD_FOLDER=dota_english%%"
+set "MOD_FOLDER=dota_tempcontent" & set "MOD_OPTIONS=-tempcontent"
 if not defined MOD_FILE set "MOD_FILE=pak01_dir.vpk"
-for %%# in (russian schinese koreana) do if /i "%MOD_LANGUAGE%"=="%%#" set "MOD_FILE=pak02_dir.vpk"
-if not exist "%DOTA%\%MOD_FOLDER%\pak01_dir.vpk" set "MOD_FILE=pak01_dir.vpk"
-set "MOD_VPK=%MOD_FILE:.vpk=%"
+call :set_steam & call :set_dota & call :set_tools
 
 :: Check DOTA launch options
 if defined STEAMDATA pushd "%STEAMDATA%\config" & if exist localconfig.vdf (
- for /f "delims=" %%a in ('cscript //E:JScript //nologo "%~dpn0.js" Dota_LOptions localconfig.vdf "_" -read') do set "LOPTIONS=%%a"
+ for /f "delims=" %%a in ('cscript //E:JScript //nologo "%~dpn0.js" LOptions localconfig.vdf "_" -read') do set "LOPTIONS=%%a"
 )
 
+:: Patch Anticipation Station - quick and dirty check for new DOTA patch (no pointless particles extraction from vpk each run)
+mkdir "%CONTENT%\no-bling" >nul 2>nul &rem Should be \steamapps\common\dota 2 beta\content\no-bling
+for /f usebackq^ delims^=^"^ tokens^=4 %%a in (`findstr LastUpdated "%STEAMAPPS%\appmanifest_570.acf"`) do set/a "UPDATED=%%a+0"
+pushd "%CONTENT%\no-bling" & set "NEWPATCH=" & set/a "LASTUPDATED=0" & if exist last_updated.bat call last_updated.bat
+echo @set/a "LASTUPDATED=%UPDATED%" ^&exit/b>pas_updated.bat &if %UPDATED% GTR %LASTUPDATED% set "NEWPATCH=yes" 
+if not defined NEWPATCH ( call :color 04 " old patch " ) else call :color 0c " new patch " &rem set "@refresh=1" 
+
 :: Parse gui dialog choices - rather complicated back & forth define - undefine, but it gets the job done!
-set "@choices=" & if defined @dialog if not defined @verbose set "all_choices=%all_choices%,@verbose"   &rem insert @verbose option
-set "@choices=" & if defined @dialog if not defined @endtask set "all_choices=%all_choices%,@endtask"   &rem insert @endtask option
-set "@choices=" & if defined @dialog if not defined @refresh set "all_choices=%all_choices%,@refresh"   &rem insert @refresh option
-for %%o in (%all_choices%) do call set "%%o=%%%%o:0=%%"                    &rem undefine any option equal to 0, easier script usage
-for %%o in (%all_choices%) do if defined %%o (if defined @choices ( call set "@choices=%%@choices%%,%%o" ) else set "@choices=%%o")
+set "@choices=" & if defined @dialog if not defined @verbose set "all_choices=%all_choices%,@verbose"   &rem insert @verbose opt
+set "@choices=" & if defined @dialog if not defined @endtask set "all_choices=%all_choices%,@endtask"   &rem insert @endtask opt
+set "@choices=" & if defined @dialog if not defined @refresh set "all_choices=%all_choices%,@refresh"   &rem insert @refresh opt
+for %%o in (%all_choices%) do call set "%%o=%%%%o:0=%%"                 &rem undefine any option equal to 0, easier script usage
+for %%o in (%all_choices%) do if defined %%o (if defined @choices (call set @choices=%%@choices%%,%%o) else set @choices=%%o)
+:: Show dialog to pick choices
 if defined @dialog call :choices CHOICES "%all_choices%" "%def_choices%" "No-Bling choices" 14 DarkRed Snow
+:: Process dialog result
 if defined @dialog if not defined CHOICES call :end ! No choices selected!
 if defined CHOICES ( set "MOD_CHOICES=%CHOICES%" ) else set "MOD_CHOICES=%@choices%"
 for %%o in (%all_choices%) do set "%%o="  &rem undefine all initial choices
@@ -146,6 +116,8 @@ for %%o in (%MOD_CHOICES%) do set "%%o=1" &rem then redefine selected ones to 1
 :: Clear script-only options and export choices to registry
 call :unselect @verbose MOD_CHOICES & call :unselect @endtask MOD_CHOICES & call :unselect @refresh MOD_CHOICES
 set "CHOICES=%MOD_CHOICES%" & reg add "HKCU\Environment" /v "No-Bling choices" /t REG_SZ /d "%MOD_CHOICES%" /f >nul 2>nul
+:: Force @endtask option on if refactored script is running for the first time so that launch options can be updated 
+if not exist "%CONTENT%\no-bling\pak01_dir.vpk.manifest.txt" set @endtask=1
 
 :: Print configuration
 %LABEL% " Configuration "
@@ -154,116 +126,74 @@ echo  Mod file       = %DOTA%\%MOD_FOLDER%\%MOD_FILE%
 echo  Mod options    = %MOD_OPTIONS%
 echo  User profile   = %STEAMDATA%
 echo  User options   = %LOPTIONS%
-echo  Content        = %CONTENT%\pak01_dir
+echo  Content        = %CONTENT%\no-bling
 echo  Script options = @refresh:%@refresh%  @endtask:%@endtask%  @verbose:%@verbose%  @dialog:%@dialog%  @timers:%@timers%
 echo  Script version = v%version%   Get latest release at https://github.com/No-Bling/DOTA
 echo.
 
 :: Prepare directories
-%WARN%  Preparing directories, please wait..
-mkdir "%MOD_OUTPUT%\log" >nul 2>nul & pushd "%MOD_OUTPUT%"
-set "MOD_OUTPUT=%CD%" & set "BUILDS=%CD%\BUILDS\%CHOICES:,=_%"
-mkdir "%BUILDS%" >nul 2>nul
-set ".="%CD%\src" "%CD%\~TMP""
-if defined @refresh if not defined NEWPATCH set ".=%.% "%CONTENT%\pak01_dir""        &rem clear the content folder only @refresh
+call :color 70 " Preparing directories, please wait ... "
+pushd "%MOD_OUTPUT%"
+set "BUILDS=%CD%\BUILDS\%CHOICES:,=_%"
+mkdir "%BUILDS%" >nul 2>nul & mkdir "%MOD_OUTPUT%\log" >nul 2>nul
+set ".="%MOD_OUTPUT%\src" "%TEMP%\no-bling""
+if defined @refresh set ".=%.% "%CONTENT%\no-bling""                                            &rem clear content only @refresh
 rem if defined @verbose set ".=%.% "%MOD_OUTPUT%\log""          &rem no need to clear the log each time [~2k files ~200 folders]
 for %%i in (%.%) do ( del /f/s/q "%%~i" & rmdir /s/q "%%~i" & mkdir "%%~i" ) >nul 2>nul
-call :clearline 2
+call :clearline 3
 
-:: Skip lengthy compile process if only @verbose was selected #1
-if defined @verbose if not defined CHOICES echo. & %INFO%  No mod choices selected, just creating logs &goto :skip_update_content
+:: Skip update content if only @verbose was selected #1
+if defined @verbose if not defined CHOICES echo.& %INFO%  No mod choices selected, just creating logs &goto :skip_update_content
 
-:: Skip lengthy compile process and only do it if there is a new patch or requested by @refresh option
-if not defined @refresh echo. & %INFO%  No new patch - skipping update content step. Select @refresh option to force update...
-if not defined @refresh goto :skip_update_content
-
-:: Update source content
-if defined @refresh if not defined NEWPATCH del /f /q "%DOTA%\dota\pak01_dir.vpk.manifest.txt" >nul 2>nul
-if not exist "%CONTENT%\pak01_dir\particles\dev\*.vpcf_c" del /f /q "%DOTA%\dota\pak01_dir.vpk.manifest.txt" >nul 2>nul
-if exist "%DOTA%\dota\pak01_dir.vpk.manifest.txt" if not defined @refresh goto :skip_update_content
-call :mcolor 70 " Updating Content from dota\pak01_dir.vpk directly ... " c0. " ETA: 1-5m "
-%TIMER%
-%decompiler% -i "%DOTA%\dota\pak01_dir.vpk" -o "%CONTENT%\pak01_dir" -f materials/dev/bloom_cs.vmat_c --threads 8 >nul 2>nul
-%decompiler% -i "%DOTA%\dota\pak01_dir.vpk" -o "%CONTENT%\pak01_dir" --vpk_cache -e vpcf_c,vsnap_c --threads 8 >nul 2>nul
-set "newmanifest=%DOTA%\dota\pak01_dir.vpk.manifest.txt" & set "oldmanifest=%CONTENT%\pak01_dir.vpk.manifest.txt"
-set "OUTDATED=" & if not exist "%newmanifest%" set "OUTDATED=yes" & copy /y "%newmanifest%" "%oldmanifest%" >nul 2>nul
-if not defined OUTDATED echo n|COMP "%newmanifest%" "%oldmanifest%" >nul 2>nul
-if not defined OUTDATED if ERRORLEVEL 1 ( set "OUTDATED=yes" & set "@refresh=1" ) else set "OUTDATED="
-copy /y "%newmanifest%" "%oldmanifest%" >nul 2>nul
-%TIMER%
-if not exist "%CONTENT%\pak01_dir\particles\dev\*.vpcf_c" call :end ! Could not extract particles!
-:: Workaround for Jugg arcana '.vpcf.vpcf' typo? in items_game.txt
-pushd "%CONTENT%\pak01_dir\particles\econ\items\juggernaut\bladekeeper_omnislash" & set ".=_dc_juggernaut_omni_slash_tgt.vpcf_c"
-if not exist %.%.vpcf_c copy /y %.%_c %.%.vpcf.vpcf_c >nul 2>nul & popd
-:: Workaround for NS evil_eyed_arms renamed? in items_game.txt
-pushd "%CONTENT%\pak01_dir\particles\econ\items\nightstalker\evil_eyed_arms" &set ".=nightstalker_ambient_evil_eyed_arms.vpcf_c"
-if not exist %.% copy /y evil_eyed_arms_eye_sparks.vpcf_c %.% >nul 2>nul & popd
-:: Experimental non-particle based effects override 1: ShadowShaman's TI8 Censer of Gliss
-set "dst1=%CONTENT%\pak01_dir\models\items\shadowshaman\ss_ti8_immortal_offhand"
-mkdir "%dst1%" >nul 2>nul &pushd "%dst1%"
-cd.>ss_ti8_immortal_offhand03_scroll.vmat_c
-cd.>ss_crimson_ti8_immortal_offhand03_scroll.vmat_c
-:: Refresh last_updated only after update_content task completed
-pushd "%CONTENT%" & if exist pas_updated.bat ( copy /y pas_updated.bat last_updated.bat & del /f /q pas_updated.bat ) >nul 2>nul
-:skip_update_content
-
-::------------------------------------------------------------------------------------------------------------------------------
 %LABEL% " Extracting items_game.txt from dota\pak01_dir.vpk "
 echo  Source 2 Resource Decompiler - https://github.com/SteamDatabase/ValveResourceFormat      &rem advertise tool [contributor]
 if defined @verbose ( set ".= " ) else set ".=>nul 2>nul"
 %TIMER%
-%decompiler% -i "%DOTA%\dota\pak01_dir.vpk" -o "%CONTENT%\pak01_dir" -d -e txt -f "scripts/items/items_game.txt" %.%
+%decompiler% -i "%DOTA%\dota\pak01_dir.vpk" -o "%CONTENT%\no-bling" -e txt -f "scripts/items/items_game.txt" %.%
 %TIMER%
 
-if defined nodejs ( set "js_engine_name=Node.js" ) else set "js_engine_name=JScript"
-%LABEL% " Processing items_game.txt using %js_engine_name% engine "
+call :mcolor 70 " Processing items_game.txt using javascript ... " c0. " ETA: 15-30s "
 if defined @verbose echo Verbose output enabled - writing per-hero / category slice logs...
+if defined @verbose ( set ".=>"%MOD_OUTPUT%\log\no_bling.txt"" ) else set ".= "
 pushd "%MOD_OUTPUT%"
 %TIMER%
-%js_engine% No_Bling "%CONTENT%\pak01_dir" "%MOD_OUTPUT%" "%MOD_CHOICES%" "%@verbose%" "%@timers%" >"%MOD_OUTPUT%\log\no_bling.txt"
-:: Verify items_game.txt VDF parser
-if defined @verbose pushd "%CONTENT%\pak01_dir\scripts\items" & echo n| comp items_game.txt "%MOD_OUTPUT%\log\items_game.txt" 2>nul
+%js_engine% No_Bling "%CONTENT%\no-bling" "%MOD_OUTPUT%" "%MOD_CHOICES%" "%@verbose%" "%@timers%" %.%
+if not exist "%MOD_OUTPUT%\src\src.lst" goto :done ! Processing failed, src.lst missing.. 
+:: Verify VDF parser
+if defined @verbose pushd "%CONTENT%\no-bling\scripts\items" &echo n|comp items_game.txt "%MOD_OUTPUT%\log\items_game.txt" 2>nul
 if defined @verbose call :clearline 1
-%TIMER%
-
 :: Sort particle?mod definitions for each src category
-pushd "%MOD_OUTPUT%\src" & for %%a in (*.ini) do sort "%%a" /o "%%a"
-
-:: Skip further processing if only @verbose was selected
-if not defined CHOICES goto :done
-
-::---------------------------------------------------------------------------------------------------------------------------------
-:: Resource-compiling before 7.07 - now dumbed-down to file replacement
-%LABEL% " Deploying src particles "
+pushd "%MOD_OUTPUT%\src" & for %%a in (*.ini src.lst) do sort "%%a" /o "%%a"
 %TIMER%
+
+:: Update source content
+call :mcolor 70 " Updating Content from dota\pak01_dir.vpk directly ... " c0. " ETA: 3-30s "
+%TIMER%
+::if defined @refresh if not defined NEWPATCH del /f /q "%CONTENT%\no-bling\pak01_dir.vpk.manifest.txt" >nul 2>nul
+if defined @refresh del /f /q "%CONTENT%\no-bling\pak01_dir.vpk.manifest.txt" >nul 2>nul
 pushd "%MOD_OUTPUT%\src" & set/a MOD_COUNT=0 & for %%a in (*.ini) do set/a MOD_COUNT+=1 >nul 2>nul
-if %MOD_COUNT% LSS 1 goto :done &rem there must be a category folder under MOD\src
-for %%a in (*.ini) do (
- for /f "tokens=3" %%B in ('find /v /c "" "%%a" 2^>nul ^| find /i "%%a" 2^>nul') do call :color 05 " %%~na " & echo : %%B files
- mkdir "%%~na" >nul 2>nul & pushd "%%~na"
- for /f "usebackq skip=1 tokens=1,2 delims=?" %%i in ("%%~dpnxa") do (
-  if not exist "%%~dpi" mkdir "%%~dpi" >nul 2>nul
-  copy /y "%CONTENT%\pak01_dir\%%j" "%MOD_OUTPUT%\src\%%~na\%%i" >nul 2>nul
- )
- popd
-)
+if %MOD_COUNT% LSS 1 goto :done ! There must be at least one category definition under MOD\src
+%decompiler% -i "%DOTA%\dota\pak01_dir.vpk" -o "%CONTENT%\no-bling" -m "%MOD_OUTPUT%\src\src.lst" -s --vpk_cache
+pushd "%CONTENT%\no-bling"
+if exist pas_updated.bat ( copy /y pas_updated.bat last_updated.bat & del /f /q pas_updated.bat ) >nul 2>nul
 %TIMER%
-:skip_compiling
 
-:: Create mod vpk
-%LABEL% " ValvePak-ing src particles "
+:skip_update_content
+if not defined CHOICES goto :done &rem Skip further processing if only @verbose was selected
+
+:: File replacement mod using nothing but unaltered Valve authored files (used to be on-the-fly resource-compiling before 7.07)
+call :mcolor 70 " Deploying selected No-Bling choices ... " c0. " ETA: 4-40s "
 %TIMER%
-:: Grab src files in one place
-pushd "%MOD_OUTPUT%" & mkdir "%MOD_OUTPUT%\~TMP\%MOD_VPK%" >nul 2>nul
-set "copy_tool=xcopy /E/C/I/Q/R/Y" & set "copy_ext=\*.*"
-for /f %%# in ('robocopy /? 2^>nul ^|find /i "/S"') do set "robust=%%#" &rem better long paths support
-if defined robust set "copy_tool=robocopy /E /R:1 /W:1 /MT /NFL /NDL /NJH /NJS /NP" &set "copy_ext="
-for %%a in (%CHOICES%) do if exist "src\%%a" (
- call :color 03 " %%a " & echo ... & %copy_tool% "src\%%a%copy_ext%" "~TMP\%MOD_VPK%" >nul 2>nul
+mkdir "%TEMP%\no-bling" >nul 2>nul & pushd "%TEMP%\no-bling"
+for %%a in ("%MOD_OUTPUT%\src\*.ini") do if defined %%~na (
+ for /f "tokens=3" %%B in ('find /v /c "" "%%a" 2^>nul ^| find /i "%%a" 2^>nul') do call :color 0a " %%~na " & echo : %%B files
+ for /f "usebackq skip=1 tokens=1,2 delims=?" %%i in ("%%~fa") do (
+  for %%K in ("mod\%%i") do mkdir "%%~dpK" >nul 2>nul & copy /y "%CONTENT%\no-bling\%%j" "%%K" >nul 2>nul
+ )
 )
-:: Run SourceFilmMaker vpk tool
-pushd "%MOD_OUTPUT%\~TMP"
-%vpk% %MOD_VPK% & copy /y %MOD_VPK%.vpk "%BUILDS%\" >nul 2>nul
+:: ValvePak mod files via SourceFilmMaker vpk tool
+pushd "%TEMP%\no-bling"
+%vpk% mod & copy /y mod.vpk "%BUILDS%\pak01_dir.vpk" >nul 2>nul
 %TIMER%
 
 :: Generate readme
@@ -280,69 +210,31 @@ set .="%BUILDS%\No-Bling DOTA mod readme.txt"
 >>%.% echo No-Bling DOTA mod is economy-friendly, gracefully disabling particle spam while leaving hats model untouched.
 >>%.% echo Might say it even helps differentiate great artistic work, shadowed by the particle effects galore Valve slaps on top.
 >>%.% echo.
->>%.% echo  How to manually install the .vpk builds after 7.07?
+>>%.% echo  How to manually install No-Bling DOTA mod builds in 2019
 >>%.% echo --------------------------------------------------------------------------------
->>%.% echo Instructions for English language (default)
->>%.% echo - CREATE FOLDER \steamapps\common\dota 2 beta\game\dota_english%%
->>%.% echo - COPY pak01_dir.vpk TO dota_english%% FOLDER
->>%.% echo - ADD LAUNCH OPTIONS: -language english%% -textlanguage english +cl_language english
->>%.% echo Yes there is a percent sign after 'english' as a workaround to keep feed updates
->>%.% echo.
->>%.% echo Instructions for Russian language (same steps for Koreana and Schinese)
->>%.% echo IF NOT EXISTS \steamapps\common\dota 2 beta\game\dota_russian\pak01_dir.vpk
->>%.% echo - COPY pak01_dir.vpk TO dota_russian FOLDER
->>%.% echo IF EXISTS \steamapps\common\dota 2 beta\game\dota_russian\pak01_dir.vpk
->>%.% echo - RENAME pak01_dir.vpk TO pak02_dir.vpk
->>%.% echo - MOVE pak02_dir.vpk TO dota_russian FOLDER
->>%.% echo - ADD LAUNCH OPTION: -language russian
->>%.% echo.
->>%.% echo Instructions for German language (same steps for French, Spanish and others)
->>%.% echo - CREATE FOLDER \steamapps\common\dota 2 beta\game\dota_german
->>%.% echo - COPY pak01_dir.vpk TO dota_german FOLDER
->>%.% echo - ADD LAUNCH OPTION: -language german
+>>%.% echo - CREATE FOLDER \steamapps\common\dota 2 beta\game\dota_tempcontent
+>>%.% echo - COPY pak01_dir.vpk TO dota_tempcontent FOLDER
+>>%.% echo - ADD LAUNCH OPTIONS: -tempcontent
 >>%.% echo.
 >>%.% echo  Mod details
 >>%.% echo --------------------------------------------------------------------------------
 for %%a in (%CHOICES:,= %) do if exist "%MOD_OUTPUT%\src\%%a.ini" type "%MOD_OUTPUT%\src\%%a.ini" >>%.%
 
-:: Print install mod manually instructions
-%LABEL% " Installing No-Bling DOTA mod manually after 7.07 "
-setlocal
-set "322= ______________________________________________________________________________________ /"
-set "323= /"
-set "324= Instructions for English language [default]  /"
-set "325=   CREATE FOLDER \steamapps\common\dota 2 beta\game\/dota_english%%  /"
-set "326=   COPY/ pak01_dir.vpk /TO/ dota_english%% /FOLDER  /"
-set "327=   ADD LAUNCH OPTIONS:/ -language english%% -textlanguage english +cl_language english  /"
-set "328= Yes there is a percent sign after 'english' as a workaround to keep feed updates  /"
-set "329= /"
-set "330= Instructions for Russian language [same steps for Koreana and Schinese]  /"
-set "331= IF NOT EXISTS \steamapps\common\dota 2 beta\game\/dota_russian\/pak01_dir.vpk  /"
-set "332=   COPY/ pak01_dir.vpk /TO/ dota_russian /FOLDER  /"
-set "333= IF EXISTS \steamapps\common\dota 2 beta\game\/dota_russian\/pak01_dir.vpk  /"
-set "334=   RENAME/ pak01_dir.vpk /TO/ pak02_dir.vpk  /"
-set "335=   MOVE/ pak02_dir.vpk /TO/ dota_russian /FOLDER  /"
-set "336=   ADD LAUNCH OPTION:/ -language russian  /"
-set "337= /"
-set "338= Instructions for German language [same steps for French, Spanish and others]  /"
-set "339=   CREATE FOLDER \steamapps\common\dota 2 beta\game\/dota_german  /"
-set "340=   COPY/ pak01_dir.vpk /TO/ dota_german /FOLDER  /"
-set "341=   ADD LAUNCH OPTION:/ -language german  /"
-set "342= ______________________________________________________________________________________ /"
-set "343= /"
-set "i= $inst=""; for($l=$first;$l -le $last;$l++){ $inst += (Get-Item env:$l).Value + "`n" };"
-set "n= $delims=$inst.split("/"); foreach ($i in $delims) { $fc="Gray"; $bc="Black"; if($i.Contains(".vpk")){$fc="Green"};"
-set "s= if($i.Contains("dota_")){$fc="Magenta"}; if($i.Contains("-")){$fc="Cyan"}; if($i.Contains("[")){$fc="White"};"
-set "t= write-host $i -BackgroundColor $bc -ForegroundColor $fc -NoNewLine };"
-set "ps_inst=%i%%n%%s%%t%"
-powershell -c "$first=322; $last=342; %ps_inst:"=\"%"
-endlocal
+:: Print No-Bling mod manual install instructions                                              
+call :mcolor 70 "       How to manually install No-Bling DOTA mod builds in 2019       "
+call :mcolor 70 " " 07 "                                                                    " 70 " "                                                            
+call :mcolor 70 " " 07 "  CREATE FOLDER \steamapps\common\dota 2 beta\game\" 0d "dota_tempcontent" 07 " " 70 " "
+call :mcolor 70 " " 07 "  COPY " 0a "pak01_dir.vpk" 07 " TO " 0d "dota_tempcontent" 07 " FOLDER                     " 70 " "
+call :mcolor 70 " " 07 "  ADD LAUNCH OPTION: " 0b "-tempcontent" 07 "                                   " 70 " "
+call :mcolor 70 " " 07 "                                                                    " 70 " "                                                            
+call :mcolor 70. "                                                                      " 07. " "
 
 :: Auto-Install No-Bling DOTA mod
-if not defined @endtask call :mcolor 0e. " To auto-install mod / launch options if Dota / Steam is running check @endtask"
-if defined @endtask call :mcolor 0e " Press " 0c "Alt+F4" 0e. " to stop auto-install from closing Dota / Steam "
-if defined @endtask timeout /t 10 & call :clearline 4
-call :mcolor 0c " G " 04 " L " 0c " A " 04 " N " 0c " C "  04 " E " 4c " V " 04 " A " 0c " L " 04 " U " 0c " E " 04 " +" 0c. " +"
+if not defined @endtask call :color 0e " To auto-install mod / launch options if Dota / Steam is running, enable @endtask "
+if defined @endtask call :color 0e " Press Alt+F4 to stop auto-install from closing Dota / Steam in 10s ..."
+if defined @endtask timeout /t 10 >nul 2>nul
+call :clearline 2 
+call :mcolor 0c " G " 04 " L " 0c " A " 04 " N " 0c " C "  04 " E " 4c " V " 04 " A " 0c " L " 04 " U " 0c " E " 04. " ++"
 if defined @endtask taskkill /f /im dota2.exe /t >nul 2>nul
 :: Simply create the necessary mod folder and copy the current build of pak01_dir.vpk to it
 mkdir "%DOTA%\%MOD_FOLDER%" >nul 2>nul
@@ -350,22 +242,22 @@ copy /y "%BUILDS%\pak01_dir.vpk" "%DOTA%\%MOD_FOLDER%\%MOD_FILE%" >nul 2>nul
 copy /y "%BUILDS%\No-Bling DOTA mod readme.txt" "%DOTA%\%MOD_FOLDER%\" >nul 2>nul
 if not defined STEAMDATA goto :done
 if defined @endtask taskkill /f /im steam.exe /t >nul 2>nul & timeout /t 2 >nul
-:: Add launch options for Dota 2 directly in the config file [ does not update if Steam is running hence the @autoclose option ]
+:: Add launch options for Dota 2 directly in the config file [ does not update if Steam is running hence the @endtask option ]
 pushd "%STEAMDATA%\config" & copy /y localconfig.vdf localconfig.vdf.bak >nul
-%js_engine% Dota_LOptions "localconfig.vdf" "-lv,-language x,-textlanguage x,+cl_language x" -remove
-%js_engine% Dota_LOptions "localconfig.vdf" "%MOD_OPTIONS%" -add
-:: Relaunch Steam with fast options            PSA: you can add such options to your Steam shorcut at the end of the Target line
+%js_engine% LOptions "localconfig.vdf" "-lv,-language x,-textlanguage x,+cl_language x" -remove
+%js_engine% LOptions "localconfig.vdf" "%MOD_OPTIONS%" -add
+:: Relaunch Steam with fast options       PSA: you can add l1 and l2 options to your Steam shorcut at the end of the Target line
 if defined @endtask del /f /q "%STEAMPATH%\.crash" >nul 2>nul
-set l1=-silent -console -forceservice -windowed -nobigpicture -nointro -vrdisable -skipstreamingdrivers -single_core -no-dwrite
-set l2=-inhibitbootstrap -nobootstrapperupdate -nodircheck -norepairfiles -noverifyfiles -nocrashmonitor -noassert
-if defined @endtask start "Steam" "%STEAMPATH%\Steam.exe" %l1% %l2% +"@AllowSkipGameUpdate 1"
+set l1=-silent -console -forceservice -single_core -windowed -manuallyclearframes 0 -nodircheck -norepairfiles -noverifyfiles
+set l2=-nocrashmonitor -nocrashdialog -vrdisable -nofriendsui -skipstreamingdrivers +"@AllowSkipGameUpdate 1 -
+if defined @endtask start "Steam" "%STEAMPATH%\Steam.exe" %l1% %l2%
 
 :done                                                                                                   Gaben shall not prevail!
 call :end  Done!
 exit/b
 
 ::------------------------------------------------------------------------------------------------------------------------------
-:init Console preferences
+:init Console preferences                                           sets color table and prevents mouseclicks pausing the script
 ::------------------------------------------------------------------------------------------------------------------------------
 @echo off &setlocal &set "BackClr=0"&set "TextClr=7"&set "Columns=40" &set "Lines=120" &set "Buff=9999" &call :clearline 1 2>nul
 if not "%1"=="init" set/a SColors=0x%BackClr%%TextClr% & set/a WSize=Columns*256*256+Lines & set/a SBSize=Buff*256*256+Lines
@@ -389,7 +281,7 @@ if not "%1"=="init" ( start "init" "%~f0" init & exit/b ) else goto :main       
 ::---------------------------------------------------------------------------------------------------------------------------------
 :: Core functions
 ::---------------------------------------------------------------------------------------------------------------------------------
-:set_macros outputs %[BS]%=BackSpace %[CR]%=CarriageReturn %[GL]%=Glue/NonBreakingSpace %[DEL]%=DelChar %[DEL7]%=DelCharX7
+:set_macros [OUTPUTS] %[BS]%=BackSpace %[CR]%=CarriageReturn %[GL]%=Glue/NonBreakingSpace %[DEL]%=DelChar %[DEL7]%=DelCharX7
 pushd "%TEMP%" & echo=WSH.Echo(String.fromCharCode(160))>` & for /f %%# in ('cscript //E:JScript //nologo `') do set "[GL]=%%#"
 for /f %%# in ('echo prompt $H ^| cmd') do set "[BS]=%%#" & for /f %%# in ('copy /z "%~dpf0" nul') do set "[CR]=%%#"
 for /f "tokens=2 delims=1234567890" %%# in ('shutdown /?^|findstr /bc:"E"') do set "[TAB]=%%#"
@@ -398,7 +290,7 @@ set "[L]=-%[DEL]%\..\%[DEL3]%"&set "[J]=-%[DEL]%/..\%[DEL3]%"&set "[DEL6]=%[DEL3
 set "INFO=call :color b0 " INFO " &echo" & set "WARN=call :color e0 " WARN " &echo" & set "ERROR=call :color cf " ERROR " &echo"
 exit/b                                       &rem AveYo - :clearline and :color depend on this, initialize with call :set_macros
 
-:clearline %1:Number[how many lines above to delete - macro designed for Windows 10 but adjusted to work under 7 too]
+:clearline Number[how many lines above to delete - macro designed for Windows 10 but adjusted to work under 7 too]
 ( if not defined [DEL] call :set_macros ) &setlocal enableDelayedExpansion & set "[LINE]=%[CR]%" & set "[LINE7]=" & set "[COL]="
 for /f "skip=4 tokens=2 delims=:" %%a in ('mode con') do for %%c in (%%a) do if not defined [COL] call set "[COL]=%%c"
 set/a "[C7]=2+(%[COL]%+7)/8"&for /l %%i in (1,1,%[COL]%) do call set "[CLR]=%%[CLR]%%%[GL]%"&call set "[LINE]=%[DEL]%%%[LINE]%%"
@@ -407,17 +299,17 @@ ver | find "10." >nul & if errorlevel 1 (for /L %%i in (1,1,%1) do echo;%[TAB]%%
 for /l %%i in (1,1,%1) do <nul set/p "=![LINE]!" )
 endlocal & exit/b                                                                                  &rem Usage: call :clearline 2
 
-:color %1:BgFg.[one or both of hexpair can be _ as defcolor, optional . use newline] %2:text["text with spaces"]
+:color BgFg.[one or both of hexpair can be _ as defcolor, optional . use newline] text["text with spaces"]
 setlocal enableDelayedExpansion &set "bf=%~1"&set "tx=%~2"&set "tx=-%[BS]%!tx:\=%[L]%!"&set "tx=!tx:/=%[J]%!"&set "tx=!tx:"=\"!"
 set "bf=!bf: =!" &set "bc=!bf:~0,1!" &set "fc=!bf:~1,1!" &set "nl=!bf:~2,1!"&set "bc=!bc:_=%BackClr%!"&set "fc=!fc:_=%TextClr%!"
 pushd "%TEMP%" & findstr /p /r /a:!bc!!fc! "^^-" "!tx!\..\`" nul &<nul set/p "=%[DEL]%%[DEL6]%" &popd &if defined nl echo/%[GL]%
 endlocal & exit/b                    &rem AveYo - Usage: call :color fc Hello & call :color _c " fancy " & call :color cf. World
 
-:mcolor %1:BgFg. %2:"only-quoted-text1" %3:BgFg. %4:"only-quoted-text2" etc.
-setlocal &set "mc=" & for %%C in (%*) do if "%%C"=="%%~C" (call set "mc=%%mc%% & call :color %%C") else call set "mc=%%mc%% %%C"
-echo. %mc% & endlocal & exit/b                              &rem AveYo - Usage: call :mcolor fc "Hello" _c " fancy " cf. "World"
+:mcolor BgFg. "only-quoted-text1" BgFg. "only-quoted-text2" etc.
+set "-mc~=" & for %%C in (%*) do if "%%C"=="%%~C" (call set "-mc~=%%-mc~%% & call :color %%C") else call set "-mc~=%%-mc~%% %%C"
+echo. %-mc~% & exit/b                                       &rem AveYo - Usage: call :mcolor fc "Hello" _c " fancy " cf. "World"
 
-:end %1:Message[Delayed termination with status message - prefix with ! to signal failure]
+:end Message[Delayed termination with status message - prefix with ! to signal failure]
 if exist "%MOD_OUTPUT%\~TMP" del /f/s/q "%MOD_OUTPUT%\~TMP\*.*" >nul 2>nul & rmdir /s/q "%MOD_OUTPUT%\~TMP" >nul 2>nul
 echo. & (if defined @time call :timer "%@time%" &call :timer ) & if "%~1"=="!" (%ERROR% %* ) else %INFO%  %*
 pause>nul & exit
@@ -428,7 +320,7 @@ exit/b
 :reg_query [USAGE] call :reg_query ResultVar "HKCU\KeyName" "ValueName"
 (for /f "skip=2 delims=" %%s in ('reg query "%~2" /v "%~3" /z 2^>nul') do set ".=%%s" & call set "%~1=%%.:*)    =%%") & exit/b
 
-:timer %1:input[optional] %2:nodisplay[optional]
+:timer [USAGE] call :timer input[optional] nodisplay[optional]
 if not defined timer_set ( if not "%~1"=="" ( call set "timer_set=%~1" ) else set "timer_set=%TIME: =0%" ) & exit/b
 ( if not "%~1"=="" ( call set "timer_end=%~1" ) else set "timer_end=%TIME: =0%" ) & setlocal EnableDelayedExpansion
 for /f "tokens=1-6 delims=0123456789" %%i in ("%timer_end%%timer_set%") do set "CE=%%i"&set "DE=%%k" &set "CS=%%l"&set "DS=%%n"
@@ -438,7 +330,7 @@ set/A "cc=T%%100+100,T/=100,ss=T%%60+100,T/=60,mm=T%%60+100,hh=T/60+100"
 set "value=!hh:~1!%CE%!mm:~1!%CE%!ss:~1!%DE%!cc:~1!" & if "%~2"=="" echo/!value!
 endlocal & set "timer_end=%value%" & set "timer_set=" & exit/b   &rem AveYo:" Result printed second-call, saved to %timer_end% "
 
-:unselect %1:choice %2:from variable containing a list of choices separated by , comma
+:unselect [USAGE] call :unselect choice variable[containing a list of choices separated by , comma]
 if not defined %~2 exit/b
 setlocal & call set "ops=%%%~2%%" & call set "ops=%%ops:,%~1=%%" & call set "ops=%%ops:%~1,=%%" & call set "ops=%%ops:%~1=%%"
 endlocal & call set "%~2=%ops%" & exit/b
@@ -462,8 +354,8 @@ endlocal & call set "%~2=%ops%" & exit/b
 ::------------------------------------------------------------------------------------------------------------------------------
 :: Utility functions
 ::------------------------------------------------------------------------------------------------------------------------------
-:set_steam outputs %STEAMPATH% %STEAMDATA% %STEAMID%
-set "STEAMPATH=D:\Steam"                                                        &rem AveYo:" Override detection here if needed "
+:set_steam [OUTPUTS] STEAMPATH STEAMDATA STEAMID                                      AveYo : Override detection below if needed
+set "STEAMPATH=D:\Steam"                                                 
 if not exist "%STEAMPATH%\Steam.exe" call :reg_query STEAMPATH "HKCU\SOFTWARE\Valve\Steam" "SteamPath"
 set "STEAMDATA=" & if defined STEAMPATH for %%# in ("%STEAMPATH%") do set "STEAMPATH=%%~dpnx#"
 if not exist "%STEAMPATH%\Steam.exe" call :end ! Cannot find SteamPath in registry
@@ -474,19 +366,19 @@ if not defined STEAMDATA for /f "delims=\" %%# in ("%ACTIVEUSER:*\userdata\=%") 
 if exist "%STEAMPATH%\userdata\%STEAMID%\config\localconfig.vdf" set "STEAMDATA=%STEAMPATH%\userdata\%STEAMID%"
 exit/b
 
-:set_dota outputs %STEAMAPPS% %DOTA% %CONTENT%
-set "DOTA=D:\Games\steamapps\common\dota 2 beta\game"                           &rem AveYo:" Override detection here if needed "
+:set_dota [OUTPUTS] STEAMAPPS DOTA CONTENT                                            AveYo : Override detection below if needed
+set "DOTA=D:\Games\steamapps\common\dota 2 beta\game"                             
 if exist "%DOTA%\dota\maps\dota.vpk" set "STEAMAPPS=%DOTA:\common\dota 2 beta=%" & exit/b
 set "libfilter=LibraryFolders { TimeNextStatsReport ContentStatsID }"
 if not exist "%STEAMPATH%\SteamApps\libraryfolders.vdf" call :end ! Cannot find "%STEAMPATH%\SteamApps\libraryfolders.vdf"
 for /f usebackq^ delims^=^"^ tokens^=4 %%s in (`findstr /v "%libfilter%" "%STEAMPATH%\SteamApps\libraryfolders.vdf"`) do (
-if exist "%%s\steamapps\appmanifest_570.acf" if exist "%%s\steamapps\common\dota 2 beta\game\dota\maps\dota.vpk" set "libfs=%%s")
+if exist "%%s\steamapps\appmanifest_570.acf" if exist "%%s\steamapps\common\dota 2 beta\game\dota\dota.fgd" set "libfs=%%s")
 set "STEAMAPPS=%STEAMPATH%\steamapps" & if defined libfs set "STEAMAPPS=%libfs:\\=\%\steamapps"
-if not exist "%STEAMAPPS%\common\dota 2 beta\game\dota\maps\dota.vpk" call :end ! Cannot find "%STEAMAPPS%\common\dota 2 beta\game"
+if not exist "%STEAMAPPS%\common\dota 2 beta\game\dota\maps\dota.vpk" call :end ! Missing "%STEAMAPPS%\common\dota 2 beta\game"
 set "DOTA=%STEAMAPPS%\common\dota 2 beta\game" & set "CONTENT=%STEAMAPPS%\common\dota 2 beta\content"
 exit/b
 
-:set_tools outputs %decompiler% %vpk% %js_engine%                                 &rem AveYo:" Does not require Workshop Tools!"
+:set_tools [OUTPUTS] decompiler vpk js_engine                                           AveYo : Does not require Workshop Tools!
 if not exist "%MOD_OUTPUT%\%~n0.js" call :end ! %~n0.js missing! Did you unpack the whole .zip package?
 if not exist "%MOD_OUTPUT%\tools\*" call :end ! tools subfolder missing! Did you unpack the whole .zip package?
 set "decompiler="%MOD_OUTPUT%\tools\ValveResourceFormat\Decompiler.exe""

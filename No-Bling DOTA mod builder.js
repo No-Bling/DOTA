@@ -1,37 +1,7 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                       edited in SynWrite
-//---------------------------------------------------------------------------------------------------------------------------------
-// v7.20 r2: Particle performance / bloat patch 
-// - added particle snapshot files (evaluating if it has any impact)
-// v7.20 r1: Artifact
-// - add manual filter for ad
-// v7.19 r6: not 7.20 Treasure Update
-// - update vdf parser to account for lame json inside vdf as seen in SteamVoiceSettings_ thanks u/h4uja2 for reporting it
-// v7.19 r4: 7.20 when?
-// - add experimental non-particle based effects override 1: ShadowShaman's TI8 Censer of Gliss
-// v7.19 r3: Grimstroke
-// - add manual filters for new Dota 2 hero
-// v7.19 r2: TI8 Trove Carafe
-// - add manual filters for Ogre and Mirana, everything else - not impressed
-// v7.19 r1: TI8 Immortal Treasure III
-// - add manual filters for Naga, QoP, WD
-// v7.18 r1: TI8 Collector's Cache II
-// - add Hat filters for Enigma, Brew, DK, NS
-// v7.15 r1: TI8 Lion Prestige item
-// - add Menu filter for TI8 ui rays
-// v7.14 r1: TI8 BattlePass edition
-// - keep filter applies to all categories, not just abilities heroes and hats
-// - update ACTIVE_EVENT, re-enable expired TI7 effects, fix missing ball for TI8 lich item, fix emblem only in ui
-// v7.12 r1: Pudge Arcana edition
-// - less underwhelming arcana keeping element dismember, keeping flies globally, removing hook streak extras and ground scratch
-// - can be visually uncluttered later but for now it stays because it's awesome (like necro immortal scythe) + to not affect sales
-// Bumped version from v2.0 final to match game patch 7.10:
-// - Add emblem (previously called relic), re-enable expired TI7 Effects for event replays viewing
-// - Proper fix for Gyro call down bug
-// What's new in No-Bling DOTA mod builder.js v2.0 final:
-// - Seasonal category reinstated, as it's still useful for TI7 replays despite event being expired
-// - Extended manual filters to make certain items like arcana's less underwhelming
-// - New Tweaks category - split into subcategories for more fine-tuning - effigies support, proper shrines, filtered portraits
-// - More reliable Dota_LOptions function and consistent verbose output in both Node.js and JScript engines
+// v2018.12.19: Script refactoring
+// - generate unified src.lst for streamlined content update   
+// - revert Rubick Arcana custom abilities if using the HEROES option
 //---------------------------------------------------------------------------------------------------------------------------------
 var ACTIVE_EVENT='EVENT_ID_INTERNATIONAL_2018'; // Hard-coded current event for the Seasonal category
 var off='particles/dev/empty_particle.vpcf'; // Disable particle files by replacing them with default empty particle
@@ -143,6 +113,7 @@ MOD_PROP['particles/rain_fx/coloseum_terrain.vpcf']=off;//
 MOD_PROP['particles/rain_fx/spring_terrain.vpcf']=off;//
 MOD_PROP['particles/rain_fx/desert_terrain.vpcf']=off;//
 MOD_PROP['particles/rain_fx/winter_terrain.vpcf']=off;//
+MOD_PROP['particles/rain_fx/directable_snow.vpcf']=off;//
   /*  Potato PC tweaks - Menu */
 MOD_MENU['particles/ui/ui_home_button.vpcf']=off;//                                                                   tweak menu ui
 MOD_MENU['particles/ui/ui_home_button_default.vpcf']=off;//
@@ -160,7 +131,8 @@ MOD_MENU['particles/ui/ui_find_match_status_glow.vpcf']=off;//
 MOD_MENU['particles/ui/ui_find_match_status_steam.vpcf']=off;//
 MOD_MENU['particles/ui/ui_loadout_preview.vpcf']=off;//
 MOD_MENU['particles/ui/battle_pass/ui_ti8_generic_uprays.vpcf']=off;//
-
+MOD_MENU['particles/ui/hud/frostivus2018_treeglow.vpcf']=off;//
+MOD_MENU['particles/ui/hud/frostivus2018_rubick_arc_ambient.vpcf']=off;//
 KEEP['particles/econ/events/ti8/emblem_loadout_ambient_ti8.vpcf']=0;//                                       show emblem only in ui
   /*  ABADDON  */
   /*  ABYSSAL_UNDERLORD  */
@@ -451,6 +423,12 @@ MOD_HAT['particles/econ/items/rubick/rubick_fortuneteller_ambient/rubick_fortune
 MOD_HAT['particles/econ/items/rubick/rubick_wayfaring/rubick_wayfaring_staff_ambient.vpcf']=rubick_staff;//
 MOD_HAT['particles/econ/items/rubick/rubick_gambling_mage/rubick_gambling_mage_ambient.vpcf']=rubick_staff;//
 KEEP['particles/econ/items/rubick/rubick_puppet_master/rubick_telekinesis_puppet.vpcf']=0;//                     keep puppet effect
+MOD_HAT['particles/ui/hud/rubick_arcana_green_spell.vpcf']=off;//                                                      tweak arcana
+MOD_HAT['particles/econ/items/rubick/rubick_arcana/rbck_arc_run_alt_cubes.vpcf']=off;//                                
+MOD_ABILITY['particles/econ/items/rubick/rubick_arcana/rubick_arc_spell_steal_default_haze.vpcf']=off;//
+MOD_ABILITY['particles/econ/items/rubick/rubick_arcana/rubick_arc_spell_steal_default_squares.vpcf']=off;//
+MOD_ABILITY['particles/econ/items/rubick/rubick_arcana/rubick_arc_spell_steal_default_squares_target.vpcf']=off;//
+MOD_ABILITY['particles/econ/items/rubick/rubick_arcana/rubick_arc_spell_steal_staff_squares.vpcf']=off;//
   /*  SAND_KING  */
   /*  SHADOW_DEMON  */
   /*  SHADOW_SHAMAN  */
@@ -519,7 +497,7 @@ MOD_HAT['particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot_rays_b.vpc
 
 
 //---------------------------------------------------------------------------------------------------------------------------------
-// No_Bling JS main function
+// No_Bling JS main function that does the processing of items_game.txt heavy lifting
 //---------------------------------------------------------------------------------------------------------------------------------
 No_Bling=function(content, output, choices, verbose, timers){
   w.echo(''+run+' @ '+engine+((jscript) ? ': Try the faster Node.js engine' : '')); w.echo('------------------------');
@@ -618,8 +596,8 @@ No_Bling=function(content, output, choices, verbose, timers){
       if (modifier && modifier.lastIndexOf('_local.vpcf') > -1) continue;                                  // skip staged modifiers
       if (asset && asset.indexOf('particles/ability_modifier') > -1) continue;                            // skip dynamic modifiers
       if (asset && asset.indexOf('particles/reftononexistent') > -1) asset=off;                          // skip dynamic references
-      if (asset && asset in REV_KEEP){ KEEP[modifier]=1; if (LOG) logitem+='    rev_skip: '+path.basename(modifier)+RN; }// reverse
-      if (asset && asset in REV_MOD){ asset=REV_MOD[asset]; if (LOG) logitem+='    rev_mod: '+path.basename(modifier)+RN; }//lookup
+      if (asset && asset in REV_KEEP){KEEP[modifier]=1;if (LOG) logitem+='      rev_skip: '+path.basename(modifier)+RN; }// reverse
+      if (asset && asset in REV_MOD){asset=REV_MOD[asset];if (LOG) logitem+='      rev_mod: '+path.basename(modifier)+RN; }//lookup
       // ABILITIES AND HATS
       if (precat == 'Wearables' && type == 'particle'){
         // expecting .asset
@@ -633,8 +611,13 @@ No_Bling=function(content, output, choices, verbose, timers){
             cat='Abilities'; maybe_ability[modifier]= (asset) ? asset : off;                            // use found asset if valid
           }
         } else if (modifier.indexOf('particles/units/heroes') > -1){
-          cat='HEROES'; //mods[cat][modifier]=(asset) ? asset : off;                                            // just log ignored
-          if (LOG) logitem+= '      ignore_hero: '+modifier+RN;
+          if (hero == 'rubick' && rarity == 'arcana'){
+            //cat='Abilities'; maybe_ability[modifier]= (asset) ? asset : off;  
+            mods['HEROES'][modifier]= (asset) ? asset : off;                   // use HEROES for Rubick Arcana custom abilities too
+            if (LOG) logitem+= '        stolen ability! '+modifier+RN;
+          } else { 
+            cat='HEROES'; if (LOG) logitem+= '      ignore_hero: '+modifier+RN;                                 // just log ignored
+          }  
         } else {
           cat='Others'; //mods[cat][modifier]=(asset) ? asset : off;                                            // just log ignored
           if (LOG) logitem+= '      skip_other1: '+modifier+RN;
@@ -838,7 +821,7 @@ No_Bling=function(content, output, choices, verbose, timers){
   for (hat in MOD_PROP){ mods['Props'][hat]=MOD_PROP[hat]; if (LOG) w.echo('  mod_prop: '+hat); }
   for (hat in MOD_MENU){ mods['Menu'][hat]=MOD_MENU[hat]; if (LOG) w.echo('  mod_menu: '+hat); }
 
-  // Heroes option supersedes Hats option so include non-moded particles
+  // Heroes option supersedes Hats option so include non-moded particles (it's also where the Rubick Arcana custom abilities go)
   for (hat in mods['Hats']){
     if (mods['Hats'][hat]!=off && !(mods['Hats'][hat] in KEEP)){mods['HEROES'][hat]=off; if (LOG) w.echo('  hero_include: '+hat);}
   }
@@ -882,21 +865,22 @@ No_Bling=function(content, output, choices, verbose, timers){
   //-------------------------------------------------------------------------------------------------------------------------------
   if (!HAS_CHOICES) w.quit();   // Do not output source files if no choice selected other than verbose (LOG)
   t=timer('Write particle?mod definitions for each src category');
+  var src_lst=path.normalize(OUTPUT_DIR+'\\src\\src.lst'), src_data={};
+  MakeDir(path.dirname(src_lst));
   for (cat in mods){
-    var particles=mods[cat], mod_file=path.normalize(OUTPUT_DIR+'\\src\\'+cat+'.ini');
-    MakeDir(path.dirname(mod_file));
-    var data='['+cat+']\r\n', count=0;
-    for (hat in particles){
-      var content_file=path.normalize(path.join(CONTENT_DIR, hat+'_c'));
-      if (FileExists(content_file)){
-        data += hat.split('/').join('\\') + '_c?' + particles[hat].split('/').join('\\') + '_c\r\n';
-        count++;
-      } else {
-        if (LOG) w.echo('  [CONTENT MISSING]: '+hat+'_c');
-      }
+    var count=0, mod_ini=path.normalize(OUTPUT_DIR+'\\src\\'+cat+'.ini'), mod_data={};
+    for (hat in mods[cat]){
+      mod_data[hat.split('/').join('\\') + '_c?' + mods[cat][hat].split('/').join('\\') + '_c']=1;
+      src_data[mods[cat][hat].split('/').join('\\') + '_c']=1;
+      count++;
     } // next hat
-    if (count>0) fs.writeFileSync(mod_file, data, DEF_ENCODING);
+    if (count>0) {
+      var data='['+cat+']\r\n'; for (i in mod_data){ data += i+'\r\n'; } fs.writeFileSync(mod_ini, data, DEF_ENCODING); 
+    }
   } // next cat
+  if (count>0) {
+    var data=''; for (i in src_data){ data += i+'\r\n'; } fs.writeFileSync(src_lst, data, DEF_ENCODING); // combined src listing
+  }   
   t.end();
 
 }; // End of No_Bling
@@ -904,7 +888,7 @@ No_Bling=function(content, output, choices, verbose, timers){
 //---------------------------------------------------------------------------------------------------------------------------------
 // Utility JS functions - callable independently
 //---------------------------------------------------------------------------------------------------------------------------------
-Dota_LOptions=function(fn, options, _flag){
+LOptions=function(fn, options, _flag){
   // fn:localconfig.vdf    options:separated by ,    _flag: -read=print -remove=delete -add=default if ommited
   var regs={}, lo=options.split(","), i=0,n=lo.length;
   for (i=0;i<n;i++){
@@ -1049,7 +1033,7 @@ if (typeof ScriptEngine == 'function' && ScriptEngine() == 'JScript'){
   // end of Node.js specific code
 }
 function timer(f){
-  var b=new Date(); return { end:function(){ var e=new Date(), t=(e.getTime()-b.getTime())/1000; w.echo(f+': '+t+'s\r\n'); } };
+  var b=new Date(); return { end:function(){ var e=new Date(), t=(e.getTime()-b.getTime())/1000; w.echo(f+': '+t+'s'); } };
 }
 // If run without parameters the .js file must have been double-clicked in shell, so try to launch the correct .bat file instead
 if (jscript && run==='' && FileExists(w.ScriptFullName.slice(0, -2)+'bat')) launcher.Run('"'+w.ScriptFullName.slice(0, -2)+'bat"');

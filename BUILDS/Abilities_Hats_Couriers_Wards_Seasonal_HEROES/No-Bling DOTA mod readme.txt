@@ -1,4 +1,4 @@
- No-Bling DOTA mod v7.20 r2 choices:
+ No-Bling DOTA mod v2018.12.19 choices:
  Abilities,Hats,Couriers,Wards,Seasonal,HEROES
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
@@ -9,26 +9,11 @@ Simply a competent companion to Settings -- Video -- Effects Quality with the ma
 No-Bling DOTA mod is economy-friendly, gracefully disabling particle spam while leaving hats model untouched.
 Might say it even helps differentiate great artistic work, shadowed by the particle effects galore Valve slaps on top.
 
- How to manually install the .vpk builds after 7.07?
+ How to manually install No-Bling DOTA mod builds in 2019
 --------------------------------------------------------------------------------
-Instructions for English language (default)
-- CREATE FOLDER \steamapps\common\dota 2 beta\game\dota_english%
-- COPY pak01_dir.vpk TO dota_english% FOLDER
-- ADD LAUNCH OPTIONS: -language english% -textlanguage english +cl_language english
-Yes there is a percent sign after 'english' as a workaround to keep feed updates
-
-Instructions for Russian language (same steps for Koreana and Schinese)
-IF NOT EXISTS \steamapps\common\dota 2 beta\game\dota_russian\pak01_dir.vpk
-- COPY pak01_dir.vpk TO dota_russian FOLDER
-IF EXISTS \steamapps\common\dota 2 beta\game\dota_russian\pak01_dir.vpk
-- RENAME pak01_dir.vpk TO pak02_dir.vpk
-- MOVE pak02_dir.vpk TO dota_russian FOLDER
-- ADD LAUNCH OPTION: -language russian
-
-Instructions for German language (same steps for French, Spanish and others)
-- CREATE FOLDER \steamapps\common\dota 2 beta\game\dota_german
-- COPY pak01_dir.vpk TO dota_german FOLDER
-- ADD LAUNCH OPTION: -language german
+- CREATE FOLDER \steamapps\common\dota 2 beta\game\dota_tempcontent
+- COPY pak01_dir.vpk TO dota_tempcontent FOLDER
+- ADD LAUNCH OPTIONS: -tempcontent
 
  Mod details
 --------------------------------------------------------------------------------
@@ -524,6 +509,16 @@ particles\econ\items\riki\riki_head_ti8\riki_smokebomb_ti8_crimson.vpcf_c?partic
 particles\econ\items\riki\riki_head_ti8_gold\riki_smokebomb_ti8_gold.vpcf_c?particles\units\heroes\hero_riki\riki_smokebomb.vpcf_c
 particles\econ\items\riki\riki_immortal_ti6\riki_immortal_ti6_blinkstrike.vpcf_c?particles\units\heroes\hero_riki\riki_blink_strike.vpcf_c
 particles\econ\items\riki\riki_immortal_ti6\riki_immortal_ti6_blinkstrike_gold.vpcf_c?particles\units\heroes\hero_riki\riki_blink_strike.vpcf_c
+particles\econ\items\rubick\rubick_arcana\rbck_arc_kunkka_ghost_ship.vpcf_c?particles\units\heroes\hero_kunkka\kunkka_ghost_ship.vpcf_c
+particles\econ\items\rubick\rubick_arcana\rbck_arc_sandking_epicenter.vpcf_c?particles\units\heroes\hero_sandking\sandking_epicenter.vpcf_c
+particles\econ\items\rubick\rubick_arcana\rbck_arc_skeletonking_hellfireblast.vpcf_c?particles\units\heroes\hero_skeletonking\skeletonking_hellfireblast.vpcf_c
+particles\econ\items\rubick\rubick_arcana\rbck_arc_skywrath_mage_mystic_flare_ambient.vpcf_c?particles\units\heroes\hero_skywrath_mage\skywrath_mage_mystic_flare_ambient.vpcf_c
+particles\econ\items\rubick\rubick_arcana\rbck_arc_venomancer_poison_nova.vpcf_c?particles\units\heroes\hero_venomancer\venomancer_poison_nova.vpcf_c
+particles\econ\items\rubick\rubick_arcana\rbck_espirit_magnetize_target.vpcf_c?particles\units\heroes\hero_earth_spirit\espirit_magnetize_target.vpcf_c
+particles\econ\items\rubick\rubick_arcana\rubick_arc_spell_steal_default_haze.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\rubick\rubick_arcana\rubick_arc_spell_steal_default_squares.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\rubick\rubick_arcana\rubick_arc_spell_steal_default_squares_target.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\rubick\rubick_arcana\rubick_arc_spell_steal_staff_squares.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\rubick\rubick_force_ambient\rubick_telekinesis_force.vpcf_c?particles\units\heroes\hero_rubick\rubick_telekinesis.vpcf_c
 particles\econ\items\rubick\rubick_force_ambient\rubick_telekinesis_land_force.vpcf_c?particles\units\heroes\hero_rubick\rubick_telekinesis_land.vpcf_c
 particles\econ\items\rubick\rubick_force_ambient\rubick_telekinesis_marker_force.vpcf_c?particles\units\heroes\hero_rubick\rubick_telekinesis_marker.vpcf_c
@@ -1331,6 +1326,10 @@ particles\econ\items\riki\riki_head_ti8_crimson\riki_head_ambient_ti8_crimson.vp
 particles\econ\items\riki\riki_head_ti8_gold\riki_head_ambient_ti8_gold.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\riki\riki_immortal_ti6\riki_immortal_ti6_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\riki\riki_immortal_ti6\riki_immortal_ti6_ambient_gold.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\rubick\rubick_arcana\rbck_arc_run_alt_cubes.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\rubick\rubick_arcana\rubick_arc_ambient_default.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\rubick\rubick_arcana\rubick_arc_ambient_lines.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\rubick\rubick_arcana\rubick_arc_shoulders_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\rubick\rubick_force_ambient\rubick_force_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\rubick\rubick_force_ambient\rubick_staff_ambient_kill.vpcf_c?particles\units\heroes\hero_rubick\rubick_staff_ambient.vpcf_c
 particles\econ\items\rubick\rubick_force_gold_ambient\rubick_force_ambient_gold.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1682,6 +1681,7 @@ particles\models\items\doom\hells_glare\hells_glare.vsnap_c?particles\models\her
 particles\models\items\doom\herald_khorne_weapon\herald_khorne_weapon_fx.vsnap_c?particles\models\heroes\doom\doom_sword.vsnap_c
 particles\models\items\doom\herald_khorne_weapon_alt\herald_khorne_weapon_alt_fx.vsnap_c?particles\models\heroes\doom\doom_sword.vsnap_c
 particles\models\items\doom\incantations_weapon\incantations_weapon.vsnap_c?particles\models\heroes\doom\doom_sword.vsnap_c
+particles\models\items\doom\last_judgement\last_judgement.vsnap_c?particles\models\heroes\doom\doom_sword.vsnap_c
 particles\models\items\doom\theimmortalblade\theimmortalblade_fx.vsnap_c?particles\models\heroes\doom\doom_sword.vsnap_c
 particles\models\items\doom\ti8_doom_obsidian_overlord_weapon\ti8_doom_obsidian_overlord_weapon_fx.vsnap_c?particles\models\heroes\doom\doom_sword.vsnap_c
 particles\models\items\doom\weapon_eyeoffetitzu\weapon_eyeoffetitzu.vsnap_c?particles\models\heroes\doom\doom_sword.vsnap_c
@@ -1707,6 +1707,7 @@ particles\models\items\ember_spirit\wu_sheng_off_hand_v2\wu_sheng_off_hand_v2_fx
 particles\models\items\ember_spirit\wu_sheng_weapon_v2\wu_sheng_weapon_v2_fx.vsnap_c?particles\models\heroes\ember_spirit\weapon1.vsnap_c
 particles\models\items\juggernaut\armor_for_the_favorite_weapon\armor_for_the_favorite_weapon_fx.vsnap_c?particles\models\heroes\juggernaut\juggernaut.vsnap_c
 particles\models\items\juggernaut\bladesrunner_weapon\bladesrunner_weapon.vsnap_c?particles\models\heroes\juggernaut\juggernaut.vsnap_c
+particles\models\items\juggernaut\dc_weaponupdate\dc_weaponupdate.vsnap_c?particles\models\heroes\juggernaut\juggernaut.vsnap_c
 particles\models\items\juggernaut\esl_dashing_bladelord_weapon\esl_dashing_bladelord_weapon.vsnap_c?particles\models\heroes\juggernaut\juggernaut.vsnap_c
 particles\models\items\juggernaut\fire_of_the_exiled_ronin\fire_of_the_exiled_ronin.vsnap_c?particles\models\heroes\juggernaut\juggernaut.vsnap_c
 particles\models\items\juggernaut\gifts_of_the_vanished_weapon\gifts_of_the_vanished_weapon.vsnap_c?particles\models\heroes\juggernaut\juggernaut.vsnap_c
@@ -1769,6 +1770,7 @@ particles\models\items\terrorblade\endless_purgatory_weapon\endless_purgatory_we
 particles\models\items\terrorblade\knight_of_foulfell_terrorblade_weapon\knight_of_foulfell_terrorblade_weapon_fx.vsnap_c?particles\models\heroes\terrorblade\weapon.vsnap_c
 particles\models\items\terrorblade\marauders_weapon\marauders_weapon_fx.vsnap_c?particles\models\heroes\terrorblade\weapon.vsnap_c
 particles\models\items\underlord\ti8_underlord_petrifying_smith_weapon_v4\ti8_underlord_petrifying_smith_weapon_v4_fx.vsnap_c?particles\models\heroes\abyssal_underlord\underlord_weapon_fx.vsnap_c
+particles\ui\hud\rubick_arcana_green_spell.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_terrorblade\terrorblade_ambient_sword_workshop_left.vpcf_c?particles\units\heroes\hero_terrorblade\terrorblade_ambient_sword_blade_2.vpcf_c
 particles\units\heroes\hero_terrorblade\terrorblade_ambient_sword_workshop_right.vpcf_c?particles\units\heroes\hero_terrorblade\terrorblade_ambient_sword_blade.vpcf_c
 [Couriers]
@@ -1778,6 +1780,7 @@ particles\econ\courier\courier_axolotl_ambient\courier_axolotl_ambient_lvl1.vpcf
 particles\econ\courier\courier_axolotl_ambient\courier_axolotl_ambient_lvl2.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\courier\courier_axolotl_ambient\courier_axolotl_ambient_lvl3.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\courier\courier_axolotl_ambient\courier_axolotl_ambient_lvl4.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\courier\courier_babyroshan_winter18\courier_babyroshan_winter18_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\courier\courier_baekho\courier_baekho_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\courier\courier_bajie\courier_bajie.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\courier\courier_beetlejaw\courier_beetlejaw_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -2220,6 +2223,9 @@ particles\units\heroes\hero_ember_spirit\ember_spirit_ambient_sword_offhand.vpcf
 particles\units\heroes\hero_ember_spirit\ember_spirit_ambient_sword_offhand_blade.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_ember_spirit\ember_spirit_ambient_sword_primary.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_ember_spirit\ember_spirit_ambient_sword_primary_blade.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_ember_spirit\ember_spirit_fire_remnant_trail_rubick.vpcf_c?particles\units\heroes\hero_ember_spirit\ember_spirit_fire_remnant_trail.vpcf_c
+particles\units\heroes\hero_ember_spirit\ember_spirit_remnant_dash_rubick.vpcf_c?particles\units\heroes\hero_ember_spirit\ember_spirit_remnant_dash.vpcf_c
+particles\units\heroes\hero_ember_spirit\ember_spirit_rubick_fire_remnant.vpcf_c?particles\units\heroes\hero_ember_spirit\ember_spirit_fire_remnant.vpcf_c
 particles\units\heroes\hero_enigma\enigma_ambient_pebbles.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_enigma\enigma_ambient_rocks.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_enigma\enigma_eidolon_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -2256,6 +2262,7 @@ particles\units\heroes\hero_lich\lich_ambient_frost_b.vpcf_c?particles\dev\empty
 particles\units\heroes\hero_lich\lich_ambient_frost_c.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_lich\lich_ambient_frost_d.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_lich\lich_ambient_frost_legs.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_lich\lich_chain_frost_rubick.vpcf_c?particles\units\heroes\hero_lich\lich_chain_frost.vpcf_c
 particles\units\heroes\hero_life_stealer\life_stealer_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_lina\lina_flame_hand_dual.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_morphling\morphling_ambient_new_b.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -2277,6 +2284,9 @@ particles\units\heroes\hero_nevermore\shadow_fiend_ambient_eyes.vpcf_c?particles
 particles\units\heroes\hero_obsidian_destroyer\obsidian_destroyer_smoke.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_obsidian_destroyer\obsidian_destroyer_staff.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_ogre_magi\ogre_magi_weapon.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_omniknight\omniknight_guardian_angel_ally_rubick.vpcf_c?particles\units\heroes\hero_omniknight\omniknight_guardian_angel_ally.vpcf_c
+particles\units\heroes\hero_omniknight\omniknight_guardian_angel_omni_rubick.vpcf_c?particles\units\heroes\hero_omniknight\omniknight_guardian_angel_omni.vpcf_c
+particles\units\heroes\hero_omniknight\omniknight_guardian_angel_wings_buff_rubick.vpcf_c?particles\units\heroes\hero_omniknight\omniknight_guardian_angel_wings_buff.vpcf_c
 particles\units\heroes\hero_oracle\oracle_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_oracle\oracle_ambient_armor.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_oracle\oracle_ambient_head.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -2296,7 +2306,27 @@ particles\units\heroes\hero_razor\razor_whip_light.vpcf_c?particles\dev\empty_pa
 particles\units\heroes\hero_razor_reduced_flash\razor_ambient_main_reduced_flash.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_razor_reduced_flash\razor_ambient_reduced_flash.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_razor_reduced_flash\razor_whip_reduced_flash.vpcf_c?particles\units\heroes\hero_razor\razor_whip.vpcf_c
+particles\units\heroes\hero_rubick\rubick_blackhole.vpcf_c?particles\units\heroes\hero_enigma\enigma_blackhole.vpcf_c
+particles\units\heroes\hero_rubick\rubick_chaos_meteor.vpcf_c?particles\units\heroes\hero_invoker\invoker_chaos_meteor.vpcf_c
+particles\units\heroes\hero_rubick\rubick_chaos_meteor_fly.vpcf_c?particles\units\heroes\hero_invoker\invoker_chaos_meteor_fly.vpcf_c
+particles\units\heroes\hero_rubick\rubick_doom.vpcf_c?particles\units\heroes\hero_doom_bringer\doom_bringer_doom.vpcf_c
+particles\units\heroes\hero_rubick\rubick_faceless_void_chronosphere.vpcf_c?particles\units\heroes\hero_faceless_void\faceless_void_chronosphere.vpcf_c
+particles\units\heroes\hero_rubick\rubick_finger_of_death.vpcf_c?particles\units\heroes\hero_lion\lion_spell_finger_of_death.vpcf_c
+particles\units\heroes\hero_rubick\rubick_freezing_field_explosion.vpcf_c?particles\units\heroes\hero_crystalmaiden\maiden_freezing_field_explosion.vpcf_c
+particles\units\heroes\hero_rubick\rubick_freezing_field_snow.vpcf_c?particles\units\heroes\hero_crystalmaiden\maiden_freezing_field_snow.vpcf_c
+particles\units\heroes\hero_rubick\rubick_golem_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_rubick\rubick_macropyre.vpcf_c?particles\units\heroes\hero_jakiro\jakiro_macropyre.vpcf_c
+particles\units\heroes\hero_rubick\rubick_rain_of_chaos.vpcf_c?particles\units\heroes\hero_warlock\warlock_rain_of_chaos.vpcf_c
+particles\units\heroes\hero_rubick\rubick_rain_of_chaos_start.vpcf_c?particles\units\heroes\hero_warlock\warlock_rain_of_chaos_start.vpcf_c
+particles\units\heroes\hero_rubick\rubick_spell_ravage.vpcf_c?particles\units\heroes\hero_tidehunter\tidehunter_spell_ravage.vpcf_c
+particles\units\heroes\hero_rubick\rubick_spell_ravage_hit.vpcf_c?particles\units\heroes\hero_tidehunter\tidehunter_spell_ravage_hit.vpcf_c
+particles\units\heroes\hero_rubick\rubick_supernova_egg.vpcf_c?particles\units\heroes\hero_phoenix\phoenix_supernova_egg.vpcf_c
+particles\units\heroes\hero_rubick\rubick_thundergods_wrath.vpcf_c?particles\units\heroes\hero_zuus\zuus_thundergods_wrath.vpcf_c
+particles\units\heroes\hero_rubick\rubick_thundergods_wrath_start.vpcf_c?particles\units\heroes\hero_zuus\zuus_thundergods_wrath_start.vpcf_c
 particles\units\heroes\hero_shadow_demon\shadow_demon_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_shadow_demon\shadow_demon_demonic_purge_cast_rubick.vpcf_c?particles\units\heroes\hero_shadow_demon\shadow_demon_demonic_purge_cast.vpcf_c
+particles\units\heroes\hero_shadow_demon\shadow_demon_demonic_purge_rubick.vpcf_c?particles\units\heroes\hero_shadow_demon\shadow_demon_demonic_purge.vpcf_c
+particles\units\heroes\hero_shadowshaman\shadow_shaman_ward_base_attack_rubick.vpcf_c?particles\units\heroes\hero_shadowshaman\shadow_shaman_ward_base_attack.vpcf_c
 particles\units\heroes\hero_shadowshaman\shadowshaman_stick_l.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_shadowshaman\shadowshaman_stick_r.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_shadowshaman\shadowshaman_ward_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -2346,7 +2376,11 @@ particles\units\heroes\hero_visage\visage_familiar_ambient.vpcf_c?particles\dev\
 particles\units\heroes\hero_warlock\golem_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_warlock\warlock_ambient_smoke.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_warlock\warlock_ambient_staff.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_windrunner\windrunner_spell_powershot_rubick.vpcf_c?particles\units\heroes\hero_windrunner\windrunner_spell_powershot.vpcf_c
 particles\units\heroes\hero_winter_wyvern\wyvern_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\units\heroes\hero_witchdoctor\witchdoctor_ward_attack_rubick.vpcf_c?particles\units\heroes\hero_witchdoctor\witchdoctor_ward_attack.vpcf_c
+particles\units\heroes\hero_witchdoctor\witchdoctor_ward_cast_staff_fire_rubick.vpcf_c?particles\units\heroes\hero_witchdoctor\witchdoctor_ward_cast_staff_fire.vpcf_c
+particles\units\heroes\hero_witchdoctor\witchdoctor_ward_skull_rubick.vpcf_c?particles\units\heroes\hero_witchdoctor\witchdoctor_ward_skull.vpcf_c
 particles\units\heroes\hero_zeus\zeus_ambient_eyes.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_zeus\zeus_ambient_hands.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_zeus\zeus_return_king_of_gods_head_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c

@@ -1,6 +1,4 @@
-# Grand Magus Rubick has taken this repository hostage
-
-## RIP ~~No-Bling DOTA "GlanceValue" restoration mod  
+## No-Bling DOTA "GlanceValue" restoration mod  
 #### We all know where we are headed looking at the Immortals spam in the last two years...  
   
 ### Glance  
@@ -19,10 +17,19 @@
 A competent companion to *Settings -- Video -- Effects Quality* with the main focus on GlanceValue.  
 No-Bling<sup>tm</sup> mod is economy-friendly, gracefully disabling particle spam while leaving hats model untouched.  
 Might say it even helps differentiate great artistic work, shadowed by the particle effects galore Valve slaps on top.  
-  
+
 ### Before you ask about VAC:  
 Don't worry, this is a perfectly safe, well intended, hats friendly, good behaviour particles-only mod,  
-optimally swapping just original files with no content alteration whatsoever, and whitelist-able at a glance...  
+optimally swapping just original Valve authored files with no content alteration whatsoever,  
+and whitelist-able at a glance...  
+
+### What's new in v2018.12.19:  
+Batch script:  
+~ Language independent mod launch option `-tempcontent` with `dota_tempcontent` mod root folder    
+~ Minimal file io - only extract and cache the specific source files defined in `src.lst`  
+JS script:
+~ Generate unified src.lst for streamlined content update   
+~ Revert Rubick Arcana custom abilities if using the HEROES option
   
 ### [No-Bling DOTA mod builder.bat](https://github.com/No-Bling/DOTA/blob/master/No-Bling%20DOTA%20mod%20builder.zip) released!  
 1. Download latest `No-Bling DOTA mod builder.zip`, unpack all files, run the included batch script, select build choices  
@@ -65,28 +72,14 @@ Try to launch manually the Decompiler.exe utility from `tools\ValveResourceForma
 ## What about non-Windows OS / issues with the builder batch script?  
 Use the pre-made releases in the [BUILDS](https://github.com/No-Bling/DOTA/tree/master/BUILDS) folder via manual install  
   
-## How to manually install the .vpk builds after 7.07:  
-   Instructions for English language (default)  
-   ~ CREATE FOLDER `\steamapps\common\dota 2 beta\game\dota_english%`  
-   ~ COPY `pak01_dir.vpk` IN `\steamapps\common\dota 2 beta\game\dota_english%`  
-   ~ ADD LAUNCH OPTIONS: `-language english% -textlanguage english +cl_language english`  
-   Yes there is a percent sign after `english` as a workaround to keep feed updates  
-  
-   Instructions for Russian language (same steps for Koreana and Schinese)  
-   IF NOT EXISTS `\steamapps\common\dota 2 beta\game\dota_russian\pak01_dir.vpk`  
-   ~ COPY `pak01_dir.vpk` IN `\steamapps\common\dota 2 beta\game\dota_russian`  
-   IF EXISTS `\steamapps\common\dota 2 beta\game\dota_russian\pak01_dir.vpk`  
-   ~ RENAME `pak01_dir.vpk` TO `pak02_dir.vpk`  
-   ~ MOVE `pak02_dir.vpk` TO `dota_russian\`  
-   ~ ADD LAUNCH OPTION: `-language russian`  
-  
-   Instructions for German language (same steps for French, Spanish and others)  
-   ~ COPY `pak01_dir.vpk` IN `\steamapps\common\dota 2 beta\game\dota_german`  
-   ~ ADD LAUNCH OPTION: `-language german`  
+## How to manually install No-Bling DOTA mod builds in 2019:  
+   ~ CREATE FOLDER `\steamapps\common\dota 2 beta\game\dota_tempcontent`  
+   ~ COPY `pak01_dir.vpk` IN `\steamapps\common\dota 2 beta\game\dota_tempcontent`  
+   ~ ADD LAUNCH OPTION: `-tempcontent`  
   
 ### How to quickly restore default particle spam DOTA?  
-Simply remove / rename the `-language x` launch option and restart the game!  
-  
+Simply remove / rename the `-tempcontent` launch option and restart the game!  
+ 
 ### Hints:  
 It's recommended to set Effects Quality option to Low for Potato PC's as it decreases the nr of particles for certain spells  
 Before reporting bugs, list particles in game console: `clear;dumpparticlelist | grep [^0\s][\d]*,[\s]flags;condump`  
@@ -100,48 +93,8 @@ Since most immortals have multiple effects (not the case here), to keep specific
 `KEEP['particles/econ/items/omniknight/omni_sacred_light_head/omni_ambient_sacred_light.vpcf']=0;`  
 Some stuff won't be available in the log folder because it's not part of items_game.txt, in that case, you identify the particles involved in-game, by demo-ing the respective item, opening in-game console, and list particles in game console as mentioned above under Hints. Also check out `log\no_bling.txt` as it shows some of the logic in categorizing, and the generated build readme.txt.  
 
-### What's new in v7.19:  
-~ Add manual filters for the new hero Grimstroke
-
-~ Add manual filters for Ogre, Mirana in TI8 Trove Carafe  
-
-~ Add manual filters for Naga, QoP, WD in TI8 Immortal Treasure III  
-
-~ Add Hat filters for Enigma, Brew, DK, NS in TI8 Collector's Cache II  
-
-~ Add support for persistent language override.  
-To define it, open a command prompt and enter: `setx NOBLING_LANGUAGE english`  
-~ Add Menu filter for TI8 ui rays  
-
-~ Keep filter applies to all categories, not just abilities heroes and hats  
-~ Update ACTIVE_EVENT and re-enable expired TI7 effects  
-~ Prevent STEAMPATH detection possible issue
-
-~ Pudge Arcana made less underwhelming via manual filter  
-~ Fixed unable to run script caused by multiple downloaded copies auto-renamed by windows and default extract (r2)  
-~ Bumped version from v2.0 final to match game patch. Mod will use r1, r2 .. for revision numbers.  
-~ Faster, more reliable, improved caching, less storage operations, long paths support, auto-install with current language  
-~ Press Enter to accept No-Bling choices dialog, integrated endtask choice, clearline working in both Windows 7 and 10  
-~ Seasonal category reinstated, as it's still useful for TI7 replays despite event being expired  
-~ Extended manual filters to make certain items like arcana's less underwhelming, fix Gyro's call down Valve bug  
-~ New Tweaks category - split into subcategories for more fine-tuning - effigies support, proper shrines, filtered portraits  
-~ More reliable Dota_LOptions function and consistent verbose output in both Node.js and JScript engines  
-~ Add emblem (previously called relic), re-enable expired TI7 Effects for event replays viewing  
-  
-## What happened in 7.07?  
-__Valve removed -LV launch option. Looking at backend code, there might be some internal refactoring.__  
-Other client-side modding methods were unaffected, so No-Bling switched to the `-language` method.  
-No point on doing resource-compiling if `m_hLowViolenceDef` is unavailable, so that part is dumbed-down to file-replacing.  
-Launch options gets complicated as it's language-dependant, unlike convenient, unified, stand-alone `-LV` _( RIP 2017-11-1 )_  
-Working test builds using the `-language` method have been updated, while the script was pending a more in-dept rework.  
-Months later, no sign of Valve working further on that refactoring - to be expected, really.  
-  
-## ~~The future~~ There is no future  
-Integration with the GUI Effects Quality is technically possible. Valve is also slowly extending it to more spells.  
-The Low, Med, High options could toggle 3 associated No-Bling choices, right from the Settings menu!  
-But after the -LV unwarranted removal, it's better to save energy and keep using dumbed-down file-replacing.  
-So you might notice more spewing about particles in the game console - it's safe to ignore.  
-Do try to create github Issue tickets / contact on reddit about unintended visual bugs..  
+## The future  
+Small steps towards multi-platform support, but don't ask for ETA..  
   
 Published under [MIT](LICENSE) license.  
   

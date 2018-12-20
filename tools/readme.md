@@ -1,9 +1,9 @@
 
 ### No-Bling DOTA mod builder uses just the following external tools:  
 
-[ValveResourceFormat - Decompiler.exe](https://opensource.steamdb.info/ValveResourceFormat/) - for un-valvepacking particle files  
+[ValveResourceFormat - Decompiler.exe](https://opensource.steamdb.info/ValveResourceFormat/) - for un-valvepacking src files  
 
-[SourceFilmmaker - vpk.exe](http://www.sourcefilmmaker.com/) - for valvepacking mod  
+[SourceFilmmaker - vpk.exe](http://www.sourcefilmmaker.com/) - for valvepacking mod files  
 
 ### Optional:  
 `No-Bling DOTA mod builder.js` can be processed up to 30s faster by using Node.js instead of default JScript engine  
