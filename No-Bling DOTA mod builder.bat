@@ -31,7 +31,7 @@ rem set "MOD_OUTPUT=%~dp0"         &rem    = if needing another output folder th
 rem set "MOD_FILE=pak01_dir.vpk"   &rem    = if having multiple mods and needing another name like pak02_dir.vpk, override here
 set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"
 set "def_choices=%all_choices%"
-set "version=2018.12.19"
+set "version=2018.12.20"
 ::------------------------------------------------------------------------------------------------------------------------------
 title AveYo's No-Bling DOTA mod builder v%version% 
 set a = free script so no bitching! & for /f delims^=^ eol^= %%. in (
@@ -167,7 +167,7 @@ pushd "%MOD_OUTPUT%\src" & for %%a in (*.ini src.lst) do sort "%%a" /o "%%a"
 %TIMER%
 
 :: Update source content
-call :mcolor 70 " Updating Content from dota\pak01_dir.vpk directly ... " c0. " ETA: 3-30s "
+call :mcolor 70 " Updating content from dota\pak01_dir.vpk directly ... " c0. " ETA: 3-30s "
 %TIMER%
 ::if defined @refresh if not defined NEWPATCH del /f /q "%CONTENT%\no-bling\pak01_dir.vpk.manifest.txt" >nul 2>nul
 if defined @refresh del /f /q "%CONTENT%\no-bling\pak01_dir.vpk.manifest.txt" >nul 2>nul
@@ -182,7 +182,7 @@ if exist pas_updated.bat ( copy /y pas_updated.bat last_updated.bat & del /f /q 
 if not defined CHOICES goto :done &rem Skip further processing if only @verbose was selected
 
 :: File replacement mod using nothing but unaltered Valve authored files (used to be on-the-fly resource-compiling before 7.07)
-call :mcolor 70 " Deploying selected No-Bling choices ... " c0. " ETA: 4-40s "
+call :mcolor 70 " Deploying selected No-Bling choices ... " c0. " ETA: 20-40s "
 %TIMER%
 mkdir "%TEMP%\no-bling" >nul 2>nul & pushd "%TEMP%\no-bling"
 for %%a in ("%MOD_OUTPUT%\src\*.ini") do if defined %%~na (

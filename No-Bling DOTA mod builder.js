@@ -1,4 +1,6 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                       edited in SynWrite
+// v2018.12.20: FrostHaven supplies 
+// - potato-optimized, less distracting Festive Fireworks, Snowman and UI snow; enable via Props and Menu choices  
 // v2018.12.19: Script refactoring
 // - generate unified src.lst for streamlined content update   
 // - revert Rubick Arcana custom abilities if using the HEROES option
@@ -25,6 +27,7 @@ var MOD_OTHER={}             // Add experimental non-particle based override (in
 // Tip: while debugging a hero, list loaded particles using console command: dumpparticlelist | grep partial_hero_name
 // WARNING! Don`t touch before understanding the No_Bling function and the definitions above; expect glitches if changed
 //---------------------------------------------------------------------------------------------------------------------------------
+KEEP['particles/econ/events/ti8/emblem_loadout_ambient_ti8.vpcf']=0;// 
   /* Potato PC tweaks - Artifact Ad */
 MOD_BASE['particles/world_environmental_fx/artifact_table_glow.vpcf']=off;//
 MOD_BASE['particles/world_environmental_fx/artifact_table_glow_radiant.vpcf']=off;//
@@ -107,19 +110,26 @@ MOD_PROP['particles/addons_gameplay/fountain_tintable_ambient.vpcf']=off;//
 MOD_PROP['particles/terrain_fx/classical_fountain001_water.vpcf']=off;//
 MOD_PROP['maps/journey_assets/particles/journey_fountain_radiant.vpcf']=off;//
 MOD_PROP['maps/journey_assets/particles/journey_fountain_dire.vpcf']=off;//
+  /* Potato PC tweaks - Map lights - it is better to instead just lower Effects Quality */
+MOD_PROP['particles/addons_gameplay/lamp_flame_tintable.vpcf']=off;//
+MOD_PROP['particles/world_environmental_fx/candle_flame.vpcf']=off;//
+MOD_PROP['particles/world_environmental_fx/candle_flame_large.vpcf']=off;//
+MOD_PROP['particles/world_environmental_fx/candle_flame_medium.vpcf']=off;//
   /* Potato PC tweaks - Map bundled weather */
 MOD_PROP['particles/rain_fx/journey_terrain.vpcf']=off;//
 MOD_PROP['particles/rain_fx/coloseum_terrain.vpcf']=off;//
 MOD_PROP['particles/rain_fx/spring_terrain.vpcf']=off;//
 MOD_PROP['particles/rain_fx/desert_terrain.vpcf']=off;//
 MOD_PROP['particles/rain_fx/winter_terrain.vpcf']=off;//
+  /* Potato PC tweaks -Frostivus */
 MOD_PROP['particles/rain_fx/directable_snow.vpcf']=off;//
+MOD_PROP['particles/rain_fx/econ_snow.vpcf']=off;//
+MOD_PROP['particles/econ/events/frostivus/frostivus_fireworks.vpcf']=off;//
+//MOD_PROP['particles/econ/events/frostivus/frostivus_fireworks_illumination.vpcf']=off;//
+MOD_PROP['particles/econ/events/snowman/snowman_death_fall_dust.vpcf']=off;//
+//MOD_PROP['particles/econ/events/snowball/snowball_projectile_ability_endcap.vpcf']=off;//
   /*  Potato PC tweaks - Menu */
-MOD_MENU['particles/ui/ui_home_button.vpcf']=off;//                                                                   tweak menu ui
-MOD_MENU['particles/ui/ui_home_button_default.vpcf']=off;//
-MOD_MENU['particles/ui/ui_home_button_logo.vpcf']=off;//
-MOD_MENU['particles/ui/ui_mid_debris.vpcf']=off;//
-MOD_MENU['particles/ui/ui_game_start_hero_spotlight.vpcf']=off;//
+MOD_MENU['particles/ui/battle_pass/ui_ti8_generic_uprays.vpcf']=off;//
 MOD_MENU['particles/ui/static_fog_flash.vpcf']=off;//
 MOD_MENU['particles/ui/static_ground_smoke.vpcf']=off;//
 MOD_MENU['particles/ui/static_ground_smoke_soft.vpcf']=off;//
@@ -129,11 +139,20 @@ MOD_MENU['particles/ui/ui_accept_ember.vpcf']=off;//
 MOD_MENU['particles/ui/ui_find_match_status_ember.vpcf']=off;//
 MOD_MENU['particles/ui/ui_find_match_status_glow.vpcf']=off;//
 MOD_MENU['particles/ui/ui_find_match_status_steam.vpcf']=off;//
+MOD_MENU['particles/ui/ui_game_start_hero_spotlight.vpcf']=off;//
+MOD_MENU['particles/ui/ui_home_button.vpcf']=off;//                                                                   
+MOD_MENU['particles/ui/ui_home_button_default.vpcf']=off;//
+MOD_MENU['particles/ui/ui_home_button_logo.vpcf']=off;//
 MOD_MENU['particles/ui/ui_loadout_preview.vpcf']=off;//
-MOD_MENU['particles/ui/battle_pass/ui_ti8_generic_uprays.vpcf']=off;//
-MOD_MENU['particles/ui/hud/frostivus2018_treeglow.vpcf']=off;//
+MOD_MENU['particles/ui/ui_mid_debris.vpcf']=off;//
+MOD_MENU['particles/ui/ui_rank_divine_ambient.vpcf']=off;//
+MOD_MENU['particles/ui/ui_rank_tier_ambient.vpcf']=off;//
+MOD_MENU['particles/ui/hud/levelupburst_embers.vpcf']=off;//
+MOD_MENU['particles/ui/hud/levelupburst_smallflame.vpcf']=off;//
 MOD_MENU['particles/ui/hud/frostivus2018_rubick_arc_ambient.vpcf']=off;//
-KEEP['particles/econ/events/ti8/emblem_loadout_ambient_ti8.vpcf']=0;//                                       show emblem only in ui
+//MOD_MENU['particles/ui/hud/frostivus2018_treeglow.vpcf']=off;// keep tree glow 
+MOD_MENU['particles/ui/background_snow.vpcf']=off;//
+
   /*  ABADDON  */
   /*  ABYSSAL_UNDERLORD  */
   /*  ALCHEMIST  */
@@ -263,6 +282,8 @@ MOD_ABILITY['particles/units/heroes/hero_grimstroke/grimstroke_soulchain_tether_
   /*  JUGGERNAUT  */
 KEEP['particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf']=0;//                             FIX empty healing ward
 MOD_HAT['particles/econ/items/juggernaut/jugg_arcana/jugg_arcana_haste.vpcf']=off;//                        mod arcana ground haste
+MOD_HAT['particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_omni_slash_tgt_bladekeeper.vpcf']=
+'particles/econ/items/juggernaut/bladekeeper_omnislash/_dc_juggernaut_omni_slash_tgt.vpcf';//              FIX items_game.txt typo?
   /*  KEEPER_OF_THE_LIGHT  */
   /*  KUNKKA  */
   /*  LEGION_COMMANDER  */
@@ -347,12 +368,14 @@ MOD_HAT['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail_g
 MOD_HAT['particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail_ground_dark.vpcf']=off;//
   /*  NIGHT_STALKER  */
 KEEP['particles/econ/items/nightstalker/nightstalker_endless_head_ambient.vpcf']=0;//                           keep ns ti8 head fx
+MOD_HAT['particles/econ/items/nightstalker/evil_eyed_arms/nightstalker_ambient_evil_eyed_arms.vpcf']=
+'particles/econ/items/nightstalker/evil_eyed_arms/evil_eyed_arms_eye_sparks.vpcf';//                       FIX items_game.txt typo?
   /*  NYX_ASSASSIN  */
   /*  OBSIDIAN_DESTROYER  */
 MOD_HERO['particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_smoke.vpcf']=off;//               WARNING! don't modify
   /*  OGRE_MAGI  */
 KEEP['particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_weapon_ambient.vpcf']=0;//            keep ogre ti8
-//MOD_HAT['particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_weapon_ambient_foam.vpcf']=off;//   tweak weapon
+//MOD_HAT['particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_weapon_ambient_foam.vpcf']=off;// tweak weapon
 //MOD_HAT['particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_weapon_ambient_foam_b.vpcf']=off;//
   /*  OMNIKNIGHT  */
   /*  ORACLE  */

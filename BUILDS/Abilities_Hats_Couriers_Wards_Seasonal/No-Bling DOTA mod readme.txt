@@ -1,4 +1,4 @@
- No-Bling DOTA mod v2018.12.19 choices:
+ No-Bling DOTA mod v2018.12.20 choices:
  Abilities,Hats,Couriers,Wards,Seasonal
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
@@ -1045,6 +1045,7 @@ particles\econ\items\juggernaut\highplains_sword_longfang\jugg_weapon_glow_varia
 particles\econ\items\juggernaut\jugg_arcana\jugg_arcana_haste.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\juggernaut\jugg_arcana\juggernaut_arcana_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\juggernaut\jugg_arcana\juggernaut_arcana_body_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\juggernaut\jugg_arcana\juggernaut_arcana_omni_slash_tgt_bladekeeper.vpcf_c?particles\econ\items\juggernaut\bladekeeper_omnislash\_dc_juggernaut_omni_slash_tgt.vpcf_c
 particles\econ\items\juggernaut\jugg_arcana\juggernaut_arcana_v2_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\juggernaut\jugg_arcana\juggernaut_arcana_v2_body_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\juggernaut\jugg_relentless_sword\juggernaut_relentless_sword_glow.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1224,7 +1225,7 @@ particles\econ\items\necrolyte\necro_sullen_harvest\necro_sullen_harvest_ambient
 particles\econ\items\necrolyte\necro_sullen_harvest\necro_sullen_harvest_ambient_staff_event.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\necrolyte\necrophos_sullen\necro_sullen_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\necrolyte\necrophos_sullen_gold\necro_sullen_ambient_gold.vpcf_c?particles\dev\empty_particle.vpcf_c
-particles\econ\items\nightstalker\evil_eyed_arms\nightstalker_ambient_evil_eyed_arms.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\nightstalker\evil_eyed_arms\nightstalker_ambient_evil_eyed_arms.vpcf_c?particles\econ\items\nightstalker\evil_eyed_arms\evil_eyed_arms_eye_sparks.vpcf_c
 particles\econ\items\nightstalker\nighhtstalker_endless_back\nightstalker_endless_back_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\nightstalker\nightstalker_black_nihility\nightstalker_black_nihility_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\nightstalker\nightstalker_black_nihility\nightstalker_black_nihility_ambient_wing.vpcf_c?particles\dev\empty_particle.vpcf_c

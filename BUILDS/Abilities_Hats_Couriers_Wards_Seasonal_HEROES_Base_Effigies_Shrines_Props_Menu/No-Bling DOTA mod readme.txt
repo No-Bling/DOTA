@@ -1,4 +1,4 @@
- No-Bling DOTA mod v2018.12.19 choices:
+ No-Bling DOTA mod v2018.12.20 choices:
  Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
@@ -1045,6 +1045,7 @@ particles\econ\items\juggernaut\highplains_sword_longfang\jugg_weapon_glow_varia
 particles\econ\items\juggernaut\jugg_arcana\jugg_arcana_haste.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\juggernaut\jugg_arcana\juggernaut_arcana_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\juggernaut\jugg_arcana\juggernaut_arcana_body_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\juggernaut\jugg_arcana\juggernaut_arcana_omni_slash_tgt_bladekeeper.vpcf_c?particles\econ\items\juggernaut\bladekeeper_omnislash\_dc_juggernaut_omni_slash_tgt.vpcf_c
 particles\econ\items\juggernaut\jugg_arcana\juggernaut_arcana_v2_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\juggernaut\jugg_arcana\juggernaut_arcana_v2_body_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\juggernaut\jugg_relentless_sword\juggernaut_relentless_sword_glow.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -1224,7 +1225,7 @@ particles\econ\items\necrolyte\necro_sullen_harvest\necro_sullen_harvest_ambient
 particles\econ\items\necrolyte\necro_sullen_harvest\necro_sullen_harvest_ambient_staff_event.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\necrolyte\necrophos_sullen\necro_sullen_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\necrolyte\necrophos_sullen_gold\necro_sullen_ambient_gold.vpcf_c?particles\dev\empty_particle.vpcf_c
-particles\econ\items\nightstalker\evil_eyed_arms\nightstalker_ambient_evil_eyed_arms.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\nightstalker\evil_eyed_arms\nightstalker_ambient_evil_eyed_arms.vpcf_c?particles\econ\items\nightstalker\evil_eyed_arms\evil_eyed_arms_eye_sparks.vpcf_c
 particles\econ\items\nightstalker\nighhtstalker_endless_back\nightstalker_endless_back_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\nightstalker\nightstalker_black_nihility\nightstalker_black_nihility_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\nightstalker\nightstalker_black_nihility\nightstalker_black_nihility_ambient_wing.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -2134,6 +2135,7 @@ particles\econ\items\faceless_void\faceless_void_weapon_viridus\faceless_void_we
 particles\econ\items\faceless_void\faceless_void_weapon_voidhammer\faceless_void_weapon_voidhammer.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\invoker\ti8_invoker_prism_crystal_spellcaster\ti8_invoker_prism_forge_spirit_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\jakiro\jakiro_ti7_immortal_head\jakiro_ti7_immortal_body_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\juggernaut\jugg_arcana\juggernaut_arcana_omni_slash_tgt_bladekeeper.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\kunkka\kunkka_weapon_admirable\kunkka_weapon_glow_admirable_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\kunkka\kunkka_weapon_bladebiter\kunkka_weapon_glow_bladebiter_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\kunkka\kunkka_weapon_plunder\kunkka_weapon_glow_ambient_plunder.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -2143,6 +2145,7 @@ particles\econ\items\kunkka\kunkka_weapon_whaleblade_retro\kunkka_weapon_glow_wh
 particles\econ\items\kunkka\kunkka_weapon_whaleblade_retro\kunkka_weapon_glow_whaleblade_retro_lvl2_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\lina\lina_head_headflame\lina_flame_hand_dual_headflame.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\natures_prophet\natures_prophet_weapon_natures_grip\furion_staff_glow_natures_grip.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\items\nightstalker\evil_eyed_arms\nightstalker_ambient_evil_eyed_arms.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\ogre_magi\ogre_ti7_set\ogre_ti7_set_weapon_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\outworld_devourer\od_lucent_gate_staff_ambient\od_lucent_gate_staff_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\econ\items\pudge\pudge_dragonclaw\pudge_ambient_chain_dragonclaw_right.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -2463,18 +2466,27 @@ particles\world_shrine\radiant_shrine_ambient_swirl.vpcf_c?particles\dev\empty_p
 maps\journey_assets\particles\journey_fountain_dire.vpcf_c?particles\dev\empty_particle.vpcf_c
 maps\journey_assets\particles\journey_fountain_radiant.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\addons_gameplay\fountain_tintable_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\addons_gameplay\lamp_flame_tintable.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\events\frostivus\frostivus_fireworks.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\econ\events\snowman\snowman_death_fall_dust.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\rain_fx\coloseum_terrain.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\rain_fx\desert_terrain.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\rain_fx\directable_snow.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\rain_fx\econ_snow.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\rain_fx\journey_terrain.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\rain_fx\spring_terrain.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\rain_fx\winter_terrain.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\terrain_fx\classical_fountain001_water.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_environmental_fx\candle_flame.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_environmental_fx\candle_flame_large.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\world_environmental_fx\candle_flame_medium.vpcf_c?particles\dev\empty_particle.vpcf_c
 [Menu]
 particles\econ\items\lina\lina_head_headflame\portrait_lina_alt1.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\ui\background_snow.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\battle_pass\ui_ti8_generic_uprays.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\hud\frostivus2018_rubick_arc_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
-particles\ui\hud\frostivus2018_treeglow.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\ui\hud\levelupburst_embers.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\ui\hud\levelupburst_smallflame.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\static_fog_flash.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\static_ground_smoke.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\static_ground_smoke_soft.vpcf_c?particles\dev\empty_particle.vpcf_c
@@ -2490,6 +2502,8 @@ particles\ui\ui_home_button_default.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\ui_home_button_logo.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\ui_loadout_preview.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\ui\ui_mid_debris.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\ui\ui_rank_divine_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
+particles\ui\ui_rank_tier_ambient.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_batrider\portrait_batrider.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_bounty_hunter\portrait_bounty_hunter.vpcf_c?particles\dev\empty_particle.vpcf_c
 particles\units\heroes\hero_broodmother\broodmother_portrait.vpcf_c?particles\dev\empty_particle.vpcf_c

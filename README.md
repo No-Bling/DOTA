@@ -23,11 +23,14 @@ Don't worry, this is a perfectly safe, well intended, hats friendly, good behavi
 optimally swapping just original Valve authored files with no content alteration whatsoever,  
 and whitelist-able at a glance...  
 
-### What's new in v2018.12.19:  
-~ Language independent mod launch option `-tempcontent` with `dota_tempcontent` mod root folder  
+### What's new in v2018.12.20:  
+Batch script:  
+~ Language independent mod launch option `-tempcontent` with `dota_tempcontent` mod root folder    
 ~ Minimal file io - only extract and cache the specific source files defined in `src.lst`  
-~ Generate unified src.lst for streamlined content update  
-~ Revert Rubick Arcana custom abilities if using the HEROES option  
+JS script:
+~ Generate unified src.lst for streamlined content update   
+~ Revert Rubick Arcana custom abilities if using the HEROES option
+~ Potato-optimized, less distracting FrostHaven supplies; enable via Props and Menu choices    
   
 ### [No-Bling DOTA mod builder.bat](https://github.com/No-Bling/DOTA/blob/master/No-Bling%20DOTA%20mod%20builder.zip) released!  
 1. Download latest `No-Bling DOTA mod builder.zip`, unpack all files, run the included batch script, select build choices  
