@@ -7,8 +7,9 @@
 - Abilities_Hats_Couriers_Wards_Seasonal  
 *no Tweaks and no default HEROES effects (non-workshop)*  
   
-See `No-Bling DOTA mod readme.txt` for manual install instructions  
+#### How to manually install No-Bling DOTA mod builds in 2019:  
+   ~ CREATE FOLDER `\steamapps\common\dota 2 beta\game\dota_tempcontent`  
+   ~ COPY `pak01_dir.vpk` IN `\steamapps\common\dota 2 beta\game\dota_tempcontent`  
+   ~ ADD LAUNCH OPTION: `-tempcontent`  
 
-![nobling_dota_mod_manual_install](https://user-images.githubusercontent.com/12874843/43047515-cd8dde04-8de0-11e8-9eb1-ba67821fb620.png)
-
-Use `No-Bling DOTA mod builder.bat` if possible to generate an updated custom version with automatic install!  
+Use [No-Bling DOTA mod builder.bat](https://github.com/No-Bling/DOTA/blob/master/No-Bling%20DOTA%20mod%20builder.zip) instead if possible, to generate an updated custom version with automatic install!  
