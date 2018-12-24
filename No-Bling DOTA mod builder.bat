@@ -1,38 +1,41 @@
 @goto :init "No-Bling DOTA mod builder"
-:: v2018.12.19: Script refactoring
+:: v2018.12.24: Merry Christmas! 
+:: - auto-update script from github on launch 
+:: - revised categories
 :: - language independent mod launch option -tempcontent with dota_tempcontent mod root folder  
 :: - minimal file io - only extract and cache the specific source files defined in src.lst
 ::------------------------------------------------------------------------------------------------------------------------------
 :main No-Bling DOTA G l a n c e V a l u e restoration mod builder                                             edited in SynWrite
 ::------------------------------------------------------------------------------------------------------------------------------
 :: Mod builder gui choices - no need to edit defaults here, script shows a graphical dialog for easier selection
-set "Abilities=1"                  &rem  1 = penguin Frostbite and stuff like that..                                         LOW
-set "Hats=1"                       &rem  1 = cosmetic particles spam - slowly turning into TF2..
-set "Couriers=1"                   &rem  1 = couriers particles are fine.. until a dumber abuses gems on hats
-set "Wards=1"                      &rem  1 = only a few of them make the ward and the sentry item too similar
-set "Seasonal=1"                   &rem  1 = the International 8 custom tp, blink etc.
+set/a Abilities=1                  &rem  1 = penguin Frostbite and stuff like that..                                        HIGH
+set/a Hats=1                       &rem  1 = cosmetic particles spam - slowly turning into TF2..
+set/a Couriers=1                   &rem  1 = couriers particles are fine.. until a dumber abuses gems on hats
+set/a Wards=1                      &rem  1 = only a few of them make the ward and the sentry item too similar
 
-set "HEROES=1"                     &rem  1 = default hero particles, helps potato pc but glancevalue can suffer              MED
+set/a HEROES=1                     &rem  1 = default hero particles, helps potato pc but glancevalue can suffer             HIGH
+set/a MagusCypher=1                &rem  1 = Rubick Arcana stolen spells
 
-set "Base=1"                       &rem  1 = tweak map base buildings - ancients, barracks, towers
-set "Effigies=1"                   &rem  1 = tweak map effigies
-set "Shrines=1"                    &rem  1 = tweak map shrines
-set "Props=1"                      &rem  1 = tweak map props - fountains, terrain-bundled weather
-set "Menu=1"                       &rem  1 = tweak main menu - ui, hero preview                                             HIGH
-                                                                           
-set "@verbose=0"                   &rem  1 = show extra details; log detailed per-hero item lists, 0 = skip detailed item lists
-set "@endtask=0"                   &rem  1 = auto-install closes Dota and Steam,                   0 = can't add launch options!
-set "@refresh=0"                   &rem  1 = always recompile mod instead of reusing cached files, 0 = just when new patch found
+set/a Seasonal=1                   &rem  1 = Frostivus; the International custom tp, blink etc.
+set/a Base=1                       &rem  1 = tweak map base buildings - ancients, barracks, towers, fountains
+set/a Effigies=1                   &rem  1 = tweak map effigies
+set/a Shrines=1                    &rem  1 = tweak map shrines
+set/a Terrain=1                    &rem  1 = tweak terrain - bundled weather, lights, props
+set/a Menu=1                       &rem  1 = tweak main menu - ui, hero preview                                             HIGH
+
+set/a @verbose=0                   &rem  1 = show extra details; log detailed per-hero item lists, 0 = skip detailed item lists
+set/a @endtask=0                   &rem  1 = auto-install closes Dota and Steam,                   0 = can't add launch options!
+set/a @refresh=0                   &rem  1 = always recompile mod instead of reusing cached files, 0 = just when new patch found
 ::------------------------------------------------------------------------------------------------------------------------------
 :: Script options - not available in gui so set them here if needed
+set "@autoupdate=1"                &rem  1 = update script from github on launch                   0 = keep using outdated ver
 set "@dialog=1"                    &rem  1 = show choices dialog,                                  0 = no dialog - use above
 set "@timers=1"                    &rem  1 = total and per tasks accurate timers,                  0 = no reason to disable them
-rem set "MOD_OUTPUT=%~dp0"         &rem    = if needing another output folder than current batch file directory, override here
 rem set "MOD_FILE=pak01_dir.vpk"   &rem    = if having multiple mods and needing another name like pak02_dir.vpk, override here
-set "all_choices=Abilities,Hats,Couriers,Wards,Seasonal,HEROES,Base,Effigies,Shrines,Props,Menu"
+set "all_choices=Abilities,Hats,Couriers,Wards,HEROES,MagusCypher,Seasonal,Base,Effigies,Shrines,Terrain,Menu"
 set "def_choices=%all_choices%"
-set "version=2018.12.20"
-::------------------------------------------------------------------------------------------------------------------------------
+set "version=2018.12.24"
+
 title AveYo's No-Bling DOTA mod builder v%version% 
 set a = free script so no bitching! & for /f delims^=^ eol^= %%. in (
         "  ,,,,,, ,,,,,,,,,     , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ,,     :_"
@@ -75,15 +78,40 @@ set "O=foreach ($i in $bling) { $fc='Cyan'; $bc='Black'; if($i.Contains('.')){$f
 set "T=if($i.Contains('Bling')){$fc='Black';$bc='Cyan'};$i=$i.replace('.','#').replace(',','`');"
 set "A=write-host $i -BackgroundColor $bc -ForegroundColor $fc -NoNewLine }"
 powershell -noprofile -c "%D%;%O%;%T%;%A%"           &rem comment this line to -commit heresy- skip the awesome ascii art logo..
-::------------------------------------------------------------------------------------------------------------------------------
+
 :: Parse Script options
-for %%o in (@verbose @refresh @dialog @endtask @timers) do call set "%%o=%%%%o:0=%%"
+for %%o in (@autoupdate @verbose @refresh @dialog @endtask @timers) do call set "%%o=%%%%o:0=%%"
 if defined @timers ( set "@time=%TIME: =0%" & set "TIMER=call :timer" ) else set "TIMER=call :noop"
+
+::------------------------------------------------------------------------------------------------------------------------------
+:: Auto-update script from github - can fail on naked Windows 7 without TLS 1.2 hotfix and ps 5.1
+if not defined @autoupdate goto updated
+set "URL=https://github.com/No-Bling/DOTA/raw/master"
+set "FILE=No-Bling DOTA mod builder"
+:: Check online .version
+set/a online=1 & set/a offline=%version:.=%+0
+pushd "%~dp0" & del /f/q .version >nul 2>nul
+powershell -noprofile -c "(new-object System.Net.WebClient).DownloadFile('%URL%/.version','%~dp0.version');" >nul 2>nul
+if not exist .version certutil -URLCache -split -f "%URL%/.version" >nul 2>nul &rem naked Windows 7 workaround  
+if not exist .version goto updated &rem still failed.. 
+if exist .version for /f "tokens=1,2,3 delims=." %%i in ('type .version') do set/a online=%%i%%j%%k+0
+if "%online%"=="20181224" reg delete "HKCU\Environment" /v "No-Bling choices" /f >nul 2>nul &rem choices have to be reset once
+if %offline% LSS %online% (set "outdated=1") else set "outdated=" & goto updated
+:: Only download builder.zip if local script is outdated               
+pushd "%~dp0" & del /f/q "%FILE%.zip" >nul 2>nul 
+powershell -noprofile -c "(new-object System.Net.WebClient).DownloadFile('%URL%/%FILE%.zip','%~dp0%FILE%.zip');" >nul 2>nul
+if not exist "%~dp0%FILE%.zip" certutil -URLCache -split -f "%URL%/%FILE%.zip" >nul 2>nul &rem naked Windows 7 workaround  
+if not exist "%~dp0%FILE%.zip" goto updated &rem still failed..
+:: UnZip overwriting local files (except No-Bling-filters-personal.txt) and start the updated script
+set "UNZIP=$s=new-object -com shell.application;foreach($i in $s.NameSpace($zip).items()){$s.Namespace($dir).copyhere($i,0x14)}"
+set "UPDATE=$dir='%~dp0'; $zip='%~dp0%FILE%.zip'; %UNZIP%; start '%FILE%.bat'"
+start powershell -noprofile -WindowStyle Hidden -c "%UPDATE%" &exit
+:updated
+::------------------------------------------------------------------------------------------------------------------------------
 
 :: Check DOTA, tools and environment
 pushd "%~dp0"
-if not defined MOD_OUTPUT set "MOD_OUTPUT=%CD%"
-if "%MOD_OUTPUT::=%"=="%MOD_OUTPUT%" set "MOD_OUTPUT=%CD%\%MOD_OUTPUT%"
+set "ROOT=%CD%"
 set "MOD_FOLDER=dota_tempcontent" & set "MOD_OPTIONS=-tempcontent"
 if not defined MOD_FILE set "MOD_FILE=pak01_dir.vpk"
 call :set_steam & call :set_dota & call :set_tools
@@ -98,7 +126,7 @@ mkdir "%CONTENT%\no-bling" >nul 2>nul &rem Should be \steamapps\common\dota 2 be
 for /f usebackq^ delims^=^"^ tokens^=4 %%a in (`findstr LastUpdated "%STEAMAPPS%\appmanifest_570.acf"`) do set/a "UPDATED=%%a+0"
 pushd "%CONTENT%\no-bling" & set "NEWPATCH=" & set/a "LASTUPDATED=0" & if exist last_updated.bat call last_updated.bat
 echo @set/a "LASTUPDATED=%UPDATED%" ^&exit/b>pas_updated.bat &if %UPDATED% GTR %LASTUPDATED% set "NEWPATCH=yes" 
-if not defined NEWPATCH ( call :color 04 " old patch " ) else call :color 0c " new patch " &rem set "@refresh=1" 
+if not defined NEWPATCH ( call :color 03 " old patch " ) else call :color 0b " new patch " &rem set "@refresh=1" 
 
 :: Parse gui dialog choices - rather complicated back & forth define - undefine, but it gets the job done!
 set "@choices=" & if defined @dialog if not defined @verbose set "all_choices=%all_choices%,@verbose"   &rem insert @verbose opt
@@ -128,17 +156,17 @@ echo  User profile   = %STEAMDATA%
 echo  User options   = %LOPTIONS%
 echo  Content        = %CONTENT%\no-bling
 echo  Script options = @refresh:%@refresh%  @endtask:%@endtask%  @verbose:%@verbose%  @dialog:%@dialog%  @timers:%@timers%
-echo  Script version = v%version%   Get latest release at https://github.com/No-Bling/DOTA
+echo  Script version = v%version%        https://github.com/No-Bling/DOTA online version = v%online% 
 echo.
 
 :: Prepare directories
 call :color 70 " Preparing directories, please wait ... "
-pushd "%MOD_OUTPUT%"
+pushd "%ROOT%"
 set "BUILDS=%CD%\BUILDS\%CHOICES:,=_%"
-mkdir "%BUILDS%" >nul 2>nul & mkdir "%MOD_OUTPUT%\log" >nul 2>nul
-set ".="%MOD_OUTPUT%\src" "%TEMP%\no-bling""
+mkdir "%BUILDS%" >nul 2>nul & mkdir "%ROOT%\log" >nul 2>nul
+set ".="%ROOT%\src" "%TEMP%\no-bling""
 if defined @refresh set ".=%.% "%CONTENT%\no-bling""                                            &rem clear content only @refresh
-rem if defined @verbose set ".=%.% "%MOD_OUTPUT%\log""          &rem no need to clear the log each time [~2k files ~200 folders]
+rem if defined @verbose set ".=%.% "%ROOT%\log""          &rem no need to clear the log each time [~2k files ~200 folders]
 for %%i in (%.%) do ( del /f/s/q "%%~i" & rmdir /s/q "%%~i" & mkdir "%%~i" ) >nul 2>nul
 call :clearline 3
 
@@ -147,23 +175,23 @@ if defined @verbose if not defined CHOICES echo.& %INFO%  No mod choices selecte
 
 %LABEL% " Extracting items_game.txt from dota\pak01_dir.vpk "
 echo  Source 2 Resource Decompiler - https://github.com/SteamDatabase/ValveResourceFormat      &rem advertise tool [contributor]
-if defined @verbose ( set ".= " ) else set ".=>nul 2>nul"
+if defined @verbose ( set ".= " ) else set ".=-s >nul 2>nul"
 %TIMER%
-%decompiler% -i "%DOTA%\dota\pak01_dir.vpk" -o "%CONTENT%\no-bling" -e txt -f "scripts/items/items_game.txt" %.%
+%decompiler% -i "%DOTA%\dota\pak01_dir.vpk" -o "%ROOT%\src" -e txt -f "scripts/items/items_game.txt" %.%
 %TIMER%
 
-call :mcolor 70 " Processing items_game.txt using javascript ... " c0. " ETA: 15-30s "
-if defined @verbose echo Verbose output enabled - writing per-hero / category slice logs...
-if defined @verbose ( set ".=>"%MOD_OUTPUT%\log\no_bling.txt"" ) else set ".= "
-pushd "%MOD_OUTPUT%"
+call :mcolor 70 " Processing items_game.txt ... " c0. " ETA: 15-30s "
+if defined @verbose echo Writing per-hero / category slice logs and verbose no_bling.txt to \log folder...
+if defined @verbose ( set ".=>"%ROOT%\log\no_bling.txt"" ) else set ".= "
+pushd "%ROOT%"
 %TIMER%
-%js_engine% No_Bling "%CONTENT%\no-bling" "%MOD_OUTPUT%" "%MOD_CHOICES%" "%@verbose%" "%@timers%" %.%
-if not exist "%MOD_OUTPUT%\src\src.lst" goto :done ! Processing failed, src.lst missing.. 
+%js_engine% No_Bling "%MOD_CHOICES%" "%@verbose%" "%@timers%" %.%
+if not exist "%ROOT%\src\src.lst" goto :done ! Processing failed, src.lst missing.. 
 :: Verify VDF parser
-if defined @verbose pushd "%CONTENT%\no-bling\scripts\items" &echo n|comp items_game.txt "%MOD_OUTPUT%\log\items_game.txt" 2>nul
+if defined @verbose pushd "%ROOT%\src\scripts\items" &echo n|comp items_game.txt "%ROOT%\log\items_game.txt" 2>nul
 if defined @verbose call :clearline 1
 :: Sort particle?mod definitions for each src category
-pushd "%MOD_OUTPUT%\src" & for %%a in (*.ini src.lst) do sort "%%a" /o "%%a"
+pushd "%ROOT%\src" & for %%a in (*.ini src.lst) do sort "%%a" /o "%%a"
 %TIMER%
 
 :: Update source content
@@ -171,9 +199,9 @@ call :mcolor 70 " Updating content from dota\pak01_dir.vpk directly ... " c0. " 
 %TIMER%
 ::if defined @refresh if not defined NEWPATCH del /f /q "%CONTENT%\no-bling\pak01_dir.vpk.manifest.txt" >nul 2>nul
 if defined @refresh del /f /q "%CONTENT%\no-bling\pak01_dir.vpk.manifest.txt" >nul 2>nul
-pushd "%MOD_OUTPUT%\src" & set/a MOD_COUNT=0 & for %%a in (*.ini) do set/a MOD_COUNT+=1 >nul 2>nul
+pushd "%ROOT%\src" & set/a MOD_COUNT=0 & for %%a in (*.ini) do set/a MOD_COUNT+=1 >nul 2>nul
 if %MOD_COUNT% LSS 1 goto :done ! There must be at least one category definition under MOD\src
-%decompiler% -i "%DOTA%\dota\pak01_dir.vpk" -o "%CONTENT%\no-bling" -m "%MOD_OUTPUT%\src\src.lst" -s --vpk_cache
+%decompiler% -i "%DOTA%\dota\pak01_dir.vpk" -o "%CONTENT%\no-bling" -m "%ROOT%\src\src.lst" -s --vpk_cache
 pushd "%CONTENT%\no-bling"
 if exist pas_updated.bat ( copy /y pas_updated.bat last_updated.bat & del /f /q pas_updated.bat ) >nul 2>nul
 %TIMER%
@@ -184,8 +212,9 @@ if not defined CHOICES goto :done &rem Skip further processing if only @verbose 
 :: File replacement mod using nothing but unaltered Valve authored files (used to be on-the-fly resource-compiling before 7.07)
 call :mcolor 70 " Deploying selected No-Bling choices ... " c0. " ETA: 20-40s "
 %TIMER%
+set/a Other=1 &rem forced category for stuff like particle snapshots
 mkdir "%TEMP%\no-bling" >nul 2>nul & pushd "%TEMP%\no-bling"
-for %%a in ("%MOD_OUTPUT%\src\*.ini") do if defined %%~na (
+for %%a in ("%ROOT%\src\*.ini") do if defined %%~na (
  for /f "tokens=3" %%B in ('find /v /c "" "%%a" 2^>nul ^| find /i "%%a" 2^>nul') do call :color 0a " %%~na " & echo : %%B files
  for /f "usebackq skip=1 tokens=1,2 delims=?" %%i in ("%%~fa") do (
   for %%K in ("mod\%%i") do mkdir "%%~dpK" >nul 2>nul & copy /y "%CONTENT%\no-bling\%%j" "%%K" >nul 2>nul
@@ -208,7 +237,7 @@ set .="%BUILDS%\No-Bling DOTA mod readme.txt"
 >>%.% echo --------------------------------------------------------------------------------
 >>%.% echo Simply a competent companion to Settings -- Video -- Effects Quality with the main focus on GlanceValue.
 >>%.% echo No-Bling DOTA mod is economy-friendly, gracefully disabling particle spam while leaving hats model untouched.
->>%.% echo Might say it even helps differentiate great artistic work, shadowed by the particle effects galore Valve slaps on top.
+>>%.% echo Might say it even helps differentiate great artistic work, shadowed by the particle effects galore Valve slaps on top
 >>%.% echo.
 >>%.% echo  How to manually install No-Bling DOTA mod builds in 2019
 >>%.% echo --------------------------------------------------------------------------------
@@ -218,7 +247,7 @@ set .="%BUILDS%\No-Bling DOTA mod readme.txt"
 >>%.% echo.
 >>%.% echo  Mod details
 >>%.% echo --------------------------------------------------------------------------------
-for %%a in (%CHOICES:,= %) do if exist "%MOD_OUTPUT%\src\%%a.ini" type "%MOD_OUTPUT%\src\%%a.ini" >>%.%
+for %%a in (%CHOICES:,= %) do if exist "%ROOT%\src\%%a.ini" type "%ROOT%\src\%%a.ini" >>%.%
 
 :: Print No-Bling mod manual install instructions                                              
 call :mcolor 70 "       How to manually install No-Bling DOTA mod builds in 2019       "
@@ -230,11 +259,10 @@ call :mcolor 70 " " 07 "                                                        
 call :mcolor 70. "                                                                      " 07. " "
 
 :: Auto-Install No-Bling DOTA mod
-if not defined @endtask call :color 0e " To auto-install mod / launch options if Dota / Steam is running, enable @endtask "
-if defined @endtask call :color 0e " Press Alt+F4 to stop auto-install from closing Dota / Steam in 10s ..."
-if defined @endtask timeout /t 10 >nul 2>nul
-call :clearline 2 
-call :mcolor 0c " G " 04 " L " 0c " A " 04 " N " 0c " C "  04 " E " 4c " V " 04 " A " 0c " L " 04 " U " 0c " E " 04. " ++"
+if not defined @endtask call :color 0e. " To auto-install No-Bling mod, close Dota & Steam or check @endtask "
+if defined @endtask call :color 0e. " Press Alt+F4 to stop auto-install from closing Dota & Steam in 10s ..."
+timeout /t 10 >nul 2>nul
+::call :clearline 2 
 if defined @endtask taskkill /f /im dota2.exe /t >nul 2>nul
 :: Simply create the necessary mod folder and copy the current build of pak01_dir.vpk to it
 mkdir "%DOTA%\%MOD_FOLDER%" >nul 2>nul
@@ -253,6 +281,7 @@ set l2=-nocrashmonitor -nocrashdialog -vrdisable -nofriendsui -skipstreamingdriv
 if defined @endtask start "Steam" "%STEAMPATH%\Steam.exe" %l1% %l2%
 
 :done                                                                                                   Gaben shall not prevail!
+call :mcolor 0b " G " 03 " L " 0b " A " 03 " N " 0b " C "  03 " E " 3b " V " 03 " A " 0b " L " 03 " U " 0b " E " 03. " ++"
 call :end  Done!
 exit/b
 
@@ -278,9 +307,9 @@ if not "%1"=="init" for %%# in ("HKCU\Console\init" ) do (
 ) >nul 2>nul
 if not "%1"=="init" ( start "init" "%~f0" init & exit/b ) else goto :main               &rem " Self-restart or return to :main "
 
-::---------------------------------------------------------------------------------------------------------------------------------
+::------------------------------------------------------------------------------------------------------------------------------
 :: Core functions
-::---------------------------------------------------------------------------------------------------------------------------------
+::------------------------------------------------------------------------------------------------------------------------------
 :set_macros [OUTPUTS] %[BS]%=BackSpace %[CR]%=CarriageReturn %[GL]%=Glue/NonBreakingSpace %[DEL]%=DelChar %[DEL7]%=DelCharX7
 pushd "%TEMP%" & echo=WSH.Echo(String.fromCharCode(160))>` & for /f %%# in ('cscript //E:JScript //nologo `') do set "[GL]=%%#"
 for /f %%# in ('echo prompt $H ^| cmd') do set "[BS]=%%#" & for /f %%# in ('copy /z "%~dpf0" nul') do set "[CR]=%%#"
@@ -310,7 +339,7 @@ set "-mc~=" & for %%C in (%*) do if "%%C"=="%%~C" (call set "-mc~=%%-mc~%% & cal
 echo. %-mc~% & exit/b                                       &rem AveYo - Usage: call :mcolor fc "Hello" _c " fancy " cf. "World"
 
 :end Message[Delayed termination with status message - prefix with ! to signal failure]
-if exist "%MOD_OUTPUT%\~TMP" del /f/s/q "%MOD_OUTPUT%\~TMP\*.*" >nul 2>nul & rmdir /s/q "%MOD_OUTPUT%\~TMP" >nul 2>nul
+if exist "%ROOT%\~TMP" del /f/s/q "%ROOT%\~TMP\*.*" >nul 2>nul & rmdir /s/q "%ROOT%\~TMP" >nul 2>nul
 echo. & (if defined @time call :timer "%@time%" &call :timer ) & if "%~1"=="!" (%ERROR% %* ) else %INFO%  %*
 pause>nul & exit
 
@@ -378,15 +407,15 @@ if not exist "%STEAMAPPS%\common\dota 2 beta\game\dota\maps\dota.vpk" call :end 
 set "DOTA=%STEAMAPPS%\common\dota 2 beta\game" & set "CONTENT=%STEAMAPPS%\common\dota 2 beta\content"
 exit/b
 
-:set_tools [OUTPUTS] decompiler vpk js_engine                                           AveYo : Does not require Workshop Tools!
-if not exist "%MOD_OUTPUT%\%~n0.js" call :end ! %~n0.js missing! Did you unpack the whole .zip package?
-if not exist "%MOD_OUTPUT%\tools\*" call :end ! tools subfolder missing! Did you unpack the whole .zip package?
-set "decompiler="%MOD_OUTPUT%\tools\ValveResourceFormat\Decompiler.exe""
+:set_tools [OUTPUTS] filters decompiler vpk js_engine                                   AveYo : Does not require Workshop Tools!
+if not exist "%ROOT%\%~n0.js" call :end ! %~n0.js missing! Did you unpack the whole .zip package?
+if not exist "%ROOT%\tools\*" call :end ! tools subfolder missing! Did you unpack the whole .zip package?
+set "decompiler="%ROOT%\tools\ValveResourceFormat\Decompiler.exe""
 if not exist %decompiler% call :end ! tools\ValveResourceFormat\Decompiler.exe missing! Did you unpack the whole .zip package?
-set "vpk="%MOD_OUTPUT%\tools\Steam\SourceFilmmaker\game\bin\vpk.exe""
+set "vpk="%ROOT%\tools\Steam\SourceFilmmaker\game\bin\vpk.exe""
 if not exist %vpk% call :end ! tools\Steam\SourceFilmmaker\bin\vpk.exe missing! Did you unpack the whole .zip package?
-set "nodejs="%MOD_OUTPUT%\tools\Node.js\node.exe""
-if not exist %nodejs% ( set "nodejs=" ) else pushd "%MOD_OUTPUT%\tools\Node.js"
+set "nodejs="%ROOT%\tools\Node.js\node.exe""
+if not exist %nodejs% ( set "nodejs=" ) else pushd "%ROOT%\tools\Node.js"
 if defined nodejs for /f "delims=" %%i in ('node.exe -e process.execArgv[0] -p') do if not "%%i"=="-e" set "nodejs="
 if defined nodejs set "js_engine=%nodejs% "%~dpn0.js"" & popd
 if not defined nodejs set "js_engine="%WINDIR%\System32\cscript.exe" //E:JScript //nologo "%~dpn0.js""
