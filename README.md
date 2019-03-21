@@ -40,19 +40,19 @@ and whitelist-able at a glance...
 #### No-Bling DOTA mod builder choices:  
 Category       | GlanceValue | Description                                                              | Pre-made as:  
 -------------- | ----------- | ------------------------------------------------------------------------ | ----------  
-Base           | **+++**     | - Base buildings - ancients, barracks, towers, effigies, shrines         |   CORE BUILD  
-Weather        | **+**       | - Terrain - bundled weather, lights, props                               |  
-Seasonal       | **++++**    | - Event Rewards: Frostivus; the International custom tp, blink etc.      |  
-Menu           | **+**       | - Menu - ui, hero loadout and preview, treasure opening                  |  
+Base           | **++**      | - Base buildings - ancients, barracks, towers, effigies, shrines         |   CORE BUILD  
+Weather        | **+++**     | - Terrain - bundled weather, lights, props                               |  
+Seasonal       | **+++**     | - Event Rewards: Frostivus; the International custom tp, blink etc.      |  
+Menu           | **++**      | - Menu - ui, hero loadout and preview, treasure opening                  |  
 .            . | .         . | .                                                                      . | .       .  
-Abilities      | **+++++**   | - Custom Spells: penguin Frostbite and stuff like that..                 |   MAIN BUILD 
+Abilities      | **++++**    | - Custom Spells: penguin Frostbite and stuff like that..                 |   MAIN BUILD 
 Hats           | **+++**     | - Workshop Hats: cosmetic particles spam - slowly turning into TF2..     |  
 Couriers       | **+++**     | - Custom Couriers: these are fine.. until ~~Fy~~ someone abuses gems on hats |  
-Wards          | **++**      | - Custom Wards: only a few make the ward and the sentry item similar     |  
+Wards          | **+**       | - Custom Wards: only a few make the ward and the sentry item similar     |  
 .            . | .         . | .                                                                      . | .       .  
 HEROES         | **+/-**     | - Default Hats: hero-bundled effects  - helps potato pc                  |   FULL BUILD 
 MagusCypher    | **+++**     | - Stolen spells via Rubick Arcana                                        |  
-PMS            | **+++**     | - (\\_/) gabening intensifies..                                          |  
+PMS            | **+++++**   | - (\\_/) gabening intensifies..                                          |  
 .            . | .         . | .                                                                      . | .      .  
 *@update*      |             | *auto-update script from github - can be skipped*                        |  
 *@verbose*     |             | *print file names and export detailed per-hero item lists*               |  
