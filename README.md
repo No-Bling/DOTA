@@ -23,7 +23,8 @@ Don't worry, this is a perfectly safe, well intended, hats friendly, good behavi
 optimally swapping just original Valve authored files with no 3^rd party content alteration whatsoever,  
 and whitelist-able at a glance...  
 
-#### What's new in v2019.03.19:  Mars  
+#### What's new in v2019.03.21:  Mars  
+~ models filtering wip (\\_/)  
 ~ BAT: __making use of in-house VPKMOD tool for very fast in-memory processing with minimal file i/o__  
 ~ BAT: auto-update script from github on launch  
 ~ BAT: language independent mod launch option `-tempcontent` with `dota_tempcontent` mod root folder  

@@ -1,4 +1,4 @@
- No-Bling DOTA mod v2019.03.19 choices:
+ No-Bling DOTA mod v2019.03.21 choices:
  Base,Weather,Seasonal,Menu,Abilities,Hats,Couriers,Wards,MagusCypher,Heroes,PMS
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
@@ -2525,34 +2525,23 @@ particles/units/heroes/hero_zeus/zeus_return_king_of_gods_head_style1_ambient.vp
 particles/units/heroes/heroes_underlord/underlord_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/heroes_underlord/underlord_ambient_eyes.vpcf_c?particles/dev/empty_particle.vpcf_c
 [PMS]
-models/heroes/crystal_maiden/crystal_maiden_arcana.vmdl_c?models/heroes/crystal_maiden/crystal_maiden_cape.vmdl_c
-models/heroes/crystal_maiden/crystal_maiden_arcana_back.vmdl_c?models/heroes/crystal_maiden/crystal_maiden_cape.vmdl_c
 models/heroes/dark_willow/dark_willow_cage_duel.vmdl_c?models/heroes/dark_willow/dark_willow_offhand.vmdl_c
 models/heroes/death_prophet/rubick_arcana_death_prophet_ghost.vmdl_c?models/heroes/rubick/cape.vmdl_c
 models/heroes/dragon_knight/dragon_knight_dragon.vmdl_c?models/heroes/dragon_knight/dragon_knight_dragon.vmdl_c
-models/heroes/juggernaut/juggernaut_arcana.vmdl_c?models/heroes/juggernaut/jugg_mask.vmdl_c
 models/heroes/lone_druid/spirit_bear_rubick.vmdl_c?models/heroes/rubick/cape.vmdl_c
 models/heroes/lone_druid/true_form.vmdl_c?models/heroes/lone_druid/true_form.vmdl_c
 models/heroes/lycan/lycan_wolf.vmdl_c?models/heroes/lycan/lycan_wolf.vmdl_c
 models/heroes/lycan/lycan_wolf_rubick.vmdl_c?models/heroes/lycan/lycan_wolf.vmdl_c
 models/heroes/mars/mars_lower_debut.vmdl_c?models/heroes/mars/mars_lower.vmdl_c
 models/heroes/mars/mars_upper_debut.vmdl_c?models/heroes/mars/mars_upper.vmdl_c
-models/heroes/phantom_assassin/pa_arcana.vmdl_c?models/heroes/phantom_assassin/phantom_assassin_weapon.vmdl_c
-models/heroes/phantom_assassin/pa_arcana_weapons.vmdl_c?models/heroes/phantom_assassin/phantom_assassin_weapon.vmdl_c
 models/heroes/rattletrap/rattletrap_cog_rubick.vmdl_c?models/heroes/rubick/cape.vmdl_c
-models/heroes/shadow_fiend/head_arcana.vmdl_c?models/heroes/shadow_fiend/shadow_fiend_head.vmdl_c
-models/heroes/shadow_fiend/shadow_fiend_arcana.vmdl_c?models/heroes/shadow_fiend/shadow_fiend_head.vmdl_c
 models/heroes/shadowshaman/shadowshaman_totem_rubick.vmdl_c?models/heroes/rubick/cape.vmdl_c
 models/heroes/techies/fx_techies_remotebomb_rubick.vmdl_c?models/heroes/rubick/cape.vmdl_c
 models/heroes/terrorblade/demon.vmdl_c?models/heroes/terrorblade/demon.vmdl_c
-models/heroes/terrorblade/horns_arcana.vmdl_c?models/heroes/terrorblade/horns.vmdl_c
-models/heroes/terrorblade/terrorblade_arcana.vmdl_c?models/heroes/terrorblade/horns.vmdl_c
 models/heroes/undying/undying_flesh_golem.vmdl_c?models/heroes/undying/undying_flesh_golem.vmdl_c
 models/heroes/undying/undying_flesh_golem_rubick.vmdl_c?models/heroes/undying/undying_flesh_golem.vmdl_c
 models/heroes/visage/rubick_visage_familiar.vmdl_c?models/heroes/rubick/cape.vmdl_c
 models/heroes/warlock/warlock_demon_rubick.vmdl_c?models/heroes/rubick/cape.vmdl_c
-models/heroes/zeus/zeus_arcana.vmdl_c?models/heroes/zeus/zeus_hair.vmdl_c
-models/heroes/zeus/zeus_hair_arcana.vmdl_c?models/heroes/zeus/zeus_hair.vmdl_c
 models/items/abaddon/abamount/abamount.vmdl_c?models/heroes/abaddon/mount.vmdl_c
 models/items/abaddon/alliance_abba_back/alliance_abba_back.vmdl_c?models/heroes/abaddon/cape.vmdl_c
 models/items/abaddon/alliance_abba_head/alliance_abba_head.vmdl_c?models/heroes/abaddon/helmet.vmdl_c
@@ -4774,7 +4763,6 @@ models/items/jakiro/twin_dragon_of_the_elder_blood_tail/twin_dragon_of_the_elder
 models/items/juggernaut/100proof_bracers_bone.vmdl_c?models/heroes/juggernaut/jugg_bracers.vmdl_c
 models/items/juggernaut/100proof_cape_bottle.vmdl_c?models/heroes/juggernaut/jugg_cape.vmdl_c
 models/items/juggernaut/100proof_mask_predator.vmdl_c?models/heroes/juggernaut/jugg_mask.vmdl_c
-models/items/juggernaut/arcana/juggernaut_arcana_mask.vmdl_c?models/heroes/juggernaut/jugg_mask.vmdl_c
 models/items/juggernaut/armor_for_the_favorite_arms/armor_for_the_favorite_arms.vmdl_c?models/heroes/juggernaut/jugg_bracers.vmdl_c
 models/items/juggernaut/armor_for_the_favorite_back/armor_for_the_favorite_back.vmdl_c?models/heroes/juggernaut/jugg_cape.vmdl_c
 models/items/juggernaut/armor_for_the_favorite_head/armor_for_the_favorite_head.vmdl_c?models/heroes/juggernaut/jugg_mask.vmdl_c
@@ -5771,7 +5759,6 @@ models/items/monkey_king/dota_plus_monkey_king_armor/dota_plus_monkey_king_armor
 models/items/monkey_king/dota_plus_monkey_king_head/dota_plus_monkey_king_head.vmdl_c?models/heroes/monkey_king/monkey_king_hair.vmdl_c
 models/items/monkey_king/dota_plus_monkey_king_shoulders/dota_plus_monkey_king_shoulders.vmdl_c?models/heroes/monkey_king/monkey_king_shoulders.vmdl_c
 models/items/monkey_king/dota_plus_monkey_king_weapon/dota_plus_monkey_king_weapon.vmdl_c?models/heroes/monkey_king/monkey_king_base_weapon.vmdl_c
-models/items/monkey_king/monkey_king_arcana_head/mesh/monkey_king_arcana.vmdl_c?models/heroes/monkey_king/monkey_king_hair.vmdl_c
 models/items/monkey_king/monkey_king_immortal_weapon/monkey_king_immortal_weapon.vmdl_c?models/heroes/monkey_king/monkey_king_base_weapon.vmdl_c
 models/items/monkey_king/monkey_king_king_of_the_dark_reef_ti_2017_armor/mk_king_of_the_dark_reef_t7_shoulders.vmdl_c?models/heroes/monkey_king/monkey_king_shoulders.vmdl_c
 models/items/monkey_king/monkey_king_king_of_the_dark_reef_ti_2017_armor/monkey_king_king_of_the_dark_reef_ti_2017_armor.vmdl_c?models/heroes/monkey_king/monkey_king_armor.vmdl_c
@@ -6283,8 +6270,6 @@ models/items/puck/radiant_wanderer_tail/radiant_wanderer_tail.vmdl_c?models/hero
 models/items/puck/reminiscence_head/reminiscence_head.vmdl_c?models/heroes/puck/puck_horns.vmdl_c
 models/items/puck/reminiscence_tail/reminiscence_tail.vmdl_c?models/heroes/puck/puck_tail.vmdl_c
 models/items/puck/reminiscence_wings/reminiscence_wings.vmdl_c?models/heroes/puck/puck_wings.vmdl_c
-models/items/pudge/arcana/pudge_arcana_back.vmdl_c?models/heroes/pudge/back.vmdl_c
-models/items/pudge/arcana/pudge_arcana_base.vmdl_c?models/heroes/pudge/back.vmdl_c
 models/items/pudge/blackdeath_arms/blackdeath_arms.vmdl_c?models/heroes/pudge/bracer.vmdl_c
 models/items/pudge/blackdeath_back/blackdeath_back.vmdl_c?models/heroes/pudge/back.vmdl_c
 models/items/pudge/blackdeath_belt/blackdeath_belt.vmdl_c?models/heroes/pudge/belt.vmdl_c
@@ -6750,11 +6735,6 @@ models/items/rubick/puppet_master_head/puppet_master_head.vmdl_c?models/heroes/r
 models/items/rubick/puppet_master_weapon/puppet_master_weapon.vmdl_c?models/heroes/rubick/rubick_staff.vmdl_c
 models/items/rubick/robe_rubick_new_masksss/robe_rubick_new_masksss.vmdl_c?models/heroes/rubick/cape.vmdl_c
 models/items/rubick/rubcik_bishobola_new_head/rubcik_bishobola_new_head.vmdl_c?models/heroes/rubick/rubick_head.vmdl_c
-models/items/rubick/rubick_arcana/rubick_arcana_back.vmdl_c?models/heroes/rubick/cape.vmdl_c
-models/items/rubick/rubick_arcana/rubick_arcana_base.vmdl_c?models/heroes/rubick/cape.vmdl_c
-models/items/rubick/rubick_arcana/rubick_arcana_cube_pangolier.vmdl_c?models/heroes/pangolier/pangolier_gyroshell2.vmdl_c
-models/items/rubick/rubick_arcana/rubick_arcana_phoenix_egg.vmdl_c?models/heroes/rubick/cape.vmdl_c
-models/items/rubick/rubick_arcana/rubick_dark_willow_wisp.vmdl_c?models/heroes/rubick/cape.vmdl_c
 models/items/rubick/rubick_kuroky_head/rubick_kuroky_head.vmdl_c?models/heroes/rubick/rubick_head.vmdl_c
 models/items/rubick/rubick_shoulders_mask_update/rubick_shoulders_mask_update.vmdl_c?models/heroes/rubick/shoulder.vmdl_c
 models/items/rubick/rubick_staff_updated_textures/rubick_staff_updated_textures.vmdl_c?models/heroes/rubick/rubick_staff.vmdl_c
@@ -8382,3 +8362,4 @@ models/items/zuus/the_return_of_the_king_of_gods_arms/the_return_of_the_king_of_
 models/items/zuus/the_return_of_the_king_of_gods_back/the_return_of_the_king_of_gods_back.vmdl_c?models/heroes/zeus/zeus_vest.vmdl_c
 models/items/zuus/the_return_of_the_king_of_gods_belt/the_return_of_the_king_of_gods_belt.vmdl_c?models/heroes/zeus/zeus_belt.vmdl_c
 models/items/zuus/the_return_of_the_king_of_gods_head/the_return_of_the_king_of_gods_head.vmdl_c?models/heroes/zeus/zeus_hair.vmdl_c
+particles/econ/items/lina/lina_head_headflame/lina_headflame.vpcf_c?particles/dev/empty_particle.vpcf_c

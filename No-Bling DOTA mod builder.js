@@ -1,5 +1,6 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                    edited in SynWrite
-// v2019.03.19: Mars
+// v2019.03.21: Mars
+// - model filtering wip
 // - revised categories and extended loadout particles support                                                 E a s t e r E g g
 // - output unified src.lst for in-memory modding via VPKMOD tool
 // - decoupled manual filters into No-Bling-filters.txt
@@ -169,7 +170,7 @@ No_Bling=function(choices, verbose, timers){
     }
 
     // optionally generate per-hero / category items_game.txt log slices keeping original indenting - as of 2019 more complete
-    if (!PMS && VERBOSE && hero) {
+    if (VERBOSE && hero) {
       var herocat=(prefab === "default_item") ? "default_items" : "wearable_items";
       if (!logs[herocat][hero]) logs[herocat][hero] = {};
       if (!logs[herocat][hero][i]) logs[herocat][hero][i] = {};         // for convenience,
@@ -177,7 +178,7 @@ No_Bling=function(choices, verbose, timers){
       if (!logs[herocat][hero][i]["items_game"]["items"]) logs[herocat][hero][i]["items_game"]["items"] = {};
       if (!logs[herocat][hero][i]["items_game"]["items"][i+""]) logs[herocat][hero][i]["items_game"]["items"][i+""] = items[i];
     }
-    if (!PMS && VERBOSE && !hero && !expired) {
+    if (VERBOSE && !hero && !expired) {
       if (!logs[precat]) logs[precat] = {};
       if (!logs[precat][i]) logs[precat][i] = {};
       if (!logs[precat][i]["items_game"]) logs[precat][i]["items_game"] = {};
@@ -455,7 +456,7 @@ No_Bling=function(choices, verbose, timers){
   for (hat in REV_MOD) { mods["Heroes"][hat] = off; LOG("+rev_mod: "+hat); }
   for (cat in filters) { for (hat in filters[cat]) { mods[cat][hat]=filters[cat][hat]; LOG(cat+": "+hat); }  }
   delete mods["PMS"]["models/development/invisiblebox.vmdl"];
-
+ 
   // If Hats pair is in Heroes replace it with empty particle as circular references would negate the replacement
   for (hat in mods["Hats"]) {
       var pair=mods["Hats"][hat];
@@ -494,7 +495,7 @@ No_Bling=function(choices, verbose, timers){
     }
     t.end();
   } // end log to file
-
+  
   if (!UCHOICE) w.quit();   // Do not output source files if no choice selected other than verbose
 
   //----------------------------------------------------------------------------------------------------------------------------

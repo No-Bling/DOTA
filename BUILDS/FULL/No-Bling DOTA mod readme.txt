@@ -1,4 +1,4 @@
- No-Bling DOTA mod v2019.03.19 choices:
+ No-Bling DOTA mod v2019.03.21 choices:
  Base,Weather,Seasonal,Menu,Abilities,Hats,Couriers,Wards,MagusCypher,Heroes
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
