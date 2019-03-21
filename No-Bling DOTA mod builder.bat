@@ -75,7 +75,7 @@ set "D=$logo=''; foreach ($l in '%_:" "=%'.split('_')){ $logo += ' ' * 24 + $l +
 set "O=foreach ($i in $bling) { $fc='Cyan'; $bc='Black'; if($i.Contains('.')){$fc='Red'}; if($i.Contains(',')){$fc='DarkRed'};"
 set "T=if($i.Contains('Bling')){$fc='Black';$bc='Cyan'};$i=$i.replace('.','#').replace(',','`');"
 set "A=write-host $i -BackgroundColor $bc -ForegroundColor $fc -NoNewLine }"
-::powershell -noprofile -c "%D%;%O%;%T%;%A%"           &REM comment this line to -commit heresy- skip the awesome ascii art logo
+powershell -noprofile -c "%D%;%O%;%T%;%A%"           &REM comment this line to -commit heresy- skip the awesome ascii art logo
 
 :: Parse Script options - rather complicated back & forth define - undefine, but it gets the job done!
 for %%o in (@update @refresh @verbose @install @dialog @timers) do call set "%%o=%%%%o:0=%%"
