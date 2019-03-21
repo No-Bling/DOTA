@@ -23,54 +23,52 @@ Don't worry, this is a perfectly safe, well intended, hats friendly, good behavi
 optimally swapping just original Valve authored files with no 3^rd party content alteration whatsoever,  
 and whitelist-able at a glance...  
 
-#### What's new in v2018.12.24:  Merry Christmas!    
-~ BAT: __auto-update script from github on launch__  
+#### What's new in v2019.03.19:  Mars  
+~ BAT: __making use of in-house VPKMOD tool for very fast in-memory processing with minimal file i/o__  
+~ BAT: auto-update script from github on launch  
 ~ BAT: language independent mod launch option `-tempcontent` with `dota_tempcontent` mod root folder  
-~ BAT: minimal file io - only extract and cache the specific source files defined in `src.lst`  
-~ JS: __decoupled manual filters into *No-Bling-filters.txt*__  
-~ JS: MagusCypher gets a dedicated choice to revert Rubick arcana custom stolen abilities to default.. or not  
-~ JS: potato-optimized, less distracting Festive Fireworks, Snowman and UI snow; moved to Seasonal choice  
-~ JS: generate unified `src.lst` for streamlined content update; fixed Node.js processing  
+~ JS: __revised categories and extended loadout particles support__ *E a s t e r E g g*  
+~ JS: decoupled manual filters into *No-Bling-filters.txt*  
+~ JS: output unified `src.lst` for in-memory modding via VPKMOD tool  
 
 ### [No-Bling DOTA mod builder.bat](https://github.com/No-Bling/DOTA/blob/master/No-Bling%20DOTA%20mod%20builder.zip) available!  
 1. Download latest `No-Bling DOTA mod builder.zip`, unpack all files, run the included batch script, select build choices  
    Builder script features auto-updating from github on launch so no further manual downloads and unpacking is needed!  
 2. Profit! It will create a custom build in the proper location, and add the now simplified launch options automatically!  
-*Tested on Windows 7 & 10 x64. Does not need Workshop Tools DLC installed.*  
+*Tested on Windows 7 & 10 (x86 & x64). Does not need Workshop Tools DLC installed.*  
 
 #### No-Bling DOTA mod builder choices:  
-Category       | GlanceValue | Description                                                              | FPS Gain  
+Category       | GlanceValue | Description                                                              | Pre-made as:  
 -------------- | ----------- | ------------------------------------------------------------------------ | ----------  
-Abilities      | **+++++**   | - Custom Spells: penguin Frostbite and stuff like that..                 |   High  
+Base           | **+++**     | - Base buildings - ancients, barracks, towers, effigies, shrines         |   CORE BUILD  
+Weather        | **+**       | - Terrain - bundled weather, lights, props                               |  
+Seasonal       | **++++**    | - Event Rewards: Frostivus; the International custom tp, blink etc.      |  
+Menu           | **+**       | - Menu - ui, hero loadout and preview, treasure opening                  |  
+.            . | .         . | .                                                                      . | .       .  
+Abilities      | **+++++**   | - Custom Spells: penguin Frostbite and stuff like that..                 |   MAIN BUILD 
 Hats           | **+++**     | - Workshop Hats: cosmetic particles spam - slowly turning into TF2..     |  
 Couriers       | **+++**     | - Custom Couriers: these are fine.. until ~~Fy~~ someone abuses gems on hats |  
 Wards          | **++**      | - Custom Wards: only a few make the ward and the sentry item similar     |  
 .            . | .         . | .                                                                      . | .       .  
-HEROES         | **+/-**     | - Default Hats: hero-bundled effects  - helps potato pc                  |   High  
+HEROES         | **+/-**     | - Default Hats: hero-bundled effects  - helps potato pc                  |   FULL BUILD 
 MagusCypher    | **+++**     | - Stolen spells via Rubick Arcana                                        |  
-.            . | .         . | .                                                                      . | .       .  
-Seasonal       | **++++**    | - Event Rewards: Frostivus; the International custom tp, blink etc.      |  
-Base           | **++**      | - Base buildings - ancients, barracks, towers                            |  
-Effigies       | **+++**     | - Effigies                                                               |  
-Shrines        | **+**       | - Shrines                                                                |  
-Terrain        | **+**       | - Terrain - bundled weather, lights, props                               |  
-Menu           | **+**       | - Menu - ui, hero preview                                                |   High  
+PMS            | **+++**     | - (\\_/) gabening intensifies..                                          |  
 .            . | .         . | .                                                                      . | .      .  
+*@update*      |             | *auto-update script from github - can be skipped*                        |  
 *@verbose*     |             | *print file names and export detailed per-hero item lists*               |  
 *@endtask*     |             | *auto-install closes Dota and Steam - needed once to add launch options* |  
-*@refresh*     |             | *refresh content instead of reusing cached files - usually not needed*   |  
+*@refresh*     |             | *refresh lastupdated and clear mod directories - usually not needed*     |  
 
 *choices are remembered between runs.*  
 
 #### DOTA Updates  
 - Simply run the builder script again, it will detect any updates and force a refresh - it only takes a minute or two  
-- A local cache will be created directly from game files so repeated runs are very fast!  
 - New patch detection is generally reliable. If having any issues, select *@refresh* choice to force local cache update  
 
 #### Troubleshooting builder batch script issues  
 ~ Right-click and run the script as administrator to overcome `Program Files\Steam` permission issues.  
-~ Script generally works on a default Windows 7 install without needing extra libraries but you might be missing some.  
-Try to launch manually the Decompiler.exe utility from `tools\ValveResourceFormat` - it should ask for any needed libs.  
+~ Script generally works on a default Windows 7 install without needing extra .net framework libraries.  
+~ Try to recompile the vpkmod.exe utility via `tools\build vpkmod.zip` - .bat / .sln provided for .net 3.5+ / VS2008+.  
 
 #### What about non-Windows OS / issues with the builder batch script?  
 Use the pre-made releases in the __[BUILDS](https://github.com/No-Bling/DOTA/tree/master/BUILDS)__ folder via manual install  
@@ -110,7 +108,8 @@ Most immortals have multiple effects (not the case here). To keep specific ones 
 and look for _"modifier" "particles/ ... .vpcf"_ entries, then add them as specific filters:  
 `"particles/econ/items/omniknight/omni_sacred_light_head/omni_ambient_sacred_light.vpcf" "-"`  
 Not all specific effects are mentioned in `items_game.txt` so you might need to identify the involved particles in-game,  
-by demo-ing the item, opening console, and list particles with `clear;dumpparticlelist | grep [^0\s][\d]*,[\s]flags;`  
+by demo-ing the item, opening console, and list particles with:  
+`clear;cl_particle_log_creates 1;dumpparticlelist | grep [^0\s][\d]*,[\s]flags;`  
 Also check `log\no_bling.txt` as it shows some of the logic in categorizing, as well as `src\src.lst` and `.ini` files.  
 
 ### The future  

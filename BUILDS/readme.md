@@ -1,10 +1,10 @@
-  
+
 ##### Providing pre-made builds:  
- 
-- __core build__: Abilities_Hats_Couriers_Wards  
-- __extended build__: Abilities_Hats_Couriers_Wards_HEROES_MagusCypher  
-- __full build__: Abilities_Hats_Couriers_Wards_HEROES_MagusCypher_Seasonal_Base_Effigies_Shrines_Terrain_Menu  
-*recommended for Potato PC, up to 15-20% fps increase on the lower end*  
+
+- __CORE BUILD__: Base_Weather_Seasonal_Menu  
+- __MAIN BUILD__: Base_Weather_Seasonal_Menu + Abilities_Hats_Couriers_Wards  
+- __FULL BUILD__: Base_Weather_Seasonal_Menu + Abilities_Hats_Couriers_Wards + HEROES_MagusCypher  
+- : (\\_/)  
 
 #### How to manually install No-Bling DOTA mod builds in 2019:  
    ~ CREATE FOLDER `\steamapps\common\dota 2 beta\game\dota_tempcontent`  
