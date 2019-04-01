@@ -23,8 +23,8 @@ Don't worry, this is a perfectly safe, well intended, hats friendly, good behavi
 optimally swapping just original Valve authored files with no 3^rd party content alteration whatsoever,  
 and whitelist-able at a glance...  
 
-#### What's new in v2019.03.21:  Mars  
-~ models filtering wip (\\_/)  
+#### What's new in v2019.03.30:  (\\_/)  
+~ *completed Poor Man's Shield against the Bling!*  
 ~ BAT: __making use of in-house VPKMOD tool for very fast in-memory processing with minimal file i/o__  
 ~ BAT: auto-update script from github on launch  
 ~ BAT: language independent mod launch option `-tempcontent` with `dota_tempcontent` mod root folder  
@@ -42,18 +42,18 @@ and whitelist-able at a glance...
 Category       | GlanceValue | Description                                                              | Pre-made as:  
 -------------- | ----------- | ------------------------------------------------------------------------ | ----------  
 Base           | **++**      | - Base buildings - ancients, barracks, towers, effigies, shrines         |   CORE BUILD  
-Weather        | **+++**     | - Terrain - bundled weather, lights, props                               |  
+Weather        | **++**      | - Terrain - bundled weather, lights, props                               |  
 Seasonal       | **+++**     | - Event Rewards: Frostivus; the International custom tp, blink etc.      |  
-Menu           | **++**      | - Menu - ui, hero loadout and preview, treasure opening                  |  
+Menu           | **+**       | - Menu - ui, hero loadout and preview, treasure opening, potato tweaks   |  
 .            . | .         . | .                                                                      . | .       .  
-Abilities      | **++++**    | - Custom Spells: penguin Frostbite and stuff like that..                 |   MAIN BUILD 
-Hats           | **+++**     | - Workshop Hats: cosmetic particles spam - slowly turning into TF2..     |  
+Abilities      | **+++++**   | - Custom Spells: penguin Frostbite and stuff like that..                 |   MAIN BUILD 
+Hats           | **++++**    | - Workshop Hats: cosmetic particles spam - slowly turning into TF2..     |  
 Couriers       | **+++**     | - Custom Couriers: these are fine.. until ~~Fy~~ someone abuses gems on hats |  
-Wards          | **+**       | - Custom Wards: only a few make the ward and the sentry item similar     |  
+Wards          | **++**      | - Custom Wards: only a few make the ward and the sentry item similar     |  
 .            . | .         . | .                                                                      . | .       .  
 HEROES         | **+/-**     | - Default Hats: hero-bundled effects  - helps potato pc                  |   FULL BUILD 
-MagusCypher    | **+++**     | - Stolen spells via Rubick Arcana                                        |  
-PMS            | **+++++**   | - (\\_/) gabening intensifies..                                          |  
+MagusCypher    | **++++**    | - Stolen spells via Rubick Arcana                                        |  
+PMS            | **+++++++** | - (\\_/) gabening intensifies..                                          |  
 .            . | .         . | .                                                                      . | .      .  
 *@update*      |             | *auto-update script from github - can be skipped*                        |  
 *@verbose*     |             | *print file names and export detailed per-hero item lists*               |  
@@ -71,7 +71,7 @@ PMS            | **+++++**   | - (\\_/) gabening intensifies..                  
 ~ Script generally works on a default Windows 7 install without needing extra .net framework libraries.  
 ~ Try to recompile the vpkmod.exe utility via `tools\build vpkmod.zip` - .bat / .sln provided for .net 3.5+ / VS2008+.  
 
-#### What about non-Windows OS / issues with the builder batch script?  
+#### What about Linux or Mac / issues with the builder batch script?  
 Use the pre-made releases in the __[BUILDS](https://github.com/No-Bling/DOTA/tree/master/BUILDS)__ folder via manual install  
 
 #### How to manually install No-Bling DOTA mod builds in 2019:  

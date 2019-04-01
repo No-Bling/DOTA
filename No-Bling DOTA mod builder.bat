@@ -1,28 +1,29 @@
 @goto init "No-Bling DOTA mod builder"
-:: v2019.03.21: Mars
-:: - making use of VPKMOD tool for very fast in-memory processing with minimal file i/o 
+:: v2019.03.30: (\_/)
+:: - completed Poor Man's Shield against the Bling!
+:: - making use of VPKMOD tool for very fast in-memory processing with minimal file i/o
 :: - auto-update script from github on launch if needed
 :: - language independent mod launch option -tempcontent with dota_tempcontent mod root folder
 ::------------------------------------------------------------------------------------------------------------------------------
 :main No-Bling DOTA G l a n c e V a l u e restoration mod builder                                             edited in SynWrite
 ::------------------------------------------------------------------------------------------------------------------------------
 :: Mod builder gui choices - no need to edit defaults here, script shows a graphical dialog for easier selection
-set/a Base=1                       &rem  1 = tweak buildings - ancients, barracks, towers, effigies, shrines          CORE BUILD
-set/a Weather=1                    &rem  1 = tweak terrain-bundled weather, lights, props
-set/a Seasonal=1                   &rem  1 = tweak Frostivus; the International custom tp, blink etc.
-set/a Menu=1                       &rem  1 = tweak main menu - ui, hero loadout and preview, treasure opening
+set/a Base=0                       &rem  1 = tweak buildings - ancients, barracks, towers, effigies, shrines          CORE BUILD
+set/a Weather=0                    &rem  1 = tweak terrain-bundled weather, lights, props
+set/a Seasonal=0                   &rem  1 = tweak Frostivus; the International custom tp, blink etc.
+set/a Menu=0                       &rem  1 = tweak main menu - ui, hero loadout and preview, treasure opening
 
-set/a Abilities=1                  &rem  1 = revert penguin Frostbite and stuff like that..                           MAIN BUILD
-set/a Hats=1                       &rem  1 = hide cosmetic particles spam - slowly turning into TF2..
-set/a Couriers=1                   &rem  1 = hide courier particles - would be fine.. except people abuse gems on hats
-set/a Wards=1                      &rem  1 = hide ward particles on a couple workshop items
+set/a Abilities=0                  &rem  1 = revert penguin Frostbite and stuff like that..                           MAIN BUILD
+set/a Hats=0                       &rem  1 = hide cosmetic particles spam - slowly turning into TF2..
+set/a Couriers=0                   &rem  1 = hide courier particles - would be fine.. except people abuse gems on hats
+set/a Wards=0                      &rem  1 = hide ward particles on a couple workshop items
 
-set/a MagusCypher=1                &rem  1 = revert Rubick Arcana stolen spells                                       FULL BUILD
-set/a Heroes=1                     &rem  1 = hide default hero particles, helps potato pc
-set/a PMS=0                        &rem  1 = (\_/) gabening intensifies..  
+set/a MagusCypher=0                &rem  1 = revert Rubick Arcana stolen spells                                       FULL BUILD
+set/a Heroes=0                     &rem  1 = hide default hero particles, helps potato pc
+set/a PMS=1                        &rem  1 = (\_/) gabening intensifies..
 
-set/a @update=1                    &rem  1 = update script from github on launch                  0 = stay on outdated script
-set/a @refresh=0                   &rem  1 = force content refresh from pak01_dir.vpk,            0 = reuse cached files
+set/a @update=1                    &rem  1 = update script from github on launch,                 0 = stay on outdated script
+set/a @refresh=0                   &rem  1 = remove old builds and logs,                          0 = keep old builds and logs
 set/a @verbose=0                   &rem  1 = log detailed per-hero item lists ~8k small files,    0 = skip detailed item lists
 ::------------------------------------------------------------------------------------------------------------------------------
 :: Extra script choices - not available in gui so set them here if needed
@@ -32,7 +33,7 @@ set/a @dialog=1                    &rem  1 = show choices gui dialog,           
 set "MOD_FILE=pak01_dir.vpk"       &rem  ? = override here if having multiple mods and needing another name like pak02_dir.vpk
 set "all_choices=Base,Weather,Seasonal,Menu,Abilities,Hats,Couriers,Wards,MagusCypher,Heroes,PMS"
 set "def_choices=Base,Weather,Seasonal,Menu,Abilities,Hats,Couriers,Wards,MagusCypher,Heroes"
-set "version=2019.03.21"
+set "version=2019.03.30"
 
 title AveYo's No-Bling DOTA mod builder v%version%
 set a = free script so no bitching! & for /f delims^=^ eol^= %%. in (
@@ -135,8 +136,12 @@ if defined @dialog call :choices MOD_CHOICES "%all_choices%" "%def_choices%" "No
 :: Process dialog result
 if defined @dialog if not defined MOD_CHOICES call :end ! No choices selected!
 if not defined MOD_CHOICES set "MOD_CHOICES=%@choices%"
+:: Force Hats option if (\_/) selected
+set "gabening=%MOD_CHOICES:PMS=%" & set "intensifies=%MOD_CHOICES:Hats=%"
+if "%gabening%" NEQ "%MOD_CHOICES%" if "%intensifies%" EQU "%MOD_CHOICES%" set "MOD_CHOICES=%MOD_CHOICES%,Hats"
 for %%o in (%all_choices%) do set "%%o="                                                       &REM undefine all initial choices
 for %%o in (%MOD_CHOICES%) do set "%%o=1"                                                  &REM then redefine selected ones to 1
+
 :: Clear script-only temporary options and export choices to registry (including @update value)
 call :unselect @refresh MOD_CHOICES
 call :unselect @verbose MOD_CHOICES
@@ -154,7 +159,7 @@ echo  User profile   = %STEAMDATA%
 echo  User options   = %LOPTIONS%
 echo  Content cache  = %CONTENT%\no-bling
 echo  Script options = @update:%@update%  @refresh:%@refresh%  @verbose:%@verbose%  @install:%@install%  @dialog:%@dialog%
-echo  Script version = v%version%  Latest version = v%online%  -  https://github.com/No-Bling/DOTA
+echo  Script version = v%version%  Online version = v%online%  -  https://github.com/No-Bling/DOTA
 echo.
 
 :: Prepare directories
@@ -163,8 +168,8 @@ pushd "%ROOT%"
 set "BUILDS=%CD%\BUILDS\%MOD_CHOICES:,=_%"
 mkdir "%BUILDS%" >nul 2>nul & mkdir "%ROOT%\log" >nul 2>nul
 set ".="%ROOT%\src" "%TEMP%\no-bling""
-if defined @refresh set ".=%.% "%CONTENT%\no-bling""                                            &REM clear content only @refresh
-::if defined @refresh if defined @verbose set ".=%.% "%ROOT%\log""             &REM no need to clear ~8k log files each @refresh
+if defined @refresh set ".=%.% "%CONTENT%\no-bling" "%ROOT%\src" "%ROOT%\BUILDS""               &REM clear content only @refresh
+if defined @refresh if defined @verbose set ".=%.%  "%ROOT%\log""              &REM clear ~8k log files each @verbose + @refresh
 for %%i in (%.%) do ( del /f/s/q "%%~i" & rmdir /s/q "%%~i" & mkdir "%%~i" ) >nul 2>nul
 call :clearline 3
 
@@ -172,6 +177,9 @@ call :clearline 3
 vpkmod -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\models.lst" -e "vmdl_c" -s
 vpkmod -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\particles.lst" -e "vpcf_c" -s
 vpkmod -i "%DOTA%\dota\pak01_dir.vpk" -o "%ROOT%\src" -e "txt" -p "scripts/items/items_game.txt"
+mkdir "%ROOT%\src\scripts\npc" >nul 2>nul
+copy "%DOTA%\dota\scripts\npc\npc_heroes.txt" "%ROOT%\src\scripts\npc" >nul 2>nul
+copy "%DOTA%\dota\scripts\npc\npc_units.txt" "%ROOT%\src\scripts\npc" >nul 2>nul
 
 call :mcolor 70 " Processing items_game.txt and particles.lst ... " c0. " ETA: 10-60s "
 if defined @verbose echo Writing per-hero / category slice logs and verbose no_bling.txt to log folder...
