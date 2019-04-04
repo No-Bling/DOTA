@@ -1,5 +1,6 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                    edited in SynWrite
-// v2019.03.30: (\_/)
+// v2019.04.04: (\_/)
+// - quickfix Abilities
 // - completed Poor Man's Shield against the Bling!
 // - revised categories and extended loadout particles support                                                 
 // - output unified src.lst for in-memory modding via VPKMOD tool
@@ -35,8 +36,6 @@ No_Bling=function(choices, verbose, timers){
   // Quit early if no choice selected
   var UCHOICE = (BASE || WEATHER || SEASONAL || MENU || ABILITIES || HATS || COURIERS || WARDS || MAGUSCYPHER || HEROES || PMS);
   if (!UCHOICE && !VERBOSE) w.quit();
-
-  // 
 
   // Initiate filter variables
   var ROOT = path.normalize(path.dirname(process.argv[1]));                                                    // Root directory
@@ -413,7 +412,7 @@ No_Bling=function(choices, verbose, timers){
     if (!has_modifier) continue;
 
     // Separate Hats from Abilities out of the ambiguous visuals.asset_modifier.type="particle"
-    if (maybe) for (hat in maybe_ability) {
+    for (hat in maybe_ability) {
       if (maybe_ability[hat] in maybe_hat) {
         if (maybe_ability[hat] in mods["Heroes"]) {
           mods["Hats"][hat]=maybe_ability[hat];
