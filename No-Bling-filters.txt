@@ -1,6 +1,6 @@
 "no_bling_filters"
 {
- ":version" "2019.03.30"
+ ":version" "2019.04.14"
  //  Manual filters have been decoupled from the .js script into "No-Bling-filters.txt"
  //  To auto-update script without overwriting changes, make a "No-Bling-filters-personal.txt" copy and edit that instead!
  //  These suppliment "items_game.txt" auto-replacing rules with per category file replacement vdf modifier-asset pairs:
@@ -242,6 +242,8 @@
   // ..but hide child-effects
   "particles/econ/items/naga/naga_ti8_immortal_tail/naga_ti8_immortal_riptide_outer_wave.vpcf"  "+"
   "particles/econ/items/naga/naga_ti8_immortal_tail/naga_ti8_immortal_riptide_spray.vpcf"  "+"
+  // keep PA arcana blood splatter
+  "particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_screen_blood_splatter.vpcf"  "particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_screen_blood_splatter_b_lv.vpcf" 
   // keep PUDGE arcana elemental dismember
   "particles/units/heroes/hero_pudge/pudge_dismember_electric.vpcf"  "--"
   "particles/units/heroes/hero_pudge/pudge_dismember_ethereal.vpcf"  "--"
@@ -414,9 +416,11 @@
   "particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot_e.vpcf"  "+"
   //"particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot_f.vpcf"  "+"
   "particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot_g.vpcf"  "+"
-  // replace workshop ambient
-  "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_left.vpcf"  "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade_2.vpcf"
-  "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_right.vpcf"  "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf"
+  // remove TB workshop ambient (or replace if uncommenting)
+  //"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_left.vpcf"  "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade_2.vpcf"
+  //"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_right.vpcf"  "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf"
+  "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_left.vpcf"  "+"
+  "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_right.vpcf"  "+"
  }
  "Couriers"
  {

@@ -1,4 +1,4 @@
- No-Bling DOTA mod v2019.04.05 choices:
+ No-Bling DOTA mod v2019.04.14 choices:
  Base,Weather,Seasonal,Menu,Abilities,Hats,Couriers,Wards,MagusCypher,Heroes
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
@@ -836,7 +836,7 @@ particles/econ/items/phantom_assassin/pa_ti8_immortal_head/pa_ti8_immortal_stifl
 particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_death.vpcf_c?particles/units/heroes/hero_phantom_assassin/phantom_assassin_death.vpcf_c
 particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_phantom_strike_end.vpcf_c?particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf_c
 particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_phantom_strike_start.vpcf_c?particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_start.vpcf_c
-particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_screen_blood_splatter.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_screen_blood_splatter.vpcf_c?particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_screen_blood_splatter_b_lv.vpcf_c
 particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_impact_dagger_arcana.vpcf_c?particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact_dagger.vpcf_c
 particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_impact_dagger_mechanical_arcana.vpcf_c?particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact_dagger_mechanical.vpcf_c
 particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_mechanical_arcana_swoop.vpcf_c?particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact_mechanical.vpcf_c
@@ -2225,8 +2225,8 @@ particles/models/items/terrorblade/endless_purgatory_weapon/endless_purgatory_we
 particles/models/items/terrorblade/knight_of_foulfell_terrorblade_weapon/knight_of_foulfell_terrorblade_weapon_fx.vsnap_c?particles/models/heroes/terrorblade/weapon.vsnap_c
 particles/models/items/terrorblade/marauders_weapon/marauders_weapon_fx.vsnap_c?particles/models/heroes/terrorblade/weapon.vsnap_c
 particles/models/items/underlord/ti8_underlord_petrifying_smith_weapon_v4/ti8_underlord_petrifying_smith_weapon_v4_fx.vsnap_c?particles/models/heroes/abyssal_underlord/underlord_weapon_fx.vsnap_c
-particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_left.vpcf_c?particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade_2.vpcf_c
-particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_right.vpcf_c?particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf_c
+particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_left.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_right.vpcf_c?particles/dev/empty_particle.vpcf_c
 [Couriers]
 particles/econ/courier/courier_amaterasu/courier_amaterasu_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/courier/courier_axolotl_ambient/courier_axolotl_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c

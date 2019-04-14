@@ -33,7 +33,7 @@ set/a @dialog=1                    &rem  1 = show choices gui dialog,           
 set "MOD_FILE=pak01_dir.vpk"       &rem  ? = override here if having multiple mods and needing another name like pak02_dir.vpk
 set "all_choices=Base,Weather,Seasonal,Menu,Abilities,Hats,Couriers,Wards,MagusCypher,Heroes,PMS"
 set "def_choices=Base,Weather,Seasonal,Menu,Abilities,Hats,Couriers,Wards,MagusCypher,Heroes"
-set "version=2019.04.05"
+set "version=2019.04.14"
 
 title AveYo's No-Bling DOTA mod builder v%version%
 set a = free script so no bitching! & for /f delims^=^ eol^= %%. in (

@@ -1,4 +1,4 @@
- No-Bling DOTA mod v2019.03.30 choices:
+ No-Bling DOTA mod v2019.04.14 choices:
  Base,Weather,Seasonal,Menu
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last two years...
@@ -204,6 +204,7 @@ particles/econ/courier/courier_roshan_desert_sands/baby_roshan_desert_sands_rock
 particles/econ/courier/courier_squire/courier_squire_ambient_flying_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/courier/courier_squire/courier_squire_ambient_wings_glow_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/events/ti8/ti8_hero_effect_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/alchemist/alchemist_aurelian_weapon/alchemist_loadout_aurelian.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/bloodseeker/bloodseeker_ti7/bloodseeker_thirst_stacks_ti7_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_loadout_debut_dust_hit.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_loadout_line_sparks.vpcf_c?particles/dev/empty_particle.vpcf_c
