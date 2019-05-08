@@ -23,6 +23,9 @@ Don't worry, this is a perfectly safe, well intended, hats friendly, good behavi
 optimally swapping just original Valve authored files with no 3^rd party content alteration whatsoever,  
 and whitelist-able at a glance...  
 
+#### What's new in v2019.05.08:  BATTLEPASS  
+~ adjusted manual filters and refreshed pre-made builds  
+
 #### What's new in v2019.03.30:  (\\_/)  
 ~ *completed Poor Man's Shield against the Bling!*  
 ~ BAT: __making use of in-house VPKMOD tool for very fast in-memory processing with minimal file i/o__  
@@ -46,12 +49,12 @@ Weather        | **++**      | - Terrain - bundled weather, lights, props       
 Seasonal       | **+++**     | - Event Rewards: Frostivus; the International custom tp, blink etc.      |  
 Menu           | **+**       | - Menu - ui, hero loadout and preview, treasure opening, potato tweaks   |  
 .            . | .         . | .                                                                      . | .       .  
-Abilities      | **+++++**   | - Custom Spells: penguin Frostbite and stuff like that..                 |   MAIN BUILD 
+Abilities      | **+++++**   | - Custom Spells: penguin Frostbite and stuff like that..                 |   MAIN BUILD  
 Hats           | **++++**    | - Workshop Hats: cosmetic particles spam - slowly turning into TF2..     |  
 Couriers       | **+++**     | - Custom Couriers: these are fine.. until ~~Fy~~ someone abuses gems on hats |  
 Wards          | **++**      | - Custom Wards: only a few make the ward and the sentry item similar     |  
 .            . | .         . | .                                                                      . | .       .  
-HEROES         | **+/-**     | - Default Hats: hero-bundled effects  - helps potato pc                  |   FULL BUILD 
+HEROES         | **+/-**     | - Default Hats: hero-bundled effects  - helps potato pc                  |   FULL BUILD  
 MagusCypher    | **++++**    | - Stolen spells via Rubick Arcana                                        |  
 PMS            | **+++++++** | - (\\_/) gabening intensifies..                                          |  
 .            . | .         . | .                                                                      . | .      .  

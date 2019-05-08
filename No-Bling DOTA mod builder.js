@@ -1,4 +1,6 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                    edited in SynWrite
+// v2019.05.08: BATTLEPASS
+// - activate TI9 event
 // v2019.04.04: (\_/)
 // - quickfix Abilities
 // - completed Poor Man's Shield against the Bling!
@@ -10,8 +12,8 @@
 // No_Bling JS main function that does the processing of items_game.txt heavy lifting
 //------------------------------------------------------------------------------------------------------------------------------
 No_Bling=function(choices, verbose, timers){
-  var ACTIVE_EVENT = "EVENT_ID_INTERNATIONAL_2018";          // Hard-coded current event (for the Seasonal category)
-  var PAST_EVENT   = "EVENT_ID_INTERNATIONAL_2017";          // Hard-coded older event (for replay viewing)
+  var ACTIVE_EVENT = "EVENT_ID_INTERNATIONAL_2019";          // Hard-coded current event (for the Seasonal category)
+  var PAST_EVENT   = "EVENT_ID_INTERNATIONAL_2018";          // Hard-coded older event (for replay viewing)
   // Parse arguments
   var BASE         = (choices.indexOf("Base") > -1);         // - tweak buildings - barracks, effigies, shrines       CORE BUILD
   var WEATHER      = (choices.indexOf("Weather") > -1);      // - tweak weather bundled with terrains, lights, props

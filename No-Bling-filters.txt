@@ -1,6 +1,7 @@
 "no_bling_filters"
 {
- ":version" "2019.04.14"
+ ":version" "2019.05.08"
+ //  - moved base hero abilities tweaks to Heroes category
  //  Manual filters have been decoupled from the .js script into "No-Bling-filters.txt"
  //  To auto-update script without overwriting changes, make a "No-Bling-filters-personal.txt" copy and edit that instead!
  //  These suppliment "items_game.txt" auto-replacing rules with per category file replacement vdf modifier-asset pairs:
@@ -153,7 +154,8 @@
   "particles/ui/ui_rank_tier_ambient.vpcf"  "+"
   "particles/ui/ui_treasure_opening.vpcf"  "+"
   // Loadout
-  "particles/econ/events/ti8/emblem_loadout_ambient_ti8.vpcf"  "-"
+  "particles/econ/events/ti9/emblem_loadout_ambient_ti9.vpcf"  "+"
+  "particles/econ/events/ti8/emblem_loadout_ambient_ti8.vpcf"  "+"
   "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_loadout_debut_dust_hit.vpcf"  "+"
   "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_loadout_line_sparks.vpcf"  "+"
   "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_loadout_rare_model.vpcf"  "+"
@@ -178,63 +180,6 @@
  }
  "Abilities"
  {
-  // hide DW cast child-effects
-  "particles/units/heroes/hero_dark_willow/dark_willow_bramble_cast_smoke.vpcf"  "+"
-  "particles/units/heroes/hero_dark_willow/dark_willow_bramble_cast_throw.vpcf"  "+"
-  // hide DW wraith child-effects
-  "particles/units/heroes/hero_dark_willow/dark_willow_bramble_wraith_ember.vpcf"  "+"
-  "particles/units/heroes/hero_dark_willow/dark_willow_bramble_wraith_swirl.vpcf"  "+"
-  // hide DW terrorize child-effects
-  "particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_flash_debris.vpcf"  "+"
-  "particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_ring_glow.vpcf"  "+"
-  "particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_ring_smoke.vpcf"  "+"
-  // FIX empty DP ultimate spirits healing
-  "particles/units/heroes/hero_death_prophet/death_prophet_spirit_glow.vpcf"  "-"
-  // hide many GRIMSTROKE child-effects
-  "particles/units/heroes/hero_grimstroke/grimstroke_cast2_brush_blur_splash.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_cast2_ground_dark_spray.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_cast2_ground_ember.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_cast2_ground_spray.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_cast_soulchain_arc.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_cast_soulchain_arc_energy.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_cast_soulchain_embers.vpcf"  "+"
-  //"particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_dmg_steam.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_proj_endcap_spray_up.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_proj_ground_spray.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_proj_ink_core.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_proj_ink_spray.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_aoe_ground_ink.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_aoe_ground_splatter.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_aoe_ground_steam.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_aoe_ring_flare.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_buff_drips.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_buff_ground_smoke.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_buff_ground_splash.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_phantom_ambient_energy.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_phantom_ambient_ground_spray.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_phantom_ambient_inkdrops.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_phantom_attacked_splash.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_phantom_death_ground_smoke.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_phantom_return_rope_trail_smoke.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_phantom_return_start.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_soulchain_ground_chains_glow.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_soulchain_ground_splash.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_soulchain_main_embers.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_soulchain_main_glow.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_soulchain_marker_flames.vpcf"  "+"
-  "particles/units/heroes/hero_grimstroke/grimstroke_soulchain_tether_inkdrop.vpcf"  "+"
-  // FIX call down GYRO on potato pc
-  "particles/units/heroes/hero_gyrocopter/gyro_call_down_explosion_impact_a.vpcf"  "particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_call_down_explosion_impact_a.vpcf"
-  // remove JAKIRO ready glow
-  "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_ready_glow.vpcf"  "+"
-  "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_ready_glow_b.vpcf"  "+"
-  // hide MARS child-effects
-  "particles/units/heroes/hero_mars/mars_spear_smoke_model.vpcf" "particles/units/heroes/hero_mars/mars_spear_smoke_bloom.vpcf"
-  "particles/units/heroes/hero_mars/mars_shield_bash_crit_smoke.vpcf" "+"
-  "particles/units/heroes/hero_mars/mars_shield_bash_smoke.vpcf" "+"
-  "particles/units/heroes/hero_mars/mars_shield_bash_rope.vpcf" "+"
-  "particles/units/heroes/hero_mars/mars_arena_of_blood_decal.vpcf" "+"
-  "particles/units/heroes/hero_mars/mars_arena_of_blood_glow.vpcf" "+"
   // hide MIRANA embers
   "particles/econ/items/mirana/mirana_ti8_immortal_mount/mirana_ti8_immortal_leap_trail_embers.vpcf"  "+"
   // keep ti8 NAGA riptide..
@@ -244,25 +189,9 @@
   "particles/econ/items/naga/naga_ti8_immortal_tail/naga_ti8_immortal_riptide_spray.vpcf"  "+"
   // keep PA arcana blood splatter
   "particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_screen_blood_splatter.vpcf"  "particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_screen_blood_splatter_b_lv.vpcf" 
-  // keep PUDGE arcana elemental dismember
-  "particles/units/heroes/hero_pudge/pudge_dismember_electric.vpcf"  "--"
-  "particles/units/heroes/hero_pudge/pudge_dismember_ethereal.vpcf"  "--"
-  "particles/units/heroes/hero_pudge/pudge_dismember_fire.vpcf"  "--"
-  "particles/units/heroes/hero_pudge/pudge_dismember_goo.vpcf"  "--"
-  "particles/units/heroes/hero_pudge/pudge_dismember_ice.vpcf"  "--"
-  "particles/units/heroes/hero_pudge/pudge_dismember_motor.vpcf"  "--"
-  "particles/units/heroes/hero_pudge/pudge_dismember_null.vpcf"  "--"
-  "particles/units/heroes/hero_pudge/pudge_dismember_stone.vpcf"  "--"
-  "particles/units/heroes/hero_pudge/pudge_dismember_wood.vpcf"  "--"
   // keep ti8 QOP debuff
   "particles/econ/items/queen_of_pain/qop_ti8_immortal/queen_ti8_golden_shadow_strike_debuff.vpcf"  "-"
   "particles/econ/items/queen_of_pain/qop_ti8_immortal/queen_ti8_shadow_strike_debuff.vpcf"  "-"
-  // remove TA trap bling
-  "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_core.vpcf"  "+"
-  "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_bits.vpcf" "+"
-  "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_core_rays.vpcf" "+"
-  "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_rings.vpcf" "+" //Active:  26
-  "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_rings_powerup.vpcf" "+" //Active:  26
  }
  "Hats"
  {
@@ -466,10 +395,22 @@
   "particles/units/heroes/hero_disruptor/disruptor_ambient_sparks.vpcf"  "+"
   "particles/units/heroes/hero_disruptor/disruptor_ambient_sparks_offsetr.vpcf"  "+"
   "particles/units/heroes/hero_disruptor/disruptor_ambient_red.vpcf"  "+"
+  // hide DW cast child-effects
+  "particles/units/heroes/hero_dark_willow/dark_willow_bramble_cast_smoke.vpcf"  "+"
+  "particles/units/heroes/hero_dark_willow/dark_willow_bramble_cast_throw.vpcf"  "+"
+  // hide DW wraith child-effects
+  "particles/units/heroes/hero_dark_willow/dark_willow_bramble_wraith_ember.vpcf"  "+"
+  "particles/units/heroes/hero_dark_willow/dark_willow_bramble_wraith_swirl.vpcf"  "+"
+  // hide DW terrorize child-effects
+  "particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_flash_debris.vpcf"  "+"
+  "particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_ring_glow.vpcf"  "+"
+  "particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_ring_smoke.vpcf"  "+"
   // keep DOOM flame..
   "particles/units/heroes/hero_doom_bringer/doom_bringer_ambient.vpcf"  "-"
   // ..but replace child-effects
   "particles/units/heroes/hero_doom_bringer/doom_bringer_ambient_b.vpcf"  "+"
+  // FIX empty DP ultimate spirits healing
+  "particles/units/heroes/hero_death_prophet/death_prophet_spirit_glow.vpcf"  "-"
   // FIX empty DROW bowstring
   "particles/units/heroes/hero_drow/drow_bowstring.vpcf"  "-"
   // keep EMBER head fx
@@ -500,10 +441,48 @@
   "particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient_rope.vpcf"  "+"
   "particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient_rope_rev.vpcf"  "+"
   "particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient_spray.vpcf"  "+"
+  // hide many GRIMSTROKE child-effects
+  "particles/units/heroes/hero_grimstroke/grimstroke_cast2_brush_blur_splash.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_cast2_ground_dark_spray.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_cast2_ground_ember.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_cast2_ground_spray.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_cast_soulchain_arc.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_cast_soulchain_arc_energy.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_cast_soulchain_embers.vpcf"  "+"
+  //"particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_dmg_steam.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_proj_endcap_spray_up.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_proj_ground_spray.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_proj_ink_core.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_proj_ink_spray.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_aoe_ground_ink.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_aoe_ground_splatter.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_aoe_ground_steam.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_aoe_ring_flare.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_buff_drips.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_buff_ground_smoke.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_buff_ground_splash.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_phantom_ambient_energy.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_phantom_ambient_ground_spray.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_phantom_ambient_inkdrops.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_phantom_attacked_splash.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_phantom_death_ground_smoke.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_phantom_return_rope_trail_smoke.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_phantom_return_start.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_soulchain_ground_chains_glow.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_soulchain_ground_splash.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_soulchain_main_embers.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_soulchain_main_glow.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_soulchain_marker_flames.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_soulchain_tether_inkdrop.vpcf"  "+"
+  // FIX call down GYRO on potato pc
+  "particles/units/heroes/hero_gyrocopter/gyro_call_down_explosion_impact_a.vpcf"  "particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_call_down_explosion_impact_a.vpcf"
   // FIX empty GIRO propeller radius..
   "particles/units/heroes/hero_gyrocopter/gyro_ambient.vpcf"  "-"
   // ..but replace child-effects
   "particles/units/heroes/hero_gyrocopter/gyro_ambient_smokestack.vpcf"  "+"
+  // remove JAKIRO ready glow
+  "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_ready_glow.vpcf"  "+"
+  "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_ready_glow_b.vpcf"  "+"
   // FIX empty JUGGER healing ward
   "particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf"  "-"
   // hide LICH iconic ball child-effects
@@ -515,7 +494,14 @@
   "particles/units/heroes/hero_lich/lich_ambient_frost_b.vpcf"  "+"
   "particles/units/heroes/hero_lich/lich_ambient_frost_c.vpcf"  "+"
   "particles/units/heroes/hero_lich/lich_ambient_frost_d.vpcf"  "+"
-  // FIX empty DUSA bowstring
+  // hide MARS child-effects
+  "particles/units/heroes/hero_mars/mars_spear_smoke_model.vpcf" "particles/units/heroes/hero_mars/mars_spear_smoke_bloom.vpcf"
+  "particles/units/heroes/hero_mars/mars_shield_bash_crit_smoke.vpcf" "+"
+  "particles/units/heroes/hero_mars/mars_shield_bash_smoke.vpcf" "+"
+  "particles/units/heroes/hero_mars/mars_shield_bash_rope.vpcf" "+"
+  "particles/units/heroes/hero_mars/mars_arena_of_blood_decal.vpcf" "+"
+  "particles/units/heroes/hero_mars/mars_arena_of_blood_glow.vpcf" "+"
+  // FIX empty MEDUSA bowstring
   "particles/units/heroes/hero_medusa/medusa_bow.vpcf"  "-"
   // FIX empty MORPH iconic vortex..
   "particles/units/heroes/hero_morphling/morphling_ambient_new.vpcf"  "-"
@@ -547,6 +533,16 @@
   "particles/units/heroes/hero_pudge/pudge_ambient_flies.vpcf"  "--"
   // Keep PUDGE hook streak globally
   "particles/units/heroes/hero_pudge/pudge_hook_streak.vpcf"  "--"
+  // keep PUDGE arcana elemental dismember
+  "particles/units/heroes/hero_pudge/pudge_dismember_electric.vpcf"  "--"
+  "particles/units/heroes/hero_pudge/pudge_dismember_ethereal.vpcf"  "--"
+  "particles/units/heroes/hero_pudge/pudge_dismember_fire.vpcf"  "--"
+  "particles/units/heroes/hero_pudge/pudge_dismember_goo.vpcf"  "--"
+  "particles/units/heroes/hero_pudge/pudge_dismember_ice.vpcf"  "--"
+  "particles/units/heroes/hero_pudge/pudge_dismember_motor.vpcf"  "--"
+  "particles/units/heroes/hero_pudge/pudge_dismember_null.vpcf"  "--"
+  "particles/units/heroes/hero_pudge/pudge_dismember_stone.vpcf"  "--"
+  "particles/units/heroes/hero_pudge/pudge_dismember_wood.vpcf"  "--"
    // FIX PUGNA empty ward
   "particles/units/heroes/hero_pugna/pugna_ward_ambient.vpcf"  "-"
   //"particles/units/heroes/hero_pugna/pugna_ward_ambient.vpcf"  "--"
@@ -568,6 +564,12 @@
   "particles/units/heroes/hero_templar_assassin/templar_assassin_ambient_hands_glow.vpcf"  "+" //Active:  15
   "particles/units/heroes/hero_templar_assassin/templar_assassin_ambient_hands_sparks.vpcf"  "+" //Active:  11
   "particles/units/heroes/hero_templar_assassin/templar_assassin_ambient_electric.vpcf" "+" //Active:   5
+  // remove TA trap bling
+  "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_core.vpcf"  "+"
+  "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_bits.vpcf" "+"
+  "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_core_rays.vpcf" "+"
+  "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_rings.vpcf" "+" //Active:  26
+  "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_rings_powerup.vpcf" "+" //Active:  26
   // FIX TUSK empty sigil
   "particles/units/heroes/hero_tusk/tusk_frozen_sigil.vpcf"  "-"
   // reverse lookup hide WARLOCK golem fire
