@@ -1,6 +1,7 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                    edited in SynWrite
-// v2019.05.08: BATTLEPASS
-// - activate TI9 event
+// v2019.06.01: Back in Beta
+// - revised categories
+// - loadout and taunt animations support
 // v2019.04.04: (\_/)
 // - quickfix Abilities
 // - completed Poor Man's Shield against the Bling!
@@ -12,31 +13,31 @@
 // No_Bling JS main function that does the processing of items_game.txt heavy lifting
 //------------------------------------------------------------------------------------------------------------------------------
 No_Bling=function(choices, verbose, timers){
-  var ACTIVE_EVENT = "EVENT_ID_INTERNATIONAL_2019";          // Hard-coded current event (for the Seasonal category)
-  var PAST_EVENT   = "EVENT_ID_INTERNATIONAL_2018";          // Hard-coded older event (for replay viewing)
+  var ACTIVE_EVENT = "EVENT_ID_INTERNATIONAL_2019";      // Hard-coded current event (for the Seasonal category)
+  var PAST_EVENT   = "EVENT_ID_INTERNATIONAL_2018";      // Hard-coded older event (for replay viewing)
   // Parse arguments
-  var BASE         = (choices.indexOf("Base") > -1);         // - tweak buildings - barracks, effigies, shrines       CORE BUILD
-  var WEATHER      = (choices.indexOf("Weather") > -1);      // - tweak weather bundled with terrains, lights, props
-  var SEASONAL     = (choices.indexOf("Seasonal") > -1);     // - tweak Frostivus; the International custom tp, blink etc.
-  var MENU         = (choices.indexOf("Menu") > -1);         // - tweak menu - ui, hero loadout and preview, treasure opening
+  var HATS       = (choices.indexOf("Hats") > -1);       // - hide cosmetic particles spam slowly turning into TF2..  CORE BUILD
+  var COURIERS   = (choices.indexOf("Couriers") > -1);   // - couriers particles are fine.. until one abuses gems on hats
+  var WARDS      = (choices.indexOf("Wards") > -1);      // - hide ward particles on a couple workshop items
+  var TERRAIN    = (choices.indexOf("Terrain") > -1);    // - tweak ancients, towers, effigies, shrines, bundled weather
+  var MENU       = (choices.indexOf("Menu") > -1);       // - tweak menu - ui, hero loadout and preview, treasure opening
 
-  var ABILITIES    = (choices.indexOf("Abilities") > -1);    // - revert penguin Frostbite and stuff like that..      MAIN BUILD
-  var HATS         = (choices.indexOf("Hats") > -1);         // - hide cosmetic particles spam - slowly turning into TF2..
-  var COURIERS     = (choices.indexOf("Couriers") > -1);     // - couriers particles are fine.. until one abuses gems on hats
-  var WARDS        = (choices.indexOf("Wards") > -1);        // - hide ward particles on a couple workshop items
+  var ABILITIES  = (choices.indexOf("Abilities") > -1);  // - revert penguin Frostbite and stuff like that..          MAIN BUILD
+  var SEASONAL   = (choices.indexOf("Seasonal") > -1);   // - tweak the International custom tp, blink, vials etc.
+  var TAUNTS     = (choices.indexOf("Taunts") > -1);     // - ceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeb
 
-  var MAGUSCYPHER  = (choices.indexOf("MagusCypher") > -1);  // - revert Rubick Arcana stolen spells                  FULL BUILD
-  var HEROES       = (choices.indexOf("Heroes") > -1);       // - hide default hero particles, helps potato pc
-  var PMS          = (choices.indexOf("PMS") > -1);          // - gabening intensifies..
+  var ABILITWEAK = (choices.indexOf("AbiliTweak") > -1); // - revert Rubick Arcana stolen spells, trim effects        FULL BUILD         
+  var HEROTWEAK  = (choices.indexOf("HeroTweak") > -1);  // - hide default hero particles, helps potato pc            
+  var GLANCE     = (choices.indexOf("Glance") > -1);     // - gabening intensifies..
 
-  var VERBOSE      = (verbose === "1");                      // Export detailed per-hero lists and log items in no_bling.txt
-  var MEASURE      = (timers === "1");                       // Timers to identify long operations that need optimization
+  var VERBOSE    = (verbose === "1");                    // Export detailed per-hero lists and log items in no_bling.txt
+  var MEASURE    = (timers === "1");                     // Timers to identify long operations that need optimization
 
   var LOG = function(str){ if (VERBOSE) {w.echo(str);} }, t; if (!MEASURE) timer = function(f){ return { end:function(){} }; };
   w.echo(""+run+" @ "+engine+((jscript) ? ": Try the faster Node.js engine" : ""));
 
   // Quit early if no choice selected
-  var UCHOICE = (BASE || WEATHER || SEASONAL || MENU || ABILITIES || HATS || COURIERS || WARDS || MAGUSCYPHER || HEROES || PMS);
+  var UCHOICE = (HATS||COURIERS||WARDS||TERRAIN||MENU||ABILITIES||SEASONAL||TAUNTS||HEROTWEAK||ABILITWEAK||GLANCE);
   if (!UCHOICE && !VERBOSE) w.quit();
 
   // Initiate filter variables
@@ -53,9 +54,9 @@ No_Bling=function(choices, verbose, timers){
                   ward: "wards", tool: "seasonal", relic: "seasonal", emblem: "seasonal", treasure_chest: "seasonal"
                 };
   var logs = { "wearable_items": {}, "default_items": {}, "couriers": {}, "wards": {}, "seasonal": {}, "other": {} };
-  var mods = { "Base": {}, "Weather": {}, "Seasonal": {}, "Menu": {},
-               "Abilities": {}, "Hats": {}, "Couriers": {}, "Wards": {},
-               "MagusCypher": {}, "Heroes": {}, "PMS": {}, "Other": {}
+  var mods = { "Hats": {}, "Couriers": {}, "Wards": {}, "Terrain": {}, "Menu": {},
+               "Abilities": {}, "Seasonal": {}, "Taunts": {}, 
+               "AbiliTweak": {}, "HeroTweak": {}, "Glance": {}, "Other": {}
              };
   var filters = {}, models = {}, heroes = {}, npc_classes = {}, npc_models = {};
   for (mcat in mods) filters[mcat] = {};
@@ -72,18 +73,22 @@ No_Bling=function(choices, verbose, timers){
     for (b in bling_filters[bcat]) {
       switch (bling_filters[bcat][b]) {
         case "+":
-        //if (PMS && bcat == "Hats") break;
-          filters[bcat][b] = (b.lastIndexOf(".vmdl") > -1) ? "models/development/invisiblebox.vmdl" : off;
-          break;                                                                              // replace "file" with empty asset
+        //if (GLANCE && bcat == "Hats") break;
+          var fext = b.slice(-5);                                                    // replace "file" with suitable empty asset
+          if (fext == ".vpcf") filters[bcat][b] = "particles/dev/empty_particle.vpcf";
+          else if (fext == ".vmdl") filters[bcat][b] = "models/development/invisiblebox.vmdl";
+          else if (fext == "vanim") filters[bcat][b] = ".nix";
+          else if (fext == ".vsnd") filters[bcat][b] = "sounds/null.vsnd";
+          break;                                                                              
         case "++":
           REV_MOD[b] = 1;                            // replace all modifiers referencing "file" with off asset (reverse lookup)
           break;
         case "-":
-          if (PMS && bcat == "Hats") break;
+          if (GLANCE && bcat == "Hats") break;
           KEEP_FILE[b] = 1;                          // keep "file"
           break;
         case "--":
-          if (PMS && bcat == "Abilities") break;
+          if (GLANCE && bcat == "Abilities") break;
           REV_KEEP[b] = 1;                           // keep all modifiers referencing "file" (reverse-lookup)
           break;
         case "@":
@@ -106,6 +111,12 @@ No_Bling=function(choices, verbose, timers){
   if (VERBOSE) t = timer("Read particles.lst");
   var particles_src = path.normalize(path.join(ROOT, "src\\particles.lst"));
   var particles = fs.readFileSync(particles_src, DEF_ENCODING).split("\\").join("/").split("_c\r\n");
+  if (VERBOSE) t.end();
+
+  // Read anim.lst
+  if (VERBOSE) t = timer("Read anim.lst");
+  var anim_src = path.normalize(path.join(ROOT, "src\\anim.lst"));
+  var anim = fs.readFileSync(anim_src, DEF_ENCODING).split("\\").join("/").split("_c\r\n");
   if (VERBOSE) t.end();
 
   // Read models.lst
@@ -230,7 +241,7 @@ No_Bling=function(choices, verbose, timers){
     }
 
     // gabening intensifies..
-    if (PMS && model) { //&& npc 
+    if (GLANCE && model) { //&& npc 
       model1 = items[i].model_player1 || ""; model2 = items[i].model_player2 || ""; model3 = items[i].model_player3 || "";
       if (prefab === "default_item") {
         if (!models[npc]) models[npc] = {};
@@ -243,14 +254,14 @@ No_Bling=function(choices, verbose, timers){
       } else if (prefab === "wearable") {
         if (typeof models[npc] == "object" && typeof models[npc][slot] == "object" && typeof models[npc][slot]["m"] == "string")
         {
-          mods["PMS"][model]=models[npc][slot]["m"];
-          if (model1) mods["PMS"][model1] = models[npc][slot]["m1"];
-          if (model2) mods["PMS"][model2] = models[npc][slot]["m2"];
-          if (model3) mods["PMS"][model3] = models[npc][slot]["m3"];
+          mods["Glance"][model]=models[npc][slot]["m"];
+          if (model1) mods["Glance"][model1] = models[npc][slot]["m1"];
+          if (model2) mods["Glance"][model2] = models[npc][slot]["m2"];
+          if (model3) mods["Glance"][model3] = models[npc][slot]["m3"];
 //        LOG(npc+"-"+slot+":MW "+model+" = "+models[npc][slot]["m"]);
         } else {
 //        if ("models/heroes/"+hero+"/"+npc+"_"+slot+".vmdl" in models) LOG(npc+"FOOOOOOOOOOOOOOOOOUND");
-          mods["PMS"][model] = "models/development/invisiblebox.vmdl";
+          mods["Glance"][model] = "models/development/invisiblebox.vmdl";
 //        LOG(npc+"-"+slot+":M? "+model+" = "+"models/development/invisiblebox.vmdl");
         }
       }
@@ -270,7 +281,7 @@ No_Bling=function(choices, verbose, timers){
 
       // OTHER - PARTICLE SNAPSHOTS
       if (vtype === "particle_snapshot") {
-        mods["Hats"][modifier]=asset; //cat="Other";
+        mods["Other"][modifier]=asset; cat="Other";
         LOG("snapshot: "+modifier);
         continue;
       }
@@ -278,25 +289,25 @@ No_Bling=function(choices, verbose, timers){
       // DEFINITELY HATS
       if (vtype === "additional_wearable") {
         if (asset.lastIndexOf(".vpcf") > -1) mods["Hats"][asset] = off;
-        else if (asset.lastIndexOf(".vmdl") > -1) mods["PMS"][asset] = "models/development/invisiblebox.vmdl";
+        else if (asset.lastIndexOf(".vmdl") > -1) mods["Glance"][asset] = "models/development/invisiblebox.vmdl";
         LOG("additional: "+path.basename(asset));
         continue; 
       }
 
-      // PMS - GABENING INTENSIFIES..
-      var has_pms = (PMS && vtype in {hero_model_change:1, entity_model:1, entity_clientside_model:1});
-      if (has_pms) {
+      // GLANCE - GABENING INTENSIFIES..
+      var has_glance = (GLANCE && vtype in {hero_model_change:1, entity_model:1, entity_clientside_model:1});
+      if (has_glance) {
         if (asset.lastIndexOf(".vmdl") > -1) {
-          cat="PMS"; mods["PMS"][modifier] = asset; has_modifier = true;
+          cat="Glance"; mods["Glance"][modifier] = asset; has_modifier = true;
         //LOG(npc+"-"+slot+":VA "+modifier+" = "+asset);
         } else if (asset in npc_models) {
           if (modifier !== npc_models[asset]) { 
-            cat="PMS"; mods["PMS"][modifier] = npc_models[asset]; has_modifier = true;
+            cat="Glance"; mods["Glance"][modifier] = npc_models[asset]; has_modifier = true;
           }  
         //LOG(npc+"-"+slot+":VAN "+modifier+" = "+npc_models[asset]);
         } else if (modifier.lastIndexOf(".vmdl") > -1) {
           if (prefab == "courier" && id > 3000) {
-            cat="PMS"; mods["PMS"][modifier] = npc_models[vtype+"_"+asset]; has_modifier = true;
+            cat="Glance"; mods["Glance"][modifier] = npc_models[vtype+"_"+asset]; has_modifier = true;
           //LOG(vtype+"-"+asset+":COUR "+modifier+" = "+npc_models[vtype+"_"+asset]);
           }
         }
@@ -330,16 +341,16 @@ No_Bling=function(choices, verbose, timers){
       if (id && vdf.nr(id) in KEEP_ITEM) { LOG("-skip_item_"+id+": "+modifier); continue; }             // skip item nr wildcard
       if (rarity && rarity in KEEP_RARITY) { LOG("-skip_rarity_"+rarity+": "+modifier); continue; }      // skip rarity wildcard
 
-      // HEROES default
+      // HEROTWEAK
       if (precat === "default_items") {
         if (modifier.indexOf("particles/units/heroes") > -1) {
-          cat="Heroes"; mods[cat][modifier] = off; has_modifier = true;
+          cat="HeroTweak"; mods[cat][modifier] = off; has_modifier = true;
           LOG("hero: "+modifier);
         }
       }
-      // MAGUSCYPHER - Rubick Arcana stolen abilities
+      // ABILITWEAK - Rubick Arcana stolen abilities
       else if (precat === "wearable_items" && vtype === "particle" && rarity === "arcana" && hero === "rubick") {
-        cat="MagusCypher"; mods["MagusCypher"][modifier]= (asset) ? asset : off; has_modifier = true;
+        cat="AbiliTweak"; mods["AbiliTweak"][modifier]= (asset) ? asset : off; has_modifier = true;
         LOG("maguscypher: "+modifier);
       }
       // ABILITIES AND HATS
@@ -355,7 +366,7 @@ No_Bling=function(choices, verbose, timers){
             LOG("? ability: "+modifier);
           }
         } else if (modifier.indexOf("particles/units/heroes") > -1) {
-            cat="Heroes";
+            cat="HeroTweak";
             LOG("-ignore_hero: "+modifier);                                                                  // just log ignored
         } else if (modifier.indexOf("particles/status_fx") === -1) {
           cat="Abilities"; mods[cat][modifier]=(asset) ? asset : off;
@@ -370,7 +381,7 @@ No_Bling=function(choices, verbose, timers){
           mods[cat][modifier] = off;                                                           // mod (hide) modifier by default
           LOG("hat: "+modifier);
         } else if (modifier.indexOf("particles/units/heroes") > -1) {
-          cat="Heroes"; // Default item overrides
+          cat="HeroTweak"; // Default item overrides
           mods[cat][modifier]=(asset) ? asset : off; maybe = true; maybe_hat[modifier]=(asset) ? asset : off;
           LOG("? hat: "+modifier);
         } else {
@@ -416,7 +427,7 @@ No_Bling=function(choices, verbose, timers){
     // Separate Hats from Abilities out of the ambiguous visuals.asset_modifier.type="particle"
     for (hat in maybe_ability) {
       if (maybe_ability[hat] in maybe_hat) {
-        if (maybe_ability[hat] in mods["Heroes"]) {
+        if (maybe_ability[hat] in mods["HeroTweak"]) {
           mods["Hats"][hat]=maybe_ability[hat];
           LOG("= hat: "+path.basename(hat));
         } else {
@@ -424,7 +435,7 @@ No_Bling=function(choices, verbose, timers){
           LOG("= ability: "+path.basename(hat)); // none?!
         }
       } else {
-        if (maybe_ability[hat] in mods["Heroes"]) {
+        if (maybe_ability[hat] in mods["HeroTweak"]) {
           mods["Hats"][hat]=maybe_ability[hat];
           LOG("= hat: "+path.basename(hat));
         } else {
@@ -453,7 +464,7 @@ No_Bling=function(choices, verbose, timers){
     for (cat in mods) {if (modifier in mods[cat]) existing=true;}
     if (existing) continue;                                                                             // do not override items
     if (modifier.indexOf("particles/units/heroes") > -1) {
-      mods["Heroes"][modifier] = off; LOG("hero: "+modifier);
+      mods["HeroTweak"][modifier] = off; LOG("hero: "+modifier);
     } else if (modifier.indexOf("particles/econ/items") > -1) {
       mods["Hats"][modifier] = off; LOG("hat: "+modifier);
     } else if (modifier.indexOf("particles/econ/courier") > -1) {
@@ -497,16 +508,38 @@ No_Bling=function(choices, verbose, timers){
   if (VERBOSE) t.end();
 
   //----------------------------------------------------------------------------------------------------------------------------
-  // 4. Import particles.lst - loadout
+  // 4. Import particles.lst - taunts & loadout
   //----------------------------------------------------------------------------------------------------------------------------
-  if (VERBOSE) t = timer("Import particles.lst - loadout effects");
+  if (VERBOSE) t = timer("Import particles.lst - taunts & loadout");
   for (i=0, len=particles.length; i < len; i++) {
-    if (particles[i].lastIndexOf("loadout.vpcf") > -1) {
+    //if (particles[i].indexOf("_effigy") > -1) continue;
+    if (particles[i].indexOf("taunt") > -1) {
+      mods["Taunts"][particles[i]] = off;
+      LOG("taunts: "+particles[i]);
+    } else if (particles[i].indexOf("spawn") > -1 || particles[i].indexOf("loadout") > -1) {
       mods["Menu"][particles[i]] = off;
       LOG("loadout: "+particles[i]);
     }
   }
   if (VERBOSE) t.end();
+
+  //----------------------------------------------------------------------------------------------------------------------------
+  // 5. Import anim.lst - taunts & loadout
+  //----------------------------------------------------------------------------------------------------------------------------
+  if (VERBOSE) t = timer("Import anim.lst - taunts & loadout");
+  for (i=0, len=anim.length; i < len; i++) {
+    if (!(anim[i].split('/')[1] in {courier:1, heroes:1, items:1, pets:1})) continue;
+    if (anim[i].indexOf("_effigy") > -1) continue;
+    if (anim[i].indexOf("taunt") > -1) {
+      mods["Taunts"][anim[i]] = ".nix";
+      LOG("taunts: "+anim[i]);
+    } else if (anim[i].indexOf("spawn") > -1) {
+      mods["Menu"][anim[i]] = ".nix";
+      LOG("loadout: "+anim[i]);
+    }
+  }
+  if (VERBOSE) t.end();
+
 
   //----------------------------------------------------------------------------------------------------------------------------
   // 5. Import manual filters defined in No-Bling-filters.txt or No-Bling-filters-personal.txt and sanitize categories
@@ -518,11 +551,11 @@ No_Bling=function(choices, verbose, timers){
     LOG("-skip: "+hat);
   }
   for (hat in REV_KEEP) {
-    delete mods["Heroes"][hat];
+    delete mods["HeroTweak"][hat];
     LOG("-rev_skip: "+hat);
   }
   for (hat in REV_MOD) {
-    mods["Heroes"][hat] = off;
+    mods["HeroTweak"][hat] = off;
     LOG("+rev_mod: "+hat);
   }
   for (cat in filters) {
@@ -531,12 +564,12 @@ No_Bling=function(choices, verbose, timers){
       LOG(cat+": "+hat);
     }
   }
-  delete mods["PMS"]["models/development/invisiblebox.vmdl"];
+  delete mods["Glance"]["models/development/invisiblebox.vmdl"];
 
-  // If Hats pair is in Heroes replace it with empty particle as circular references would negate the replacement (why?)
+  // If Hats pair is in HeroTweak replace it with empty particle as circular references would negate the replacement (why?)
 //for (hat in mods["Hats"]) {
 //  var pair = mods["Hats"][hat];
-//  if (pair !== off && pair.indexOf("particles/units/heroes") > -1 && pair in mods["Heroes"]) {
+//  if (pair !== off && pair.indexOf("particles/units/heroes") > -1 && pair in mods["HeroTweak"]) {
 //    mods["Hats"][hat] = off;
 //    LOG("loop_ref: "+hat);
 //  }
@@ -548,10 +581,15 @@ No_Bling=function(choices, verbose, timers){
       mods["Abilities"][ability] = mods["Abilities"][combined];
       LOG("uncombined: "+ability+"="+mods["Abilities"][combined]);
     }
-    if (combined.lastIndexOf("loadout.vpcf") > -1) {
-      delete mods["Abilities"][ability]; //loadout missmatch
-      mods["Menu"][ability] = off;
+    if (combined.indexOf("loadout") > -1) {
+      delete mods["Abilities"][ability];
+      LOG("loadoutmissmatch: "+ability+"="+combined);
     }
+    if (combined.indexOf("taunt") > -1) {
+      delete mods["Abilities"][ability];
+      LOG("tauntmissmatch: "+ability+"="+combined);
+    }
+
   }
 
   if (VERBOSE) t.end();
@@ -599,8 +637,9 @@ No_Bling=function(choices, verbose, timers){
     for (hat in mods[cat]) {
 //    mod_data[hat.split("/").join("\\") + "_c?" + mods[cat][hat].split("/").join("\\") + "_c"]=1;
 //    src_data[mods[cat][hat].split("/").join("\\") + "_c"]=1;
-      mod_data[hat + "_c?" + mods[cat][hat] + "_c"]=1;
-      src_data[hat + "_c?" + mods[cat][hat] + "_c"]=1;
+      var _c = (mods[cat][hat].slice(-4).charAt(0) == ".") ? "" : "_c"; 
+      mod_data[hat + "_c?" + mods[cat][hat] + _c]=1;
+      src_data[hat + "_c?" + mods[cat][hat] + _c]=1;
       count++;
     } // next hat
     if (count>0) {

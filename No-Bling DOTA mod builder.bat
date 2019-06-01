@@ -1,6 +1,7 @@
 @goto init "No-Bling DOTA mod builder"
-:: v2019.05.08: BATTLEPASS
-:: - bump version
+:: v2019.06.01: Back in Beta
+:: - revised categories
+:: - loadout and taunt animations support
 :: v2019.03.30: (\_/)
 :: - completed Poor Man's Shield against the Bling!
 :: - making use of VPKMOD tool for very fast in-memory processing with minimal file i/o
@@ -10,19 +11,19 @@
 :main No-Bling DOTA G l a n c e V a l u e restoration mod builder                                             edited in SynWrite
 ::------------------------------------------------------------------------------------------------------------------------------
 :: Mod builder gui choices - no need to edit defaults here, script shows a graphical dialog for easier selection
-set/a Base=0                       &rem  1 = tweak buildings - ancients, barracks, towers, effigies, shrines          CORE BUILD
-set/a Weather=0                    &rem  1 = tweak terrain-bundled weather, lights, props
-set/a Seasonal=0                   &rem  1 = tweak Frostivus; the International custom tp, blink etc.
-set/a Menu=0                       &rem  1 = tweak main menu - ui, hero loadout and preview, treasure opening
+set/a Hats=1                       &rem  1 = hide cosmetic particles spam - slowly turning into TF2..                 CORE BUILD
+set/a Couriers=1                   &rem  1 = hide courier particles - would be fine.. except some abuse gems on hats
+set/a Wards=1                      &rem  1 = hide ward particles on a couple workshop items
+set/a Terrain=1                    &rem  1 = tweak ancients, towers, effigies, shrines, bundled weather
+set/a Menu=1                       &rem  1 = tweak main menu - ui, hero loadout and preview, treasure opening
 
-set/a Abilities=0                  &rem  1 = revert penguin Frostbite and stuff like that..                           MAIN BUILD
-set/a Hats=0                       &rem  1 = hide cosmetic particles spam - slowly turning into TF2..
-set/a Couriers=0                   &rem  1 = hide courier particles - would be fine.. except people abuse gems on hats
-set/a Wards=0                      &rem  1 = hide ward particles on a couple workshop items
+set/a Abilities=1                  &rem  1 = revert penguin Frostbite and stuff like that..                           MAIN BUILD
+set/a Seasonal=1                   &rem  1 = tweak the International custom tp, blink, vials etc.
+set/a Taunts=1                     &rem  1 = ceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeb
 
-set/a MagusCypher=0                &rem  1 = revert Rubick Arcana stolen spells                                       FULL BUILD
-set/a Heroes=0                     &rem  1 = hide default hero particles, helps potato pc
-set/a PMS=1                        &rem  1 = (\_/) gabening intensifies..
+set/a AbiliTweak=1                 &rem  1 = revert Rubick Arcana stolen spells, trim effects                         FULL BUILD
+set/a HeroTweak=1                  &rem  1 = hide some default hero particles, helps potato pc
+set/a Glance=1                     &rem  1 = gabening intensifies..
 
 set/a @update=1                    &rem  1 = update script from github on launch,                 0 = stay on outdated script
 set/a @refresh=0                   &rem  1 = remove old builds and logs,                          0 = keep old builds and logs
@@ -33,9 +34,9 @@ set/a @install=1                   &rem  1 = auto-install closes Dota and Steam,
 set/a @timers=1                    &rem  1 = total and per tasks accurate timers,                 0 = no reason to disable them
 set/a @dialog=1                    &rem  1 = show choices gui dialog,                             0 = use hardcoded values above
 set "MOD_FILE=pak01_dir.vpk"       &rem  ? = override here if having multiple mods and needing another name like pak02_dir.vpk
-set "all_choices=Base,Weather,Seasonal,Menu,Abilities,Hats,Couriers,Wards,MagusCypher,Heroes,PMS"
-set "def_choices=Base,Weather,Seasonal,Menu,Abilities,Hats,Couriers,Wards,MagusCypher,Heroes"
-set "version=2019.05.08"
+set "all_choices=Hats,Couriers,Wards,Terrain,Menu,Abilities,Seasonal,Taunts,AbiliTweak,HeroTweak,Glance"
+set "def_choices=Hats,Couriers,Wards,Terrain,Menu,Abilities,Seasonal,AbiliTweak,HeroTweak"
+set "version=2019.06.01"
 
 title AveYo's No-Bling DOTA mod builder v%version%
 set a = free script so no bitching! & for /f delims^=^ eol^= %%. in (
@@ -139,15 +140,15 @@ if defined @dialog call :choices MOD_CHOICES "%all_choices%" "%def_choices%" "No
 :: Process dialog result
 if defined @dialog if not defined MOD_CHOICES call :end ! No choices selected!
 if not defined MOD_CHOICES set "MOD_CHOICES=%@choices%"
-:: Force Hats option if (\_/) selected
-set "gabening=%MOD_CHOICES:PMS=%" & set "intensifies=%MOD_CHOICES:Hats=%"
-if "%gabening%" NEQ "%MOD_CHOICES%" if "%intensifies%" EQU "%MOD_CHOICES%" set "MOD_CHOICES=%MOD_CHOICES%,Hats"
+:: Force complementary particles options if (\_/) selected
+set "gabening=%MOD_CHOICES:Glance=%"
+if "%gabening%" NEQ "%MOD_CHOICES%" for %%o in (Hats,Couriers,Wards,Abilities) do call :unselect %%o MOD_CHOICES
+if "%gabening%" NEQ "%MOD_CHOICES%" set "MOD_CHOICES=Hats,Couriers,Wards,Abilities,%MOD_CHOICES%"
 for %%o in (%all_choices%) do set "%%o="                                                       &REM undefine all initial choices
 for %%o in (%MOD_CHOICES%) do set "%%o=1"                                                  &REM then redefine selected ones to 1
 
 :: Clear script-only temporary options and export choices to registry (including @update value)
-call :unselect @refresh MOD_CHOICES
-call :unselect @verbose MOD_CHOICES
+for %%o in (@refresh,@verbose) do call :unselect %%o MOD_CHOICES
 reg add "HKCU\Environment" /v "No-Bling choices" /t REG_SZ /d "%MOD_CHOICES%" /f >nul 2>nul
 call :unselect @update MOD_CHOICES
 :: Force @refresh and @install options on if refactored script is running for the first time
@@ -177,8 +178,11 @@ for %%i in (%.%) do ( del /f/s/q "%%~i" & rmdir /s/q "%%~i" & mkdir "%%~i" ) >nu
 call :clearline 3
 
 %LABEL% " Extracting lists from dota\pak01_dir.vpk ... "
-vpkmod -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\models.lst" -e "vmdl_c" -s
-vpkmod -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\particles.lst" -e "vpcf_c" -s
+vpkmod -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\particles.lst" -e "vpcf_c" -s >nul 2>nul
+vpkmod -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\models.lst" -e "vmdl_c" -s >nul 2>nul
+vpkmod -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\anim.lst" -e "vanim_c" -s >nul 2>nul
+::vpkmod -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\materials.lst" -e "vmat_c" -s >nul 2>nul
+::vpkmod -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\sounds.lst" -e "vsnd_c" -s >nul 2>nul
 vpkmod -i "%DOTA%\dota\pak01_dir.vpk" -o "%ROOT%\src" -e "txt" -p "scripts/items/items_game.txt"
 mkdir "%ROOT%\src\scripts\npc" >nul 2>nul
 copy "%DOTA%\dota\scripts\npc\npc_heroes.txt" "%ROOT%\src\scripts\npc" >nul 2>nul
