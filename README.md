@@ -1,5 +1,5 @@
 ## No-Bling DOTA "GlanceValue" restoration mod  
-#### We all know where we are headed looking at the Immortals spam in the last two years...  
+#### We all know where we are headed looking at the Immortals spam in the last three years...  
 
 ### Glance  
 <table>  
@@ -23,16 +23,12 @@ Don't worry, this is a perfectly safe, well intended, hats friendly, good behavi
 optimally swapping just original Valve authored files with no 3^rd party content alteration whatsoever,  
 and whitelist-able at a glance...  
 
-#### What's new in v2019.06.01:  BACK IN BETA  
+#### What's new in v2019.06.09:  GL HF  
 ~ revised categories
 ~ loadout and taunt animations support
-
-#### What's new in v2019.03.30:  (\\_/)  
-~ *completed Poor Man's Shield against the Bling!*  
 ~ BAT: __making use of in-house VPKMOD tool for very fast in-memory processing with minimal file i/o__  
 ~ BAT: auto-update script from github on launch  
 ~ BAT: language independent mod launch option `-tempcontent` with `dota_tempcontent` mod root folder  
-~ JS: __revised categories and extended loadout particles support__ *E a s t e r E g g*  
 ~ JS: decoupled manual filters into *No-Bling-filters.txt*  
 ~ JS: output unified `src.lst` for in-memory modding via VPKMOD tool  
 
@@ -45,19 +41,19 @@ and whitelist-able at a glance...
 #### No-Bling DOTA mod builder choices:  
 Category       | GlanceValue | Description                                                              | Pre-made as:  
 -------------- | ----------- | ------------------------------------------------------------------------ | ----------  
-Base           | **++**      | - Base buildings - ancients, barracks, towers, effigies, shrines         |   CORE BUILD  
-Weather        | **++**      | - Terrain - bundled weather, lights, props                               |  
-Seasonal       | **+++**     | - Event Rewards: Frostivus; the International custom tp, blink etc.      |  
-Menu           | **+**       | - Menu - ui, hero loadout and preview, treasure opening, potato tweaks   |  
-.            . | .         . | .                                                                      . | .       .  
-Abilities      | **+++++**   | - Custom Spells: penguin Frostbite and stuff like that..                 |   MAIN BUILD  
-Hats           | **++++**    | - Workshop Hats: cosmetic particles spam - slowly turning into TF2..     |  
+Hats           | **++++**    | - Workshop Hats: cosmetic particles spam - slowly turning into TF2..     |   CORE BUILD  
 Couriers       | **+++**     | - Custom Couriers: these are fine.. until ~~Fy~~ someone abuses gems on hats |  
 Wards          | **++**      | - Custom Wards: only a few make the ward and the sentry item similar     |  
+Terrain        | **++**      | - tweak ancients, towers, effigies, shrines, bundled weather             |  
 .            . | .         . | .                                                                      . | .       .  
-HEROES         | **+/-**     | - Default Hats: hero-bundled effects  - helps potato pc                  |   FULL BUILD  
-MagusCypher    | **++++**    | - Stolen spells via Rubick Arcana                                        |  
-PMS            | **+++++++** | - (\\_/) gabening intensifies..                                          |  
+Abilities      | **+++++**   | - Custom Spells: penguin Frostbite and stuff like that..                 |   MAIN BUILD  
+Seasonal       | **+++**     | - Event Rewards: the International custom tp, blink etc.                 |  
+.            . | .         . | .                                                                      . | .       .  
+AbiliTweak     | **++++**    | - revert Rubick Arcana stolen spells, trim effects                       |   FULL BUILD  
+HeroTweak      | **+/-**     | - Default Hats: hero-bundled effects  - helps potato pc                  |  
+Menu           | **+**       | - Menu - ui, hero loadout and preview, treasure opening                  |  
+Taunts         | **++**      | - ceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeb                                 |  
+Glance         | **+++++++** | - (\\_/) gabening intensifies..                                          |  
 .            . | .         . | .                                                                      . | .      .  
 *@update*      |             | *auto-update script from github - can be skipped*                        |  
 *@verbose*     |             | *print file names and export detailed per-hero item lists*               |  
@@ -87,6 +83,7 @@ Use the pre-made releases in the __[BUILDS](https://github.com/No-Bling/DOTA/tre
 Simply remove / rename the `-tempcontent` launch option and restart the game!  
 
 ### Hints:  
+If using manual install, supress AnimResource warnings by adding to your autoexec.cfg: `log_verbosity AnimResource off | grep %`  
 It is recommended to set _Effects Quality_ option to _Low_ for Potato PC's as it decreases the nr of particles for certain spells  
 
 Manual filters have been decoupled from the .js script into `No-Bling-filters.txt`  

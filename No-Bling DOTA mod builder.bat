@@ -1,9 +1,7 @@
 @goto init "No-Bling DOTA mod builder"
-:: v2019.06.01: Back in Beta
+:: v2019.06.09: GL HF
 :: - revised categories
 :: - loadout and taunt animations support
-:: v2019.03.30: (\_/)
-:: - completed Poor Man's Shield against the Bling!
 :: - making use of VPKMOD tool for very fast in-memory processing with minimal file i/o
 :: - auto-update script from github on launch if needed
 :: - language independent mod launch option -tempcontent with dota_tempcontent mod root folder
@@ -15,14 +13,14 @@ set/a Hats=1                       &rem  1 = hide cosmetic particles spam - slow
 set/a Couriers=1                   &rem  1 = hide courier particles - would be fine.. except some abuse gems on hats
 set/a Wards=1                      &rem  1 = hide ward particles on a couple workshop items
 set/a Terrain=1                    &rem  1 = tweak ancients, towers, effigies, shrines, bundled weather
-set/a Menu=1                       &rem  1 = tweak main menu - ui, hero loadout and preview, treasure opening
 
 set/a Abilities=1                  &rem  1 = revert penguin Frostbite and stuff like that..                           MAIN BUILD
 set/a Seasonal=1                   &rem  1 = tweak the International custom tp, blink, vials etc.
-set/a Taunts=1                     &rem  1 = ceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeb
 
 set/a AbiliTweak=1                 &rem  1 = revert Rubick Arcana stolen spells, trim effects                         FULL BUILD
 set/a HeroTweak=1                  &rem  1 = hide some default hero particles, helps potato pc
+set/a Menu=1                       &rem  1 = tweak main menu - ui, hero loadout and preview, treasure opening
+set/a Taunts=1                     &rem  1 = ceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeb
 set/a Glance=1                     &rem  1 = gabening intensifies..
 
 set/a @update=1                    &rem  1 = update script from github on launch,                 0 = stay on outdated script
@@ -34,9 +32,9 @@ set/a @install=1                   &rem  1 = auto-install closes Dota and Steam,
 set/a @timers=1                    &rem  1 = total and per tasks accurate timers,                 0 = no reason to disable them
 set/a @dialog=1                    &rem  1 = show choices gui dialog,                             0 = use hardcoded values above
 set "MOD_FILE=pak01_dir.vpk"       &rem  ? = override here if having multiple mods and needing another name like pak02_dir.vpk
-set "all_choices=Hats,Couriers,Wards,Terrain,Menu,Abilities,Seasonal,Taunts,AbiliTweak,HeroTweak,Glance"
-set "def_choices=Hats,Couriers,Wards,Terrain,Menu,Abilities,Seasonal,AbiliTweak,HeroTweak"
-set "version=2019.06.01"
+set "all_choices=Hats,Couriers,Wards,Terrain,Abilities,Seasonal,AbiliTweak,HeroTweak,Menu,Taunts,Glance"
+set "def_choices=Hats,Couriers,Wards,Terrain,Abilities,Seasonal,AbiliTweak,HeroTweak,Menu"
+set "version=2019.06.09"
 
 title AveYo's No-Bling DOTA mod builder v%version%
 set a = free script so no bitching! & for /f delims^=^ eol^= %%. in (
@@ -181,8 +179,6 @@ call :clearline 3
 vpkmod -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\particles.lst" -e "vpcf_c" -s >nul 2>nul
 vpkmod -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\models.lst" -e "vmdl_c" -s >nul 2>nul
 vpkmod -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\anim.lst" -e "vanim_c" -s >nul 2>nul
-::vpkmod -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\materials.lst" -e "vmat_c" -s >nul 2>nul
-::vpkmod -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\sounds.lst" -e "vsnd_c" -s >nul 2>nul
 vpkmod -i "%DOTA%\dota\pak01_dir.vpk" -o "%ROOT%\src" -e "txt" -p "scripts/items/items_game.txt"
 mkdir "%ROOT%\src\scripts\npc" >nul 2>nul
 copy "%DOTA%\dota\scripts\npc\npc_heroes.txt" "%ROOT%\src\scripts\npc" >nul 2>nul
@@ -227,7 +223,7 @@ set .="%BUILDS%\No-Bling DOTA mod readme.txt"
  >%.% echo  No-Bling DOTA mod v%version% choices:
 >>%.% echo  %MOD_CHOICES%
 >>%.% echo --------------------------------------------------------------------------------
->>%.% echo We all know where we are headed looking at the Immortals spam in the last two years...
+>>%.% echo We all know where we are headed looking at the Immortals spam in the last three years...
 >>%.% echo.
 >>%.% echo  About
 >>%.% echo --------------------------------------------------------------------------------
@@ -260,11 +256,15 @@ if not defined @install call :color 0e. " To apply No-Bling mod enable @install 
 mkdir "%DOTA%\%MOD_FOLDER%" >nul 2>nul
 copy /y "%BUILDS%\pak01_dir.vpk" "%DOTA%\%MOD_FOLDER%\%MOD_FILE%" >nul 2>nul
 copy /y "%BUILDS%\No-Bling DOTA mod readme.txt" "%DOTA%\%MOD_FOLDER%\" >nul 2>nul
+:: Supress AnimResource warnings
+set autocfg="%DOTA%\dota\cfg\autoexec.cfg"
+findstr /b /c:"log_verbosity AnimResource off" %autocfg% >nul || echo/log_verbosity AnimResource off ^| grep %%>>%autocfg%
+:: End task to allow launch option adding
 set "@endtask=" & tasklist /FI "IMAGENAME eq STEAM.EXE" | findstr /i "STEAM.EXE" >nul 2>nul && set "@endtask=1"
 if defined @endtask call :color 0e " Press Alt+F4 to stop auto-install from closing Dota & Steam in 10s ..."
 if defined @endtask timeout /t 10 >nul 2>nul
 if defined @endtask call :clearline 3
-if defined @endtask taskkill /f /im dota2.exe /im steam.exe /t >nul 2>nul & timeout /t 2 >nul
+::if defined @endtask taskkill /f /im dota2.exe /im steam.exe /t >nul 2>nul & timeout /t 2 >nul
 :: Create the necessary mod folder and copy the current build of pak01_dir.vpk to it (2nd try)
 mkdir "%DOTA%\%MOD_FOLDER%" >nul 2>nul
 copy /y "%BUILDS%\pak01_dir.vpk" "%DOTA%\%MOD_FOLDER%\%MOD_FILE%" >nul 2>nul

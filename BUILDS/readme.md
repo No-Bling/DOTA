@@ -1,10 +1,10 @@
 
 ##### No-Bling DOTA pre-made builds for manual install (Win/Linux/Mac):  
 
-- __CORE BUILD__: Hats,Couriers,Wards,Terrain,Menu  
-- __MAIN BUILD__: Hats,Couriers,Wards,Terrain,Menu + Abilities,Seasonal,Taunts  
-- __FULL BUILD__: Hats,Couriers,Wards,Terrain,Menu + Abilities,Seasonal,Taunts + AbiliTweak,HeroTweak,Glance  
-- : (\\_/)  
+- __CORE BUILD__: Hats,Couriers,Wards,Terrain  
+- __MAIN BUILD__: Hats,Couriers,Wards,Terrain + Abilities,Seasonal  
+- __FULL BUILD__: Hats,Couriers,Wards,Terrain + Abilities,Seasonal + AbiliTweak,HeroTweak,Menu  
+- __++__: (\\_/)  
 
 #### How to manually install No-Bling DOTA mod builds in 2019:  
    ~ CREATE FOLDER `\steamapps\common\dota 2 beta\game\dota_tempcontent`  

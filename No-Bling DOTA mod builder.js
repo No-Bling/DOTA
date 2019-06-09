@@ -1,11 +1,7 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                    edited in SynWrite
-// v2019.06.01: Back in Beta
+// v2019.06.09: GL HF
 // - revised categories
 // - loadout and taunt animations support
-// v2019.04.04: (\_/)
-// - quickfix Abilities
-// - completed Poor Man's Shield against the Bling!
-// - revised categories and extended loadout particles support                                                 
 // - output unified src.lst for in-memory modding via VPKMOD tool
 // - decoupled manual filters into No-Bling-filters.txt
 //------------------------------------------------------------------------------------------------------------------------------
@@ -20,14 +16,14 @@ No_Bling=function(choices, verbose, timers){
   var COURIERS   = (choices.indexOf("Couriers") > -1);   // - couriers particles are fine.. until one abuses gems on hats
   var WARDS      = (choices.indexOf("Wards") > -1);      // - hide ward particles on a couple workshop items
   var TERRAIN    = (choices.indexOf("Terrain") > -1);    // - tweak ancients, towers, effigies, shrines, bundled weather
-  var MENU       = (choices.indexOf("Menu") > -1);       // - tweak menu - ui, hero loadout and preview, treasure opening
 
   var ABILITIES  = (choices.indexOf("Abilities") > -1);  // - revert penguin Frostbite and stuff like that..          MAIN BUILD
   var SEASONAL   = (choices.indexOf("Seasonal") > -1);   // - tweak the International custom tp, blink, vials etc.
-  var TAUNTS     = (choices.indexOf("Taunts") > -1);     // - ceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeb
 
   var ABILITWEAK = (choices.indexOf("AbiliTweak") > -1); // - revert Rubick Arcana stolen spells, trim effects        FULL BUILD         
   var HEROTWEAK  = (choices.indexOf("HeroTweak") > -1);  // - hide default hero particles, helps potato pc            
+  var MENU       = (choices.indexOf("Menu") > -1);       // - tweak menu - ui, hero loadout and preview, treasure opening
+  var TAUNTS     = (choices.indexOf("Taunts") > -1);     // - ceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeb
   var GLANCE     = (choices.indexOf("Glance") > -1);     // - gabening intensifies..
 
   var VERBOSE    = (verbose === "1");                    // Export detailed per-hero lists and log items in no_bling.txt
@@ -37,7 +33,7 @@ No_Bling=function(choices, verbose, timers){
   w.echo(""+run+" @ "+engine+((jscript) ? ": Try the faster Node.js engine" : ""));
 
   // Quit early if no choice selected
-  var UCHOICE = (HATS||COURIERS||WARDS||TERRAIN||MENU||ABILITIES||SEASONAL||TAUNTS||HEROTWEAK||ABILITWEAK||GLANCE);
+  var UCHOICE = (HATS||COURIERS||WARDS||TERRAIN||ABILITIES||SEASONAL||ABILITWEAK||HEROTWEAK||MENU||TAUNTS||GLANCE);
   if (!UCHOICE && !VERBOSE) w.quit();
 
   // Initiate filter variables
@@ -54,9 +50,9 @@ No_Bling=function(choices, verbose, timers){
                   ward: "wards", tool: "seasonal", relic: "seasonal", emblem: "seasonal", treasure_chest: "seasonal"
                 };
   var logs = { "wearable_items": {}, "default_items": {}, "couriers": {}, "wards": {}, "seasonal": {}, "other": {} };
-  var mods = { "Hats": {}, "Couriers": {}, "Wards": {}, "Terrain": {}, "Menu": {},
+  var mods = { "Hats": {}, "Couriers": {}, "Wards": {}, "Terrain": {},
                "Abilities": {}, "Seasonal": {}, "Taunts": {}, 
-               "AbiliTweak": {}, "HeroTweak": {}, "Glance": {}, "Other": {}
+               "AbiliTweak": {}, "HeroTweak": {}, "Menu": {}, "Glance": {}, "Other": {}
              };
   var filters = {}, models = {}, heroes = {}, npc_classes = {}, npc_models = {};
   for (mcat in mods) filters[mcat] = {};
@@ -84,11 +80,11 @@ No_Bling=function(choices, verbose, timers){
           REV_MOD[b] = 1;                            // replace all modifiers referencing "file" with off asset (reverse lookup)
           break;
         case "-":
-          if (GLANCE && bcat == "Hats") break;
+        //if (GLANCE && bcat == "Hats") break;
           KEEP_FILE[b] = 1;                          // keep "file"
           break;
         case "--":
-          if (GLANCE && bcat == "Abilities") break;
+        //if (GLANCE && bcat == "Abilities") break;
           REV_KEEP[b] = 1;                           // keep all modifiers referencing "file" (reverse-lookup)
           break;
         case "@":
@@ -328,18 +324,18 @@ No_Bling=function(choices, verbose, timers){
         }
       }
 
-      if (!modifier || modifier.lastIndexOf(".vpcf") === -1) continue;                    // skip non-explicit particle modifier
+      if (id && vdf.nr(id) in KEEP_ITEM) { LOG("-skip_item_"+id+": "+modifier); continue; }             // skip item nr wildcard
+      if (hero && hero in KEEP_HERO) { LOG("-skip_hero_"+shero+": "+modifier); continue; }                 // skip hero wildcard
+      if (rarity && rarity in KEEP_RARITY) { LOG("-skip_rarity_"+rarity+": "+modifier); continue; }      // skip rarity wildcard
+      if (asset in REV_KEEP) {KEEP_FILE[modifier]=1;LOG("-rev_skip: "+modifier); continue;}               // skip reverse lookup
+      if (asset in REV_MOD) { asset=off; LOG("+rev_replace: "+modifier); }                         // replace via reverse lookup
       if (modifier === asset) continue;                                          // skip if both modifier and asset are the same
+      if (!modifier || modifier.lastIndexOf(".vpcf") === -1) continue;                    // skip non-explicit particle modifier
       if (modifier.lastIndexOf("null.vpcf") > -1) {LOG('NULL! '+modifier); continue; }                   // skip dummy modifiers
       if (modifier.lastIndexOf("_empty.vpcf") > -1) {LOG('EMPTY! '+modifier); continue; }                // skip empty modifiers
       if (modifier.lastIndexOf("_local.vpcf") > -1) {LOG('LOCAL! '+modifier); continue; }               // skip staged modifiers
       if (asset.indexOf("particles/ability_modifier") > -1) continue;                                  // skip dynamic modifiers
       if (asset.indexOf("particles/reftononexistent") > -1) asset=off;                             // replace dynamic references
-      if (asset in REV_KEEP) {KEEP_FILE[modifier]=1;LOG("-rev_skip: "+modifier); continue;}               // skip reverse lookup
-      if (asset in REV_MOD) { asset=off; LOG("+rev_replace: "+modifier); }                         // replace via reverse lookup
-      if (hero && hero in KEEP_HERO) { LOG("-skip_hero_"+shero+": "+modifier); continue; }                 // skip hero wildcard
-      if (id && vdf.nr(id) in KEEP_ITEM) { LOG("-skip_item_"+id+": "+modifier); continue; }             // skip item nr wildcard
-      if (rarity && rarity in KEEP_RARITY) { LOG("-skip_rarity_"+rarity+": "+modifier); continue; }      // skip rarity wildcard
 
       // HEROTWEAK
       if (precat === "default_items") {
@@ -512,7 +508,7 @@ No_Bling=function(choices, verbose, timers){
   //----------------------------------------------------------------------------------------------------------------------------
   if (VERBOSE) t = timer("Import particles.lst - taunts & loadout");
   for (i=0, len=particles.length; i < len; i++) {
-    //if (particles[i].indexOf("_effigy") > -1) continue;
+    if (!(particles[i].split('/')[1] in {econ:1, models:1, prime:1, ui:1, units:1})) continue;
     if (particles[i].indexOf("taunt") > -1) {
       mods["Taunts"][particles[i]] = off;
       LOG("taunts: "+particles[i]);
@@ -529,6 +525,7 @@ No_Bling=function(choices, verbose, timers){
   if (VERBOSE) t = timer("Import anim.lst - taunts & loadout");
   for (i=0, len=anim.length; i < len; i++) {
     if (!(anim[i].split('/')[1] in {courier:1, heroes:1, items:1, pets:1})) continue;
+    if (anim[i].indexOf("models/items/hex") > -1) continue;
     if (anim[i].indexOf("_effigy") > -1) continue;
     if (anim[i].indexOf("taunt") > -1) {
       mods["Taunts"][anim[i]] = ".nix";
@@ -565,6 +562,9 @@ No_Bling=function(choices, verbose, timers){
     }
   }
   delete mods["Glance"]["models/development/invisiblebox.vmdl"];
+  delete mods["Hats"]["particles/units/heroes/hero_wisp/wisp_ambient.vpcf"];
+  delete mods["HeroTweak"]["particles/units/heroes/hero_wisp/wisp_ambient.vpcf"];
+  mods["HeroTweak"]["particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_smoke.vpcf"] = off;
 
   // If Hats pair is in HeroTweak replace it with empty particle as circular references would negate the replacement (why?)
 //for (hat in mods["Hats"]) {
