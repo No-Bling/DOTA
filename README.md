@@ -24,8 +24,8 @@ optimally swapping just original Valve authored files with no 3^rd party content
 and whitelist-able at a glance...  
 
 #### What's new in v2019.06.09:  GL HF  
-~ revised categories
-~ loadout and taunt animations support
+~ revised categories  
+~ loadout and taunt animations support  
 ~ BAT: __making use of in-house VPKMOD tool for very fast in-memory processing with minimal file i/o__  
 ~ BAT: auto-update script from github on launch  
 ~ BAT: language independent mod launch option `-tempcontent` with `dota_tempcontent` mod root folder  
