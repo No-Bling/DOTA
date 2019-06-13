@@ -4,7 +4,7 @@
 - __CORE BUILD__: Hats,Couriers,Wards,Terrain  
 - __MAIN BUILD__: Hats,Couriers,Wards,Terrain + Abilities,Seasonal  
 - __FULL BUILD__: Hats,Couriers,Wards,Terrain + Abilities,Seasonal + AbiliTweak,HeroTweak,Menu  
-- __++__: all above + Taunts (animations as well as soundboard) + Glance ("nohats") (\\_/)  
+- __++__: all above + Taunts (animations as well as soundboard) + Glance ("nohats") - forever in beta (\\_/)  
 
 #### How to manually install No-Bling DOTA mod builds in 2019:  
    ~ CREATE FOLDER `\steamapps\common\dota 2 beta\game\dota_tempcontent`  
