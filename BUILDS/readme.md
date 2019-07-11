@@ -11,5 +11,5 @@
    ~ COPY `pak01_dir.vpk` IN `\steamapps\common\dota 2 beta\game\dota_tempcontent`  
    ~ ADD LAUNCH OPTION: `-tempcontent`  
 
-If on Windows, use [No-Bling DOTA mod builder.bat](https://github.com/No-Bling/DOTA/blob/master/No-Bling%20DOTA%20mod%20builder.zip) instead to generate updated custom build with automatic install!    
+If on Windows, use [No-Bling DOTA mod builder.bat](https://github.com/No-Bling/DOTA/blob/master/No-Bling%20DOTA%20mod%20builder.zip) instead to generate updated custom build with automatic install!  
 

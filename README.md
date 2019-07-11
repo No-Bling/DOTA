@@ -12,7 +12,7 @@
     <td><img src="https://i.imgur.com/JtihgLz.png"></td>  
   </tr>  
 </table>  
-  
+
 ### About  
 A competent companion to *Settings -- Video -- Effects Quality* with the main focus on GlanceValue.  
 No-Bling<sup>tm</sup> mod is economy-friendly, gracefully disabling particle spam while leaving hats model untouched.  
@@ -23,7 +23,7 @@ Don't worry, this is a perfectly safe, well intended, hats friendly, good behavi
 optimally swapping just original Valve authored files with no 3^rd party content alteration whatsoever,  
 and whitelist-able at a glance...  
 
-#### What's new in v2019.06.09:  GL HF  
+#### What's new in v2019.07.11:  Treasure III when?  
 ~ revised categories  
 ~ loadout and taunt animations support  
 ~ BAT: __making use of in-house VPKMOD tool for very fast in-memory processing with minimal file i/o__  
@@ -52,7 +52,7 @@ Seasonal       | **+++**     | - Event Rewards: the International custom tp, bli
 AbiliTweak     | **++++**    | - revert Rubick Arcana stolen spells, trim effects                       |   FULL BUILD  
 HeroTweak      | **+/-**     | - Default Hats: hero-bundled effects  - helps potato pc                  |  
 Menu           | **+**       | - Menu - ui, hero loadout and preview, treasure opening                  |  
-Taunts         | **++**      | - ceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeb                                 |  
+Taunts         | **++**      | - ceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeb and dota+                       |  
 Glance         | **+++++++** | - (\\_/) gabening intensifies..                                          |  
 .            . | .         . | .                                                                      . | .      .  
 *@update*      |             | *auto-update script from github - can be skipped*                        |  

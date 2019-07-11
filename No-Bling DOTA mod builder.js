@@ -1,5 +1,5 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                    edited in SynWrite
-// v2019.06.09: GL HF
+// v2019.07.11: Treasure III when?
 // - revised categories
 // - loadout and taunt animations support
 // - output unified src.lst for in-memory modding via VPKMOD tool
@@ -20,10 +20,10 @@ No_Bling=function(choices, verbose, timers){
   var ABILITIES  = (choices.indexOf("Abilities") > -1);  // - revert penguin Frostbite and stuff like that..          MAIN BUILD
   var SEASONAL   = (choices.indexOf("Seasonal") > -1);   // - tweak the International custom tp, blink, vials etc.
 
-  var ABILITWEAK = (choices.indexOf("AbiliTweak") > -1); // - revert Rubick Arcana stolen spells, trim effects        FULL BUILD         
-  var HEROTWEAK  = (choices.indexOf("HeroTweak") > -1);  // - hide default hero particles, helps potato pc            
+  var ABILITWEAK = (choices.indexOf("AbiliTweak") > -1); // - revert Rubick Arcana stolen spells, trim effects        FULL BUILD
+  var HEROTWEAK  = (choices.indexOf("HeroTweak") > -1);  // - hide default hero particles, helps potato pc
   var MENU       = (choices.indexOf("Menu") > -1);       // - tweak menu - ui, hero loadout and preview, treasure opening
-  var TAUNTS     = (choices.indexOf("Taunts") > -1);     // - ceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeb
+  var TAUNTS     = (choices.indexOf("Taunts") > -1);     // - ceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeb and dota+
   var GLANCE     = (choices.indexOf("Glance") > -1);     // - gabening intensifies..
 
   var VERBOSE    = (verbose === "1");                    // Export detailed per-hero lists and log items in no_bling.txt
@@ -51,7 +51,7 @@ No_Bling=function(choices, verbose, timers){
                 };
   var logs = { "wearable_items": {}, "default_items": {}, "couriers": {}, "wards": {}, "seasonal": {}, "other": {} };
   var mods = { "Hats": {}, "Couriers": {}, "Wards": {}, "Terrain": {},
-               "Abilities": {}, "Seasonal": {}, "Taunts": {}, 
+               "Abilities": {}, "Seasonal": {}, "Taunts": {},
                "AbiliTweak": {}, "HeroTweak": {}, "Menu": {}, "Glance": {}, "Other": {}
              };
   var filters = {}, models = {}, heroes = {}, npc_classes = {}, npc_models = {};
@@ -75,7 +75,7 @@ No_Bling=function(choices, verbose, timers){
           else if (fext == ".vmdl") filters[bcat][b] = "models/development/invisiblebox.vmdl";
           else if (fext == "vanim") filters[bcat][b] = ".nix";
           else if (fext == ".vsnd") filters[bcat][b] = "sounds/null.vsnd";
-          break;                                                                              
+          break;
         case "++":
           REV_MOD[b] = 1;                            // replace all modifiers referencing "file" with off asset (reverse lookup)
           break;
@@ -237,7 +237,7 @@ No_Bling=function(choices, verbose, timers){
     }
 
     // gabening intensifies..
-    if (GLANCE && model) { //&& npc 
+    if (GLANCE && model) { //&& npc
       model1 = items[i].model_player1 || ""; model2 = items[i].model_player2 || ""; model3 = items[i].model_player3 || "";
       if (prefab === "default_item") {
         if (!models[npc]) models[npc] = {};
@@ -287,7 +287,7 @@ No_Bling=function(choices, verbose, timers){
         if (asset.lastIndexOf(".vpcf") > -1) mods["Hats"][asset] = off;
         else if (asset.lastIndexOf(".vmdl") > -1) mods["Glance"][asset] = "models/development/invisiblebox.vmdl";
         LOG("additional: "+path.basename(asset));
-        continue; 
+        continue;
       }
 
       // GLANCE - GABENING INTENSIFIES..
@@ -297,9 +297,9 @@ No_Bling=function(choices, verbose, timers){
           cat="Glance"; mods["Glance"][modifier] = asset; has_modifier = true;
         //LOG(npc+"-"+slot+":VA "+modifier+" = "+asset);
         } else if (asset in npc_models) {
-          if (modifier !== npc_models[asset]) { 
+          if (modifier !== npc_models[asset]) {
             cat="Glance"; mods["Glance"][modifier] = npc_models[asset]; has_modifier = true;
-          }  
+          }
         //LOG(npc+"-"+slot+":VAN "+modifier+" = "+npc_models[asset]);
         } else if (modifier.lastIndexOf(".vmdl") > -1) {
           if (prefab == "courier" && id > 3000) {
@@ -387,7 +387,7 @@ No_Bling=function(choices, verbose, timers){
         has_modifier = true;
       }
       else if (precat === "wearable_items" && vtype === "particle_combined") {
-        cat="Abilities"; //base_asset = asset; 
+        cat="Abilities"; //base_asset = asset;
 //      if (asset in maybe_ability) base_asset = maybe_ability[asset];
 //      if (asset in mods[cat]) base_asset = mods[cat][asset];
         mods[cat][modifier] = asset;
@@ -576,7 +576,7 @@ No_Bling=function(choices, verbose, timers){
 //}
 
   for (ability in mods["Abilities"]) {
-    var combined = mods["Abilities"][ability]; 
+    var combined = mods["Abilities"][ability];
     if (combined in mods["Abilities"]) {
       mods["Abilities"][ability] = mods["Abilities"][combined];
       LOG("uncombined: "+ability+"="+mods["Abilities"][combined]);
@@ -637,7 +637,7 @@ No_Bling=function(choices, verbose, timers){
     for (hat in mods[cat]) {
 //    mod_data[hat.split("/").join("\\") + "_c?" + mods[cat][hat].split("/").join("\\") + "_c"]=1;
 //    src_data[mods[cat][hat].split("/").join("\\") + "_c"]=1;
-      var _c = (mods[cat][hat].slice(-4).charAt(0) == ".") ? "" : "_c"; 
+      var _c = (mods[cat][hat].slice(-4).charAt(0) == ".") ? "" : "_c";
       mod_data[hat + "_c?" + mods[cat][hat] + _c]=1;
       src_data[hat + "_c?" + mods[cat][hat] + _c]=1;
       count++;

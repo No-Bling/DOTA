@@ -1,4 +1,4 @@
- No-Bling DOTA mod v2019.06.09 choices:
+ No-Bling DOTA mod v2019.07.11 choices:
  Hats,Couriers,Wards,Terrain
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last three years...
@@ -169,6 +169,7 @@ particles/econ/items/dazzle/dazzle_pipe_dezun/dazzle_pipe_dezun_ambient.vpcf_c?p
 particles/econ/items/dazzle/dazzle_ti6/dazzle_ti6_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/dazzle/dazzle_ti6/dazzle_ti6_witness_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_gold_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/dazzle/dazzle_ti9/dazzle_ti9_immortal_head_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/dazzle/dazzle_ti9_forbidden/dazzle_ti9_forbidden_ambient_eyes.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/dazzle/dazzle_ti9_forbidden/dazzle_ti9_forbidden_arms_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/dazzle/dazzle_ti9_forbidden/dazzle_ti9_forbidden_weapon_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -287,6 +288,7 @@ particles/econ/items/ember_spirit/ember_spirit_lesser_greater_purifier/ember_spi
 particles/econ/items/ember_spirit/ember_spirit_lesser_greater_purifier/ember_spirit_ambient_lesserpurifier_offhand_blade.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/ember_spirit/ember_spirit_vanishing_flame/ember_spirit_vanishing_flame_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/ember_spirit/ember_spirit_vanishing_flame/ember_spirit_vanishing_flame_ambient_gem.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/ember_spirit/ember_ti9/ember_ti9_shoulders_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/enchantress/enchantress_lodestar/enchantress_lodestar.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/enchantress/enchantress_plus_2018/enchantress_plus_2018_ambient_belt_trace.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/enchantress/enchantress_plus_2018/enchantress_plus_2018_ambient_cape.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -312,6 +314,7 @@ particles/econ/items/faceless_void/faceless_void_weapon_voidhammer/faceless_void
 particles/econ/items/grimstroke/ti9_cache_grimstroke_ink_dragon_poet/ti9_cache_grimstroke_belt_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/grimstroke/ti9_cache_grimstroke_ink_dragon_poet/ti9_cache_grimstroke_head_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/grimstroke/ti9_cache_grimstroke_ink_dragon_poet/ti9_cache_grimstroke_weapon_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/grimstroke/ti9_immortal/gs_ti9_ambient.vpcf_c?particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient.vpcf_c
 particles/econ/items/gyrocopter/gyro_ti8_wasp/gyro_ti8_bomb_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/gyrocopter/gyro_ti8_wasp/gyro_ti8_drill_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/gyrocopter/gyro_ti8_wasp/gyro_ti8_wasp_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -440,6 +443,7 @@ particles/econ/items/lion/lion_demon_drain/lion_demon_drain_witness_ambient.vpcf
 particles/econ/items/lion/lion_demon_glove/lion_demon_glove.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/lion/lion_ti8/lion_ti8_arm_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/lion/lion_ti8/lion_ti8_arm_ambient_lvl2.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/lion/lion_ti9/lion_ti9_head_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/lion/stone_hand/lion_stone_hand.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/lone_druid/lone_druid_cauldron/lone_druid_cauldron.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/lone_druid/lone_druid_cauldron_retro/lone_druid_cauldron_retro.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -455,6 +459,8 @@ particles/econ/items/luna/luna_ti7_set/luna_ti7_set_mount_ambient.vpcf_c?particl
 particles/econ/items/luna/luna_ti7_set/luna_ti7_set_shoulder_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/luna/luna_ti7_set/luna_ti7_set_style_head_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/luna/luna_ti7_set/luna_ti7_set_style_mount_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/luna/luna_ti9_weapon/luna_ti9_weapon_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/luna/luna_ti9_weapon_gold/luna_ti9_weapon_ambient_gold.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/lycan/blood_moon/lycan_blood_moon_armor_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/lycan/blood_moon/lycan_blood_moon_belt_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/lycan/blood_moon/lycan_blood_moon_shapeshift_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -638,6 +644,7 @@ particles/econ/items/pudge/pudge_ti6_immortal_gold/pudge_ti6_ambient_gold.vpcf_c
 particles/econ/items/pudge/pudge_trapper_beam_chain/pudge_nx_ambient_chain.vpcf_c?particles/units/heroes/hero_pudge/pudge_ambient_chain.vpcf_c
 particles/econ/items/pudge/pudge_trapper_beam_chain/pudge_nx_ambient_chain_right.vpcf_c?particles/units/heroes/hero_pudge/pudge_ambient_chain_right.vpcf_c
 particles/econ/items/pudge/pudge_trapper_beam_chain/pudge_nx_cleaver_drip.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/pugna/pugna_ti9_immortal/pugna_ti9_immortal_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/pugna/pugna_ward_golden_nether_lord/pugna_gold_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/pugna/pugna_ward_golden_nether_lord/pugna_gold_ambient_hat.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/pugna/pugna_ward_ti5/pugna_ambient_eyes_ti_5.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -848,6 +855,8 @@ particles/econ/items/timbersaw/hero_timbersaw_fullmetal/shredder_ambient_fullmet
 particles/econ/items/timbersaw/hero_timbersaw_tree_punisher/shredder_ambient_tree_punisher.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/timbersaw/timbersaw_molten_destructor/timbersaw_molten_destructor_saw.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/timbersaw/timbersaw_steamcutter/timbersaw_steamcutter_ambient_saw.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/timbersaw/timbersaw_ti9/timbersaw_ti9_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/timbersaw/timbersaw_ti9_gold/timbersaw_ti9_ambient_gold.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/timbersaw/timbersaw_timberthaw/shredder_timberthaw_ambient_saw.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/tinker/boots_of_travel/tinker_bots_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/tinker/tinker_deepsea/tinker_deepsea_back_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -923,6 +932,7 @@ particles/econ/items/warlock/warlock_staff_hellborn/warlock_hellborn_grasp_staff
 particles/econ/items/warlock/warlock_staff_infernal/warlock_ambient_staff_infernal.vpcf_c?particles/units/heroes/hero_warlock/warlock_ambient_staff.vpcf_c
 particles/econ/items/warlock/warlock_ti8/warlock_ti8_head_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/warlock/warlock_ti8/warlock_ti8_staff_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/warlock/warlock_ti9/warlock_ti9_lantern_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/weaver/weaver_immortal_ti6/weaver_immortal_ti6_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/weaver/weaver_immortal_ti7/weaver_immortal_ti7_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/weaver/weaver_immortal_ti7/weaver_ti7_golden_immortal_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
