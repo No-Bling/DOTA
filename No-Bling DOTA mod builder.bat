@@ -1,5 +1,5 @@
 /* 2>nul || goto init "No-Bling DOTA mod builder"
-:: v2019.07.11: Treasure III when?
+:: v2019.07.18: alt styles
 :: - revised categories
 :: - loadout and taunt animations support
 :: - making use of VPKMOD tool [compiled as needed from included source] for very fast in-memory processing with minimal file i/o
@@ -34,7 +34,7 @@ set/a @dialog=1                    &rem  1 = show choices gui dialog,           
 set "MOD_FILE=pak01_dir.vpk"       &rem  ? = override here if having multiple mods and needing another name like pak02_dir.vpk
 set "all_choices=Hats,Couriers,Wards,Terrain,Abilities,Seasonal,AbiliTweak,HeroTweak,Menu,Taunts,Glance"
 set "def_choices=Hats,Couriers,Wards,Terrain,Abilities,Seasonal,AbiliTweak,HeroTweak,Menu"
-set "version=2019.07.11"
+set "version=2019.07.18"
 
 title AveYo's No-Bling DOTA mod builder v%version%
 set a = free script so no bitching! & for /f delims^=^ eol^= %%. in (
@@ -258,9 +258,12 @@ copy /y "%BUILDS%\pak01_dir.vpk" "%DOTA%\%MOD_FOLDER%\%MOD_FILE%" >nul 2>nul
 copy /y "%BUILDS%\No-Bling DOTA mod readme.txt" "%DOTA%\%MOD_FOLDER%\" >nul 2>nul
 :: Supress AnimResource warnings
 set autocfg="%DOTA%\dota\cfg\autoexec.cfg"
-findstr /b /c:"log_verbosity AnimResource off" %autocfg% >nul 2>nul || echo/log_verbosity AnimResource off ^| grep %%>>%autocfg%
+findstr /b /c:"log_verbosity AnimResource off" %autocfg% >nul 2>nul || (
+ echo.
+ echo/log_verbosity AnimResource off ^| grep %%
+) >>%autocfg%
 :: End task to allow launch option adding
-set "@endtask=" & tasklist /FI "IMAGENAME eq STEAM.EXE" | findstr /i "STEAM.EXE" >nul 2>nul && set "@endtask=1"
+set "@endtask=" & tasklist /FI "IMAGENAME eq STEAM.EXE" | findstr /i "STEAM.EXE---------TODO------" >nul 2>nul && set "@endtask=1"
 if defined @endtask call :color 0e " Press Alt+F4 to stop auto-install from closing Dota & Steam in 10s ..."
 if defined @endtask timeout /t 10 >nul 2>nul
 if defined @endtask call :clearline 3
@@ -409,7 +412,7 @@ exit/b
 
 :set_tools [OUTPUTS] filters decompiler vpk js_engine                                   AveYo : Does not require Workshop Tools!
 if not exist "%ROOT%\%~n0.js" call :end ! %~n0.js missing! Did you unpack the whole .zip package?
-if not exist "%ROOT%\tools\*" call :end ! tools subfolder missing! Did you unpack the whole .zip package?
+::if not exist "%ROOT%\tools\*" call :end ! tools subfolder missing! Did you unpack the whole .zip package?
 set "PATH=%PATH%;%ROOT%\tools\"
 set "vpkmod="%ROOT%\vpkmod.exe""
 if not exist %vpkmod% call :build_csc_vpkmod

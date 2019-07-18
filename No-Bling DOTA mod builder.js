@@ -1,5 +1,5 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                    edited in SynWrite
-// v2019.07.11: Treasure III when?
+// v2019.07.18: Alt styles
 // - revised categories
 // - loadout and taunt animations support
 // - output unified src.lst for in-memory modding via VPKMOD tool
@@ -106,19 +106,19 @@ No_Bling=function(choices, verbose, timers){
   // Read particles.lst
   if (VERBOSE) t = timer("Read particles.lst");
   var particles_src = path.normalize(path.join(ROOT, "src\\particles.lst"));
-  var particles = fs.readFileSync(particles_src, DEF_ENCODING).split("\\").join("/").split("_c\r\n");
+  var particles_lst = fs.readFileSync(particles_src, DEF_ENCODING).split("\\").join("/").split("_c\r\n");
   if (VERBOSE) t.end();
 
   // Read anim.lst
   if (VERBOSE) t = timer("Read anim.lst");
   var anim_src = path.normalize(path.join(ROOT, "src\\anim.lst"));
-  var anim = fs.readFileSync(anim_src, DEF_ENCODING).split("\\").join("/").split("_c\r\n");
+  var anim_lst = fs.readFileSync(anim_src, DEF_ENCODING).split("\\").join("/").split("_c\r\n");
   if (VERBOSE) t.end();
 
   // Read models.lst
   if (VERBOSE) t = timer("Read models.lst");
   var models_src = path.normalize(path.join(ROOT, "src\\models.lst"));
-  var models = fs.readFileSync(models_src, DEF_ENCODING).split("\\").join("/").split("_c\r\n");
+  var models_lst = fs.readFileSync(models_src, DEF_ENCODING).split("\\").join("/").split("_c\r\n");
   if (VERBOSE) t.end();
 
   // Read and vdf.parse npc resources
@@ -148,11 +148,14 @@ No_Bling=function(choices, verbose, timers){
   }
   if (VERBOSE) t.end();
 
+  // Hard-coded fixes for lists 
   npc_models["courier_radiant"] = "models/props_gameplay/donkey.vmdl";
   npc_models["courier_dire"] = "models/props_gameplay/donkey_dire.vmdl";
   npc_models["courier_flying_radiant"] = "models/props_gameplay/donkey_wings.vmdl";
   npc_models["courier_flying_dire"] = "models/props_gameplay/donkey_dire_wings.vmdl";
   npc_models["npc_dota_goodguys_tower"] = "models/props_structures/tower_good.vmdl";
+  var tmp = "npc_dota_hero_life_stealer"; 
+  models[tmp] = {}; models[tmp]["back"] = {}; models[tmp]["back"]["m"] = "models/heroes/life_stealer/life_stealer.vmdl";        
 
   // Read and vdf.parse items_game.txt
   var items_game_src = path.normalize(path.join(ROOT, "src\\scripts\\items\\items_game.txt"));
@@ -181,21 +184,16 @@ No_Bling=function(choices, verbose, timers){
   t = timer("Check items_game");
   for (i in items) {
     var prefab = items[i].prefab || "";
-    var rarity = items[i].item_rarity || "";
-    var id = vdf.redup(i);
-    var caption = items[i].item_name.replace("#DOTA_Item_","");
-    var expiration = items[i].expiration_date || "";
-    var creation = items[i].creation_date || "";
-    var slot = items[i].item_slot || "weapon";
     var model = items[i].model_player || "", model1 = "", model2 = "", model3 = "";
     var visuals = (typeof items[i].visuals === "object") ? items[i].visuals : "";
-    var by_heroes = (typeof items[i].used_by_heroes === "object") ? items[i].used_by_heroes : {};
-    var npc = "", hero = "", precat = "", cat = "", expired = "", maybe_ability = {}, maybe_hat = {}, has_modifier = false;
 
-    // skip prefabs / non .visuals / non .model_player
+    // skip prefabs / non .model_player / non .visuals
     if (!prefab || prefab === "bundle" || prefab === "taunt" || (!visuals && !model)) continue;
 
-    // get npc hero name
+    var cat = "", maybe_ability = {}, maybe_hat = {}, has_modifier = false;
+    var id = vdf.redup(i), caption = items[i].item_name.replace("#DOTA_Item_","");
+    var slot = items[i].item_slot || "weapon", rarity = items[i].item_rarity || "";
+    var by_heroes = (typeof items[i].used_by_heroes === "object") ? items[i].used_by_heroes : {}, npc = "", hero = "";
     for (used in by_heroes) {
       npc = used;
       if (used.indexOf("_hero_") > -1) {
@@ -205,20 +203,21 @@ No_Bling=function(choices, verbose, timers){
       }
     }
 
-    // get precat (for detailed logs)
-    precat = (prefabs[prefab]) ? prefabs[prefab] : "other";
-    // get expiration
+    // get precat (for detailed logs skipping expired events)
+    var expiration = items[i].expiration_date || "", creation = items[i].creation_date || "", expired = "";
+    var precat = (prefabs[prefab]) ? prefabs[prefab] : "other";
     if (precat === "seasonal" || precat === "other") {
       var age = (expiration) ? expiration.split(" ")[0].split(/\-0|\-/g) : "";
-      if (!age && creation) {
-        age = creation.split("-");
-        age[0] = parseInt(age[0], 10) + 1;
-      }
+      if (!age && creation) { age = creation.split("-"); age[0] = parseInt(age[0], 10) + 1; }
       expired = (age && Date.UTC(age[0], age[1], age[2]) - new Date().getTime() < 0);
-      if (items[i].event_id !== ACTIVE_EVENT) expired = true;           // hard-coded ACTIVE_EVENT = EVENT_ID_INTERNATIONAL_2018
+      if (items[i].event_id !== ACTIVE_EVENT) expired = true;                // hard-coded ACTIVE_EVENT at top of the script
       if (items[i].event_id === PAST_EVENT) expired = false;                 // re-enable expired PAST_EVENT for replays viewing
     }
 
+    // log more details to no_bling.txt
+    LOG("\r\n[" + hero + "] " + caption + " " + prefab + " " + (slot ? slot + " ": "") + (rarity ? rarity + " ": "") + id);
+
+    //----------------------------------------------------------------------------------------------------------------------------
     // optionally generate per-hero / category items_game.txt log slices keeping original indenting - as of 2019 more complete
     if (VERBOSE && hero) {
       var herocat=(prefab === "default_item") ? "default_items" : "wearable_items";
@@ -235,6 +234,7 @@ No_Bling=function(choices, verbose, timers){
       if (!logs[precat][i]["items_game"]["items"]) logs[precat][i]["items_game"]["items"] = {};
       if (!logs[precat][i]["items_game"]["items"][i+""]) logs[precat][i]["items_game"]["items"][i+""] = items[i];
     }
+    //----------------------------------------------------------------------------------------------------------------------------
 
     // gabening intensifies..
     if (GLANCE && model) { //&& npc
@@ -256,7 +256,6 @@ No_Bling=function(choices, verbose, timers){
           if (model3) mods["Glance"][model3] = models[npc][slot]["m3"];
 //        LOG(npc+"-"+slot+":MW "+model+" = "+models[npc][slot]["m"]);
         } else {
-//        if ("models/heroes/"+hero+"/"+npc+"_"+slot+".vmdl" in models) LOG(npc+"FOOOOOOOOOOOOOOOOOUND");
           mods["Glance"][model] = "models/development/invisiblebox.vmdl";
 //        LOG(npc+"-"+slot+":M? "+model+" = "+"models/development/invisiblebox.vmdl");
         }
@@ -264,9 +263,19 @@ No_Bling=function(choices, verbose, timers){
     }
 
     //--------------------------------------------------------------------------------------------------------------------------
-    // Still in the item i loop above, check visuals section for asset_modifier* particles
+    // Still in the item i loop above, check visuals section for style models and asset_modifier* particles
     //--------------------------------------------------------------------------------------------------------------------------
     for (v in visuals) {
+
+      // GLANCE STYLES - GABENING INTENSIFIES..
+      if (model && typeof items[i].visuals.styles === "object") {
+         for (s in items[i].visuals.styles) {
+            var style = items[i].visuals.styles[s].model_player || "";
+            if (style) mods["Glance"][items[i].visuals.styles[s].model_player] = mods["Glance"][model];
+//          if (style) LOG("STYLE: "+items[i].visuals.styles[s].model_player+" = "+mods["Glance"][model] + " :"+id);
+         } 
+      }
+
       var visual = items[i].visuals[v];      // .visuals object - dont use exact naming since vdf.parser auto-renamed duplicates
       var vtype = visual.type || "";
       var asset = visual.asset || "";
@@ -275,14 +284,7 @@ No_Bling=function(choices, verbose, timers){
       if (!vtype || vtype === "particle_control_point" /*|| vtype === "particle_combined"*/) continue; //skip non particle/p.._create
       var maybe = false;
 
-      // OTHER - PARTICLE SNAPSHOTS
-      if (vtype === "particle_snapshot") {
-        mods["Other"][modifier]=asset; cat="Other";
-        LOG("snapshot: "+modifier);
-        continue;
-      }
-
-      // DEFINITELY HATS
+      // GLANCE PROPS - GABENING INTENSIFIES..
       if (vtype === "additional_wearable") {
         if (asset.lastIndexOf(".vpcf") > -1) mods["Hats"][asset] = off;
         else if (asset.lastIndexOf(".vmdl") > -1) mods["Glance"][asset] = "models/development/invisiblebox.vmdl";
@@ -290,7 +292,7 @@ No_Bling=function(choices, verbose, timers){
         continue;
       }
 
-      // GLANCE - GABENING INTENSIFIES..
+      // GLANCE MAIN - GABENING INTENSIFIES..
       var has_glance = (GLANCE && vtype in {hero_model_change:1, entity_model:1, entity_clientside_model:1});
       if (has_glance) {
         if (asset.lastIndexOf(".vmdl") > -1) {
@@ -307,6 +309,13 @@ No_Bling=function(choices, verbose, timers){
           //LOG(vtype+"-"+asset+":COUR "+modifier+" = "+npc_models[vtype+"_"+asset]);
           }
         }
+        continue;
+      }
+
+      // OTHER - PARTICLE SNAPSHOTS
+      if (vtype === "particle_snapshot") {
+        //mods["Other"][modifier]=asset; cat="Other";
+        LOG("snapshot: "+modifier);
         continue;
       }
 
@@ -441,8 +450,6 @@ No_Bling=function(choices, verbose, timers){
       }
     }
 
-    // log more details to no_bling.txt
-    LOG("[" + hero + "] " + caption + " " + prefab + " " + (slot ? slot + " ": "") + (rarity ? rarity + " ": "") + id + "\r\n");
 
   }  // next item i loop
   t.end();
@@ -504,36 +511,38 @@ No_Bling=function(choices, verbose, timers){
   if (VERBOSE) t.end();
 
   //----------------------------------------------------------------------------------------------------------------------------
-  // 4. Import particles.lst - taunts & loadout
+  // 4. Import particles.lst - loadout
   //----------------------------------------------------------------------------------------------------------------------------
   if (VERBOSE) t = timer("Import particles.lst - taunts & loadout");
-  for (i=0, len=particles.length; i < len; i++) {
-    if (!(particles[i].split('/')[1] in {econ:1, models:1, prime:1, ui:1, units:1})) continue;
-    if (particles[i].indexOf("taunt") > -1) {
-      mods["Taunts"][particles[i]] = off;
-      LOG("taunts: "+particles[i]);
-    } else if (particles[i].indexOf("spawn") > -1 || particles[i].indexOf("loadout") > -1) {
-      mods["Menu"][particles[i]] = off;
-      LOG("loadout: "+particles[i]);
+  for (i=0, len=particles_lst.length; i < len; i++) {
+    if (!(particles_lst[i].split('/')[1] in {econ:1, models:1, prime:1, ui:1, units:1})) continue;
+    if (particles_lst[i].indexOf("spawn.v") > -1 || particles_lst[i].indexOf("loadout.v") > -1) {
+      mods["Menu"][particles_lst[i]] = off;
+      LOG("loadout: "+particles_lst[i]);
     }
+//  else if (particles_lst[i].indexOf("taunt") > -1) {
+//    mods["Taunts"][particles_lst[i]] = off;
+//    LOG("taunts: "+particles_lst[i]);
+//  }
   }
   if (VERBOSE) t.end();
 
   //----------------------------------------------------------------------------------------------------------------------------
-  // 5. Import anim.lst - taunts & loadout
+  // 5. Import anim.lst - taunts
   //----------------------------------------------------------------------------------------------------------------------------
-  if (VERBOSE) t = timer("Import anim.lst - taunts & loadout");
-  for (i=0, len=anim.length; i < len; i++) {
-    if (!(anim[i].split('/')[1] in {courier:1, heroes:1, items:1, pets:1})) continue;
-    if (anim[i].indexOf("models/items/hex") > -1) continue;
-    if (anim[i].indexOf("_effigy") > -1) continue;
-    if (anim[i].indexOf("taunt") > -1) {
-      mods["Taunts"][anim[i]] = ".nix";
-      LOG("taunts: "+anim[i]);
-    } else if (anim[i].indexOf("spawn") > -1) {
-      mods["Menu"][anim[i]] = ".nix";
-      LOG("loadout: "+anim[i]);
+  if (VERBOSE) t = timer("Import anim.lst - taunts");
+  for (i=0, len=anim_lst.length; i < len; i++) {
+    if (!(anim_lst[i].split('/')[1] in {courier:1, heroes:1, items:1, pets:1})) continue;
+    if (anim_lst[i].indexOf("models/items/hex") > -1) continue;
+    if (anim_lst[i].indexOf("_effigy") > -1) continue;
+    if (anim_lst[i].indexOf("taunt") > -1) {
+      mods["Taunts"][anim_lst[i]] = ".nix";
+      LOG("taunts: "+anim_lst[i]);
     }
+//  else if (anim_lst[i].indexOf("spawn") > -1) {
+//    mods["Menu"][anim_lst[i]] = ".nix";
+//    LOG("loadout: "+anim_lst[i]);
+//  }
   }
   if (VERBOSE) t.end();
 

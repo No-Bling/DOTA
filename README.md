@@ -23,7 +23,7 @@ Don't worry, this is a perfectly safe, well intended, hats friendly, good behavi
 optimally swapping just original Valve authored files with no 3^rd party content alteration whatsoever,  
 and whitelist-able at a glance...  
 
-#### What's new in v2019.07.11:  Treasure III when?  
+#### What's new in v2019.07.18:  Alt Styles  
 ~ revised categories  
 ~ loadout and taunt animations support  
 ~ BAT: __making use of in-house VPKMOD tool for very fast in-memory processing with minimal file i/o__  
