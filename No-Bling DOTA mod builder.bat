@@ -1,8 +1,7 @@
 /* 2>nul || goto init "No-Bling DOTA mod builder"
-:: v2019.07.18: alt styles
-:: - revised categories
-:: - loadout and taunt animations support
-:: - making use of VPKMOD tool [compiled as needed from included source] for very fast in-memory processing with minimal file i/o
+:: v2019.07.20: Grow Up
+:: - alternative styles, loadout and taunt animations support
+:: - making use of VPKMOD tool [compiled as needed from included source] for in-memory processing with minimal file i/o
 :: - auto-update script from github on launch if needed
 :: - language independent mod launch option -tempcontent with dota_tempcontent mod root folder
 ::------------------------------------------------------------------------------------------------------------------------------
@@ -34,7 +33,7 @@ set/a @dialog=1                    &rem  1 = show choices gui dialog,           
 set "MOD_FILE=pak01_dir.vpk"       &rem  ? = override here if having multiple mods and needing another name like pak02_dir.vpk
 set "all_choices=Hats,Couriers,Wards,Terrain,Abilities,Seasonal,AbiliTweak,HeroTweak,Menu,Taunts,Glance"
 set "def_choices=Hats,Couriers,Wards,Terrain,Abilities,Seasonal,AbiliTweak,HeroTweak,Menu"
-set "version=2019.07.18"
+set "version=2019.07.20"
 
 title AveYo's No-Bling DOTA mod builder v%version%
 set a = free script so no bitching! & for /f delims^=^ eol^= %%. in (
@@ -263,7 +262,7 @@ findstr /b /c:"log_verbosity AnimResource off" %autocfg% >nul 2>nul || (
  echo/log_verbosity AnimResource off ^| grep %%
 ) >>%autocfg%
 :: End task to allow launch option adding
-set "@endtask=" & tasklist /FI "IMAGENAME eq STEAM.EXE" | findstr /i "STEAM.EXE---------TODO------" >nul 2>nul && set "@endtask=1"
+set "@endtask=" & tasklist /FI "IMAGENAME eq STEAM.EXE" | findstr /i "STEAM.EXE" >nul 2>nul && set "@endtask=1"
 if defined @endtask call :color 0e " Press Alt+F4 to stop auto-install from closing Dota & Steam in 10s ..."
 if defined @endtask timeout /t 10 >nul 2>nul
 if defined @endtask call :clearline 3

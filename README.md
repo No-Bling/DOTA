@@ -4,12 +4,12 @@
 ### Glance  
 <table>  
   <tr>  
-    <td><img src="https://i.imgur.com/ys2KKhM.png"></td>  
-    <td><img src="https://i.imgur.com/JShyXKs.png"></td>  
+    <td><img src="https://i.imgur.com/yeN2UfR.png"></td>  
+    <td><img src="https://i.imgur.com/crjotHs.png"></td>  
   </tr>  
   <tr>  
-    <td><img src="https://i.imgur.com/yeN2UfR.png"></td>  
-    <td><img src="https://i.imgur.com/JtihgLz.png"></td>  
+    <td><img src="https://i.imgur.com/JShyXKs.png"></td>  
+    <td><img src="https://i.imgur.com/vT1ihiw.png"></td>  
   </tr>  
 </table>  
 
@@ -23,10 +23,9 @@ Don't worry, this is a perfectly safe, well intended, hats friendly, good behavi
 optimally swapping just original Valve authored files with no 3^rd party content alteration whatsoever,  
 and whitelist-able at a glance...  
 
-#### What's new in v2019.07.18:  Alt Styles  
-~ revised categories  
-~ loadout and taunt animations support  
-~ BAT: __making use of in-house VPKMOD tool for very fast in-memory processing with minimal file i/o__  
+#### What's new in v2019.07.20:  Grow Up  
+~ alternative styles, loadout and taunt animations support  
+~ BAT: making use of __VPKMOD__ tool [compiled from included source] for in-memory processing with minimal file i/o  
 ~ BAT: auto-update script from github on launch  
 ~ BAT: language independent mod launch option `-tempcontent` with `dota_tempcontent` mod root folder  
 ~ JS: decoupled manual filters into *No-Bling-filters.txt*  

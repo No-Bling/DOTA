@@ -1,4 +1,4 @@
- No-Bling DOTA mod v2019.07.18 choices:
+ No-Bling DOTA mod v2019.07.20 choices:
  Hats,Couriers,Wards,Abilities,Terrain,Seasonal,AbiliTweak,HeroTweak,Menu,Taunts,Glance
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last three years...
@@ -1020,6 +1020,13 @@ particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot_rays_b.vpcf_c?parti
 particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot_shadow_b.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/zeus/lightning_weapon_fx/zues_immortal_lightning_weapon.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/zeus/zeus_ti8_immortal_arms/zeus_ti8_immortal_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_death.vpcf_c?particles/units/heroes/hero_invoker/invoker_death.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_exort_orb.vpcf_c?particles/units/heroes/hero_invoker/invoker_exort_orb.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_quas_orb.vpcf_c?particles/units/heroes/hero_invoker/invoker_quas_orb.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_wex_orb.vpcf_c?particles/units/heroes/hero_invoker/invoker_wex_orb.vpcf_c
+particles/units/heroes/hero_nevermore/sf_fire_arcana_ambient_glow.vpcf_c?particles/units/heroes/hero_nevermore/nevermore_ambient_glow.vpcf_c
+particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_smoke.vpcf_c?particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_staff.vpcf_c
+particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf_c?particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf_c
 particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_left.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_right.vpcf_c?particles/dev/empty_particle.vpcf_c
 [Couriers]
@@ -2474,6 +2481,7 @@ particles/units/heroes/hero_gyrocopter/gyro_ambient_smokestack.vpcf_c?particles/
 particles/units/heroes/hero_invoker/invoker_forge_spirit_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_invoker_kid/invoker_kid_forge_spirit_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_invoker_kid/invoker_kid_forged_spirit_projectile.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_orbs_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_jakiro/jakiro_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_juggernaut/jugg_weapon_glow_variation_green.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_juggernaut/jugg_weapon_glow_variation_red.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -2719,6 +2727,18 @@ particles/units/heroes/hero_huskar/huskar_loadout.vpcf_c?particles/dev/empty_par
 particles/units/heroes/hero_invoker/invoker_forge_spirit_ambient_spawn.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_invoker/invoker_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_invoker/invoker_orb_spawn.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_debut_spawn.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_exort_orb_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_exort_orb_model_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_exort_orb_spawn.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_orbs_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_quas_orb_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_quas_orb_model_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_quas_orb_spawn.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_wex_orb_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_wex_orb_model_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_wex_orb_spawn.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_jakiro/jakiro_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_juggernaut/juggernaut_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_juggernaut/juggernaut_portrait.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -3607,6 +3627,14 @@ sounds/vo/invoker/invo_lasthit_06.vsnd_c?sounds/null.vsnd_c
 sounds/vo/invoker/invo_laugh_06.vsnd_c?sounds/null.vsnd_c
 sounds/vo/invoker/invo_purch_01.vsnd_c?sounds/null.vsnd_c
 sounds/vo/invoker/invo_rare_04.vsnd_c?sounds/null.vsnd_c
+sounds/vo/invoker/kidvo_la_ability_invoke_01.vsnd_c?sounds/null.vsnd_c
+sounds/vo/invoker/kidvo_la_attack_05.vsnd_c?sounds/null.vsnd_c
+sounds/vo/invoker/kidvo_la_failure_06.vsnd_c?sounds/null.vsnd_c
+sounds/vo/invoker/kidvo_la_kill_01.vsnd_c?sounds/null.vsnd_c
+sounds/vo/invoker/kidvo_la_lasthit_06_02.vsnd_c?sounds/null.vsnd_c
+sounds/vo/invoker/kidvo_la_laugh_06.vsnd_c?sounds/null.vsnd_c
+sounds/vo/invoker/kidvo_la_purch_01.vsnd_c?sounds/null.vsnd_c
+sounds/vo/invoker/kidvo_la_rare_04.vsnd_c?sounds/null.vsnd_c
 sounds/vo/jakiro/jak_ability_failure_07.vsnd_c?sounds/null.vsnd_c
 sounds/vo/jakiro/jak_bottle_01.vsnd_c?sounds/null.vsnd_c
 sounds/vo/jakiro/jak_bottle_03.vsnd_c?sounds/null.vsnd_c
@@ -4289,6 +4317,10 @@ models/heroes/crystal_maiden/crystal_maiden_arcana.vmdl_c?models/heroes/crystal_
 models/heroes/crystal_maiden/crystal_maiden_arcana_back.vmdl_c?models/heroes/crystal_maiden/crystal_maiden_cape.vmdl_c
 models/heroes/dark_willow/dark_willow_cage_duel.vmdl_c?models/heroes/dark_willow/dark_willow_offhand.vmdl_c
 models/heroes/death_prophet/rubick_arcana_death_prophet_ghost.vmdl_c?models/heroes/death_prophet/death_prophet_ghost.vmdl_c
+models/heroes/invoker_kid/invoker_kid.vmdl_c?models/heroes/invoker/invoker.vmdl_c
+models/heroes/invoker_kid/invoker_kid_cape.vmdl_c?models/heroes/invoker/invoker_shoulder.vmdl_c
+models/heroes/invoker_kid/invoker_kid_hair.vmdl_c?models/heroes/invoker/invoker_head.vmdl_c
+models/heroes/invoker_kid/invoker_kid_sleeves.vmdl_c?models/heroes/invoker/invoker_dress.vmdl_c
 models/heroes/invoker_kid/invoker_kid_trainer_dragon.vmdl_c?models/heroes/invoker/forge_spirit.vmdl_c
 models/heroes/juggernaut/juggernaut_arcana.vmdl_c?models/heroes/juggernaut/juggernaut.vmdl_c
 models/heroes/lone_druid/spirit_bear_rubick.vmdl_c?models/heroes/lone_druid/spirit_bear.vmdl_c

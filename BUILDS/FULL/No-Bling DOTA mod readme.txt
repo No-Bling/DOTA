@@ -1,4 +1,4 @@
- No-Bling DOTA mod v2019.07.18 choices:
+ No-Bling DOTA mod v2019.07.20 choices:
  Hats,Couriers,Wards,Terrain,Abilities,Seasonal,AbiliTweak,HeroTweak,Menu
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last three years...
@@ -1020,6 +1020,13 @@ particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot_rays_b.vpcf_c?parti
 particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot_shadow_b.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/zeus/lightning_weapon_fx/zues_immortal_lightning_weapon.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/zeus/zeus_ti8_immortal_arms/zeus_ti8_immortal_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_death.vpcf_c?particles/units/heroes/hero_invoker/invoker_death.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_exort_orb.vpcf_c?particles/units/heroes/hero_invoker/invoker_exort_orb.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_quas_orb.vpcf_c?particles/units/heroes/hero_invoker/invoker_quas_orb.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_wex_orb.vpcf_c?particles/units/heroes/hero_invoker/invoker_wex_orb.vpcf_c
+particles/units/heroes/hero_nevermore/sf_fire_arcana_ambient_glow.vpcf_c?particles/units/heroes/hero_nevermore/nevermore_ambient_glow.vpcf_c
+particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_smoke.vpcf_c?particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_staff.vpcf_c
+particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf_c?particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf_c
 particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_left.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_right.vpcf_c?particles/dev/empty_particle.vpcf_c
 [Couriers]
@@ -2474,6 +2481,7 @@ particles/units/heroes/hero_gyrocopter/gyro_ambient_smokestack.vpcf_c?particles/
 particles/units/heroes/hero_invoker/invoker_forge_spirit_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_invoker_kid/invoker_kid_forge_spirit_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_invoker_kid/invoker_kid_forged_spirit_projectile.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_orbs_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_jakiro/jakiro_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_juggernaut/jugg_weapon_glow_variation_green.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_juggernaut/jugg_weapon_glow_variation_red.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -2719,6 +2727,18 @@ particles/units/heroes/hero_huskar/huskar_loadout.vpcf_c?particles/dev/empty_par
 particles/units/heroes/hero_invoker/invoker_forge_spirit_ambient_spawn.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_invoker/invoker_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_invoker/invoker_orb_spawn.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_debut_spawn.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_exort_orb_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_exort_orb_model_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_exort_orb_spawn.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_orbs_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_quas_orb_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_quas_orb_model_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_quas_orb_spawn.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_wex_orb_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_wex_orb_model_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_wex_orb_spawn.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_jakiro/jakiro_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_juggernaut/juggernaut_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_juggernaut/juggernaut_portrait.vpcf_c?particles/dev/empty_particle.vpcf_c

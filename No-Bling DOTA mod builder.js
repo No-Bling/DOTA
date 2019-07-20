@@ -1,7 +1,6 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                    edited in SynWrite
-// v2019.07.18: Alt styles
-// - revised categories
-// - loadout and taunt animations support
+// v2019.07.20: Grow up
+// - alternative styles, loadout and taunt animations support
 // - output unified src.lst for in-memory modding via VPKMOD tool
 // - decoupled manual filters into No-Bling-filters.txt
 //------------------------------------------------------------------------------------------------------------------------------
@@ -371,8 +370,8 @@ No_Bling=function(choices, verbose, timers){
             LOG("? ability: "+modifier);
           }
         } else if (modifier.indexOf("particles/units/heroes") > -1) {
-            cat="HeroTweak";
-            LOG("-ignore_hero: "+modifier);                                                                  // just log ignored
+            cat="Hats"; mods[cat][modifier]=(asset) ? asset : off;
+            LOG("hat: "+modifier);
         } else if (modifier.indexOf("particles/status_fx") === -1) {
           cat="Abilities"; mods[cat][modifier]=(asset) ? asset : off;
           LOG("status_fx: "+modifier+" = "+asset);

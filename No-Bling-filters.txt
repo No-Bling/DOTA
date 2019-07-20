@@ -1,6 +1,6 @@
 "no_bling_filters"
 {
- ":version" "2019.07.18"
+ ":version" "2019.07.20"
  //  Manual filters have been decoupled from the .js script into "No-Bling-filters.txt"
  //  To auto-update script without overwriting changes, make a "No-Bling-filters-personal.txt" copy and edit that instead!
  //  These suppliment "items_game.txt" auto-replacing rules with per category file replacement vdf modifier-asset pairs:
@@ -1176,6 +1176,14 @@
   "sounds/vo/invoker/invo_laugh_06.vsnd"  "+"
   "sounds/vo/invoker/invo_purch_01.vsnd"  "+"
   "sounds/vo/invoker/invo_rare_04.vsnd"  "+"
+  "sounds/vo/invoker/kidvo_la_ability_invoke_01.vsnd"  "+"
+  "sounds/vo/invoker/kidvo_la_attack_05.vsnd"  "+"
+  "sounds/vo/invoker/kidvo_la_failure_06.vsnd"  "+"
+  "sounds/vo/invoker/kidvo_la_kill_01.vsnd"  "+"
+  "sounds/vo/invoker/kidvo_la_lasthit_06_02.vsnd"  "+"
+  "sounds/vo/invoker/kidvo_la_laugh_06.vsnd"  "+"
+  "sounds/vo/invoker/kidvo_la_purch_01.vsnd"  "+"
+  "sounds/vo/invoker/kidvo_la_rare_04.vsnd"  "+"
   "sounds/vo/jakiro/jak_ability_failure_07.vsnd"  "+"
   "sounds/vo/jakiro/jak_bottle_01.vsnd"  "+"
   "sounds/vo/jakiro/jak_bottle_03.vsnd"  "+"
@@ -1796,6 +1804,12 @@
  }
  "Glance"
  {
+  // kidvoker persona is problematic - at best is either no-hair, no-cape or no-dress - I've chosen no-hair to save glancevalue
+  "models/heroes/invoker_kid/invoker_kid_hair.vmdl"  "models/heroes/invoker/invoker_head.vmdl"
+  "models/heroes/invoker_kid/invoker_kid_cape.vmdl"  "models/heroes/invoker/invoker_shoulder.vmdl"
+  "models/heroes/invoker_kid/invoker_kid_sleeves.vmdl"  "models/heroes/invoker/invoker_dress.vmdl"
+  //"models/heroes/invoker_kid/invoker_kid_cape.vmdl"  "models/heroes/invoker/invoker_cape.vmdl"
+  //"models/heroes/invoker_kid/invoker_kid_sleeves.vmdl"  "models/heroes/invoker/invoker_hair.vmdl"
   "models/items/wards/smeevil_ward/smeevil_ward.vmdl"  "-"
   "models/items/wards/smeevil_ward/smeevil_ward_green.vmdl"  "models/items/wards/smeevil_ward/smeevil_ward.vmdl"
   "models/items/wards/smeevil_ward/smeevil_ward_blue.vmdl"  "models/items/wards/smeevil_ward/smeevil_ward.vmdl"
