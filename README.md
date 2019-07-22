@@ -23,8 +23,9 @@ Don't worry, this is a perfectly safe, well intended, hats friendly, good behavi
 optimally swapping just original Valve authored files with no 3^rd party content alteration whatsoever,  
 and whitelist-able at a glance...  
 
-#### What's new in v2019.07.20:  Grow Up  
-~ alternative styles, loadout and taunt animations support  
+#### What's new in v2019.07.22:  Glance++   
+~ revised filters, alternative styles, loadout and taunt animations support  
+~ BAT: improved autoupdate, prevent find gnu tools conflict, build folder CUSTOM instead of very long %CHOICES%  
 ~ BAT: making use of __VPKMOD__ tool [compiled from included source] for in-memory processing with minimal file i/o  
 ~ BAT: auto-update script from github on launch  
 ~ BAT: language independent mod launch option `-tempcontent` with `dota_tempcontent` mod root folder  
@@ -77,6 +78,10 @@ Use the pre-made releases in the __[BUILDS](https://github.com/No-Bling/DOTA/tre
    ~ CREATE FOLDER `\steamapps\common\dota 2 beta\game\dota_tempcontent`  
    ~ COPY `pak01_dir.vpk` IN `\steamapps\common\dota 2 beta\game\dota_tempcontent`  
    ~ ADD LAUNCH OPTION: `-tempcontent`  
+
+If you have trouble locating the path, right-click Dota 2 in Steam Library window - Properties - Local files - Browse local files  
+That should lead you to `\steamapps\common\dota 2 beta`  
+Enter `game` subfolder, then create folder `dota_tempcontent` and copy `pak01_dir.vpk` in there  
 
 #### How to quickly restore default particle spam DOTA?  
 Simply remove / rename the `-tempcontent` launch option and restart the game!  

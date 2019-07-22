@@ -1,4 +1,4 @@
- No-Bling DOTA mod v2019.07.20 choices:
+ No-Bling DOTA mod v2019.07.22 choices:
  Hats,Couriers,Wards,Terrain,Abilities,Seasonal
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last three years...
@@ -316,7 +316,9 @@ particles/econ/items/enchantress/enchantress_plus_2018/enchantress_plus_2018_amb
 particles/econ/items/enchantress/enchantress_plus_2018/enchantress_plus_2018_ambient_head.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/enchantress/enchantress_plus_2018/enchantress_plus_2018_ambient_weapon.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/enchantress/enchantress_virgas/ench_virgas_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/enigma/enigma_absolute_armour/enigma_absolute_ambient_body_d.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/enigma/enigma_absolute_armour/enigma_absolute_armour_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/enigma/enigma_absolute_armour/enigma_ambient_armour_body_e.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/enigma/enigma_absolute_arms/enigma_absolute_arms_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/enigma/enigma_geodesic/enigma_eidelon_geodesic_eye.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/enigma/enigma_world_chasm/enigma_world_chasm_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -1024,10 +1026,9 @@ particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot_rays_b.vpcf_c?parti
 particles/econ/items/zeus/arcana_chariot/zeus_arcana_chariot_shadow_b.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/zeus/lightning_weapon_fx/zues_immortal_lightning_weapon.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/zeus/zeus_ti8_immortal_arms/zeus_ti8_immortal_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
-particles/units/heroes/hero_invoker_kid/invoker_kid_death.vpcf_c?particles/units/heroes/hero_invoker/invoker_death.vpcf_c
-particles/units/heroes/hero_invoker_kid/invoker_kid_exort_orb.vpcf_c?particles/units/heroes/hero_invoker/invoker_exort_orb.vpcf_c
-particles/units/heroes/hero_invoker_kid/invoker_kid_quas_orb.vpcf_c?particles/units/heroes/hero_invoker/invoker_quas_orb.vpcf_c
-particles/units/heroes/hero_invoker_kid/invoker_kid_wex_orb.vpcf_c?particles/units/heroes/hero_invoker/invoker_wex_orb.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_forge_spirit_ambient.vpcf_c?particles/units/heroes/hero_invoker/invoker_forge_spirit_ambient.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_forged_spirit_projectile.vpcf_c?particles/units/heroes/hero_invoker/invoker_forged_spirit_projectile.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_orbs_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_nevermore/sf_fire_arcana_ambient_glow.vpcf_c?particles/units/heroes/hero_nevermore/nevermore_ambient_glow.vpcf_c
 particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_smoke.vpcf_c?particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_staff.vpcf_c
 particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient_generic.vpcf_c?particles/units/heroes/hero_skywrath_mage/skywrath_mage_staff_ambient.vpcf_c
@@ -1285,7 +1286,7 @@ particles/econ/wards/bane/bane_ward/bane_ward_ambient.vpcf_c?particles/dev/empty
 particles/econ/wards/crystal_maiden/crystal_maiden_ward/crystalmaiden_ward_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/wards/disruptor/disruptor_ward/disruptor_ward_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/wards/f2p/f2p_ward/f2p_ward_ambient.vpcf_c?particles/items2_fx/ward.vpcf_c
-particles/econ/wards/f2p/f2p_ward/f2p_ward_true_sight_ambient.vpcf_c?particles/econ/wards/f2p/f2p_ward/ward_true_sight.vpcf_c
+particles/econ/wards/f2p/f2p_ward/f2p_ward_true_sight_ambient.vpcf_c?particles/items2_fx/ward_true_sight.vpcf_c
 particles/econ/wards/lina/lina_ward/lina_ward_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/wards/portal/ward_portal_core/ward_portal_core_destruction_blue.vpcf_c?particles/items2_fx/ward_die_generic.vpcf_c
 particles/econ/wards/portal/ward_portal_core/ward_portal_core_destruction_yellow.vpcf_c?particles/items2_fx/ward_die_generic.vpcf_c
@@ -1318,6 +1319,12 @@ particles/dire_fx/bad_column01_smoketorch.vpcf_c?particles/dev/empty_particle.vp
 particles/dire_fx/barracks_bad_ranged_flow.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/dire_fx/barracks_bad_ranged_flow2.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/dire_fx/barracks_bad_smoke.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/dire_fx/dire_lava_falling_rocks.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/dire_fx/dire_lava_gloops_10sec.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/dire_fx/dire_lava_gloops_13sec.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/dire_fx/dire_lava_gloops_7sec.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/dire_fx/dire_lfr_13sec.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/dire_fx/dire_lfr_19sec.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/dire_fx/incense_large_b.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/dire_fx/tower_bad_lamp.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/events/ti7/aegis_lvl_1000_ambient_ti7.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -1344,9 +1351,15 @@ particles/econ/items/effigies/status_fx_effigies/se_ambient_fm16_dire_lvl3.vpcf_
 particles/econ/items/effigies/status_fx_effigies/se_ambient_fm16_rad_lvl1.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/effigies/status_fx_effigies/se_ambient_fm16_rad_lvl2.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/effigies/status_fx_effigies/se_ambient_fm16_rad_lvl3.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/radiant_fx/good_barracks_melee_modeled_wavessmokey.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/radiant_fx/good_barracks_melee001_centerglw_circle.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/radiant_fx/good_barracks_ranged001_centerglw_circle.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/radiant_fx/good_barracks_ranged001_modeled_wavessmokey.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/radiant_fx/good_barracks_ranged001_modeled_wavestopsmokey.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/radiant_fx/good_statue008_amb_mdlwisp.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/radiant_fx/good_statue010_ambienglow_c.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/radiant_fx/good_statue010_ambienglow_fallback_med.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/radiant_fx/tower_good3_lamp.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/radiant_fx2/good_ancient001_base_pool_c.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/radiant_fx2/good_ancient001_deflights.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/radiant_fx2/good_ancient001_spherering.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -1363,6 +1376,9 @@ particles/world_environmental_fx/artifact_table_underlight.vpcf_c?particles/dev/
 particles/world_environmental_fx/candle_flame.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/world_environmental_fx/candle_flame_large.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/world_environmental_fx/candle_flame_medium.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/world_environmental_fx/candle_flame_medium_bl.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/world_environmental_fx/candle_flame_medium_nl.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/world_environmental_fx/lamp_flame_dire_default.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/world_shrine/dire_shrine_ambient_detail.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/world_shrine/dire_shrine_ambient_embers.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/world_shrine/dire_shrine_ambient_flares.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -2226,8 +2242,11 @@ particles/econ/items/zeus/zeus_ti8_immortal_arms/zeus_ti8_immortal_arc_head.vpcf
 particles/items_fx/abyssal_blade_crimson_jugger.vpcf_c?particles/items_fx/abyssal_blade.vpcf_c
 particles/items_fx/abyssal_blade_jugger.vpcf_c?particles/items_fx/abyssal_blade.vpcf_c
 particles/items_fx/abyssal_blade_jugger_golden.vpcf_c?particles/items_fx/abyssal_blade.vpcf_c
-particles/reftononexistentsystem/cannotfindremap/nightstalker_black_nihility_void_cast.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/units/heroes/hero_earth_spirit/earthspirit_stone_debris_rockrop.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_death.vpcf_c?particles/units/heroes/hero_invoker/invoker_death.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_exort_orb.vpcf_c?particles/units/heroes/hero_invoker/invoker_exort_orb.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_quas_orb.vpcf_c?particles/units/heroes/hero_invoker/invoker_quas_orb.vpcf_c
+particles/units/heroes/hero_invoker_kid/invoker_kid_wex_orb.vpcf_c?particles/units/heroes/hero_invoker/invoker_wex_orb.vpcf_c
 [Seasonal]
 materials/water/water_econ_dota_black.vmat_c?materials/water/water_econ_dota_none.vmat_c
 materials/water/water_econ_dota_blood.vmat_c?materials/water/water_econ_dota_none.vmat_c

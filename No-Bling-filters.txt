@@ -1,6 +1,6 @@
 "no_bling_filters"
 {
- ":version" "2019.07.20"
+ ":version" "2019.07.22"
  //  Manual filters have been decoupled from the .js script into "No-Bling-filters.txt"
  //  To auto-update script without overwriting changes, make a "No-Bling-filters-personal.txt" copy and edit that instead!
  //  These suppliment "items_game.txt" auto-replacing rules with per category file replacement vdf modifier-asset pairs:
@@ -36,15 +36,17 @@
   "particles/econ/items/ember_spirit/ember_spirit_burning_god_offhand/ember_spirit_ambient_burning_god_l_blade.vpcf"  "+"
   // FIX ti8 ENIGMA empty wormhole
   "particles/econ/items/enigma/enigma_absolute_armour/enigma_absolute_armour_body_ambient.vpcf"  "-"
+  "particles/econ/items/enigma/enigma_absolute_armour/enigma_absolute_ambient_body_d.vpcf"  "+"
+  "particles/econ/items/enigma/enigma_absolute_armour/enigma_ambient_armour_body_e.vpcf"  "+"
   // FIX ti8 ENIGMA empty eyes
   "particles/econ/items/enigma/enigma_absolute_head/enigma_absolute_head_ambient_eye.vpcf"  "-"
-  "particles/econ/items/juggernaut/jugg_arcana/jugg_arcana_haste.vpcf"  "+"
   // FIX ti9 GRIMSTROKE brush..
   "particles/econ/items/grimstroke/ti9_immortal/gs_ti9_ambient.vpcf"  "particles/units/heroes/hero_grimstroke/grimstroke_brush_ambient.vpcf"
   // !hide INVOKER esl summon fire
   "particles/econ/items/invoker/glorious_inspiration/invoker_forge_spirit_ambient_esl.vpcf"  "+"
   // FIX items_game.txt JUGGER typo?
   "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_omni_slash_tgt_bladekeeper.vpcf"  "particles/econ/items/juggernaut/bladekeeper_omnislash/_dc_juggernaut_omni_slash_tgt.vpcf"
+  "particles/econ/items/juggernaut/jugg_arcana/jugg_arcana_haste.vpcf"  "+"
   // keep LEGION arcana duel
   "particles/econ/items/legion/legion_weapon_voth_domosh/legion_duel_ring_arcana.vpcf"  "-"
   // FIX ti8 LICH empty iconic ball
@@ -223,14 +225,13 @@
   //"particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_right.vpcf"  "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_blade.vpcf"
   "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_left.vpcf"  "+"
   "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_workshop_right.vpcf"  "+"
-  // hide TIMBER spark spam
-  "particles/econ/items/shredder/timber_controlled_burn/timber_cb_amb_sp.vpcf"  "+"
  }
  "Couriers"
  {
  }
  "Wards"
  {
+   "particles/econ/wards/f2p/f2p_ward/f2p_ward_true_sight_ambient.vpcf"  "particles/items2_fx/ward_true_sight.vpcf"
  }
  "Terrain"
  {
@@ -250,21 +251,26 @@
   "particles/radiant_fx2/good_ancient001_deflights.vpcf"  "+"
   "particles/radiant_fx2/good_ancient001_spherering.vpcf"  "+"
   "particles/radiant_fx2/good_ancient001_base_pool_c.vpcf"  "+"
-  // Map barracs
-  "particles/dire_fx/barracks_bad_smoke.vpcf"  "+"
-  "particles/dire_fx/barracks_bad_ranged_flow.vpcf"  "+"
-  "particles/dire_fx/barracks_bad_ranged_flow2.vpcf"  "+"
   // Map buildings
   "particles/dire_fx/bad_column001_firetorch_embers.vpcf"  "+"
   "particles/dire_fx/bad_column001_firetorch_flame_b.vpcf"  "+"
-  "particles/dire_fx/incense_large_b.vpcf"  "+"
   "particles/dire_fx/bad_column001_firetorch_glow.vpcf"  "+"
   "particles/dire_fx/bad_column01_smoketorch.vpcf"  "+"
+  "particles/dire_fx/barracks_bad_ranged_flow.vpcf"  "+"
+  "particles/dire_fx/barracks_bad_ranged_flow2.vpcf"  "+"
+  "particles/dire_fx/barracks_bad_smoke.vpcf"  "+"
+  "particles/dire_fx/incense_large_b.vpcf"  "+"
+  "particles/radiant_fx/good_barracks_melee001_centerglw_circle.vpcf"  "+"
+  "particles/radiant_fx/good_barracks_melee_modeled_wavessmokey.vpcf"  "+"
+  "particles/radiant_fx/good_barracks_ranged001_centerglw_circle.vpcf"  "+"
+  "particles/radiant_fx/good_barracks_ranged001_modeled_wavessmokey.vpcf"  "+"
+  "particles/radiant_fx/good_barracks_ranged001_modeled_wavestopsmokey.vpcf"  "+"
   "particles/radiant_fx/good_statue008_amb_mdlwisp.vpcf"  "+"
-  "particles/radiant_fx/good_statue010_ambienglow_fallback_med.vpcf"  "+"
   "particles/radiant_fx/good_statue010_ambienglow_c.vpcf"  "+"
+  "particles/radiant_fx/good_statue010_ambienglow_fallback_med.vpcf"  "+"
   // Map towers
   "particles/dire_fx/tower_bad_lamp.vpcf"  "+"
+  "particles/radiant_fx/tower_good3_lamp.vpcf"  "+"
   // Map effigies
   "particles/econ/items/effigies/status_fx_effigies/ambientfx_effigy_wm16_dire.vpcf"  "+"
   "particles/econ/items/effigies/status_fx_effigies/ambientfx_effigy_wm16_dire_lvl2.vpcf"  "+"
@@ -320,6 +326,16 @@
   "particles/world_environmental_fx/candle_flame.vpcf"  "+"
   "particles/world_environmental_fx/candle_flame_large.vpcf"  "+"
   "particles/world_environmental_fx/candle_flame_medium.vpcf"  "+"
+  "particles/world_environmental_fx/candle_flame_medium_bl.vpcf"  "+"
+  "particles/world_environmental_fx/candle_flame_medium_nl.vpcf"  "+"
+	"particles/world_environmental_fx/lamp_flame_dire_default.vpcf"  "+"
+  // Map env loop
+	"particles/dire_fx/dire_lava_falling_rocks.vpcf"  "+"
+	"particles/dire_fx/dire_lava_gloops_10sec.vpcf"  "+"
+	"particles/dire_fx/dire_lava_gloops_13sec.vpcf"  "+"
+	"particles/dire_fx/dire_lfr_13sec.vpcf"  "+"
+	"particles/dire_fx/dire_lfr_19sec.vpcf"  "+"
+  "particles/dire_fx/dire_lava_gloops_7sec.vpcf"  "+"
   // Map bundled weather
   "particles/rain_fx/journey_terrain.vpcf"  "+"
   "particles/rain_fx/coloseum_terrain.vpcf"  "+"
@@ -343,6 +359,10 @@
   // keep ti8 QOP debuff
   "particles/econ/items/queen_of_pain/qop_ti8_immortal/queen_ti8_golden_shadow_strike_debuff.vpcf"  "-"
   "particles/econ/items/queen_of_pain/qop_ti8_immortal/queen_ti8_shadow_strike_debuff.vpcf"  "-"
+  // keep Kidvoker original orbs
+  //"particles/units/heroes/hero_invoker_kid/invoker_kid_exort_orb.vpcf"  "-"
+  //"particles/units/heroes/hero_invoker_kid/invoker_kid_quas_orb.vpcf"  "-"
+  //"particles/units/heroes/hero_invoker_kid/invoker_kid_wex_orb.vpcf"  "-"
  }
  "Seasonal"
  {
@@ -609,13 +629,14 @@
   "particles/units/heroes/hero_wisp/wisp_ambient.vpcf"  "-"
   // FIX empty WD ward head
   "particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull.vpcf"  "-"
+  // Keep ZEUS hands ambient
+  "particles/units/heroes/hero_zeus/zeus_ambient_hands.vpcf"  "-"
  }
  "Menu"
  {
-  "particles/ui/ui_es_arcana_title.vpcf"  "+"
-  "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_debut_stylechange.vpcf"  "+"
-  "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_debut_stylechange_alternate.vpcf"  "+"
   "particles/ui/battle_pass/ui_ti8_generic_uprays.vpcf"  "+"
+  "particles/ui/hud/healthbar_burner.vpcf"  "+"
+  "particles/ui/hud/levelupburst.vpcf"  "+"
   "particles/ui/hud/levelupburst_embers.vpcf"  "+"
   "particles/ui/hud/levelupburst_smallflame.vpcf"  "+"
   "particles/ui/plus/ui_dota_plus_logo_ambient.vpcf"  "+"
@@ -625,9 +646,11 @@
   "particles/ui/static_ground_smoke_soft_ring.vpcf"  "+"
   "particles/ui/static_ground_smoke_soft_small.vpcf"  "+"
   "particles/ui/ui_accept_ember.vpcf"  "+"
+  "particles/ui/ui_es_arcana_title.vpcf"  "+"
   "particles/ui/ui_find_match_status_ember.vpcf"  "+"
   "particles/ui/ui_find_match_status_glow.vpcf"  "+"
   "particles/ui/ui_find_match_status_steam.vpcf"  "+"
+  "particles/ui/ui_game_start_hero_spawn.vpcf"  "+"
   "particles/ui/ui_game_start_hero_spotlight.vpcf"  "+"
   "particles/ui/ui_home_button.vpcf"  "+"
   "particles/ui/ui_home_button_default.vpcf"  "+"
@@ -635,22 +658,47 @@
   "particles/ui/ui_loadout_preview.vpcf"  "+"
   "particles/ui/ui_mars_title.vpcf"  "+"
   "particles/ui/ui_mid_debris.vpcf"  "+"
+  "particles/ui/ui_play_searching.vpcf"  "+"  
   "particles/ui/ui_plus_logo_ambient.vpcf"  "+"
   "particles/ui/ui_rank_divine_ambient.vpcf"  "+"
   "particles/ui/ui_rank_tier_ambient.vpcf"  "+"
   "particles/ui/ui_treasure_opening.vpcf"  "+"
+  //"particles/generic_gameplay/dust_impact.vpcf"  "+"  
+  //"particles/generic_gameplay/dust_impact_large.vpcf"  "+"
   // Loadout
-  "particles/generic_gameplay/dust_impact_large.vpcf"  "+"
-  "particles/units/heroes/hero_winter_wyvern/wyvern_arctic_burn_start_dust_hit.vpcf"  "+"
-  "particles/units/heroes/hero_monkey_king/taunt_dust_impact.vpcf"  "+"
-  "particles/econ/items/sven/sven_ti7_sword/sven_ti7_loadout.vpcf"  "-"
+  "particles/econ/events/ti8/ti8_hero_effect_loadout.vpcf"  "-"
+  "particles/econ/events/ti9/ti9_emblem_effect_core_loadout.vpcf"  "-"
+  "particles/econ/events/ti9/ti9_emblem_effect_loadout.vpcf"  "-"
+  "particles/econ/events/ti9/ti9_emblem_effect_ring_darken_loadout.vpcf"  "-"
+  "particles/econ/items/alchemist/alchemist_aurelian_weapon/alchemist_loadout_aurelian.vpcf"  "+"
+  "particles/econ/items/crystal_maiden/crystal_maiden_maiden_of_icewrack/cm_arcana_pup_spawn.vpcf"  "+"
+  "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_debut_stylechange.vpcf"  "+"
+  "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_debut_stylechange_alternate.vpcf"  "+"
+  "particles/econ/items/juggernaut/jugg_fortunes_tout/jugg_healling_ward_fortunes_tout_ward_flame.vpcf"  "-"
+  "particles/econ/items/pets/pet_generic/pet_spawn.vpcf"  "+"
+  "particles/econ/items/sven/sven_ti7_sword/sven_ti7_loadout.vpcf"  "+"
+  "particles/units/heroes/hero_arc_warden/arc_warden_magnetic_start_dust_hit.vpcf"  "+"
+  "particles/units/heroes/hero_brewmaster/brewmaster_spawn.vpcf"  "+"
+  "particles/units/heroes/hero_death_prophet/death_prophet_spawn.vpcf"  "+"
+  "particles/units/heroes/hero_earth_spirit/espirit_spawn.vpcf"  "+"
+  "particles/units/heroes/hero_enchantress/enchantress_loadoutb.vpcf"  "+"
+  "particles/units/heroes/hero_faceless_void/faceless_void_spawn.vpcf"  "+"
+  "particles/units/heroes/hero_grimstroke/grimstroke_spawn_debut_eyes_group.vpcf"  "+"
+  "particles/units/heroes/hero_invoker_kid/invoker_kid_book.vpcf"  "+"
   "particles/units/heroes/hero_mars/debut_lightning.vpcf"  "+"
   "particles/units/heroes/hero_mars/mars_debut_fog.vpcf"  "+"
   "particles/units/heroes/hero_mars/mars_debut_wind.vpcf"  "+"
-  "models/heroes/invoker/7be478d2/_orb_spawn_lf.vanim"  "-"
-  "models/heroes/invoker/7be478d2/_orb_spawn_rt.vanim"  "-"
-  "models/heroes/rikimaru/base_anim/spawn_temp.vanim"  "-"
-  "models/heroes/shredder/7b00e42d/_spawn.vanim"  "-"
+  "particles/units/heroes/hero_phantom_lancer/phantom_lancer_spawn.vpcf"  "+"
+  "particles/units/heroes/hero_phoenix/phoenix_supernova_egg_dust_loadout.vpcf"  "-"
+  "particles/units/heroes/hero_phoenix/phoenix_supernova_egg_flare_loadout.vpcf"  "-"
+  "particles/units/heroes/hero_phoenix/phoenix_supernova_egg_glow_loadout.vpcf"  "-"
+  "particles/units/heroes/hero_rattletrap/rattletrap_cog_ambient_loadout.vpcf"  "-"
+  "particles/units/heroes/hero_razor_reduced_flash/razor_loadout_reduced_flash.vpcf"  "+"
+  "particles/units/heroes/hero_techies/techies_land_mine_ball_explosion_loadout.vpcf"  "-"
+  "particles/units/heroes/hero_techies/techies_remote_mine_detonate_ash_loadout.vpcf"  "-"
+  "particles/units/heroes/hero_techies/techies_remote_mine_detonate_embers_loadout.vpcf"  "-"
+  "particles/units/heroes/hero_techies/techies_remote_mines_detonatecloud_loadout.vpcf"  "-"
+  "particles/units/heroes/heroes_underlord/underlord_loadout_riftend.vpcf"  "+"  
  }
  "Taunts"
  {
@@ -1804,51 +1852,42 @@
  }
  "Glance"
  {
-  // kidvoker persona is problematic - at best is either no-hair, no-cape or no-dress - I've chosen no-hair to save glancevalue
-  "models/heroes/invoker_kid/invoker_kid_hair.vmdl"  "models/heroes/invoker/invoker_head.vmdl"
-  "models/heroes/invoker_kid/invoker_kid_cape.vmdl"  "models/heroes/invoker/invoker_shoulder.vmdl"
-  "models/heroes/invoker_kid/invoker_kid_sleeves.vmdl"  "models/heroes/invoker/invoker_dress.vmdl"
-  //"models/heroes/invoker_kid/invoker_kid_cape.vmdl"  "models/heroes/invoker/invoker_cape.vmdl"
-  //"models/heroes/invoker_kid/invoker_kid_sleeves.vmdl"  "models/heroes/invoker/invoker_hair.vmdl"
+  "models/heroes/death_prophet/death_prophet_vortex.vmdl"  "-"
+  // restore kidvoker since orbs attachment is bugged volvooo 
+  "models/heroes/invoker_kid/invoker_kid.vmdl"  "-"
+  "models/heroes/invoker_kid/invoker_kid_cape.vmdl"  "-"
+  "models/heroes/invoker_kid/invoker_kid_hair.vmdl"  "-"
+  "models/heroes/invoker_kid/invoker_kid_sleeves.vmdl"  "-"
+  // to replace kidvoker with default model anyway, comment above 4 lines and uncomment the following 3 
+  //"models/heroes/invoker_kid/invoker_kid_cape.vmdl"  "models/heroes/invoker/invoker_shoulder.vmdl"
+  //"models/heroes/invoker_kid/invoker_kid_hair.vmdl"  "models/heroes/invoker/invoker_head.vmdl"
+  //"models/heroes/invoker_kid/invoker_kid_sleeves.vmdl"  "models/heroes/invoker/invoker_dress.vmdl"
+  "models/items/axe/ti9_jungle_axe/axe_bare.vmdl"  "models/heroes/axe/axe.vmdl"
+  "models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"  "-"
+  "models/items/axe/ti9_jungle_axe/ti9_jungle_axe_belt.vmdl"  "models/heroes/axe/axe_weapon.vmdl"
+  "models/items/dark_seer/imperious_tactician_back/imperious_tactician_back_base.vmdl"  "models/heroes/dark_seer/dark_seer_back.vmdl"
+  "models/items/lifestealer/immortal_back/lifestealer_immortal_back_rage_golden.vmdl"  "models/items/lifestealer/bloody_ripper_back/bloody_ripper_back.vmdl"
   "models/items/wards/smeevil_ward/smeevil_ward.vmdl"  "-"
-  "models/items/wards/smeevil_ward/smeevil_ward_green.vmdl"  "models/items/wards/smeevil_ward/smeevil_ward.vmdl"
   "models/items/wards/smeevil_ward/smeevil_ward_blue.vmdl"  "models/items/wards/smeevil_ward/smeevil_ward.vmdl"
   "models/items/wards/smeevil_ward/smeevil_ward_fuschia.vmdl"  "models/items/wards/smeevil_ward/smeevil_ward.vmdl"
   "models/items/wards/smeevil_ward/smeevil_ward_gold.vmdl"  "models/items/wards/smeevil_ward/smeevil_ward.vmdl"
-  "models/items/lifestealer/immortal_back/lifestealer_immortal_back_rage_golden.vmdl"  "models/items/lifestealer/bloody_ripper_back/bloody_ripper_back.vmdl"
-  "models/heroes/death_prophet/death_prophet_vortex.vmdl"  "-"
+  "models/items/wards/smeevil_ward/smeevil_ward_green.vmdl"  "models/items/wards/smeevil_ward/smeevil_ward.vmdl"
+  "models/pets/armadillo/armadillo.vmdl"  "+"
+  "models/pets/icewrack_wolf/icewrack_wolf.vmdl"  "+"
+  "models/pets/items/bone001.vmdl"  "+"
   "models/props_gameplay/treasure_chest_gold.vmdl"  "-"
   "models/ui/3d_infuser/3d_infuser_model.vmdl"  "-"
   "models/ui/compendium_points/compendium_points_11levels.vmdl"  "-"
   "models/ui/compendium_points/compendium_points_24levels.vmdl"  "-"
   "models/ui/compendium_points/compendium_points_5levels.vmdl"  "-"
-  "models/items/axe/ti9_jungle_axe/axe_ti9__undie.vmdl"  "-"
-  "models/items/axe/ti9_jungle_axe/axe_bare.vmdl"  "models/heroes/axe/axe.vmdl"
-  "models/items/axe/ti9_jungle_axe/ti9_jungle_axe_belt.vmdl"  "models/heroes/axe/axe_weapon.vmdl"
-  "models/items/dark_seer/imperious_tactician_back/imperious_tactician_back_base.vmdl"  "models/heroes/dark_seer/dark_seer_back.vmdl"
+  "particles/econ/items/enigma/enigma_absolute_armour/enigma_absolute_armour_body_ambient.vpcf"  "-"
   "particles/econ/items/enigma/enigma_absolute_head/enigma_absolute_head_ambient_eye.vpcf"  "particles/units/heroes/hero_enigma/enigma_ambient_eyes.vpcf"
-  "particles/econ/items/juggernaut/jugg_arcana/jugg_arcana_haste.vpcf"  "+"
-  "particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl1.vpcf"  "+"
-  "particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl2.vpcf"  "+"
-  "particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_gravemarker_lvl3.vpcf"  "+"
-  "particles/econ/items/phantom_assassin/phantom_assassin_weapon_generic/phantom_assassin_ambient_blade_generic.vpcf"  "-"
-  "particles/econ/items/pudge/pudge_arcana/pudge_arcana_dismember_default.vpcf"  "particles/units/heroes/hero_pudge/pudge_dismember.vpcf"
-  "particles/econ/items/pudge/pudge_arcana/pudge_arcana_dismember_electric.vpcf"  "particles/units/heroes/hero_pudge/pudge_dismember_electric.vpcf"
-  "particles/econ/items/pudge/pudge_arcana/pudge_arcana_dismember_ethereal.vpcf"  "particles/units/heroes/hero_pudge/pudge_dismember_ethereal.vpcf"
-  "particles/econ/items/pudge/pudge_arcana/pudge_arcana_dismember_fire.vpcf"  "particles/units/heroes/hero_pudge/pudge_dismember_fire.vpcf"
-  "particles/econ/items/pudge/pudge_arcana/pudge_arcana_dismember_goo.vpcf"  "particles/units/heroes/hero_pudge/pudge_dismember_goo.vpcf"
-  "particles/econ/items/pudge/pudge_arcana/pudge_arcana_dismember_ice.vpcf"  "particles/units/heroes/hero_pudge/pudge_dismember_ice.vpcf"
-  "particles/econ/items/pudge/pudge_arcana/pudge_arcana_dismember_motor.vpcf"  "particles/units/heroes/hero_pudge/pudge_dismember_motor.vpcf"
-  "particles/econ/items/pudge/pudge_arcana/pudge_arcana_dismember_stone.vpcf"  "particles/units/heroes/hero_pudge/pudge_dismember_stone.vpcf"
-  "particles/econ/items/pudge/pudge_arcana/pudge_arcana_dismember_wood.vpcf"  "particles/units/heroes/hero_pudge/pudge_dismember_wood.vpcf"
-  "particles/econ/items/pudge/pudge_arcana/pudge_arcana_idle_groundscratch.vpcf"  "+"
-  "particles/econ/items/pudge/pudge_arcana/pudge_arcana_red_idle_groundscratch.vpcf"  "+"
-  "particles/econ/items/pudge/pudge_arcana/pudge_arcana_red_walk_groundscratch.vpcf"  "+"
-  "particles/econ/items/pudge/pudge_arcana/pudge_arcana_walk_groundscratch.vpcf"  "+"
-  "particles/econ/items/rubick/rubick_arcana/rbck_arc_run_alt_cubes.vpcf"  "+"
-  "particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_ambient.vpcf"  "+"
-  "particles/units/heroes/hero_rubick/rubick_staff_ambient_empty.vpcf"  "particles/units/heroes/hero_rubick/rubick_staff_ambient.vpcf"
- }
+  "particles/econ/items/naga/naga_ti8_immortal_tail/naga_ti8_immortal_ambient.vpcf"  "-"
+  "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_trail.vpcf"  "-"
+  "particles/econ/items/shredder/timber_controlled_burn/timber_cb_amb_sp.vpcf"  "-"
+  "particles/units/heroes/hero_terrorblade/terrorblade_ambient_eyes.vpcf"  "++"
+  "particles/units/heroes/hero_phantom_assassin/phantom_assassin_ambient_blade.vpcf"  "++"
+  }
  "Other"
  {
  }

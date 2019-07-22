@@ -1,6 +1,6 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                    edited in SynWrite
-// v2019.07.20: Grow up
-// - alternative styles, loadout and taunt animations support
+// v2019.07.22: Glance++
+// - revised filters, alternative styles, loadout and taunt animations support
 // - output unified src.lst for in-memory modding via VPKMOD tool
 // - decoupled manual filters into No-Bling-filters.txt
 //------------------------------------------------------------------------------------------------------------------------------
@@ -22,6 +22,7 @@ No_Bling=function(choices, verbose, timers){
   var ABILITWEAK = (choices.indexOf("AbiliTweak") > -1); // - revert Rubick Arcana stolen spells, trim effects        FULL BUILD
   var HEROTWEAK  = (choices.indexOf("HeroTweak") > -1);  // - hide default hero particles, helps potato pc
   var MENU       = (choices.indexOf("Menu") > -1);       // - tweak menu - ui, hero loadout and preview, treasure opening
+
   var TAUNTS     = (choices.indexOf("Taunts") > -1);     // - ceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeb and dota+
   var GLANCE     = (choices.indexOf("Glance") > -1);     // - gabening intensifies..
 
@@ -34,7 +35,7 @@ No_Bling=function(choices, verbose, timers){
   // Quit early if no choice selected
   var UCHOICE = (HATS||COURIERS||WARDS||TERRAIN||ABILITIES||SEASONAL||ABILITWEAK||HEROTWEAK||MENU||TAUNTS||GLANCE);
   if (!UCHOICE && !VERBOSE) w.quit();
-
+  
   // Initiate filter variables
   var ROOT = path.normalize(path.dirname(process.argv[1]));                                                    // Root directory
   var FILTERS_FILE = path.normalize(path.join(ROOT, "No-Bling-filters.txt"));             // Default filters file (auto-updated)
@@ -79,7 +80,7 @@ No_Bling=function(choices, verbose, timers){
           REV_MOD[b] = 1;                            // replace all modifiers referencing "file" with off asset (reverse lookup)
           break;
         case "-":
-        //if (GLANCE && bcat == "Hats") break;
+          if (GLANCE && bcat == "Hats") break;
           KEEP_FILE[b] = 1;                          // keep "file"
           break;
         case "--":
@@ -192,6 +193,7 @@ No_Bling=function(choices, verbose, timers){
     var cat = "", maybe_ability = {}, maybe_hat = {}, has_modifier = false;
     var id = vdf.redup(i), caption = items[i].item_name.replace("#DOTA_Item_","");
     var slot = items[i].item_slot || "weapon", rarity = items[i].item_rarity || "";
+    var persona = (slot.indexOf("persona") > -1), summon = (slot.indexOf("summon") > -1);
     var by_heroes = (typeof items[i].used_by_heroes === "object") ? items[i].used_by_heroes : {}, npc = "", hero = "";
     for (used in by_heroes) {
       npc = used;
@@ -292,7 +294,7 @@ No_Bling=function(choices, verbose, timers){
       }
 
       // GLANCE MAIN - GABENING INTENSIFIES..
-      var has_glance = (GLANCE && vtype in {hero_model_change:1, entity_model:1, entity_clientside_model:1});
+      var has_glance = (GLANCE && vtype in {hero_model_change:1, entity_model:1}); //removed entity_clientside_model
       if (has_glance) {
         if (asset.lastIndexOf(".vmdl") > -1) {
           cat="Glance"; mods["Glance"][modifier] = asset; has_modifier = true;
@@ -313,7 +315,7 @@ No_Bling=function(choices, verbose, timers){
 
       // OTHER - PARTICLE SNAPSHOTS
       if (vtype === "particle_snapshot") {
-        //mods["Other"][modifier]=asset; cat="Other";
+        mods["Other"][modifier]=asset; cat="Other";
         LOG("snapshot: "+modifier);
         continue;
       }
@@ -324,8 +326,7 @@ No_Bling=function(choices, verbose, timers){
           if (typeof items[i].portraits[p] !== "object") continue;
           if (typeof items[i].portraits[p].PortraitParticle !== "string") continue;
           var portrait = items[i].portraits[p].PortraitParticle;
-          if (portrait.indexOf("portrait") === -1) continue;
-          if (portrait.indexOf(hero) === -1) continue;
+          if (portrait in mods["Menu"]) continue;
           if (portrait in KEEP_FILE) continue;
           mods["Menu"][portrait] = off; //has_modifier=true;
           LOG("portrait: "+portrait);
@@ -343,13 +344,14 @@ No_Bling=function(choices, verbose, timers){
       if (modifier.lastIndexOf("_empty.vpcf") > -1) {LOG('EMPTY! '+modifier); continue; }                // skip empty modifiers
       if (modifier.lastIndexOf("_local.vpcf") > -1) {LOG('LOCAL! '+modifier); continue; }               // skip staged modifiers
       if (asset.indexOf("particles/ability_modifier") > -1) continue;                                  // skip dynamic modifiers
-      if (asset.indexOf("particles/reftononexistent") > -1) asset=off;                             // replace dynamic references
+      if (asset.indexOf("particles/reftononexistent") > -1) continue;                                 // skip dynamic references
 
       // HEROTWEAK
       if (precat === "default_items") {
         if (modifier.indexOf("particles/units/heroes") > -1) {
-          cat="HeroTweak"; mods[cat][modifier] = off; has_modifier = true;
-          LOG("hero: "+modifier);
+          cat=(persona) ? "Hats" : "HeroTweak"; 
+          mods[cat][modifier] = (persona && asset) ? asset : off; has_modifier = true;
+          LOG(((persona && asset) ? "persona:" : "herotweak: ")+modifier+" - "+(asset) ? asset : "");
         }
       }
       // ABILITWEAK - Rubick Arcana stolen abilities
@@ -362,7 +364,7 @@ No_Bling=function(choices, verbose, timers){
         // expecting .asset
         if (modifier.indexOf("particles/econ/items") > -1) {
           // Abilities mostly but we can have Hats, too. Separating them is not simple, but Gaben shall not prevail!
-          if (asset.indexOf("particles/econ/items") > -1) {
+          if (asset.indexOf("particles/econ/items") > -1 && !summon) {
             cat="Hats"; mods[cat][modifier] = off;                                            // mod (hide) modifier by default
             LOG("hat: "+modifier);
           } else {
@@ -370,8 +372,9 @@ No_Bling=function(choices, verbose, timers){
             LOG("? ability: "+modifier);
           }
         } else if (modifier.indexOf("particles/units/heroes") > -1) {
-            cat="Hats"; mods[cat][modifier]=(asset) ? asset : off;
-            LOG("hat: "+modifier);
+            cat=(persona) ? "Abilities" : "Hats"; 
+            mods[cat][modifier]=(asset) ? asset : off;
+            LOG(((persona) ? "persona: " : "hat: ")+modifier);
         } else if (modifier.indexOf("particles/status_fx") === -1) {
           cat="Abilities"; mods[cat][modifier]=(asset) ? asset : off;
           LOG("status_fx: "+modifier+" = "+asset);
@@ -512,10 +515,10 @@ No_Bling=function(choices, verbose, timers){
   //----------------------------------------------------------------------------------------------------------------------------
   // 4. Import particles.lst - loadout
   //----------------------------------------------------------------------------------------------------------------------------
-  if (VERBOSE) t = timer("Import particles.lst - taunts & loadout");
+  if (VERBOSE) t = timer("Import particles.lst - loadout");
   for (i=0, len=particles_lst.length; i < len; i++) {
     if (!(particles_lst[i].split('/')[1] in {econ:1, models:1, prime:1, ui:1, units:1})) continue;
-    if (particles_lst[i].indexOf("spawn.v") > -1 || particles_lst[i].indexOf("loadout.v") > -1) {
+    if (particles_lst[i].indexOf("loadout.v") > -1) {
       mods["Menu"][particles_lst[i]] = off;
       LOG("loadout: "+particles_lst[i]);
     }
@@ -575,13 +578,15 @@ No_Bling=function(choices, verbose, timers){
   mods["HeroTweak"]["particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_smoke.vpcf"] = off;
 
   // If Hats pair is in HeroTweak replace it with empty particle as circular references would negate the replacement (why?)
-//for (hat in mods["Hats"]) {
-//  var pair = mods["Hats"][hat];
-//  if (pair !== off && pair.indexOf("particles/units/heroes") > -1 && pair in mods["HeroTweak"]) {
-//    mods["Hats"][hat] = off;
-//    LOG("loop_ref: "+hat);
-//  }
-//}
+  if (HATS && HEROTWEAK) {
+    for (hat in mods["Hats"]) {
+        var pair = mods["Hats"][hat];
+        if (pair !== off && pair.indexOf("particles/units/heroes") > -1 && pair in mods["HeroTweak"]) {
+          mods["Hats"][hat] = off;
+          LOG("loop_ref: "+hat);
+        }
+    }
+  }
 
   for (ability in mods["Abilities"]) {
     var combined = mods["Abilities"][ability];
@@ -591,13 +596,9 @@ No_Bling=function(choices, verbose, timers){
     }
     if (combined.indexOf("loadout") > -1) {
       delete mods["Abilities"][ability];
+      mods["Menu"][ability] = off;
       LOG("loadoutmissmatch: "+ability+"="+combined);
     }
-    if (combined.indexOf("taunt") > -1) {
-      delete mods["Abilities"][ability];
-      LOG("tauntmissmatch: "+ability+"="+combined);
-    }
-
   }
 
   if (VERBOSE) t.end();

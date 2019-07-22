@@ -1,6 +1,7 @@
 /* 2>nul || goto init "No-Bling DOTA mod builder"
-:: v2019.07.20: Grow Up
-:: - alternative styles, loadout and taunt animations support
+:: v2019.07.22: Glance++
+:: - revised filters, alternative styles, loadout and taunt animations support
+:: - improved autoupdate, prevent find gnu tools conflict, build folder CUSTOM instead of very long %CHOICES% 
 :: - making use of VPKMOD tool [compiled as needed from included source] for in-memory processing with minimal file i/o
 :: - auto-update script from github on launch if needed
 :: - language independent mod launch option -tempcontent with dota_tempcontent mod root folder
@@ -19,7 +20,8 @@ set/a Seasonal=1                   &rem  1 = tweak the International custom tp, 
 set/a AbiliTweak=1                 &rem  1 = revert Rubick Arcana stolen spells, trim effects                         FULL BUILD
 set/a HeroTweak=1                  &rem  1 = hide some default hero particles, helps potato pc
 set/a Menu=1                       &rem  1 = tweak main menu - ui, hero loadout and preview, treasure opening
-set/a Taunts=1                     &rem  1 = ceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeb and dota+
+
+set/a Taunts=1                     &rem  1 = ceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeb and dota+                         ++
 set/a Glance=1                     &rem  1 = gabening intensifies..
 
 set/a @update=1                    &rem  1 = update script from github on launch,                 0 = stay on outdated script
@@ -33,7 +35,7 @@ set/a @dialog=1                    &rem  1 = show choices gui dialog,           
 set "MOD_FILE=pak01_dir.vpk"       &rem  ? = override here if having multiple mods and needing another name like pak02_dir.vpk
 set "all_choices=Hats,Couriers,Wards,Terrain,Abilities,Seasonal,AbiliTweak,HeroTweak,Menu,Taunts,Glance"
 set "def_choices=Hats,Couriers,Wards,Terrain,Abilities,Seasonal,AbiliTweak,HeroTweak,Menu"
-set "version=2019.07.20"
+set "version=2019.07.22"
 
 title AveYo's No-Bling DOTA mod builder v%version%
 set a = free script so no bitching! & for /f delims^=^ eol^= %%. in (
@@ -95,15 +97,17 @@ set "FILE=No-Bling DOTA mod builder"
 :: Check online .version
 set/a online=1 & set/a offline=%version:.=%+0
 pushd "%~dp0" & del /f/q .version >nul 2>nul
-powershell -noprofile -c "(new-object System.Net.WebClient).DownloadFile('%URL%/.version','%~dp0.version');" >nul 2>nul
-if not exist .version certutil -URLCache -split -f "%URL%/.version" >nul 2>nul                   &REM naked Windows 7 workaround
+set "wc=$wc=new-object System.Net.WebClient"
+set "wc=%wc%;$wc.Headers.Add('user-agent','Mozilla/5.0 (compatible, MSIE 11, Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko')"
+powershell -noprofile -c "%wc%; $wc.DownloadFile('%URL%/.version','%~dp0.version');"
+if not exist .version certutil -URLCache -split -f "%URL%/.version"
+rem >nul 2>nul                   &REM naked Windows 7 workaround
 if not exist .version goto noupdate                                                                          &REM still failed..
 if exist .version for /f "tokens=1,2,3 delims=." %%i in ('type .version') do set/a online=%%i%%j%%k+0
-if "%online%"=="20181224" reg delete "HKCU\Environment" /v "No-Bling choices" /f >nul 2>nul   &REM choices have to be reset once
 if %offline% LSS %online% (set "outdated=1") else set "outdated=" & goto noupdate
 :: Only download builder.zip if local script is outdated
 pushd "%~dp0" & del /f/q "%FILE%.zip" >nul 2>nul
-powershell -noprofile -c "(new-object System.Net.WebClient).DownloadFile('%URL%/%FILE%.zip','%~dp0%FILE%.zip');" >nul 2>nul
+powershell -noprofile -c "%wc%; $wc.DownloadFile('%URL%/%FILE%.zip','%~dp0%FILE%.zip');" >nul 2>nul
 if not exist "%~dp0%FILE%.zip" certutil -URLCache -split -f "%URL%/%FILE%.zip" >nul 2>nul        &REM naked Windows 7 workaround
 if not exist "%~dp0%FILE%.zip" goto noupdate                                                                 &REM still failed..
 :: UnZip overwriting local files (except No-Bling-filters-personal.txt) and start the updated script
@@ -126,10 +130,10 @@ if defined STEAMDATA pushd "%STEAMDATA%\config" & if exist localconfig.vdf (
 )
 
 :: Patch Anticipation Station - quick and dirty check for new DOTA patch (no pointless particles extraction from vpk each run)
-mkdir "%CONTENT%\no-bling" >nul 2>nul                              &REM Should be \steamapps\common\dota 2 beta\content\no-bling
 for /f usebackq^ delims^=^"^ tokens^=4 %%a in (`findstr LastUpdated "%STEAMAPPS%\appmanifest_570.acf"`) do set/a "UPDATED=%%a+0"
-pushd "%CONTENT%\no-bling" & set "NEWPATCH=" & set/a "LASTUPDATED=0" & if exist last_updated.bat call last_updated.bat
-echo @set/a "LASTUPDATED=%UPDATED%" ^&exit/b>pas_updated.bat &if %UPDATED% GTR %LASTUPDATED% set "NEWPATCH=yes"
+mkdir "%DOTA%\%MOD_FOLDER%" >nul 2>nul & pushd "%DOTA%\%MOD_FOLDER%" & set "NEWPATCH=" & set/a "LASTUPDATED=0"
+echo @set/a "LASTUPDATED=%UPDATED%" ^&exit/b>pas_updated.bat & if exist last_updated.bat call last_updated.bat
+if %UPDATED% GTR %LASTUPDATED% set "NEWPATCH=yes"
 if not defined NEWPATCH ( call :color 03 " old patch " ) else call :color 0b " new patch " &rem set "@refresh=1"
 
 :: Show dialog to pick choices
@@ -139,8 +143,8 @@ if defined @dialog if not defined MOD_CHOICES call :end ! No choices selected!
 if not defined MOD_CHOICES set "MOD_CHOICES=%@choices%"
 :: Force complementary particles options if (\_/) selected
 set "gabening=%MOD_CHOICES:Glance=%"
-if "%gabening%" NEQ "%MOD_CHOICES%" for %%o in (Hats,Couriers,Wards,Abilities) do call :unselect %%o MOD_CHOICES
-if "%gabening%" NEQ "%MOD_CHOICES%" set "MOD_CHOICES=Hats,Couriers,Wards,Abilities,%MOD_CHOICES%"
+if "%gabening%" NEQ "%MOD_CHOICES%" for %%o in (Hats,Couriers,Wards) do call :unselect %%o MOD_CHOICES
+if "%gabening%" NEQ "%MOD_CHOICES%" set "MOD_CHOICES=Hats,Couriers,Wards,%MOD_CHOICES%"
 for %%o in (%all_choices%) do set "%%o="                                                       &REM undefine all initial choices
 for %%o in (%MOD_CHOICES%) do set "%%o=1"                                                  &REM then redefine selected ones to 1
 
@@ -166,12 +170,14 @@ echo.
 :: Prepare directories
 call :color 0e " Preparing directories, please wait ... "
 pushd "%ROOT%"
-set "BUILDS=%CD%\BUILDS\%MOD_CHOICES:,=_%"
+::set "BUILDS=%CD%\BUILDS\%MOD_CHOICES:,=_%"
+set "BUILDS=%CD%\BUILDS\CUSTOM"
 mkdir "%BUILDS%" >nul 2>nul & mkdir "%ROOT%\log" >nul 2>nul
-set ".="%ROOT%\src" "%TEMP%\no-bling""
-if defined @refresh set ".=%.% "%CONTENT%\no-bling" "%ROOT%\src" "%ROOT%\BUILDS""               &REM clear content only @refresh
+set ".="%ROOT%\src""
+if defined @refresh set ".=%.% "%DOTA%\%MOD_FOLDER%" "%BUILDS%""               &REM clear content only @refresh
 if defined @refresh if defined @verbose set ".=%.%  "%ROOT%\log""              &REM clear ~8k log files each @verbose + @refresh
 for %%i in (%.%) do ( del /f/s/q "%%~i" & rmdir /s/q "%%~i" & mkdir "%%~i" ) >nul 2>nul
+rmdir /s/q "%CONTENT%\no-bling" >nul 2>nul 
 call :clearline 3
 
 %LABEL% " Extracting lists from dota\pak01_dir.vpk ... "
@@ -180,8 +186,8 @@ call :clearline 3
 %vpkmod% -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\anim.lst" -e "vanim_c" -s >nul 2>nul
 %vpkmod% -i "%DOTA%\dota\pak01_dir.vpk" -o "%ROOT%\src" -e "txt" -p "scripts/items/items_game.txt"
 mkdir "%ROOT%\src\scripts\npc" >nul 2>nul
-copy "%DOTA%\dota\scripts\npc\npc_heroes.txt" "%ROOT%\src\scripts\npc" >nul 2>nul
-copy "%DOTA%\dota\scripts\npc\npc_units.txt" "%ROOT%\src\scripts\npc" >nul 2>nul
+copy /y "%DOTA%\dota\scripts\npc\npc_heroes.txt" "%ROOT%\src\scripts\npc" >nul 2>nul
+copy /y "%DOTA%\dota\scripts\npc\npc_units.txt" "%ROOT%\src\scripts\npc" >nul 2>nul
 
 call :mcolor 70 " Processing items_game.txt and particles.lst ... " c0. " ETA: 10-60s "
 if defined @verbose echo Writing per-hero / category slice logs and verbose no_bling.txt to log folder...
@@ -198,7 +204,7 @@ pushd "%ROOT%\src" & for %%a in (*.ini src.lst) do sort "%%a" /o "%%a"
 :: Show per category file count
 set/a Other=1                                                             &REM forced category for stuff like particle snapshots
 for %%a in ("%ROOT%\src\*.ini") do if defined %%~na (
- for /f "tokens=3" %%B in ('find /v /c "" "%%a" 2^>nul ^| find /i "%%a" 2^>nul') do call :color 0a " %%~na " & echo : %%B files
+ for /f "tokens=3" %%B in ('findstr /v /c "" "%%a" 2^>nul^|findstr /i "%%a" 2^>nul') do call :color 0a " %%~na " &echo : %%B files
 )
 %TIMER%
 
@@ -206,8 +212,8 @@ for %%a in ("%ROOT%\src\*.ini") do if defined %%~na (
 if defined @verbose if not defined MOD_CHOICES echo.& %INFO%  No mod choices selected, just detailed logs exported & goto done
 
 :: Update changed content cache
-if defined @refresh del /f /q "%CONTENT%\no-bling\pak01_dir.vpk.manifest.txt" >nul 2>nul
-pushd "%CONTENT%\no-bling"
+::if defined @refresh del /f /q "%CONTENT%\no-bling\pak01_dir.vpk.manifest.txt" >nul 2>nul
+pushd "%DOTA%\%MOD_FOLDER%"
 if exist pas_updated.bat ( copy /y pas_updated.bat last_updated.bat & del /f /q pas_updated.bat ) >nul 2>nul
 
 :: In-memory file replacement mod using nothing but unaltered Valve authored files (custom vpkmod tool exclusive feature)
@@ -326,8 +332,8 @@ exit/b                                       &REM AveYo - :clearline and :color 
 for /f "skip=4 tokens=2 delims=:" %%a in ('mode con') do for %%c in (%%a) do if not defined [COL] call set "[COL]=%%c"
 set/a "[C7]=2+(%[COL]%+7)/8"&for /l %%i in (1,1,%[COL]%) do call set "[CLR]=%%[CLR]%%%[GL]%"&call set "[LINE]=%[DEL]%%%[LINE]%%"
 for /L %%a in (1,1,%[C7]%) do call set "[LINE7]=%%[LINE7]%%%[BS]%"
-ver | find "10." >nul & if errorlevel 1 (for /L %%i in (1,1,%1) do echo;%[TAB]%%[LINE7]%%[CLR]% & echo;%[TAB]%%[LINE7]% ) else (
-for /l %%i in (1,1,%1) do <nul set/p "=![LINE]!" )
+ver | findstr "10." >nul & if errorlevel 1 ( for /L %%i in (1,1,%1) do echo;%[TAB]%%[LINE7]%%[CLR]% & echo;%[TAB]%%[LINE7]%
+) else (for /l %%i in (1,1,%1) do <nul set/p "=![LINE]!" )
 endlocal & exit/b                                                                                  &REM Usage: call :clearline 2
 
 :color BgFg.[one or both of hexpair can be _ as defcolor, optional . use newline] text["text with spaces"]
@@ -426,7 +432,7 @@ exit/b
 :build_csc_vpkmod
 for /f "tokens=* delims=" %%v in ('dir /b /s /a:-d /o:-n "%Windir%\Microsoft.NET\Framework\*csc.exe"') do set "csc=%%v"
 pushd %~dp0 & "%csc%" /out:vpkmod.exe /target:exe /platform:anycpu /optimize /nologo "%~f0"
-if not exist vpkmod.exe echo [ERROR] Failed compiling c# snippet! .net framework 3.5+ / VS2008 compiler needed & timeout -1
+if not exist vpkmod.exe call :end ! Failed compiling VPKMOD C# snippet! .net framework 3.5+ / VS2008 compiler needed
 exit/b VPKMOD C# source */
 // v1.1: Mod.lst : can use "mod?.nix" lines to replace "mod" with a 0-byte file; update ValvePak
 using System;
