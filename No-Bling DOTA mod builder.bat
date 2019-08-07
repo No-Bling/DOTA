@@ -35,7 +35,7 @@ set/a @dialog=1                    &rem  1 = show choices gui dialog,           
 set "MOD_FILE=pak01_dir.vpk"       &rem  ? = override here if having multiple mods and needing another name like pak02_dir.vpk
 set "all_choices=Hats,Couriers,Wards,Terrain,Abilities,Seasonal,AbiliTweak,HeroTweak,Menu,Taunts,Glance"
 set "def_choices=Hats,Couriers,Wards,Terrain,Abilities,Seasonal,AbiliTweak,HeroTweak,Menu"
-set "version=2019.07.22"
+set "version=2019.08.07"
 
 title AveYo's No-Bling DOTA mod builder v%version%
 set a = free script so no bitching! & for /f delims^=^ eol^= %%. in (
@@ -162,7 +162,6 @@ echo  Mod file       = %DOTA%\%MOD_FOLDER%\%MOD_FILE%
 echo  Mod options    = %MOD_OPTIONS%
 echo  User profile   = %STEAMDATA%
 echo  User options   = %LOPTIONS%
-echo  Content cache  = %CONTENT%\no-bling
 echo  Script options = @update:%@update%  @refresh:%@refresh%  @verbose:%@verbose%  @install:%@install%  @dialog:%@dialog%
 echo  Script version = v%version%  Online version = v%online%  -  https://github.com/No-Bling/DOTA
 echo.
@@ -268,6 +267,7 @@ findstr /b /c:"log_verbosity AnimResource off" %autocfg% >nul 2>nul || (
  echo/log_verbosity AnimResource off ^| grep %%
 ) >>%autocfg%
 :: End task to allow launch option adding
+if exist %~dp0zip\* goto done
 set "@endtask=" & tasklist /FI "IMAGENAME eq STEAM.EXE" | findstr /i "STEAM.EXE" >nul 2>nul && set "@endtask=1"
 if defined @endtask call :color 0e " Press Alt+F4 to stop auto-install from closing Dota & Steam in 10s ..."
 if defined @endtask timeout /t 10 >nul 2>nul

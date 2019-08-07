@@ -1,6 +1,6 @@
 "no_bling_filters"
 {
- ":version" "2019.07.22"
+ ":version" "2019.08.07"
  //  Manual filters have been decoupled from the .js script into "No-Bling-filters.txt"
  //  To auto-update script without overwriting changes, make a "No-Bling-filters-personal.txt" copy and edit that instead!
  //  These suppliment "items_game.txt" auto-replacing rules with per category file replacement vdf modifier-asset pairs:
@@ -328,13 +328,13 @@
   "particles/world_environmental_fx/candle_flame_medium.vpcf"  "+"
   "particles/world_environmental_fx/candle_flame_medium_bl.vpcf"  "+"
   "particles/world_environmental_fx/candle_flame_medium_nl.vpcf"  "+"
-	"particles/world_environmental_fx/lamp_flame_dire_default.vpcf"  "+"
+  "particles/world_environmental_fx/lamp_flame_dire_default.vpcf"  "+"
   // Map env loop
-	"particles/dire_fx/dire_lava_falling_rocks.vpcf"  "+"
-	"particles/dire_fx/dire_lava_gloops_10sec.vpcf"  "+"
-	"particles/dire_fx/dire_lava_gloops_13sec.vpcf"  "+"
-	"particles/dire_fx/dire_lfr_13sec.vpcf"  "+"
-	"particles/dire_fx/dire_lfr_19sec.vpcf"  "+"
+  "particles/dire_fx/dire_lava_falling_rocks.vpcf"  "+"
+  "particles/dire_fx/dire_lava_gloops_10sec.vpcf"  "+"
+  "particles/dire_fx/dire_lava_gloops_13sec.vpcf"  "+"
+  "particles/dire_fx/dire_lfr_13sec.vpcf"  "+"
+  "particles/dire_fx/dire_lfr_19sec.vpcf"  "+"
   "particles/dire_fx/dire_lava_gloops_7sec.vpcf"  "+"
   // Map bundled weather
   "particles/rain_fx/journey_terrain.vpcf"  "+"
@@ -663,6 +663,7 @@
   "particles/ui/ui_rank_divine_ambient.vpcf"  "+"
   "particles/ui/ui_rank_tier_ambient.vpcf"  "+"
   "particles/ui/ui_treasure_opening.vpcf"  "+"
+  "particles/ui/pregame_dire_ambient.vpcf"  "+"  
   //"particles/generic_gameplay/dust_impact.vpcf"  "+"  
   //"particles/generic_gameplay/dust_impact_large.vpcf"  "+"
   // Loadout
@@ -849,7 +850,6 @@
   "sounds/misc/ti9_monkey_mad.vsnd"  "+"
   "sounds/misc/ti9_monkey_spawn.vsnd"  "+"
   "sounds/misc/ti9_monkey_throw.vsnd"  "+"
-  "sounds/physics/movement/hero/juggernaut/haste.vsnd"  "+"
   "sounds/weapons/hero/ancient_apparition/taunt_ti9.vsnd"  "+"
   "sounds/weapons/hero/antimage/taunt_ti9.vsnd"  "+"
   "sounds/weapons/hero/beastmaster/taunt_ti9.vsnd"  "+"
@@ -1823,14 +1823,6 @@
   "sounds/vo/winter_wyvern/winwyv_levelup_08.vsnd"  "+"
   "sounds/vo/winter_wyvern/winwyv_thanks_01.vsnd"  "+"
   "sounds/vo/winter_wyvern/winwyv_winterscurse_11.vsnd"  "+"
-  "sounds/vo/wisp/ally.vsnd"  "+"
-  "sounds/vo/wisp/battlebegins.vsnd"  "+"
-  "sounds/vo/wisp/deny.vsnd"  "+"
-  "sounds/vo/wisp/laugh.vsnd"  "+"
-  "sounds/vo/wisp/lose.vsnd"  "+"
-  "sounds/vo/wisp/no_mana_not_yet01.vsnd"  "+"
-  "sounds/vo/wisp/thanks.vsnd"  "+"
-  "sounds/vo/wisp/win.vsnd"  "+"
   "sounds/vo/witchdoctor/wdoc_ability_cask_03.vsnd"  "+"
   "sounds/vo/witchdoctor/wdoc_kill_11.vsnd"  "+"
   "sounds/vo/witchdoctor/wdoc_killspecial_01.vsnd"  "+"
@@ -1847,8 +1839,8 @@
   "sounds/vo/zuus/zuus_level_03.vsnd"  "+"
   "sounds/vo/zuus/zuus_rival_13.vsnd"  "+"
   "sounds/vo/zuus/zuus_win_05.vsnd"  "+"
+  "sounds/ambient/soundscapes/waterfall_loop_01.vsnd"  "+"
   "sounds/physics/movement/hero/juggernaut/haste.vsnd"  "+"
-  "sounds/ambient/soundscapes/waterfall_loop_01.vsnd_c"  "+"
  }
  "Glance"
  {

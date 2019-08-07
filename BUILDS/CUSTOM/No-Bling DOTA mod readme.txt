@@ -1,4 +1,4 @@
- No-Bling DOTA mod v2019.07.22 choices:
+ No-Bling DOTA mod v2019.08.07 choices:
  Hats,Couriers,Wards,Terrain,Abilities,Seasonal,AbiliTweak,HeroTweak,Menu,Taunts,Glance
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last three years...
@@ -72,6 +72,8 @@ particles/econ/items/axe/axe_armor_molten_claw/axe_molten_claw_ambient.vpcf_c?pa
 particles/econ/items/axe/axe_cinder/axe_cinder_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/axe/axe_cinder/axe_cinder_ambient_alt.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/axe/axe_helm_shoutmask/axe_shout_mask_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/axe/axe_ti9_immortal/axe_ti9_gold_immortal_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/axe/axe_ti9_immortal/axe_ti9_immortal_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/axe/axe_weapon_bloodchaser/axe_drag_sparks.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/axe/axe_weapon_dragon_axe/axe_dragon_axe.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/axe/axe_weapon_practos/axe_practos_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -153,6 +155,8 @@ particles/econ/items/chaos_knight/chaos_knight_ti7_shield/chaos_knight_ti7_shiel
 particles/econ/items/chen/ti9_emperor_of_the_sun/chen_ti9_head_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/chen/ti9_emperor_of_the_sun/chen_ti9_mount_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/clinkz/clinkz_maraxiform/clinkz_maraxiform_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/clinkz/clinkz_ti9_immortal/clinkz_ti9_summon.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/clinkz/clinkz_ti9_immortal/clinkz_ti9_weapon_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/clinkz/ti6_quest/clinkz_ti6_quest_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/clockwerk/clock_lighter_fighter/clock_lighter_fighter_head_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/clockwerk/clock_lighter_fighter/clock_lighter_fighter_owl_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -498,6 +502,7 @@ particles/econ/items/lycan/blood_moon/lycan_blood_moon_armor_ambient.vpcf_c?part
 particles/econ/items/lycan/blood_moon/lycan_blood_moon_belt_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/lycan/blood_moon/lycan_blood_moon_shapeshift_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/lycan/blood_moon/lycan_blood_moon_weapon_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/lycan/ti9_immortal/lycan_ti9_immortal_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/magnataur/mag_undertyrant/mag_undertyrant_head_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/magnataur/mag_undertyrant/mag_undertyrant_horn_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/magnataur/mag_undertyrant/mag_undertyrant_weapon_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -508,6 +513,7 @@ particles/econ/items/magnataur/thor/magnus_thors_reward_arms_ambient.vpcf_c?part
 particles/econ/items/magnataur/thor/magnus_thors_reward_belt_ambient_trace.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/magnataur/thor/magnus_thors_reward_head_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/magnataur/thor/magnus_thors_reward_weapon_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/mars/mars_ti9_immortal/mars_ti9_immortal_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/medusa/medusa_daughters/medusa_daughters_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/medusa/medusa_plus_2018/medusa_plus_2018_ambient_bracer.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/medusa/medusa_plus_2018/medusa_plus_2018_ambient_head.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -582,6 +588,7 @@ particles/econ/items/necrolyte/necro_sullen_harvest/necro_sullen_harvest_ambient
 particles/econ/items/necrolyte/necro_ti9_cache/necro_ti9_cache_ambient_head.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/necrolyte/necro_ti9_cache/necro_ti9_cache_back_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/necrolyte/necro_ti9_cache/necro_ti9_cache_weapon_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/necrolyte/necro_ti9_immortal/necro_ti9_immortal_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/necrolyte/necrophos_sullen/necro_sullen_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/necrolyte/necrophos_sullen_gold/necro_sullen_ambient_gold.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/nightstalker/evil_eyed_arms/nightstalker_ambient_evil_eyed_arms.vpcf_c?particles/econ/items/nightstalker/evil_eyed_arms/evil_eyed_arms_eye_sparks.vpcf_c
@@ -799,6 +806,7 @@ particles/econ/items/skywrath_mage/ti8_set/skywrath_ti8_weapon_alternative_ambie
 particles/econ/items/skywrath_mage/ti8_set/skywrath_ti8_weapon_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/slardar/sl_slardar_trident/sl_slardar_trident.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/slardar/slardar_andestian_weapon_blade.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/slardar/slardar_back_ti9/slardar_back_ti9_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/slardar/slardar_crystal_halberd/slardar_crystal_halberd.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/slardar/slardar_takoyaki/slardar_takoyaki_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/slardar/slardar_takoyaki_gold/slardar_takoyaki_ambient_gold.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -888,6 +896,8 @@ particles/econ/items/terrorblade/terrorblade_corrupted_blades/terrorblade_ambien
 particles/econ/items/terrorblade/terrorblade_corrupted_blades/terrorblade_ambient_sword_corrupted_l.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/terrorblade/terrorblade_corrupted_blades/terrorblade_ambient_sword_corrupted_r.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_body_arcana_horns.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/terrorblade/terrorblade_ti9_immortal/terrorblade_ti9_immortal_weapon.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/terrorblade/terrorblade_ti9_immortal/terrorblade_ti9_immortal_weapon_left.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/tidehunter/ti9_cache_tide_chelonia_arms/ti9_cache_tide_chelonia_arms_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/tidehunter/tidehunter_ancient_leviathan/tide_ancient_leviathan_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/tidehunter/tidehunter_blink_dagger/tidehunter_blink_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -1441,6 +1451,8 @@ particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/antimage_manavoid_
 particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger.vpcf_c?particles/units/heroes/hero_axe/axe_battle_hunger.vpcf_c
 particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger_cast.vpcf_c?particles/units/heroes/hero_axe/axe_battle_hunger_cast.vpcf_c
 particles/econ/items/axe/axe_helm_shoutmask/axe_beserkers_call_owner_shoutmask.vpcf_c?particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf_c
+particles/econ/items/axe/axe_ti9_immortal/axe_ti9_call.vpcf_c?particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf_c
+particles/econ/items/axe/axe_ti9_immortal/axe_ti9_gold_call.vpcf_c?particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf_c
 particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser.vpcf_c?particles/units/heroes/hero_axe/axe_attack_blur_counterhelix.vpcf_c
 particles/econ/items/axe/axe_weapon_practos/axe_attack_blur_counterhelix_practos.vpcf_c?particles/units/heroes/hero_axe/axe_attack_blur_counterhelix.vpcf_c
 particles/econ/items/axe/axe_weapon_wyvernguard_edge/axe_attack_blur_counterhelix_wyvernguard_edge.vpcf_c?particles/units/heroes/hero_axe/axe_attack_blur_counterhelix.vpcf_c
@@ -1504,6 +1516,10 @@ particles/econ/items/chaos_knight/chaos_knight_ti7_shield/chaos_knight_ti7_reali
 particles/econ/items/chaos_knight/chaos_knight_ti7_shield/chaos_knight_ti7_reality_rift_illusions.vpcf_c?particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift_lite.vpcf_c
 particles/econ/items/clinkz/clinkz_maraxiform/clinkz_maraxiform_searing_arrow.vpcf_c?particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf_c
 particles/econ/items/clinkz/clinkz_maraxiform/clinkz_maraxiform_searing_arrow_deso.vpcf_c?particles/items_fx/desolator_projectile.vpcf_c
+particles/econ/items/clinkz/clinkz_maraxiform/clinkz_ti9_summon_projectile_arrow.vpcf_c?particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf_c
+particles/econ/items/clinkz/clinkz_ti9_immortal/clinkz_ti9_strafe.vpcf_c?particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf_c
+particles/econ/items/clinkz/clinkz_ti9_immortal/clinkz_ti9_summon_army.vpcf_c?particles/units/heroes/hero_clinkz/clinkz_burning_army.vpcf_c
+particles/econ/items/clinkz/clinkz_ti9_immortal/clinkz_ti9_summon_start.vpcf_c?particles/units/heroes/hero_clinkz/clinkz_burning_army_start.vpcf_c
 particles/econ/items/clockwerk/clockwerk_paraflare/clockwerk_para_rocket_flare.vpcf_c?particles/units/heroes/hero_rattletrap/rattletrap_rocket_flare.vpcf_c
 particles/econ/items/clockwerk/clockwerk_paraflare/clockwerk_para_rocket_flare_illumination.vpcf_c?particles/units/heroes/hero_rattletrap/rattletrap_rocket_flare_illumination.vpcf_c
 particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_cowlofice.vpcf_c?particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf_c
@@ -1830,9 +1846,13 @@ particles/econ/items/luna/nightsilver_woods_weapon/luna_attack_nightsilver.vpcf_
 particles/econ/items/luna/nightsilver_woods_weapon/luna_glaive_bounce_nightsilver.vpcf_c?particles/units/heroes/hero_luna/luna_moon_glaive_bounce.vpcf_c
 particles/econ/items/luna/nightsilver_woods_weapon/luna_glaive_nightsilver.vpcf_c?particles/units/heroes/hero_luna/luna_moon_glaive.vpcf_c
 particles/econ/items/lycan/blood_moon/lycan_blood_moon_shapeshift_ambient_buff.vpcf_c?particles/units/heroes/hero_lycan/lycan_shapeshift_buff.vpcf_c
+particles/econ/items/lycan/ti9_immortal/lycan_ti9_immortal_howl_buff.vpcf_c?particles/units/heroes/hero_lycan/lycan_howl_buff.vpcf_c
+particles/econ/items/lycan/ti9_immortal/lycan_ti9_immortal_overhead.vpcf_c?particles/units/heroes/hero_lycan/lycan_howl_overhead_null.vpcf_c
 particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil.vpcf_c?particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf_c
 particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil_cast.vpcf_c?particles/units/heroes/hero_magnataur/magnataur_shockwave_cast.vpcf_c
 particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil_hit.vpcf_c?particles/units/heroes/hero_magnataur/magnataur_shockwave_hit.vpcf_c
+particles/econ/items/mars/mars_ti9_immortal/mars_ti9_immortal_spear.vpcf_c?particles/units/heroes/hero_mars/mars_spear.vpcf_c
+particles/econ/items/mars/mars_ti9_immortal/mars_ti9_immortal_spear_impact.vpcf_c?particles/units/heroes/hero_mars/mars_spear_impact.vpcf_c
 particles/econ/items/medusa/medusa_daughters/medusa_daughters_mana_shield.vpcf_c?particles/units/heroes/hero_medusa/medusa_mana_shield.vpcf_c
 particles/econ/items/medusa/medusa_daughters/medusa_daughters_mana_shield_shell_impact.vpcf_c?particles/units/heroes/hero_medusa/medusa_mana_shield_impact.vpcf_c
 particles/econ/items/meepo/meepo_colossal_crystal_chorus/meepo_divining_rod_poof_end.vpcf_c?particles/units/heroes/hero_meepo/meepo_poof_end.vpcf_c
@@ -1869,6 +1889,9 @@ particles/econ/items/natures_prophet/natures_prophet_weapon_sufferwood/furion_te
 particles/econ/items/natures_prophet/natures_prophet_weapon_sufferwood/furion_teleport_sufferwood.vpcf_c?particles/units/heroes/hero_furion/furion_teleport.vpcf_c
 particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe.vpcf_c?particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf_c
 particles/econ/items/necrolyte/necro_sullen_harvest/necro_ti7_immortal_scythe_start.vpcf_c?particles/units/heroes/hero_necrolyte/necrolyte_scythe_start.vpcf_c
+particles/econ/items/necrolyte/necro_ti9_immortal/necro_ti9_immortal_shroud.vpcf_c?particles/units/heroes/hero_necrolyte/necrolyte_spirit.vpcf_c
+particles/econ/items/necrolyte/necro_ti9_immortal/necro_ti9_immortal_shroud_debuff.vpcf_c?particles/units/heroes/hero_necrolyte/necrolyte_spirit_debuff.vpcf_c
+particles/econ/items/necrolyte/necro_ti9_immortal/status_effect_necro_ti9_immortal_shroud.vpcf_c?particles/status_fx/status_effect_necrolyte_spirit.vpcf_c
 particles/econ/items/necrolyte/necronub_ambient/necrolyte_ambient_glow_ka.vpcf_c?particles/units/heroes/hero_necrolyte/necrolyte_ambient_glow.vpcf_c
 particles/econ/items/necrolyte/necronub_base_attack/necrolyte_base_attack_ka.vpcf_c?particles/units/heroes/hero_necrolyte/necrolyte_base_attack.vpcf_c
 particles/econ/items/necrolyte/necronub_death_pulse/necrolyte_pulse_ka_enemy.vpcf_c?particles/units/heroes/hero_necrolyte/necrolyte_pulse_enemy.vpcf_c
@@ -2051,6 +2074,8 @@ particles/econ/items/skywrath_mage/skywrath_mage_weapon_empyrean/skywrath_mage_m
 particles/econ/items/skywrath_mage/skywrath_mage_weapon_empyrean/skywrath_mage_mystic_flare_ambient_empyrean_gold.vpcf_c?particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient.vpcf_c
 particles/econ/items/skywrath_mage/skywrath_ti9_immortal_back/skywrath_mage_ti9_arcane_bolt.vpcf_c?particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt.vpcf_c
 particles/econ/items/skywrath_mage/skywrath_ti9_immortal_back/skywrath_mage_ti9_arcane_bolt_golden.vpcf_c?particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt.vpcf_c
+particles/econ/items/slardar/slardar_back_ti9/slardar_back_ti9_sprint.vpcf_c?particles/units/heroes/hero_slardar/slardar_sprint.vpcf_c
+particles/econ/items/slardar/slardar_back_ti9/slardar_back_ti9_sprint_river.vpcf_c?particles/units/heroes/hero_slardar/slardar_sprint_river.vpcf_c
 particles/econ/items/slardar/slardar_takoyaki/slardar_crush_entity_tako.vpcf_c?particles/units/heroes/hero_slardar/slardar_crush_entity.vpcf_c
 particles/econ/items/slardar/slardar_takoyaki/slardar_crush_tako.vpcf_c?particles/units/heroes/hero_slardar/slardar_crush.vpcf_c
 particles/econ/items/slardar/slardar_takoyaki/status_effect_slardar_crush_tako.vpcf_c?particles/status_fx/status_effect_slardar_crush.vpcf_c
@@ -2127,6 +2152,7 @@ particles/econ/items/templar_assassin/templar_assassin_focal/templar_assassin_me
 particles/econ/items/templar_assassin/templar_assassin_focal/templar_meld_focal_overhead.vpcf_c?particles/units/heroes/hero_templar_assassin/templar_meld_overhead.vpcf_c
 particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8.vpcf_c?particles/units/heroes/hero_terrorblade/terrorblade_sunder.vpcf_c
 particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_ambient_eyes_arcana_horns.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/terrorblade/terrorblade_ti9_immortal/terrorblade_ti9_immortal_metamorphosis_base_attack.vpcf_c?particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_base_attack.vpcf_c
 particles/econ/items/tidehunter/tidehunter_divinghelmet/tidehunter_gush_diving_helmet.vpcf_c?particles/units/heroes/hero_tidehunter/tidehunter_gush.vpcf_c
 particles/econ/items/tidehunter/tidehunter_divinghelmet/tidehunter_gush_diving_helmet_gold.vpcf_c?particles/units/heroes/hero_tidehunter/tidehunter_gush.vpcf_c
 particles/econ/items/timbersaw/timbersaw_ti9/timbersaw_ti9_chakram.vpcf_c?particles/units/heroes/hero_shredder/shredder_chakram.vpcf_c
@@ -2665,6 +2691,7 @@ particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_trigger_loadout.vp
 particles/econ/items/lina/lina_head_headflame/portrait_lina_alt1.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/meepo/meepo_colossal_crystal_chorus/meepo_divining_rod_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/meepo/meepo_diggers_divining_rod/meepo_divining_rod_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/econ/items/necrolyte/necro_ti9_immortal/necro_ti9_immortal_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/pets/pet_generic/pet_spawn.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/econ/items/rubick/rubick_arcana/rubick_arc_loadout.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -2686,6 +2713,7 @@ particles/ui/hud/levelupburst.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/ui/hud/levelupburst_embers.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/ui/hud/levelupburst_smallflame.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/ui/plus/ui_dota_plus_logo_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
+particles/ui/pregame_dire_ambient.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/ui/static_fog_flash.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/ui/static_ground_smoke.vpcf_c?particles/dev/empty_particle.vpcf_c
 particles/ui/static_ground_smoke_soft.vpcf_c?particles/dev/empty_particle.vpcf_c
@@ -3111,6 +3139,9 @@ models/items/ancient_apparition/ti9_aa_taunt/98358f52/ti9_aa_taunt_fx_drop.vanim
 models/items/axe/ti9_jungle_axe/2a87ac45/ti9_axe_taunt_01_come_get_it.vanim_c?.nix
 models/items/batrider/manta_rayder_ti7_mount/bdc7a97c/taunt_hang_loose.vanim_c?.nix
 models/items/chaos_knight/ti9_taunt/6e90dd58/ck_fence_spawn.vanim_c?.nix
+models/items/clinkz/clinkz_ti9_immortal_weapon/f24dd359/clinkz_archer_taunt.vanim_c?.nix
+models/items/clinkz/clinkz_ti9_immortal_weapon/f24dd359/clinkz_archer_taunt_alt.vanim_c?.nix
+models/items/clinkz/clinkz_ti9_immortal_weapon/f24dd359/clinkz_archer_taunt_mirror.vanim_c?.nix
 models/items/crystal_maiden/snowman/f599afd1/taunt_snowmaiden.vanim_c?.nix
 models/items/furion/dark_staff/d61768c3/taunt_bazooka.vanim_c?.nix
 models/items/furion/dark_staff/d61768c3/taunt_guitarwindmill.vanim_c?.nix
@@ -3187,6 +3218,7 @@ sounds/ambient/newyear/rocket_explode02.vsnd_c?sounds/null.vsnd_c
 sounds/ambient/newyear/rocket_launch01.vsnd_c?sounds/null.vsnd_c
 sounds/ambient/newyear/rocket_launch02.vsnd_c?sounds/null.vsnd_c
 sounds/ambient/newyear/rocket_launch03.vsnd_c?sounds/null.vsnd_c
+sounds/ambient/soundscapes/waterfall_loop_01.vsnd_c?sounds/null.vsnd_c
 sounds/items/river_paint.vsnd_c?sounds/null.vsnd_c
 sounds/misc/crowd_lv_01.vsnd_c?sounds/null.vsnd_c
 sounds/misc/crowd_lv_02.vsnd_c?sounds/null.vsnd_c
@@ -4236,14 +4268,6 @@ sounds/vo/winter_wyvern/winwyv_laugh_03.vsnd_c?sounds/null.vsnd_c
 sounds/vo/winter_wyvern/winwyv_levelup_08.vsnd_c?sounds/null.vsnd_c
 sounds/vo/winter_wyvern/winwyv_thanks_01.vsnd_c?sounds/null.vsnd_c
 sounds/vo/winter_wyvern/winwyv_winterscurse_11.vsnd_c?sounds/null.vsnd_c
-sounds/vo/wisp/ally.vsnd_c?sounds/null.vsnd_c
-sounds/vo/wisp/battlebegins.vsnd_c?sounds/null.vsnd_c
-sounds/vo/wisp/deny.vsnd_c?sounds/null.vsnd_c
-sounds/vo/wisp/laugh.vsnd_c?sounds/null.vsnd_c
-sounds/vo/wisp/lose.vsnd_c?sounds/null.vsnd_c
-sounds/vo/wisp/no_mana_not_yet01.vsnd_c?sounds/null.vsnd_c
-sounds/vo/wisp/thanks.vsnd_c?sounds/null.vsnd_c
-sounds/vo/wisp/win.vsnd_c?sounds/null.vsnd_c
 sounds/vo/witchdoctor/wdoc_ability_cask_03.vsnd_c?sounds/null.vsnd_c
 sounds/vo/witchdoctor/wdoc_kill_11.vsnd_c?sounds/null.vsnd_c
 sounds/vo/witchdoctor/wdoc_killspecial_01.vsnd_c?sounds/null.vsnd_c
@@ -4640,6 +4664,7 @@ models/items/axe/axe_oryxset_belt/axe_oryxset_belt.vmdl_c?models/heroes/axe/axe_
 models/items/axe/axe_oryxset_helm/axe_oryxset_helm.vmdl_c?models/heroes/axe/axe_ponytail.vmdl_c
 models/items/axe/axe_oryxset_weapon/axe_oryxset_weapon.vmdl_c?models/heroes/axe/axe_weapon.vmdl_c
 models/items/axe/axe_practos_weapon/axe_practos_weapon.vmdl_c?models/heroes/axe/axe_weapon.vmdl_c
+models/items/axe/axe_ti9_immortal_head/axe_ti9_immortal_head.vmdl_c?models/heroes/axe/axe_ponytail.vmdl_c
 models/items/axe/axe_weapon_headhunter/axe_weapon_headhunter.vmdl_c?models/heroes/axe/axe_weapon.vmdl_c
 models/items/axe/axe_weapon001/axe_weapon001.vmdl_c?models/heroes/axe/axe_weapon.vmdl_c
 models/items/axe/axearmor_conq/axearmor_conq.vmdl_c?models/heroes/axe/axe_armor.vmdl_c
@@ -5387,6 +5412,8 @@ models/items/clinkz/clinkz_hands_goc/clinkz_hands_goc.vmdl_c?models/heroes/clink
 models/items/clinkz/clinkz_helmet01_goc/clinkz_helmet01_goc.vmdl_c?models/heroes/clinkz/clinkz_horns.vmdl_c
 models/items/clinkz/clinkz_shoulders_goc/clinkz_shoulders_goc.vmdl_c?models/heroes/clinkz/clinkz_pads.vmdl_c
 models/items/clinkz/clinkz_skeleton_hands/clinkz_skeleton_hands.vmdl_c?models/heroes/clinkz/clinkz_gloves.vmdl_c
+models/items/clinkz/clinkz_ti9_immortal_weapon/clinkz_ti9_immortal_army.vmdl_c?models/heroes/clinkz/clinkz_archer.vmdl_c
+models/items/clinkz/clinkz_ti9_immortal_weapon/clinkz_ti9_immortal_weapon.vmdl_c?models/heroes/clinkz/clinkz_bow.vmdl_c
 models/items/clinkz/clinkz_weapon_goc/clinkz_weapon_goc.vmdl_c?models/heroes/clinkz/clinkz_bow.vmdl_c
 models/items/clinkz/clinkzhead/clinkzhead.vmdl_c?models/heroes/clinkz/clinkz_horns.vmdl_c
 models/items/clinkz/demonspinerecurve_lod1/demonspinerecurve_lod1.vmdl_c?models/heroes/clinkz/clinkz_bow.vmdl_c
@@ -7544,6 +7571,7 @@ models/items/lycan/hunter_kings_belt/hunter_kings_belt.vmdl_c?models/heroes/lyca
 models/items/lycan/hunter_kings_head/hunter_kings_head.vmdl_c?models/development/invisiblebox.vmdl_c
 models/items/lycan/hunter_kings_shoulder/hunter_kings_shoulder.vmdl_c?models/heroes/lycan/lycan_fur.vmdl_c
 models/items/lycan/hunter_kings_weapon/hunter_kings_weapon.vmdl_c?models/heroes/lycan/lycan_blades.vmdl_c
+models/items/lycan/lycan_ti9_immortal_head/lycan_ti9_immortal_head.vmdl_c?models/development/invisiblebox.vmdl_c
 models/items/lycan/sanguinemoon_armor/sanguinemoon_armor.vmdl_c?models/heroes/lycan/lycan_armor.vmdl_c
 models/items/lycan/sanguinemoon_belt/sanguinemoon_belt.vmdl_c?models/heroes/lycan/lycan_belt.vmdl_c
 models/items/lycan/sanguinemoon_head/sanguinemoon_head.vmdl_c?models/development/invisiblebox.vmdl_c
@@ -7621,6 +7649,7 @@ models/items/magnataur/ti8_mag_undertyrant_belt/ti8_mag_undertyrant_belt.vmdl_c?
 models/items/magnataur/ti8_mag_undertyrant_head/ti8_mag_undertyrant_head.vmdl_c?models/heroes/magnataur/magnataur_hair.vmdl_c
 models/items/magnataur/ti8_mag_undertyrant_misc/ti8_mag_undertyrant_misc.vmdl_c?models/heroes/magnataur/magnataur_horn.vmdl_c
 models/items/magnataur/ti8_mag_undertyrant_weapon/ti8_mag_undertyrant_weapon.vmdl_c?models/heroes/magnataur/magnataur_weapon.vmdl_c
+models/items/mars/mars_ti9_immortal_weapon/mars_ti9_immortal_weapon.vmdl_c?models/heroes/mars/mars_spear.vmdl_c
 models/items/medusa/blueice_armor/blueice_armor.vmdl_c?models/heroes/medusa/medusa_torso.vmdl_c
 models/items/medusa/blueice_arms/blueice_arms.vmdl_c?models/heroes/medusa/medusa_arms.vmdl_c
 models/items/medusa/blueice_head/blueice_head.vmdl_c?models/heroes/medusa/medusa_veil.vmdl_c
@@ -7868,6 +7897,7 @@ models/items/necrolyte/immemorial_emperor_weapon_black/immemorial_emperor_weapon
 models/items/necrolyte/immortal_scythe/immortal_scythe.vmdl_c?models/heroes/necrolyte/necrolyte_sickle.vmdl_c
 models/items/necrolyte/immortal_shoulders/immortal_shoulders.vmdl_c?models/heroes/necrolyte/shoulders.vmdl_c
 models/items/necrolyte/laments_for_the_dead/laments_for_the_dead.vmdl_c?models/heroes/necrolyte/necrolyte_sickle.vmdl_c
+models/items/necrolyte/necro_ti9_immortal_skirt/necro_ti9_immortal_skirt.vmdl_c?models/heroes/necrolyte/legs.vmdl_c
 models/items/necrolyte/necronub_coffin/necronub_coffin.vmdl_c?models/heroes/necrolyte/shoulders.vmdl_c
 models/items/necrolyte/necronub_head/necronub_head.vmdl_c?models/heroes/necrolyte/beard.vmdl_c
 models/items/necrolyte/necronub_scythe/necronub_scythe.vmdl_c?models/heroes/necrolyte/necrolyte_sickle.vmdl_c
@@ -9322,6 +9352,7 @@ models/items/slardar/slardar_set_arms/slardar_set_arms.vmdl_c?models/heroes/slar
 models/items/slardar/slardar_set_back/slardar_set_back.vmdl_c?models/heroes/slardar/slardar_back.vmdl_c
 models/items/slardar/slardar_set_head/slardar_set_head.vmdl_c?models/development/invisiblebox.vmdl_c
 models/items/slardar/slardar_set_weapon/slardar_set_weapon.vmdl_c?models/heroes/slardar/slardar_weapon.vmdl_c
+models/items/slardar/slardar_ti9_immortal_back/slardar_ti9_immortal_back.vmdl_c?models/heroes/slardar/slardar_back.vmdl_c
 models/items/slardar/slardent2c/slardar_slardent.vmdl_c?models/heroes/slardar/slardar_weapon.vmdl_c
 models/items/slardar/takoyaki/slardar_takoyaki.vmdl_c?models/heroes/slardar/slardar_weapon.vmdl_c
 models/items/slardar/trident_of_the_deep_one/slardar_trident_of_the_deep_one.vmdl_c?models/heroes/slardar/slardar_weapon.vmdl_c
@@ -9787,6 +9818,7 @@ models/items/terrorblade/marauders_back/marauders_back.vmdl_c?models/heroes/terr
 models/items/terrorblade/marauders_demon/marauders_demon.vmdl_c?models/heroes/terrorblade/demon.vmdl_c
 models/items/terrorblade/marauders_head/marauders_head.vmdl_c?models/heroes/terrorblade/horns.vmdl_c
 models/items/terrorblade/marauders_weapon/marauders_weapon.vmdl_c?models/heroes/terrorblade/weapon.vmdl_c
+models/items/terrorblade/tb_ti9_immortal_weapon/tb_ti9_immortal_weapon.vmdl_c?models/heroes/terrorblade/weapon.vmdl_c
 models/items/terrorblade/terrorblade_ti8_immortal_back/terrorblade_ti8_immortal_back.vmdl_c?models/heroes/terrorblade/wings.vmdl_c
 models/items/tidehunter/a_bit_of_boat/a_bit_of_boat.vmdl_c?models/heroes/tidehunter/tidehunter_anchor.vmdl_c
 models/items/tidehunter/ancient_leviathan_arns/ancient_leviathan_arns.vmdl_c?models/heroes/tidehunter/tidehunter_bracer.vmdl_c

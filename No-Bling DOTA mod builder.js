@@ -188,7 +188,7 @@ No_Bling=function(choices, verbose, timers){
     var visuals = (typeof items[i].visuals === "object") ? items[i].visuals : "";
 
     // skip prefabs / non .model_player / non .visuals
-    if (!prefab || prefab === "bundle" || prefab === "taunt" || (!visuals && !model)) continue;
+    if (!prefab || prefab === "bundle" || prefab === "taunt" || prefab === "loading_screen" || (!visuals && !model)) continue;
 
     var cat = "", maybe_ability = {}, maybe_hat = {}, has_modifier = false;
     var id = vdf.redup(i), caption = items[i].item_name.replace("#DOTA_Item_","");
