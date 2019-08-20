@@ -24,9 +24,9 @@ optimally swapping just original Valve authored files with no 3^rd party content
 and whitelist-able at a glance...  
 
 #### What's new in v2019.08.20:  TI9   
-~ vpktool: fixed folder pak; include pak01_dir subfolder (if it exists) for manual overrides when modding  
+~ vpkmod: fixed folder pak; include pak01_dir subfolder (if it exists) for manual overrides when modding  
 ~ default hero icons and fixed unusual greevil and ti9 couriers for glance option; keep AW bracer fx  
-~ revised filters, alternative styles, loadout and taunt animations support, minimap icons 
+~ revised filters, alternative styles, loadout and taunt animations support, minimap icons  
 ~ BAT: improved autoupdate, prevent find gnu tools conflict, build folder CUSTOM instead of very long %CHOICES%  
 ~ BAT: making use of __VPKMOD__ tool [compiled from included source] for in-memory processing with minimal file i/o  
 ~ BAT: auto-update script from github on launch  
