@@ -1,6 +1,6 @@
 "no_bling_filters"
 {
- ":version" "2019.08.07"
+ ":version" "2019.08.20"
  //  Manual filters have been decoupled from the .js script into "No-Bling-filters.txt"
  //  To auto-update script without overwriting changes, make a "No-Bling-filters-personal.txt" copy and edit that instead!
  //  These suppliment "items_game.txt" auto-replacing rules with per category file replacement vdf modifier-asset pairs:
@@ -498,6 +498,17 @@
  }
  "HeroTweak"
  {
+  // keep AW bracers fx
+  "particles/units/heroes/hero_arc_warden/arc_warden_bracer_ambient.vpcf"  "-"
+  // but hide child-effects
+  "particles/units/heroes/hero_arc_warden/arc_warden_bracer_hand_ember.vpcf"  "+"
+  //"particles/units/heroes/hero_arc_warden/arc_warden_bracer_hand_glow.vpcf"  "+"
+  "particles/units/heroes/hero_arc_warden/arc_warden_bracer_ambient_curve_rope_l.vpcf"  "+"
+  "particles/units/heroes/hero_arc_warden/arc_warden_bracer_ambient_curve_rope_r.vpcf"  "+"
+  "particles/units/heroes/hero_arc_warden/arc_warden_bracer_ember_l.vpcf"  "+"
+  "particles/units/heroes/hero_arc_warden/arc_warden_bracer_ember_r.vpcf"  "+"
+  "particles/units/heroes/hero_arc_warden/arc_warden_bracer_inside_l.vpcf"  "+"
+  "particles/units/heroes/hero_arc_warden/arc_warden_bracer_inside_r.vpcf"  "+"
   // keep iconic DS hands smoke..
   "particles/units/heroes/hero_dark_seer/dark_seer_ambient_hands.vpcf"  "-"
   // ..but hide child-effects
@@ -1872,6 +1883,31 @@
   "models/ui/compendium_points/compendium_points_11levels.vmdl"  "-"
   "models/ui/compendium_points/compendium_points_24levels.vmdl"  "-"
   "models/ui/compendium_points/compendium_points_5levels.vmdl"  "-"
+  "models/courier/greevil/greevil_ears1.vmdl"  "+"
+  "models/courier/greevil/greevil_ears2.vmdl"  "+"
+  "models/courier/greevil/greevil_eyes.vmdl"  "+"
+  "models/courier/greevil/greevil_feathers.vmdl"  "+"
+  "models/courier/greevil/greevil_hair1.vmdl"  "+"
+  "models/courier/greevil/greevil_hair2.vmdl"  "+"
+  "models/courier/greevil/greevil_horns1.vmdl"  "+"
+  "models/courier/greevil/greevil_horns2.vmdl"  "+"
+  "models/courier/greevil/greevil_horns3.vmdl"  "+"
+  "models/courier/greevil/greevil_horns4.vmdl"  "+"
+  "models/courier/greevil/greevil_nose1.vmdl"  "+"
+  "models/courier/greevil/greevil_nose2.vmdl"  "+"
+  "models/courier/greevil/greevil_nose3.vmdl"  "+"
+  "models/courier/greevil/greevil_tail1.vmdl"  "+"
+  "models/courier/greevil/greevil_tail2.vmdl"  "+"
+  "models/courier/greevil/greevil_tail3.vmdl"  "+"
+  "models/courier/greevil/greevil_tail4.vmdl"  "+"
+  "models/courier/greevil/greevil_teeth1.vmdl"  "+"
+  "models/courier/greevil/greevil_teeth2.vmdl"  "+"
+  "models/courier/greevil/greevil_teeth3.vmdl"  "+"
+  "models/courier/greevil/greevil_teeth4.vmdl"  "+"
+  "models/courier/greevil/greevil_wings1.vmdl"  "+"
+  "models/courier/greevil/greevil_wings2.vmdl"  "+"
+  "models/courier/greevil/greevil_wings3.vmdl"  "+"
+  "models/courier/greevil/greevil_wings4.vmdl"  "+"
   "particles/econ/items/enigma/enigma_absolute_armour/enigma_absolute_armour_body_ambient.vpcf"  "-"
   "particles/econ/items/enigma/enigma_absolute_head/enigma_absolute_head_ambient_eye.vpcf"  "particles/units/heroes/hero_enigma/enigma_ambient_eyes.vpcf"
   "particles/econ/items/naga/naga_ti8_immortal_tail/naga_ti8_immortal_ambient.vpcf"  "-"

@@ -1,6 +1,7 @@
 /* 2>nul || goto init "No-Bling DOTA mod builder"
-:: v2019.07.22: Glance++
-:: - revised filters, alternative styles, loadout and taunt animations support
+:: v2019.08.20: TI9
+:: - vpktool: fixed folder pak; include pak01_dir subfolder (if it exists) for manual overrides when modding 
+:: - revised filters, alternative styles, loadout and taunt animations support, minimap icons 
 :: - improved autoupdate, prevent find gnu tools conflict, build folder CUSTOM instead of very long %CHOICES% 
 :: - making use of VPKMOD tool [compiled as needed from included source] for in-memory processing with minimal file i/o
 :: - auto-update script from github on launch if needed
@@ -25,7 +26,7 @@ set/a Taunts=1                     &rem  1 = ceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 set/a Glance=1                     &rem  1 = gabening intensifies..
 
 set/a @update=1                    &rem  1 = update script from github on launch,                 0 = stay on outdated script
-set/a @refresh=0                   &rem  1 = remove old builds and logs,                          0 = keep old builds and logs
+set/a @refresh=0                   &rem  1 = remove old builds and logs, recompile vpkmod         0 = keep old builds and logs
 set/a @verbose=0                   &rem  1 = log detailed per-hero item lists ~8k small files,    0 = skip detailed item lists
 ::------------------------------------------------------------------------------------------------------------------------------
 :: Extra script choices - not available in gui so set them here if needed
@@ -35,7 +36,7 @@ set/a @dialog=1                    &rem  1 = show choices gui dialog,           
 set "MOD_FILE=pak01_dir.vpk"       &rem  ? = override here if having multiple mods and needing another name like pak02_dir.vpk
 set "all_choices=Hats,Couriers,Wards,Terrain,Abilities,Seasonal,AbiliTweak,HeroTweak,Menu,Taunts,Glance"
 set "def_choices=Hats,Couriers,Wards,Terrain,Abilities,Seasonal,AbiliTweak,HeroTweak,Menu"
-set "version=2019.08.07"
+set "version=2019.08.20"
 
 title AveYo's No-Bling DOTA mod builder v%version%
 set a = free script so no bitching! & for /f delims^=^ eol^= %%. in (
@@ -90,48 +91,48 @@ for %%o in (%all_choices%) do if defined %%o (if defined @choices (call set @cho
 
 :: Auto-update script from github - can fail on naked Windows 7 without TLS 1.2 hotfix and ps 5.1
 ::------------------------------------------------------------------------------------------------------------------------------
-if not defined @update goto noupdate
+if not defined @update goto skip_update
 set "URL=https://github.com/No-Bling/DOTA/raw/master"
 set "URL=https://raw.githubusercontent.com/No-Bling/DOTA/master"
 set "FILE=No-Bling DOTA mod builder"
 :: Check online .version
 set/a online=1 & set/a offline=%version:.=%+0
-pushd "%~dp0" & del /f/q .version >nul 2>nul
+cd/d "%~dp0" & del /f/q .version >nul 2>nul
 set "wc=$wc=new-object System.Net.WebClient"
 set "wc=%wc%;$wc.Headers.Add('user-agent','Mozilla/5.0 (compatible, MSIE 11, Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko')"
 powershell -noprofile -c "%wc%; $wc.DownloadFile('%URL%/.version','%~dp0.version');"
 if not exist .version certutil -URLCache -split -f "%URL%/.version"
 rem >nul 2>nul                   &REM naked Windows 7 workaround
-if not exist .version goto noupdate                                                                          &REM still failed..
+if not exist .version goto skip_update                                                                         &REM still failed..
 if exist .version for /f "tokens=1,2,3 delims=." %%i in ('type .version') do set/a online=%%i%%j%%k+0
-if %offline% LSS %online% (set "outdated=1") else set "outdated=" & goto noupdate
+if %offline% LSS %online% (set "outdated=1") else set "outdated=" & goto skip_update
 :: Only download builder.zip if local script is outdated
-pushd "%~dp0" & del /f/q "%FILE%.zip" >nul 2>nul
+cd/d "%~dp0" & del /f/q "%FILE%.zip" >nul 2>nul
 powershell -noprofile -c "%wc%; $wc.DownloadFile('%URL%/%FILE%.zip','%~dp0%FILE%.zip');" >nul 2>nul
 if not exist "%~dp0%FILE%.zip" certutil -URLCache -split -f "%URL%/%FILE%.zip" >nul 2>nul        &REM naked Windows 7 workaround
-if not exist "%~dp0%FILE%.zip" goto noupdate                                                                 &REM still failed..
+if not exist "%~dp0%FILE%.zip" goto skip_update                                                                &REM still failed..
 :: UnZip overwriting local files (except No-Bling-filters-personal.txt) and start the updated script
 set "UNZIP=$s=new-object -com shell.application;foreach($i in $s.NameSpace($zip).items()){$s.Namespace($dir).copyhere($i,0x14)}"
 set "UPDATE=$dir='%~dp0'; $zip='%~dp0%FILE%.zip'; %UNZIP%; start '%FILE%.bat'"
 start powershell -noprofile -WindowStyle Hidden -c "%UPDATE%" &exit
 ::------------------------------------------------------------------------------------------------------------------------------
-:noupdate
+:skip_update
 
 :: Check DOTA, tools and environment
-pushd "%~dp0"
+cd/d "%~dp0"
 set "ROOT=%CD%"
 set "MOD_FOLDER=dota_tempcontent" & set "MOD_OPTIONS=-tempcontent"
 if not defined MOD_FILE set "MOD_FILE=pak01_dir.vpk"
 call :set_steam & call :set_dota & call :set_tools
 
 :: Check DOTA launch options
-if defined STEAMDATA pushd "%STEAMDATA%\config" & if exist localconfig.vdf (
+if defined STEAMDATA cd/d "%STEAMDATA%\config" & if exist localconfig.vdf (
  for /f "delims=" %%a in ('cscript //E:JScript //nologo "%~dpn0.js" LOptions localconfig.vdf "_" -read') do set "LOPTIONS=%%a"
 )
 
 :: Patch Anticipation Station - quick and dirty check for new DOTA patch (no pointless particles extraction from vpk each run)
 for /f usebackq^ delims^=^"^ tokens^=4 %%a in (`findstr LastUpdated "%STEAMAPPS%\appmanifest_570.acf"`) do set/a "UPDATED=%%a+0"
-mkdir "%DOTA%\%MOD_FOLDER%" >nul 2>nul & pushd "%DOTA%\%MOD_FOLDER%" & set "NEWPATCH=" & set/a "LASTUPDATED=0"
+mkdir "%DOTA%\%MOD_FOLDER%" >nul 2>nul & cd/d "%DOTA%\%MOD_FOLDER%" & set "NEWPATCH=" & set/a "LASTUPDATED=0"
 echo @set/a "LASTUPDATED=%UPDATED%" ^&exit/b>pas_updated.bat & if exist last_updated.bat call last_updated.bat
 if %UPDATED% GTR %LASTUPDATED% set "NEWPATCH=yes"
 if not defined NEWPATCH ( call :color 03 " old patch " ) else call :color 0b " new patch " &rem set "@refresh=1"
@@ -167,8 +168,9 @@ echo  Script version = v%version%  Online version = v%online%  -  https://github
 echo.
 
 :: Prepare directories
+if defined @refresh del /f /q %vpkmod% 2>nul & call :build_csc_vpkmod 
 call :color 0e " Preparing directories, please wait ... "
-pushd "%ROOT%"
+cd/d "%ROOT%"
 ::set "BUILDS=%CD%\BUILDS\%MOD_CHOICES:,=_%"
 set "BUILDS=%CD%\BUILDS\CUSTOM"
 mkdir "%BUILDS%" >nul 2>nul & mkdir "%ROOT%\log" >nul 2>nul
@@ -176,13 +178,13 @@ set ".="%ROOT%\src""
 if defined @refresh set ".=%.% "%DOTA%\%MOD_FOLDER%" "%BUILDS%""               &REM clear content only @refresh
 if defined @refresh if defined @verbose set ".=%.%  "%ROOT%\log""              &REM clear ~8k log files each @verbose + @refresh
 for %%i in (%.%) do ( del /f/s/q "%%~i" & rmdir /s/q "%%~i" & mkdir "%%~i" ) >nul 2>nul
-rmdir /s/q "%CONTENT%\no-bling" >nul 2>nul 
 call :clearline 3
 
 %LABEL% " Extracting lists from dota\pak01_dir.vpk ... "
 %vpkmod% -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\particles.lst" -e "vpcf_c" -s >nul 2>nul
 %vpkmod% -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\models.lst" -e "vmdl_c" -s >nul 2>nul
 %vpkmod% -i "%DOTA%\dota\pak01_dir.vpk" -l "%ROOT%\src\anim.lst" -e "vanim_c" -s >nul 2>nul
+%vpkmod% -i "%DOTA%\dota\pak01_dir.vpk" -o "%ROOT%\src" -e "txt" -p "scripts/mod_textures.txt" -s >nul 2>nul
 %vpkmod% -i "%DOTA%\dota\pak01_dir.vpk" -o "%ROOT%\src" -e "txt" -p "scripts/items/items_game.txt"
 mkdir "%ROOT%\src\scripts\npc" >nul 2>nul
 copy /y "%DOTA%\dota\scripts\npc\npc_heroes.txt" "%ROOT%\src\scripts\npc" >nul 2>nul
@@ -191,15 +193,15 @@ copy /y "%DOTA%\dota\scripts\npc\npc_units.txt" "%ROOT%\src\scripts\npc" >nul 2>
 call :mcolor 70 " Processing items_game.txt and particles.lst ... " c0. " ETA: 10-60s "
 if defined @verbose echo Writing per-hero / category slice logs and verbose no_bling.txt to log folder...
 if defined @verbose ( set ".=>"%ROOT%\log\no_bling.txt"" ) else set ".= "
-pushd "%ROOT%"
+cd/d "%ROOT%"
 %TIMER%
 %js_engine% No_Bling "%MOD_CHOICES%" "%@verbose%" "%@timers%" %.%
 if defined MOD_CHOICES if not exist "%ROOT%\src\src.lst" %TIMER% & call :done ! Processing failed, src.lst missing..
 :: Verify VDF parser
-if defined @verbose pushd "%ROOT%\src\scripts\items" &echo n|comp items_game.txt "%ROOT%\log\items_game.txt" 2>nul
+if defined @verbose cd/d "%ROOT%\src\scripts\items" &echo n|comp items_game.txt "%ROOT%\log\items_game.txt" 2>nul
 if defined @verbose call :clearline 1
 :: Sort particle?mod definitions for each src category
-pushd "%ROOT%\src" & for %%a in (*.ini src.lst) do sort "%%a" /o "%%a"
+cd/d "%ROOT%\src" & for %%a in (*.ini src.lst) do sort "%%a" /o "%%a"
 :: Show per category file count
 set/a Other=1                                                             &REM forced category for stuff like particle snapshots
 for %%a in ("%ROOT%\src\*.ini") do if defined %%~na (
@@ -212,17 +214,28 @@ if defined @verbose if not defined MOD_CHOICES echo.& %INFO%  No mod choices sel
 
 :: Update changed content cache
 ::if defined @refresh del /f /q "%CONTENT%\no-bling\pak01_dir.vpk.manifest.txt" >nul 2>nul
-pushd "%DOTA%\%MOD_FOLDER%"
+cd/d "%DOTA%\%MOD_FOLDER%"
 if exist pas_updated.bat ( copy /y pas_updated.bat last_updated.bat & del /f /q pas_updated.bat ) >nul 2>nul
 
+:: Override minimap_hero_sheet_psd_3529892a.vtex_c to revert hero icons 
+if not defined Glance goto skip_icons
+set "icons1=%ROOT%\pak01_dir\materials\vgui\hud\minimap_hero_sheet_psd_3529892a.vtex_c"
+set "icons2=%ROOT%\minimap_hero_sheet_psd_3529892a.vtex_c"
+if not exist "%icons1%" if not exist "%icons2%" (set "missing_icons=1") else set "missing_icons="
+if defined missing_icons (%WARN%  Missing minimap_hero_sheet, you must extract all files in builder.zip) else ( 
+ mkdir "%ROOT%\pak01_dir\materials\vgui\hud" >nul 2>nul & copy /y "%icons2%" "%icons1%" >nul 2>nul 
+)
+:skip_icons
+
 :: In-memory file replacement mod using nothing but unaltered Valve authored files (custom vpkmod tool exclusive feature)
-call :mcolor 70 " Deploying selected No-Bling choices ... " c0. " ETA: 10-20s "
+call :mcolor 70 " Deploying selected No-Bling choices ... " c0. " ETA: 10-30s "
 %TIMER%
+cd/d "%ROOT%"
 %vpkmod% -i "%DOTA%\dota\pak01_dir.vpk" -o "%BUILDS%\pak01_dir.vpk" -m "%ROOT%\src\src.lst" -s
 %TIMER%
 
 :: Generate readme
-pushd "%BUILDS%"
+cd/d "%BUILDS%"
 set .="%BUILDS%\No-Bling DOTA mod readme.txt"
  >%.% echo  No-Bling DOTA mod v%version% choices:
 >>%.% echo  %MOD_CHOICES%
@@ -279,7 +292,7 @@ copy /y "%BUILDS%\pak01_dir.vpk" "%DOTA%\%MOD_FOLDER%\%MOD_FILE%" >nul 2>nul
 copy /y "%BUILDS%\No-Bling DOTA mod readme.txt" "%DOTA%\%MOD_FOLDER%\" >nul 2>nul
 :: Add launch options for Dota 2 directly in the config file [ does not update if Steam is running hence the @endtask option ]
 if not defined STEAMDATA goto done
-pushd "%STEAMDATA%\config" & copy /y localconfig.vdf localconfig.vdf.bak >nul
+cd/d "%STEAMDATA%\config" & copy /y localconfig.vdf localconfig.vdf.bak >nul
 ::%js_engine% LOptions "localconfig.vdf" "-lv,-language x,-textlanguage x,+cl_language x" -remove     &REM clear old mod options
 %js_engine% LOptions "localconfig.vdf" "%MOD_OPTIONS%" -add
 :: Relaunch Steam with fast options       PSA: you can add l1 and l2 options to your Steam shorcut at the end of the Target line
@@ -319,7 +332,7 @@ cls & if not "%1"=="init" ( start "init" "%~f0" init & exit/b ) else goto main  
 :: Core functions
 ::------------------------------------------------------------------------------------------------------------------------------
 :set_macros [OUTPUTS] %[BS]%=BackSpace %[CR]%=CarriageReturn %[GL]%=Glue/NonBreakingSpace %[DEL]%=DelChar %[DEL7]%=DelCharX7
-pushd "%TEMP%" & echo=WSH.Echo(String.fromCharCode(160))>` & for /f %%# in ('cscript //E:JScript //nologo `') do set "[GL]=%%#"
+cd/d "%TEMP%" & echo=WSH.Echo(String.fromCharCode(160))>` & for /f %%# in ('cscript //E:JScript //nologo `') do set "[GL]=%%#"
 for /f %%# in ('echo prompt $H ^| cmd') do set "[BS]=%%#" & for /f %%# in ('copy /z "%~dpf0" nul') do set "[CR]=%%#"
 for /f "tokens=2 delims=1234567890" %%# in ('shutdown /?^|findstr /bc:"E"') do set "[TAB]=%%#"
 set/p "=-"<nul>` &set "ECHOP=<nul set/p =%[BS]%" &set "[DEL]=%[BS]%%[GL]%%[BS]%" &call set "[DEL3]=%%[DEL]%%%%[DEL]%%%%[DEL]%%"
@@ -420,6 +433,8 @@ if not exist "%ROOT%\%~n0.js" call :end ! %~n0.js missing! Did you unpack the wh
 ::if not exist "%ROOT%\tools\*" call :end ! tools subfolder missing! Did you unpack the whole .zip package?
 set "PATH=%PATH%;%ROOT%\tools\"
 set "vpkmod="%ROOT%\vpkmod.exe""
+for /f "usebackq" %%v in (`wmic datafile where "name='%ROOT:\=\\%\\vpkmod.exe'" get version /value 2^>nul`) do set V%%v >nul 2>nul
+if "%VVersion%"=="2019.5.21.0 " del /f /q %vpkmod%
 if not exist %vpkmod% call :build_csc_vpkmod
 if not exist %vpkmod% call :end ! vpkmod.exe missing! Try to compile it manually from [tools\build vpkmod.zip]
 set "nodejs="%ROOT%\tools\node.exe""
@@ -431,9 +446,10 @@ exit/b
 
 :build_csc_vpkmod
 for /f "tokens=* delims=" %%v in ('dir /b /s /a:-d /o:-n "%Windir%\Microsoft.NET\Framework\*csc.exe"') do set "csc=%%v"
-pushd %~dp0 & "%csc%" /out:vpkmod.exe /target:exe /platform:anycpu /optimize /nologo "%~f0"
+cd/d %~dp0 & "%csc%" /out:vpkmod.exe /target:exe /platform:anycpu /optimize /nologo "%~f0"
 if not exist vpkmod.exe call :end ! Failed compiling VPKMOD C# snippet! .net framework 3.5+ / VS2008 compiler needed
 exit/b VPKMOD C# source */
+// v1.2: fixed folder pak; include pak01_dir subfolder (if it exists) for manual overrides when modding 
 // v1.1: Mod.lst : can use "mod?.nix" lines to replace "mod" with a 0-byte file; update ValvePak
 using System;
 using System.Collections.Generic;
@@ -450,7 +466,7 @@ using VPKMOD;
 [assembly:AssemblyTitle("VPKMOD")]
 [assembly:AssemblyCompanyAttribute("AveYo")]
 [assembly: AssemblyCopyright("AveYo / SteamDatabase")]
-[assembly:AssemblyVersionAttribute("2019.05.21")]
+[assembly:AssemblyVersionAttribute("2019.08.20")]
 
 namespace SteamDatabase.ValvePak
 {
@@ -2218,6 +2234,7 @@ namespace VPKMOD
 
             if (modding) Echo("--- Exporting filtered input", ConsoleColor.Green);
             else Echo("--- Paking input folder", ConsoleColor.Green);
+            string dir = Options.Input;
             TotalFiles = paths.Count;
             var sw = Stopwatch.StartNew();
             Encoding iso = Encoding.GetEncoding("ISO-8859-1");
@@ -2370,13 +2387,25 @@ namespace VPKMOD
                     }
                 }
             }
+            
+            // include pak01_dir subfolder (if it exists) for manual overrides when modding
+            if (modding && Directory.Exists("pak01_dir"))
+            {
+                dir = "pak01_dir";
+                paths = new List<string>();
+                paths.AddRange(Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories));
+                if (paths.Count != 0)
+                {
+                   modding = false;
+                }
+            }
 
             if (!modding)
             {
                 foreach (var path in paths)
                 {
                     if (!Options.Silent) Console.WriteLine("[{0}/{1}] {2}", ++CurrentFile, TotalFiles, path);
-                    byte[] latin = Encoding.Convert(utf, iso, utf.GetBytes(path.Substring(Options.Input.Length)));
+                    byte[] latin = Encoding.Convert(utf, iso, utf.GetBytes(path.Substring(dir.Length+1)));
                     string root = iso.GetString(latin).ToLower();
                     var ext = Path.GetExtension(root).TrimStart('.');
                     if (ext == string.Empty)

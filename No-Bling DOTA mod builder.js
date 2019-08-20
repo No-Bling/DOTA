@@ -1,6 +1,7 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                    edited in SynWrite
-// v2019.07.22: Glance++
-// - revised filters, alternative styles, loadout and taunt animations support
+// v2019.08.20: TI9
+// - fixed unusual greevil and ti9 couriers for glance option 
+// - revised filters, alternative styles, loadout and taunt animations support, minimap icons
 // - output unified src.lst for in-memory modding via VPKMOD tool
 // - decoupled manual filters into No-Bling-filters.txt
 //------------------------------------------------------------------------------------------------------------------------------
@@ -157,6 +158,31 @@ No_Bling=function(choices, verbose, timers){
   var tmp = "npc_dota_hero_life_stealer"; 
   models[tmp] = {}; models[tmp]["back"] = {}; models[tmp]["back"]["m"] = "models/heroes/life_stealer/life_stealer.vmdl";        
 
+  // Read, parse and patch mod_textures.txt - too bad it's ignored in mm
+  //if (VERBOSE) t = timer("Force default minimap icons in mod_textures.txt");
+  //var mod_textures = vdf.parse(fs.readFileSync("src\\scripts\\mod_textures.txt", DEF_ENCODING));
+  //var default_minimap_icons = false, icon = "";
+  //for (mt in mod_textures) {
+  //  if (typeof mod_textures[mt].TextureData !== "object") continue;
+  //  for (alt in mod_textures[mt].TextureData) {
+  //    if (typeof mod_textures[mt].TextureData[alt] !== "object") continue;
+  //    if (alt.lastIndexOf("_alt") > -1) icon = alt.slice(0,-4);
+  //    else if (alt.lastIndexOf("_alt1") > -1 || alt.lastIndexOf("_alt2") > -1) icon = alt.slice(0,-5);
+  //    else if (alt.lastIndexOf("_persona1") > -1) icon = alt.slice(0,-9);
+  //    if (typeof mod_textures[mt].TextureData[icon] !== "object") continue;
+  //    mod_textures[mt].TextureData[alt].x = mod_textures[mt].TextureData[icon].x; 
+  //    mod_textures[mt].TextureData[alt].y = mod_textures[mt].TextureData[icon].y;
+  //    if (GLANCE) default_minimap_icons = true;
+  //  }
+  //}
+  //if (default_minimap_icons) {
+  //  var mod_textures_data = vdf.stringify(mod_textures, true);
+  //  var mod_textures_file=path.normalize(path.join(ROOT,"pak01_dir\\scripts\\mod_textures.txt"));
+  //  MakeDir(path.normalize(path.join(ROOT,"pak01_dir\\scripts")));
+  //  fs.writeFileSync(mod_textures_file, mod_textures_data, DEF_ENCODING);
+  //} 
+  //if (VERBOSE) t.end();
+    
   // Read and vdf.parse items_game.txt
   var items_game_src = path.normalize(path.join(ROOT, "src\\scripts\\items\\items_game.txt"));
   t = timer("Read items_game.txt");
@@ -274,7 +300,7 @@ No_Bling=function(choices, verbose, timers){
             var style = items[i].visuals.styles[s].model_player || "";
             if (style) mods["Glance"][items[i].visuals.styles[s].model_player] = mods["Glance"][model];
 //          if (style) LOG("STYLE: "+items[i].visuals.styles[s].model_player+" = "+mods["Glance"][model] + " :"+id);
-         } 
+         }
       }
 
       var visual = items[i].visuals[v];      // .visuals object - dont use exact naming since vdf.parser auto-renamed duplicates
@@ -282,8 +308,23 @@ No_Bling=function(choices, verbose, timers){
       var asset = visual.asset || "";
       var modifier = (typeof visual.modifier === "string") ? visual.modifier : "";
       if (modifier === asset) continue;                                          // skip if both modifier and asset are the same
-      if (!vtype || vtype === "particle_control_point" /*|| vtype === "particle_combined"*/) continue; //skip non particle/p.._create
+      if (!vtype || vtype === "particle_control_point") continue; //skip non particle/p.._create
       var maybe = false;
+
+      // GLANCE COURIERS - GABENING INTENSIFIES..
+      if (vtype === "courier" && asset === "radiant") mods["Glance"][modifier] = npc_models["courier_radiant"];
+      else if (vtype === "courier" && asset === "dire") mods["Glance"][modifier] = npc_models["courier_dire"];
+      else if (vtype === "courier_flying" && asset === "radiant") mods["Glance"][modifier] = npc_models["courier_flying_radiant"];
+      else if (vtype === "courier_flying" && asset === "dire") mods["Glance"][modifier] = npc_models["courier_flying_dire"];
+
+      // GLANCE DEFAULT HERO AND INVENTORY ICONS - GABENING INTENSIFIES..
+      if (vtype === "icon_replacement_hero" || vtype === "icon_replacement_hero_minimap") {
+        mods["Glance"]["panorama/images/heroes/icons/"+modifier+"_png.vtex"] = "panorama/images/heroes/icons/"+asset+"_png.vtex";
+        mods["Glance"]["panorama/images/heroes/"+modifier+"_png.vtex"] = "panorama/images/heroes/"+asset+"_png.vtex";
+      }
+      if (vtype === "inventory_icon") {
+        mods["Glance"]["panorama/images/items/"+modifier+"_png.vtex"] = "panorama/images/items/"+asset+"_png.vtex";
+      }
 
       // GLANCE PROPS - GABENING INTENSIFIES..
       if (vtype === "additional_wearable") {

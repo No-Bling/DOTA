@@ -23,8 +23,10 @@ Don't worry, this is a perfectly safe, well intended, hats friendly, good behavi
 optimally swapping just original Valve authored files with no 3^rd party content alteration whatsoever,  
 and whitelist-able at a glance...  
 
-#### What's new in v2019.07.22:  Glance++   
-~ revised filters, alternative styles, loadout and taunt animations support  
+#### What's new in v2019.08.20:  TI9   
+~ vpktool: fixed folder pak; include pak01_dir subfolder (if it exists) for manual overrides when modding  
+~ default hero icons and fixed unusual greevil and ti9 couriers for glance option; keep AW bracer fx  
+~ revised filters, alternative styles, loadout and taunt animations support, minimap icons 
 ~ BAT: improved autoupdate, prevent find gnu tools conflict, build folder CUSTOM instead of very long %CHOICES%  
 ~ BAT: making use of __VPKMOD__ tool [compiled from included source] for in-memory processing with minimal file i/o  
 ~ BAT: auto-update script from github on launch  
@@ -42,7 +44,7 @@ and whitelist-able at a glance...
 Category       | GlanceValue | Description                                                              | Pre-made as:  
 -------------- | ----------- | ------------------------------------------------------------------------ | ----------  
 Hats           | **++++**    | - Workshop Hats: cosmetic particles spam - slowly turning into TF2..     |   CORE BUILD  
-Couriers       | **+++**     | - Custom Couriers: these are fine.. until ~~Fy~~ someone abuses gems on hats |  
+Couriers       | **+++**     | - Custom Couriers: fine.. until ~~Fy~~ someone abuses gems on hats       |  
 Wards          | **++**      | - Custom Wards: only a few make the ward and the sentry item similar     |  
 Terrain        | **++**      | - tweak ancients, towers, effigies, shrines, bundled weather             |  
 .            . | .         . | .                                                                      . | .       .  
@@ -52,13 +54,14 @@ Seasonal       | **+++**     | - Event Rewards: the International custom tp, bli
 AbiliTweak     | **++++**    | - revert Rubick Arcana stolen spells, trim effects                       |   FULL BUILD  
 HeroTweak      | **+/-**     | - Default Hats: hero-bundled effects  - helps potato pc                  |  
 Menu           | **+**       | - Menu - ui, hero loadout and preview, treasure opening                  |  
-Taunts         | **++**      | - ceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeb and dota+                       |  
+.            . | .         . | .                                                                      . | .       .  
+Taunts         | **++**      | - ceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeb and dota+                       |   CUSTOM BUILD  
 Glance         | **+++++++** | - (\\_/) gabening intensifies..                                          |  
 .            . | .         . | .                                                                      . | .      .  
 *@update*      |             | *auto-update script from github - can be skipped*                        |  
 *@verbose*     |             | *print file names and export detailed per-hero item lists*               |  
 *@endtask*     |             | *auto-install closes Dota and Steam - needed once to add launch options* |  
-*@refresh*     |             | *refresh lastupdated and clear mod directories - usually not needed*     |  
+*@refresh*     |             | *refresh lastupdated, clear mod folders, recompile vpkmod*               |  
 
 *choices are remembered between runs.*  
 
@@ -87,7 +90,8 @@ Enter `game` subfolder, then create folder `dota_tempcontent` and copy `pak01_di
 Simply remove / rename the `-tempcontent` launch option and restart the game!  
 
 ### Hints:  
-If using manual install, supress AnimResource warnings by adding to your autoexec.cfg: `log_verbosity AnimResource off | grep %`  
+If using manual install, supress AnimResource warnings by adding to your autoexec.cfg:  
+`log_verbosity AnimResource off | grep %`    
 It is recommended to set _Effects Quality_ option to _Low_ for Potato PC's as it decreases the nr of particles for certain spells  
 
 Manual filters have been decoupled from the .js script into `No-Bling-filters.txt`  
@@ -119,6 +123,6 @@ by demo-ing the item, opening console, and list particles with:
 Also check `log\no_bling.txt` as it shows some of the logic in categorizing, as well as `src\src.lst` and `.ini` files.  
 
 ### The future  
-Small steps towards multi-platform support, but don't ask for ETA..  
+Big steps towards multi-platform support, but don't ask for ETA..  
 
 Published under [MIT](LICENSE) license.  
