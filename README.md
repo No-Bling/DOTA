@@ -23,9 +23,10 @@ Don't worry, this is a perfectly safe, well intended, hats friendly, good behavi
 optimally swapping just original Valve authored files with no 3^rd party content alteration whatsoever,  
 and whitelist-able at a glance...  
 
-#### What's new in v2019.08.20:  TI9   
+#### What's new in v2019.08.21:  TI9   
+~ force VPKMOD refresh of older versions; cleanup SteamDatabase.ValvePak  
 ~ vpkmod: fixed folder pak; include pak01_dir subfolder (if it exists) for manual overrides when modding  
-~ default hero icons and fixed unusual greevil and ti9 couriers for glance option; keep AW bracer fx  
+~ fixed tiny grow, unusual greevil and ti9 couriers for glance option; default hero icons; keep AW bracer fx  
 ~ revised filters, alternative styles, loadout and taunt animations support, minimap icons  
 ~ BAT: improved autoupdate, prevent find gnu tools conflict, build folder CUSTOM instead of very long %CHOICES%  
 ~ BAT: making use of __VPKMOD__ tool [compiled from included source] for in-memory processing with minimal file i/o  

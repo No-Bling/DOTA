@@ -1,6 +1,6 @@
 //  This JS script is used internally by the main "No-Bling DOTA mod builder.bat" launcher                    edited in SynWrite
-// v2019.08.20: TI9
-// - fixed unusual greevil and ti9 couriers for glance option 
+// v2019.08.21: TI9 CEEEB
+// - fixed tiny grow models, unusual greevil and ti9 couriers for glance option 
 // - revised filters, alternative styles, loadout and taunt animations support, minimap icons
 // - output unified src.lst for in-memory modding via VPKMOD tool
 // - decoupled manual filters into No-Bling-filters.txt
@@ -140,12 +140,17 @@ No_Bling=function(choices, verbose, timers){
   var npc_heroes = vdf.parse(fs.readFileSync("src\\scripts\\npc\\npc_heroes.txt", DEF_ENCODING)).DOTAHeroes;
   for (id in npc_heroes) {
     if (typeof npc_heroes[id] !== "object") continue;
-    var c2 = id.slice(-2,-1), c1 = id.slice(-1);
     if (typeof npc_heroes[id]["Model"] == "string") {
       npc_models[id] = npc_heroes[id]["Model"];
-      if (c1 >= '0' && c1 <= '9') npc_models[id.slice(0, -1)] = npc_heroes[id]["Model"];
-      if (c2 === '_') npc_models[id.slice(0, -2)] = npc_heroes[id]["Model"];
     }
+    if (typeof npc_heroes[id]["Model1"] == "string") {
+      npc_models[id+"_variant_0"] = npc_heroes[id]["Model"];
+      npc_models[id+"_variant_1"] = npc_heroes[id]["Model1"];
+    }  
+    if (typeof npc_heroes[id]["Model3"] == "string") {
+      npc_models[id+"_variant_2"] = npc_heroes[id]["Model2"];
+      npc_models[id+"_variant_3"] = npc_heroes[id]["Model3"];
+    }  
   }
   if (VERBOSE) t.end();
 

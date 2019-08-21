@@ -1,4 +1,4 @@
- No-Bling DOTA mod v2019.08.20 choices:
+ No-Bling DOTA mod v2019.08.21 choices:
  Hats,Couriers,Wards,Terrain,Abilities,Seasonal,AbiliTweak,HeroTweak,Menu,Taunts,Glance
 --------------------------------------------------------------------------------
 We all know where we are headed looking at the Immortals spam in the last three years...
@@ -10467,6 +10467,10 @@ models/items/tinker/deep_sea_robot_off_hand/deep_sea_robot_off_hand.vmdl_c?model
 models/items/tinker/deep_sea_robot_shoulder/deep_sea_robot_shoulder.vmdl_c?models/heroes/tinker/tinker_shoulders.vmdl_c
 models/items/tinker/deep_sea_robot_weapon/deep_sea_robot_weapon.vmdl_c?models/heroes/tinker/tinker_right_arm.vmdl_c
 models/items/tinker/roller_mawster/roller_mawster.vmdl_c?models/heroes/tinker/tinker_helmet.vmdl_c
+models/items/tiny/burning_stone_giant/burning_stone_giant_01.vmdl_c?models/heroes/tiny/tiny_01/tiny_01.vmdl_c
+models/items/tiny/burning_stone_giant/burning_stone_giant_02.vmdl_c?models/heroes/tiny/tiny_02/tiny_02.vmdl_c
+models/items/tiny/burning_stone_giant/burning_stone_giant_03.vmdl_c?models/heroes/tiny/tiny_03/tiny_03.vmdl_c
+models/items/tiny/burning_stone_giant/burning_stone_giant_04.vmdl_c?models/heroes/tiny/tiny_04/tiny_04.vmdl_c
 models/items/tiny/burning_stone_giant_body/burning_stone_giant_body.vmdl_c?models/heroes/tiny_01/tiny_01_body.vmdl_c
 models/items/tiny/burning_stone_giant_body_level_2/burning_stone_giant_body_level_2.vmdl_c?models/heroes/tiny_02/tiny_02_body.vmdl_c
 models/items/tiny/burning_stone_giant_body_level_3/burning_stone_giant_body_level_3.vmdl_c?models/heroes/tiny_03/tiny_03_body.vmdl_c
@@ -10484,6 +10488,14 @@ models/items/tiny/burning_stone_giant_right_arm/burning_stone_giant_right_arm.vm
 models/items/tiny/burning_stone_giant_right_arm_level_2/burning_stone_giant_right_arm_level_2.vmdl_c?models/heroes/tiny_02/tiny_02_right_arm.vmdl_c
 models/items/tiny/burning_stone_giant_right_arm_level_3/burning_stone_giant_right_arm_level_3.vmdl_c?models/heroes/tiny_03/tiny_03_right_arm.vmdl_c
 models/items/tiny/burning_stone_giant_right_arm_level_4/burning_stone_giant_right_arm_level_4.vmdl_c?models/heroes/tiny_04/tiny_04_right_arm.vmdl_c
+models/items/tiny/glacial/glacial_tiny01.vmdl_c?models/heroes/tiny/tiny_01/tiny_01.vmdl_c
+models/items/tiny/glacial/glacial_tiny02.vmdl_c?models/heroes/tiny/tiny_02/tiny_02.vmdl_c
+models/items/tiny/glacial/glacial_tiny03.vmdl_c?models/heroes/tiny/tiny_03/tiny_03.vmdl_c
+models/items/tiny/glacial/glacial_tiny04.vmdl_c?models/heroes/tiny/tiny_04/tiny_04.vmdl_c
+models/items/tiny/scarlet_quarry/scarlet_quarry_02.vmdl_c?models/heroes/tiny/tiny_02/tiny_02.vmdl_c
+models/items/tiny/scarlet_quarry/scarlet_quarry_03.vmdl_c?models/heroes/tiny/tiny_03/tiny_03.vmdl_c
+models/items/tiny/scarlet_quarry/scarlet_quarry_04.vmdl_c?models/heroes/tiny/tiny_04/tiny_04.vmdl_c
+models/items/tiny/scarlet_quarry/scarlet_quarry01.vmdl_c?models/heroes/tiny/tiny_01/tiny_01.vmdl_c
 models/items/tiny/scarletquarry_armor/scarletquarry_armor.vmdl_c?models/heroes/tiny_01/tiny_01_body.vmdl_c
 models/items/tiny/scarletquarry_armor_t2/scarletquarry_armor_t2.vmdl_c?models/heroes/tiny_02/tiny_02_body.vmdl_c
 models/items/tiny/scarletquarry_armor_t3/scarletquarry_armor_t3.vmdl_c?models/heroes/tiny_03/tiny_03_body.vmdl_c
@@ -10501,6 +10513,10 @@ models/items/tiny/scarletquarry_offhand_t2/scarletquarry_offhand_t2.vmdl_c?model
 models/items/tiny/scarletquarry_offhand_t3/scarletquarry_offhand_t3.vmdl_c?models/heroes/tiny_03/tiny_03_right_arm.vmdl_c
 models/items/tiny/scarletquarry_offhand_t4/scarletquarry_offhand_t4.vmdl_c?models/heroes/tiny_04/tiny_04_right_arm.vmdl_c
 models/items/tiny/scarletquarry_weapon/scarletquarry_weapon.vmdl_c?models/heroes/tiny_01/tiny_01_tree.vmdl_c
+models/items/tiny/tiny_prestige/tiny_prestige_lvl_01.vmdl_c?models/heroes/tiny/tiny_01/tiny_01.vmdl_c
+models/items/tiny/tiny_prestige/tiny_prestige_lvl_02.vmdl_c?models/heroes/tiny/tiny_02/tiny_02.vmdl_c
+models/items/tiny/tiny_prestige/tiny_prestige_lvl_03.vmdl_c?models/heroes/tiny/tiny_03/tiny_03.vmdl_c
+models/items/tiny/tiny_prestige/tiny_prestige_lvl_04.vmdl_c?models/heroes/tiny/tiny_04/tiny_04.vmdl_c
 models/items/tiny/tiny_prestige/tiny_prestige_sword.vmdl_c?models/heroes/tiny_01/tiny_01_tree.vmdl_c
 models/items/tiny_01/glacial/glacial_tiny_01_body.vmdl_c?models/heroes/tiny_01/tiny_01_body.vmdl_c
 models/items/tiny_01/glacial/glacial_tiny_01_head.vmdl_c?models/heroes/tiny_01/tiny_01_head.vmdl_c

@@ -1,6 +1,6 @@
 "no_bling_filters"
 {
- ":version" "2019.08.20"
+ ":version" "2019.08.21"
  //  Manual filters have been decoupled from the .js script into "No-Bling-filters.txt"
  //  To auto-update script without overwriting changes, make a "No-Bling-filters-personal.txt" copy and edit that instead!
  //  These suppliment "items_game.txt" auto-replacing rules with per category file replacement vdf modifier-asset pairs:
