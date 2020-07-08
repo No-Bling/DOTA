@@ -35,7 +35,7 @@ using System.Net; using SteamDatabase.ValvePak; using SteamKit.KeyValue; [assemb
       ````:##############################                       #########:` `
        `````````````````````````:##:```:#############################:````:##:```
           ` ``` ```` ` ` ````````` ````````````````````````````````  ````")]
-[assembly:AssemblyVersionAttribute("2020.07.07")] [assembly: AssemblyTitle("AveYo")]
+[assembly:AssemblyVersionAttribute("2020.07.08")] [assembly: AssemblyTitle("AveYo")]
 
 namespace SteamDatabase.ValvePak
 {
@@ -1131,17 +1131,13 @@ namespace SteamKit.KeyValue
                 this[key].v = joined;
         }
 
-        public void add(string keys, string val, bool multiple)
+        public void add(List<string> keys)
         {
-            if (keys == null)
-                return;
-            foreach (string m in keys.Split(','))
+            foreach (string m in keys)
             {
                 string key = m.Trim();
                 if (this[key] == empty)
-                    this.items.Add(new KV(key, val));
-                else
-                    this[key].v = val;
+                    this.items.Add(new KV(key, ""));
             }
         }
 
@@ -1165,9 +1161,9 @@ namespace SteamKit.KeyValue
             this.items.Remove(this[key, index]);
         }
 
-        public void remove(string keys, bool multiple)
+        public void remove(List<string> keys)
         {
-            foreach (string key in keys.Split(','))
+            foreach (string key in keys)
             {
                 this.items.RemoveAll(_ => key.Trim().Equals(_.k, StringComparison.OrdinalIgnoreCase));
             }
@@ -2078,7 +2074,7 @@ namespace VPKMOD
                 GAMEPATH = STEAMPATH + "/steamapps/common/dota 2 beta/game";
                 if (!Directory.Exists(GAMEPATH))
                 {
-                    foreach (KV folder in libraryfolders.items)
+                    foreach (KV folder in libraryfolders)
                     {
                         GAMEPATH = SlashPath(folder.v) + "/steamapps/common/dota 2 beta/game";
                         if (Directory.Exists(GAMEPATH + "/dota/maps")) break;
@@ -2090,21 +2086,22 @@ namespace VPKMOD
             string sourcefile = GAMEPATH + "/dota/pak01_dir.vpk", outputfile = GAMEPATH + "/dota_tempcontent/pak01_dir.vpk";
             Package source = new Package(), output = new Package();
             try { source.Read(sourcefile); } catch (Exception e) { Echo(e.ToString(), 1, ConsoleColor.Yellow); }
-            var items_txt = "scripts/items/items_game.txt";
-            var hide_vpcf = "particles/dev/empty_particle.vpcf";
-            var hide_vmat = "materials/dev/bloom_cs.vmat";
-            var hide_vmdl = "models/development/invisiblebox.vmdl";
-            var hide_vsnd = "sounds/null.vsnd";
+            var items_game = "scripts/items/items_game.txt";
+            var chat_wheel = "scripts/chat_wheel.txt";
+            var null_vpcf = "particles/dev/empty_particle.vpcf";
+            var null_vmat = "materials/dev/bloom_cs.vmat";
+            var null_vmdl = "models/development/invisiblebox.vmdl";
+            var null_vsnd = "sounds/null.vsnd";
             var data = new Dictionary<string,byte[]>(); var crc = new Dictionary<string,uint>();
-            foreach (var s in new[] {items_txt, hide_vpcf, hide_vmat, hide_vmdl, hide_vsnd})
+            foreach (var s in new[] {items_game, chat_wheel, null_vpcf, null_vmat, null_vmdl, null_vsnd})
             {
-               var s_entry = source.FindEntry(s == items_txt ? s : s + "_c");
+               var s_entry = source.FindEntry(s.EndsWith(".txt") ? s : s + "_c");
                if (s_entry == null)
                   throw new InvalidDataException("NO " + s + " in pak01_dir.vpk!");
                byte[] s_data; source.ReadEntry(s_entry, out s_data); data[s] = s_data; crc[s] = s_entry.CRC32;
             }
-            data["zero"] = new byte[0];
-            var items = KV.LoadFromBytes(data[items_txt]);
+            data["null"] = new byte[0];
+            var items = KV.LoadFromBytes(data[items_game]);
             if (items == null)
                 throw new InvalidDataException("BAD scripts/items/items_game.txt in pak01_dir.vpk!");
 
@@ -2114,14 +2111,14 @@ namespace VPKMOD
             {
                 using (var reader = new StreamReader(PatchAnticipationStation))
                 {
-                    string s = reader.ReadLine(); if (uint.Parse(s ?? "0") == crc[items_txt]) PAS = false;
+                    string s = reader.ReadLine(); if (uint.Parse(s ?? "0") == crc[items_game]) PAS = false;
                 }
             }
             Echo(PAS ? "\n[new patch] " : "\n[old patch] ", 0, PAS ? ConsoleColor.Green : ConsoleColor.Magenta);
 
             // Show Choices Dialog
-            var all = "Couriers,Wards,Heroes,Wearables,Abilities,GlanceValue,Taunts,Loadout,Potato";
-            var def = "Couriers,Wards,Wearables,Abilities,Loadout";
+            var all = "Couriers,Wards,Heroes,Wearables,Abilities,GlanceValue,Taunts,SoundBoard,Loadout,Potato";
+            var def = "Couriers,Wards,Wearables,Abilities,Taunts,Loadout";
             var old = KV.LoadFromFile("No-Bling-choices.txt");
             var sel = (old == null || old["sel"].v.Split(',').Except(all.Split(',')).Any()) ? def : old["sel"].v;
             var choices = sel.Split(',').ToList();
@@ -2134,7 +2131,7 @@ namespace VPKMOD
                 if (choices.Count == 0) return;
                 if (choices.Except(sel.Split(',')).Any() || sel.Split(',').Except(choices).Any())
                 {
-                    var s = new KV("No-Bling"); s.add("sel", String.Join(",", choices)); s.SaveToFile("No-Bling-choices.txt");
+                    var s = new KV("No-Bling"); s.add("sel", choices); s.SaveToFile("No-Bling-choices.txt");
                 }
             }
             Echo(String.Join(", ", choices));
@@ -2148,17 +2145,18 @@ namespace VPKMOD
             if (user_filters != null)
             {
                 Echo(user_filters, 1, ConsoleColor.DarkYellow);
-                foreach (var pair in user_filters.items)
+                foreach (var pair in user_filters)
                 {
-                    if (pair.k == "keep_rarity")           filters["keep_rarity"].add(pair.v, "-", true);
-                    else if (pair.k == "keep_slot")        filters["keep_slot"].add(pair.v, "-", true);
-                    else if (pair.k == "keep_hero")        filters["keep_hero"].add(pair.v, "-", true);
-                    else if (pair.k == "keep_item")        filters["keep_item"].add(pair.v, "-", true);
-                    else if (pair.k == "keep_model")       filters["keep_model"].add(pair.v, "-", true);
-                    else if (pair.k == "keep_visuals")     filters["keep_visuals"].add(pair.v, "-", true);
-                    else if (pair.k == "keep_ability")     filters["keep_ability"].add(pair.v, "-", true);
-                    else if (pair.k == "keep_ambient")     filters["keep_ambient"].add(pair.v, "-", true);
-                    else if (pair.k == "keep_type")        filters["keep_type"].add(pair.v, "-", true);
+                    if (pair.k == "keep_soundboard")       filters["keep_soundboard"].add(pair.vlist);
+                    else if (pair.k == "keep_rarity")      filters["keep_rarity"].add(pair.vlist);
+                    else if (pair.k == "keep_slot")        filters["keep_slot"].add(pair.vlist);
+                    else if (pair.k == "keep_hero")        filters["keep_hero"].add(pair.vlist);
+                    else if (pair.k == "keep_item")        filters["keep_item"].add(pair.vlist);
+                    else if (pair.k == "keep_model")       filters["keep_model"].add(pair.vlist);
+                    else if (pair.k == "keep_visuals")     filters["keep_visuals"].add(pair.vlist);
+                    else if (pair.k == "keep_ability")     filters["keep_ability"].add(pair.vlist);
+                    else if (pair.k == "keep_ambient")     filters["keep_ambient"].add(pair.vlist);
+                    else if (pair.k == "keep_type")        filters["keep_type"].add(pair.vlist);
                     else if (pair.k == "keep_asset")       foreach (var entry in pair) { filters["keep_asset"].add(entry); }
                     else if (pair.k == "keep_modifier")    foreach (var entry in pair) { filters["keep_modifier"].add(entry); }
                     else if (pair.k == "replace_snapshot") foreach (var entry in pair) { filters["replace_snapshot"].add(entry); }
@@ -2170,16 +2168,35 @@ namespace VPKMOD
                         if (pair.count > 0)                filters["replace_item"].add(pair);
                         else if (pair.vint != -1)          filters["replace_item"].add(pair);
                         else if (pair.v == "*")            filters["keep_item"].add(pair.k);
-                        else                               filters["keep_item"].add(pair.k).add(pair.v, "-", true);
+                        else                               filters["keep_item"].add(pair.k).add(pair.vlist);
                     }
                     else if (pair.k.Contains("/"))         filters["replace_file"].add(pair);
                 }
             }
 
-            // Begin
+            // Soundboard
+            if (choices.Contains("SoundBoard"))
+            {
+                if (filters["keep_soundboard"]["TI10_Ceeeb"].notfound)
+                    foreach (var s in "ceeeb_start ceeeb_stop".Split())
+                        output.AddEntry("sounds/misc/soundboard", s, "vsnd_c", data[null_vsnd]);
+                var soundboard = KV.LoadFromBytes(data[chat_wheel]);
+                if (soundboard != null)
+                {
+                    foreach (var s1 in soundboard["messages"]) foreach (var s2 in s1)
+                        if (s2.k == "sound" && filters["keep_soundboard"][s1.k].notfound) s2.v = "Dota.UpdateVODefault";
+                    foreach (var s1 in soundboard["hero_messages"]) foreach (var s2 in s1) foreach (var s3 in s2)
+                        if (s3.k == "sound" && filters["keep_soundboard"][s2.k].notfound) s3.v = "Dota.UpdateVODefault";
+                    using (var ms = new MemoryStream())
+                    {
+                        soundboard.SaveToStream(ms); output.AddEntry("scripts", "chat_wheel", "txt", ms.ToArray());
+                    }
+                }
+            }
+
+            // Items
             var mod = items["items"];
             var basic = new KV("vanilla");
-          //var keep_type = filters["keep_type"].items.Select(_ => _.k).ToList();
 
             // items_game.txt loop to populate prefab categories
             var categories = "Wearables,Heroes,Couriers,Wards,Taunts,Loadout";
@@ -2203,7 +2220,7 @@ namespace VPKMOD
                 var i = mod.items[c]; var name = i["prefab"].v + " " + i.k + ":" + i["name"].v;
                 if (filters["keep_item"][i.k].found)
                     continue;
-                foreach (var visual in i["visuals"].items)
+                foreach (var visual in i["visuals"])
                 {
                     if (visual["type"].v == "particle" || visual["type"].v == "particle_create")
                         visual.k = "bling";
@@ -2228,7 +2245,7 @@ namespace VPKMOD
                 var i = mod.items[n];
                 if (i["baseitem"].found || filters["keep_item"][i.k].found)
                     continue;
-                foreach (var visual in i["visuals"].items)
+                foreach (var visual in i["visuals"])
                 {
                     if (visual["type"].v == "particle" || visual["type"].v == "particle_create")
                         visual.k = "bling";
@@ -2243,7 +2260,7 @@ namespace VPKMOD
                 var i = mod.items[n];
                 if (i["baseitem"].found || filters["keep_item"][i.k].found)
                     continue;
-                foreach (var visual in i["visuals"].items)
+                foreach (var visual in i["visuals"])
                 {
                     if (visual["type"].v == "particle" || visual["type"].v == "particle_create")
                         visual.k = "bling";
@@ -2258,7 +2275,7 @@ namespace VPKMOD
                     continue; // expired / bugged
                 basic.add(hero).add(slot).add("id",i.k); basic[hero][slot].add("vanilla_ambient");
                 if (i["particle_folder"].found) basic[hero][slot].add("particle_folder", i["particle_folder"].v ?? "");
-                foreach (var visual in i["visuals"].items)
+                foreach (var visual in i["visuals"])
                 {
                     if (visual["type"].v != "particle_create")
                         continue;
@@ -2275,7 +2292,7 @@ namespace VPKMOD
                 var i = mod.items[n];
                 string hero = i["used_by_heroes"].first.k, slot = i["item_slot"].v ?? "weapon";
 
-                foreach (var ambiguous in i["visuals"].items)
+                foreach (var ambiguous in i["visuals"])
                 {
                     if (ambiguous["type"].v == "particle_create")
                     {
@@ -2299,7 +2316,7 @@ namespace VPKMOD
                 var vanilla_snapshot = filters["replace_snapshot"][hero][i.k].v;
                 bool replace_ambient = (vanilla_ambient.Count > 0), replace_snapshot = (vanilla_snapshot != null);
 
-                foreach (KV visual in i["visuals"].items)
+                foreach (KV visual in i["visuals"])
                 {
                     var type = visual["type"].v ?? "";
                     var asset = visual["asset"].v ?? "";
@@ -2410,7 +2427,7 @@ namespace VPKMOD
                 {
                     foreach (var model in "model_player model_player1 model_player2 model_player3".Split())
                     {
-                        if (i[model].found) i[model].v = mod[vanilla][model].v ?? hide_vmdl;
+                        if (i[model].found) i[model].v = mod[vanilla][model].v ?? null_vmdl;
                     }
                     i.remove("portraits");
                     if (vanilla != "" && mod[vanilla]["portraits"].found)
@@ -2452,15 +2469,15 @@ namespace VPKMOD
 
             // replace_item id1 with id2 or {pasted content} while preserving selected properties
             var props = "name,prefab,item_description,item_name,item_rarity,item_type_name,item_slot,used_by_heroes";
-            foreach (KV pair in filters["replace_item"].items)
+            foreach (KV pair in filters["replace_item"])
             {
                 KV preserved = new KV(), item1 = mod[pair.k], item2 = pair.count == 0 ? mod[pair.v] : pair;
                 if (item2.count == 0)
                     continue;
                 foreach (var prop in props.Split(',')) { if (item1[prop].k != null) preserved.items.Add(item1[prop]); }
               //item1.items.Clear();
-                foreach (KV prop in item2.items) { item1.add(prop); }
-                foreach (KV prop in preserved.items) { item1.add(prop); }
+                foreach (KV prop in item2) { item1.add(prop); }
+                foreach (KV prop in preserved) { item1.add(prop); }
                 Log("replace_item", pair.k, "=", (pair.v ?? "{..}"));
             }
             // Hint: add replaced ids to keep_item filter if you want to prevent pre-processing
@@ -2473,18 +2490,18 @@ namespace VPKMOD
             }
 
             // Include resources from filters
-            foreach (KV filter in filters["replace_file"].items)
+            foreach (KV filter in filters["replace_file"])
             {
-                var fdata = data["zero"];
+                var fdata = data["null"];
                 if (filter.v.Contains("/"))
                 {
                     var fentry = source.FindEntry(filter.v);
                     if (fentry != null) source.ReadEntry(fentry, out fdata);
                 }
-                else if (filter.k.EndsWith(".vpcf_c")) fdata = data[hide_vpcf];
-                else if (filter.k.EndsWith(".vmat_c")) fdata = data[hide_vmat];
-                else if (filter.k.EndsWith(".vmdl_c")) fdata = data[hide_vmdl];
-                else if (filter.k.EndsWith(".vsnd_c")) fdata = data[hide_vsnd];
+                else if (filter.k.EndsWith(".vpcf_c")) fdata = data[null_vpcf];
+                else if (filter.k.EndsWith(".vmat_c")) fdata = data[null_vmat];
+                else if (filter.k.EndsWith(".vmdl_c")) fdata = data[null_vmdl];
+                else if (filter.k.EndsWith(".vsnd_c")) fdata = data[null_vsnd];
                 output.AddEntry(filter.k, fdata);
                 Log("replace_file",filter.k);
             }
@@ -2501,7 +2518,7 @@ namespace VPKMOD
             // Update PAS
             using (var newfile = new StreamWriter(PatchAnticipationStation, false))
             {
-                newfile.WriteLine("{0}", crc[items_txt]);
+                newfile.WriteLine("{0}", crc[items_game]);
             }
 
             sw.Stop();
@@ -2539,7 +2556,7 @@ namespace VPKMOD
       4015  particles/models/items/juggernaut/bladesrunner_weapon/bladesrunner_weapon.vsnap
       4072  particles/models/items/juggernaut/juggernaut_horse_sword/juggernaut_horse_sword.vsnap
       4083  particles/models/items/juggernaut/juggernaut_horse_sword/juggernaut_horse_sword.vsnap
-      4100  zero.vsnap  4101  zero.vsnap
+      4100  null.vsnap  4101  null.vsnap
       4102  particles/models/items/juggernaut/fire_of_the_exiled_ronin/fire_of_the_exiled_ronin.vsnap
       4250  particles/models/items/juggernaut/susano_os_descendant_weapon/susano_os_descendant_weapon_fx.vsnap
       4904  particles/models/items/juggernaut/fire_of_the_exiled_ronin/fire_of_the_exiled_ronin.vsnap
@@ -2562,7 +2579,7 @@ namespace VPKMOD
       9984 particles/models/items/juggernaut/wandering_demon_sword/wandering_demon_sword.vsnap
       12296 particles/models/items/juggernaut/wandering_demon_sword/wandering_demon_sword.vsnap
       12417 particles/models/items/juggernaut/immortal_warlord_sword/immortal_warlord_sword.vsnap
-      12765 zero.vsnap
+      12765 null.vsnap
       13185 particles/models/items/juggernaut/susano_os_descendant_weapon/susano_os_descendant_weapon_fx.vsnap
       13494 particles/models/items/juggernaut/the_discipline_of_kogu/the_discipline_of_kogu.vsnap
     }
@@ -2570,16 +2587,14 @@ namespace VPKMOD
   replace_item {
     4864 {item_slot disabled}
   }
-  replace_model{}
   replace_visuals {
     6972 5712  8773 5712  6919 6892  npc_dota_hero_furion { weapon 4159 }
   }
-  replace_file{}
-
+  replace_model{} replace_file{}
   keep_type {
     skip_model_combine - styles - alternate_icons - model - model_skin - entity_model - entity_scale - entity_healthbar_offset -
     hero_model_change - hero_scale - healthbar_offset - hex_model - additional_wearable - activity - default_idle_expression -
-    response_criteria - tiny_voice - particle_control_point - arcana_level - pet - //buff_modifier - custom_kill_effect -
+    response_criteria - tiny_voice - particle_control_point - arcana_level - pet - //buff_modifier custom_kill_effect
   }
   keep_asset {
     npc_dota_hero_bounty_hunter weapon
@@ -2594,7 +2609,8 @@ namespace VPKMOD
   }
   keep_item { 4159 - }
   keep_visuals { 4159 - }
-  keep_rarity{} keep_slot{} keep_hero{} keep_model{} keep_ability{} keep_ambient{}
+  keep_ambient{} keep_ability{} keep_model{} keep_hero{} keep_slot{} keep_rarity{} keep_soundboard{}
+
             }");
 
             var loadout = KV.LoadFromString(@"replace_file {
@@ -2646,21 +2662,22 @@ namespace VPKMOD
 
 /*
 //  Script uses a rather block first, white-list later aproach, so various issues need to be corrected via hard-coded filters
+//  Most filters use item numbers (ids) from scripts/items/items_game.txt but also generic hero and slot names
 //  Advanced users can define extra exceptions in a "No-Bling-filters.txt" with the following vdf key-value format:
 
 "user-filters"
 {
-  // keep
-  keep_rarity    "legendary,ancient"
-  keep_slot      "head,voice"
-  keep_hero      "npc_dota_hero_crystal_maiden,npc_dota_rattletrap_cog"
-  keep_item      "12930,13456,12,38"
-  keep_model     "4004,6054"
-  keep_visuals   "4004"
-  keep_ability   "7927"
-  keep_ambient   "6694"
+  keep_soundboard "TI10_Ceeeb,Brutal"      // see scripts/chat_wheel.txt
+  keep_rarity     "legendary,ancient"
+  keep_slot       "head,voice"
+  keep_hero       "npc_dota_hero_crystal_maiden,npc_dota_rattletrap_cog"
+  keep_item       "12930,13456,12,38"
+  keep_model      "4004,6054"
+  keep_visuals    "4004"
+  keep_ability    "7978"
+  keep_ambient    "6694"
 
-  // replace
+  // replace id1 with id2 content or { defined manually }
   38 7385
   12 {
     "model_player"    "models/items/kunkka/kunkka_shadow_blade/kunkka_shadow_blade.vmdl"
@@ -2679,8 +2696,23 @@ namespace VPKMOD
       }
     }
   }
-  246 { visuals{} }
-  247 { visuals{} }
+
+  // Can also make use of the internal filters format:
+  replace_item {
+    246 { visuals{} }
+    247 246
+  }
+  replace_visuals {
+    6972 5712                              // explicit id1 "visuals" = id2 "visuals"
+    npc_dota_hero_furion { weapon 4159 }   // generic hero - slot "visuals"  = id2 "visuals"
+  }
+  keep_asset {
+    npc_dota_hero_warlock ability_ultimate // generic keep hero - slot having "type" "particle"
+  }
+  keep_modifier {
+    npc_dota_hero_skywrath_mage weapon     // generic keep hero - slot having "type" "particle_create"
+    particles/units/heroes/hero_juggernaut/juggernaut_blade_generic.vpcf -
+  }
 }
 
 */
