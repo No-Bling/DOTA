@@ -1,5 +1,5 @@
 ## No-Bling DOTA "GlanceValue" restoration mod  
-#### We all know where we are headed looking at the Immortals spam in the last four years...  
+#### We have not reached TF2 levels of visual diarrhea in 2020 but we're getting awfully close...  
 
 ### Glance  
 <table>  
@@ -24,8 +24,8 @@ optimally swapping just original Valve authored files with no 3^rd party content
 and whitelist-able at a glance...  
 
 ### How to use  
-Get the repository as zip, unpack all files,  
-run the `No-Bling-builder.bat` script on Windows or `No-Bling-builder.sh` on Linux.  
+Get the repository as zip, extract all files  
+Execute `No-Bling-builder.bat` script on Windows or `No-Bling-builder.sh` on Linux  
 Then add launch option `-tempcontent` if not already present.  
 Run the script before launching DOTA to have an always up to date mod and prevent schema mismatch errors.  
 A desktop shortcut is created to run the builder quicker, without compiling and with previous choices.  
