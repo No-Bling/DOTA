@@ -35,7 +35,7 @@ using System.Net; using SteamDatabase.ValvePak; using SteamKit.KeyValue; [assemb
       ````:##############################                       #########:` `
        `````````````````````````:##:```:#############################:````:##:```
           ` ``` ```` ` ` ````````` ````````````````````````````````  ````")]
-[assembly:AssemblyVersionAttribute("2020.07.08")] [assembly: AssemblyTitle("AveYo")]
+[assembly:AssemblyVersionAttribute("2020.07.08.1")] [assembly: AssemblyTitle("AveYo")]
 
 namespace SteamDatabase.ValvePak
 {
@@ -2084,7 +2084,7 @@ namespace VPKMOD
 
             // Read vpk data
             string sourcefile = GAMEPATH + "/dota/pak01_dir.vpk", outputfile = GAMEPATH + "/dota_tempcontent/pak01_dir.vpk";
-            Package source = new Package(), output = new Package();
+            Package source = new Package(), output = new Package(), existing = new Package();
             try { source.Read(sourcefile); } catch (Exception e) { Echo(e.ToString(), 1, ConsoleColor.Yellow); }
             var items_game = "scripts/items/items_game.txt";
             var chat_wheel = "scripts/chat_wheel.txt";
@@ -2105,13 +2105,16 @@ namespace VPKMOD
             if (items == null)
                 throw new InvalidDataException("BAD scripts/items/items_game.txt in pak01_dir.vpk!");
 
-            // Signal new patch by comparing items_game.txt CRC with cached PAS
-            var PatchAnticipationStation = GAMEPATH + "/dota_tempcontent/PAS"; var PAS = true;
-            if (File.Exists(PatchAnticipationStation))
+            // PatchAnticipationStation: compare items_game.txt CRC from game with PAS.crc from outputfile
+            var PAS = true; //
+            if (File.Exists(outputfile))
             {
-                using (var reader = new StreamReader(PatchAnticipationStation))
+                try { existing.Read(outputfile); } catch { }
+                var pas_entry = existing.FindEntry(" ","PAS"," ");
+                if (pas_entry != null)
                 {
-                    string s = reader.ReadLine(); if (uint.Parse(s ?? "0") == crc[items_game]) PAS = false;
+                    byte[] pas_data; existing.ReadEntry(pas_entry, out pas_data);
+                    if (Encoding.UTF8.GetString(pas_data) == crc[items_game].ToString()) PAS = false;
                 }
             }
             Echo(PAS ? "\n[new patch] " : "\n[old patch] ", 0, PAS ? ConsoleColor.Green : ConsoleColor.Magenta);
@@ -2135,7 +2138,6 @@ namespace VPKMOD
                 }
             }
             Echo(String.Join(", ", choices));
-
 
             // Dev filters
             KV filters = Filters(choices);
@@ -2512,13 +2514,24 @@ namespace VPKMOD
                 output.AddFolder("pak01_dir");
             }
 
+            // Update PatchAnticipationStation
+            output.AddEntry(" ","PAS"," ", Encoding.UTF8.GetBytes(crc[items_game].ToString()));
+
             // Generate output pak01_dir.vpk
             output.SaveToFile(outputfile);
 
-            // Update PAS
-            using (var newfile = new StreamWriter(PatchAnticipationStation, false))
+            // Generate items_reference.txt for user filters
+            if (Options.Silent == false && !File.Exists("items_reference.txt"))
             {
-                newfile.WriteLine("{0}", crc[items_game]);
+                var reference = KV.LoadFromBytes(data[items_game])["items"];
+                foreach (var i in reference)
+                {
+                    var p = i["prefab"].v;
+                    if (p == "wearable" || p == "default_item" || p == "courier" || p == "courier_wearable" || p == "ward" ||
+                      p == "taunt" || p == "misc" || p == "tool" || p == "emblem") i.remove("portraits");
+                    else i.k = "";
+                }
+                reference.remove(""); reference.SaveToFile("items_reference.txt");
             }
 
             sw.Stop();
