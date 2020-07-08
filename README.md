@@ -36,8 +36,19 @@ Filters on the other hand are more complex and useful.
 
 #### Getting started with user filters  
 Script uses a rather block first, white-list later aproach, so various issues need to be corrected via hard-coded filters.  
-Most filters use item numbers (ids) from [items_game.txt](https://github.com/SteamDatabase/GameTracking-Dota2/blob/master/game/dota/pak01_dir/scripts/items/items_game.txt) but also generic hero and slot names.   
-Advanced users can define extra exceptions in a `No-Bling-filters.txt` file with the following vdf key-value format:  
+Most filters use item numbers (ids) from but also generic hero and slot names. 
+Basically:  
+1. See generated `items_reference.txt` with only the relevant items included and portraits section removed.  
+2. Search for a partial item name; note item "number", note `used_by_heroes`, note `item_slot` (if missing, assume "weapon").  
+3. Use details learned above to create your user filters exceptions in a `No-Bling-filters.txt` file:  
+``` cpp
+"user-filters"
+{
+  keep_item "12930,13456"  // keep item id 12930 : Eminence of Ristul and 13456 : Crown of the One True King
+}
+```
+
+A more advanced `No-Bling-filters.txt` file example with resource replacement:  
 ``` cpp
 "user-filters"
 {
