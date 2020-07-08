@@ -36,11 +36,11 @@ Filters on the other hand are more complex and useful.
 
 #### Getting started with user filters  
 Script uses a rather block first, white-list later aproach, so various issues need to be corrected via hard-coded filters.  
-Most filters use item numbers (ids) from but also generic hero and slot names. 
+Most filters use item numbers (ids) but also generic hero and slot names.  
 Basically:  
-1. See generated `items_reference.txt` with only the relevant items included and portraits section removed.  
-2. Search for a partial item name; note item "number", note `used_by_heroes`, note `item_slot` (if missing, assume "weapon").  
-3. Use details learned above to create your user filters exceptions in a `No-Bling-filters.txt` file:  
+~ See generated `items_reference.txt` with only the relevant items included and portraits section removed.  
+~ Search for a partial item name; note item "number", note `used_by_heroes`, note `item_slot` (if missing, assume "weapon").  
+~ Use details learned above to create your user filters exceptions in a `No-Bling-filters.txt` file:  
 ``` cpp
 "user-filters"
 {
