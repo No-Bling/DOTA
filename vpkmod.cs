@@ -35,7 +35,7 @@ using System.Net; using SteamDatabase.ValvePak; using SteamKit.KeyValue; [assemb
       ````:##############################                       #########:` `
        `````````````````````````:##:```:#############################:````:##:```
           ` ``` ```` ` ` ````````` ````````````````````````````````  ````")]
-[assembly:AssemblyVersionAttribute("2020.07.08.1")] [assembly: AssemblyTitle("AveYo")]
+[assembly:AssemblyVersionAttribute("2020.07.08.2")] [assembly: AssemblyTitle("AveYo")]
 
 namespace SteamDatabase.ValvePak
 {
@@ -563,7 +563,7 @@ namespace SteamDatabase.ValvePak
         {
             // VPKMOD20 just counts offsets for duplicate files, so the exported .vpk is generally smaller for repetitive content!
             var sw = Stopwatch.StartNew();
-            Directory.CreateDirectory(Path.GetDirectoryName(fn));
+            Directory.CreateDirectory(Path.GetDirectoryName(fn)); File.Delete(fn);
             using (var sha1 = SHA1.Create())
             using (FileStream fs = new FileStream(fn, FileMode.Create, FileAccess.Write))
             using (MemoryStream mtree = new MemoryStream(), mdata = new MemoryStream())
@@ -1122,9 +1122,9 @@ namespace SteamKit.KeyValue
                 this[key].v = val;
         }
 
-        public void add(string key, List<string> val)
+        public void add(string key, List<string> vals)
         {
-            var joined = String.Join(",", val);
+            var joined = String.Join(",", vals);
             if (this[key] == empty)
                 this.items.Add(new KV(key, joined));
             else
@@ -2105,19 +2105,28 @@ namespace VPKMOD
             if (items == null)
                 throw new InvalidDataException("BAD scripts/items/items_game.txt in pak01_dir.vpk!");
 
-            // PatchAnticipationStation: compare items_game.txt CRC from game with PAS.crc from outputfile
+            // PatchAnticipationStation: compare items_game.txt CRC from sourcefile with cached PAS from outputfile
             var PAS = true; //
             if (File.Exists(outputfile))
             {
-                try { existing.Read(outputfile); } catch { }
-                var pas_entry = existing.FindEntry(" ","PAS"," ");
-                if (pas_entry != null)
-                {
-                    byte[] pas_data; existing.ReadEntry(pas_entry, out pas_data);
-                    if (Encoding.UTF8.GetString(pas_data) == crc[items_game].ToString()) PAS = false;
-                }
+                try { existing.Read(outputfile);
+                    var pas_entry = existing.FindEntry(" ","PAS"," ");
+                    if (pas_entry != null)
+                    {
+                        byte[] pas_data; existing.ReadEntry(pas_entry, out pas_data);
+                        if (Encoding.UTF8.GetString(pas_data) == crc[items_game].ToString()) PAS = false;
+                    }
+                } catch { }
+                existing.Dispose();
             }
             Echo(PAS ? "\n[new patch] " : "\n[old patch] ", 0, PAS ? ConsoleColor.Green : ConsoleColor.Magenta);
+
+            // Quit early if there's no need to update the mod
+            if (PAS == false && Options.Silent)
+            {
+                Echo("Mod is up-to-date", 1, ConsoleColor.Green);
+                return;
+            }
 
             // Show Choices Dialog
             var all = "Couriers,Wards,Heroes,Wearables,Abilities,GlanceValue,Taunts,SoundBoard,Loadout,Potato";
@@ -2177,22 +2186,30 @@ namespace VPKMOD
             }
 
             // Soundboard
-            if (choices.Contains("SoundBoard"))
+            if (choices.Contains("SoundBoard") && filters["keep_soundboard"]["TI10_Ceeeb"].notfound)
+                foreach (var s in "ceeeb_start ceeeb_stop".Split())
+                    output.AddEntry("sounds/misc/soundboard", s, "vsnd_c", data[null_vsnd]);
+            var soundboard_reference = new List<string>();
+            var soundboard = KV.LoadFromBytes(data[chat_wheel]);
+            if (soundboard != null)
             {
-                if (filters["keep_soundboard"]["TI10_Ceeeb"].notfound)
-                    foreach (var s in "ceeeb_start ceeeb_stop".Split())
-                        output.AddEntry("sounds/misc/soundboard", s, "vsnd_c", data[null_vsnd]);
-                var soundboard = KV.LoadFromBytes(data[chat_wheel]);
-                if (soundboard != null)
+                foreach (var s1 in soundboard["messages"]) foreach (var s2 in s1)
                 {
-                    foreach (var s1 in soundboard["messages"]) foreach (var s2 in s1)
-                        if (s2.k == "sound" && filters["keep_soundboard"][s1.k].notfound) s2.v = "Dota.UpdateVODefault";
-                    foreach (var s1 in soundboard["hero_messages"]) foreach (var s2 in s1) foreach (var s3 in s2)
-                        if (s3.k == "sound" && filters["keep_soundboard"][s2.k].notfound) s3.v = "Dota.UpdateVODefault";
-                    using (var ms = new MemoryStream())
-                    {
-                        soundboard.SaveToStream(ms); output.AddEntry("scripts", "chat_wheel", "txt", ms.ToArray());
-                    }
+                    if (s2.k != "sound") continue;
+                    soundboard_reference.Add(s1.k);
+                    if (choices.Contains("SoundBoard") && filters["keep_soundboard"][s1.k].notfound)
+                        s2.v = "Dota.UpdateVODefault";
+                }
+                foreach (var s1 in soundboard["hero_messages"]) foreach (var s2 in s1) foreach (var s3 in s2)
+                {
+                    if (s3.k != "sound") continue;
+                    soundboard_reference.Add(s2.k);
+                    if (choices.Contains("SoundBoard") && filters["keep_soundboard"][s2.k].notfound)
+                        s3.v = "Dota.UpdateVODefault";
+                }
+                using (var ms = new MemoryStream())
+                {
+                    soundboard.SaveToStream(ms); output.AddEntry("scripts", "chat_wheel", "txt", ms.ToArray());
                 }
             }
 
@@ -2531,7 +2548,8 @@ namespace VPKMOD
                       p == "taunt" || p == "misc" || p == "tool" || p == "emblem") i.remove("portraits");
                     else i.k = "";
                 }
-                reference.remove(""); reference.SaveToFile("items_reference.txt");
+                reference.remove(""); reference.add("soundboard").add(soundboard_reference);
+                reference.SaveToFile("items_reference.txt");
             }
 
             sw.Stop();
