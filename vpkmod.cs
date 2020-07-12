@@ -1532,7 +1532,7 @@ namespace VPKMOD
         }
     }
 
-    public class Choices
+        public class Choices
     {
         public static List<string> Dialog ( string all_cb, string sel_cb, string def_cb,
             string title, byte sz = 14, string fc = "Snow", string bc = "Navy", int w = 0, int h = 0 )
@@ -1545,20 +1545,20 @@ namespace VPKMOD
                 f.BackColor = Color.FromName(bc); f.MinimumSize = new Size(w, h); f.TopMost = true; f.MaximizeBox = false;
                 f.StartPosition = (FormStartPosition)1; f.AutoSize = false; f.SuspendLayout();
                 int i = 0, j = 0, k = all.Count + 3, maxchars = Math.Max(all.Max(_ => _.Length) + 2, 24); all.Reverse();
-                all.ForEach(_ => {
+                all.ForEach(_ => {  //Options
                     var c = new CheckBox() {
                         Text = _, Font = f.Font, Name = "c" + i, TabIndex = k--, AutoSize = true,  Dock = (DockStyle)1,
-                        FlatStyle = (FlatStyle)0, Appearance = (Appearance)1, TextAlign = (ContentAlignment)32 // bugged on MONO
-                    }; c.FlatAppearance.BorderSize = 0; c.Click += delegate { InvertCheck(c); };
+                        FlatStyle = (FlatStyle)0, Appearance = (Appearance)0, TextAlign = (ContentAlignment)32 // bugged on MONO
+                    }; c.FlatAppearance.BorderSize = 2; c.Click += delegate { };
                     f.Controls.Add(c); cb.Add(c); i++;
                 });
                 k = 0;
-                var p = new FlowLayoutPanel() {WrapContents = false, AutoSize = true, Dock = (DockStyle)2 }; p.SuspendLayout();
+                var p = new FlowLayoutPanel() {WrapContents = false, AutoSize = true, Dock = (DockStyle)2 }; p.SuspendLayout(); //Bottom Row
                 "Default OK Cancel".Split().ToList().ForEach(_ => {
                     var b = new Button() {
                         Text = _, Font = f.Font, Name = "b" + j, TabIndex = k++, AutoSize = true, Dock = (DockStyle)2,
                         FlatStyle = (FlatStyle)0, DialogResult = (DialogResult)j
-                    }; b.FlatAppearance.BorderSize = 0; p.Controls.Add(b);  bn.Add(b); j++;
+                    }; b.FlatAppearance.BorderSize = 2; p.Controls.Add(b);  bn.Add(b); j++;
                 });
                 bn[0].Click += delegate {cb.ForEach(_ =>{_.Checked = def.Any(_.Text.Contains) ? true : false; InvertCheck(_);});};
                 bn[1].Click += delegate { f.Close(); f.Dispose(); };
@@ -1584,7 +1584,7 @@ namespace VPKMOD
             var b = c.Parent.BackColor; var f = c.Parent.ForeColor; c.ForeColor = c.Checked ? b:f; c.BackColor = c.Checked ? f:b;
         }
     }
-
+        
     class Program
     {
         private static Options Options;
