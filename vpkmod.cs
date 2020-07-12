@@ -1532,7 +1532,7 @@ namespace VPKMOD
         }
     }
 
-        public class Choices
+    public class Choices
     {
         public static List<string> Dialog ( string all_cb, string sel_cb, string def_cb,
             string title, byte sz = 14, string fc = "Snow", string bc = "Navy", int w = 0, int h = 0 )
@@ -1549,7 +1549,7 @@ namespace VPKMOD
                     var c = new CheckBox() {
                         Text = _, Font = f.Font, Name = "c" + i, TabIndex = k--, AutoSize = true,  Dock = (DockStyle)1,
                         FlatStyle = (FlatStyle)0, Appearance = (Appearance)0, TextAlign = (ContentAlignment)32 // bugged on MONO
-                    }; c.FlatAppearance.BorderSize = 2; c.Click += delegate { };
+                    }; c.FlatAppearance.BorderSize = 0; c.Click += delegate { };
                     f.Controls.Add(c); cb.Add(c); i++;
                 });
                 k = 0;
@@ -1584,7 +1584,7 @@ namespace VPKMOD
             var b = c.Parent.BackColor; var f = c.Parent.ForeColor; c.ForeColor = c.Checked ? b:f; c.BackColor = c.Checked ? f:b;
         }
     }
-        
+
     class Program
     {
         private static Options Options;
