@@ -13,7 +13,7 @@ for s in "$STEAMPATH" "$STEAMPATH1" "$STEAMPATH2" "$STEAMPATH3" "$STEAMPATH4"
 do
   if test -f "$s/steamapps/libraryfolders.vdf"; then
     export STEAMPATH="$s"
-    break  
+    break
   fi
 done
 
@@ -28,17 +28,21 @@ shortcut="$HOME/Desktop/No-Bling-DOTA.desktop"
 printf "[Desktop Entry]\nName=No-Bling-DOTA\nType=Application\nTerminal=true\nExec=\"$EXEPATH/vpkmod.sh\"" > "$shortcut"
 printf "#!/bin/sh\nprintf \"\\\\e[8;35;80t\"; reset\ncd \"$EXEPATH\"\nexport STEAMPATH=\"$STEAMPATH\"\n" > vpkmod.sh
 printf "mono vpkmod -b -s \nsteam steam://rungameid/570" >> vpkmod.sh
-chmod +x "$shortcut"; chmod +x vpkmod.sh 
+chmod +x "$shortcut"; chmod +x vpkmod.sh
 
 # csc compile vpkmod tool via mono
 if ! type mono > /dev/null 2>&1; then
-  printf "\e[1;7;91m"; read -s -n 1 -p "[ERROR] You need to install mono"; printf "\e[0m\n"; exit 1  
+  printf "\e[1;7;91m"; read -s -n 1 -p "[ERROR] You need to install mono"; printf "\e[0m\n"; exit 1
 fi
 csc /out:vpkmod /target:exe /platform:anycpu /optimize /nologo vpkmod.cs
 chmod +x vpkmod
 
 # launch vpkmod with -b option for building No-Bling DOTA mod
-mono vpkmod -b
+if [ "$(uname)" == "Darwin" ]; then
+    mono --arch=32 vpkmod -b
+else
+    mono vpkmod -b
+fi
 
 read -s -n 1 -p "Press any key to start DOTA ";
 steam steam://rungameid/570
