@@ -1,7 +1,7 @@
 @echo off & title No-Bling DOTA mod builder
 
 :: manually override required STEAMPATH variable here if needed
-set "STEAMPATH=C:\Program Files (x86)\Steam"
+set "STEAMPATH=D:\SteamLibrary\steamapps\common\dota 2 beta
 
 :: detect STEAMPATH
 for /f "tokens=2*" %%R in ('reg query HKCU\SOFTWARE\Valve\Steam /v SteamPath 2^>nul') do set "steampath_reg=%%S"
