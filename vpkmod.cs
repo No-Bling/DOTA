@@ -552,6 +552,9 @@ namespace SteamDatabase.ValvePak
                 return;
 
             var publicKeySize = Reader.ReadInt32();
+            if (SignatureSectionSize == 20 && publicKeySize == MAGIC)
+                return;
+
             PublicKey = Reader.ReadBytes(publicKeySize);
 
             var signatureSize = Reader.ReadInt32();
